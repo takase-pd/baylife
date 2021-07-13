@@ -81,7 +81,8 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
               padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   StreamBuilder<List<ContentsRecord>>(
                     stream: queryContentsRecord(
@@ -248,7 +249,8 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                 ),
                                                 Icon(
                                                   Icons.bookmark_sharp,
-                                                  color: Colors.black,
+                                                  color: FlutterFlowTheme
+                                                      .primaryColor,
                                                   size: 24,
                                                 )
                                               ],

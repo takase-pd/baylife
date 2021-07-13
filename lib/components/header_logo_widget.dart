@@ -14,34 +14,34 @@ class HeaderLogoWidget extends StatefulWidget {
 class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        InkWell(
-          onTap: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomePageWidget(),
-              ),
-            );
-          },
-          child: Text(
+    return InkWell(
+      onTap: () async {
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePageWidget(),
+          ),
+        );
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Text(
             'MAKUHARI',
             style: FlutterFlowTheme.title2.override(
               fontFamily: 'Poppins',
               fontSize: 18,
             ),
           ),
-        ),
-        Text(
-          'Bay Life',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'Poppins',
-            fontSize: 18,
-          ),
-        )
-      ],
+          Text(
+            'Bay Life',
+            style: FlutterFlowTheme.title3.override(
+              fontFamily: 'Poppins',
+              fontSize: 18,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

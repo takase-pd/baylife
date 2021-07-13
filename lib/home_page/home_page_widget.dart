@@ -230,7 +230,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                                 Icon(
                                                   Icons.bookmark_sharp,
-                                                  color: Colors.black,
+                                                  color: FlutterFlowTheme
+                                                      .primaryColor,
                                                   size: 24,
                                                 )
                                               ],

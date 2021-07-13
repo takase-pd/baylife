@@ -24,6 +24,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
   TextEditingController textController5;
   TextEditingController textController6;
   TextEditingController textController7;
+  TextEditingController textController8;
   bool checkboxListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -37,6 +38,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
     textController5 = TextEditingController();
     textController6 = TextEditingController();
     textController7 = TextEditingController();
+    textController8 = TextEditingController();
   }
 
   @override
@@ -430,6 +432,69 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                           ),
                         ),
                         Padding(
+                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                    child: TextFormField(
+                                      controller: textController5,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: '内容期限',
+                                        labelStyle:
+                                            FlutterFlowTheme.bodyText2.override(
+                                          fontFamily: 'Montserrat',
+                                          color: Color(0xFF8B97A2),
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 1,
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(4.0),
+                                            topRight: Radius.circular(4.0),
+                                          ),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 1,
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(4.0),
+                                            topRight: Radius.circular(4.0),
+                                          ),
+                                        ),
+                                      ),
+                                      style:
+                                          FlutterFlowTheme.bodyText2.override(
+                                        fontFamily: 'Montserrat',
+                                        color: Color(0xFF8B97A2),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
                           padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -468,7 +533,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
                                     child: TextFormField(
-                                      controller: textController5,
+                                      controller: textController6,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'メールアドレス',
@@ -532,7 +597,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
                                     child: TextFormField(
-                                      controller: textController6,
+                                      controller: textController7,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: '電話番号',
@@ -595,7 +660,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
                                     child: TextFormField(
-                                      controller: textController7,
+                                      controller: textController8,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: '所属',
