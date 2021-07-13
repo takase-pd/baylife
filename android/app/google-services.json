@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "317803933569",
+    "project_id": "baylife-ff782",
+    "storage_bucket": "baylife-ff782.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317803933569:android:c562c992672ae02f6e8280",
+        "android_client_info": {
+          "package_name": "com.particledrawing.baylife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317803933569-vmk8ms4eaaejdtmfkiq10efmgadcl43c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsDK9riMaM8KPmEoiYar3Be6yfIS6z7k4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317803933569-vmk8ms4eaaejdtmfkiq10efmgadcl43c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "317803933569-hp98elu9srvgqdmh8cu859kld1mgu4r5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.particledrawing.baylife"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
