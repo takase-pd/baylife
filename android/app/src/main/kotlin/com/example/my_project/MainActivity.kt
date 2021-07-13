@@ -1,4 +1,4 @@
-package com.flutterflow.baylife
+package com.particledrawing.baylife
 
 import io.flutter.embedding.android.FlutterActivity
 
