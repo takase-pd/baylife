@@ -24,5 +24,17 @@ service cloud.firestore {
     match /terms_histories/{id} {
       allow read, write: if true;
     }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /cat_dd/{id} {
+      allow read, write: if true;
+    }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /info_inapp/{id} {
+      allow read, write: if true;
+    }
   }
 }

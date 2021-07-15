@@ -69,7 +69,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   StreamBuilder<List<ContentsRecord>>(
-                    stream: queryContentsRecord(),
+                    stream: queryContentsRecord(
+                      queryBuilder: (contentsRecord) => contentsRecord
+                          .where('display', isEqualTo: true)
+                          .where('permission', isEqualTo: true),
+                    ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -103,7 +107,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ContentPageWidget(),
+                                      builder: (context) => ContentPageWidget(
+                                        contentRef:
+                                            listViewContentsRecord.reference,
+                                      ),
                                     ),
                                   );
                                 },
@@ -133,7 +140,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           padding:
                                               EdgeInsets.fromLTRB(0, 0, 0, 10),
                                           child: Text(
-                                            listViewContentsRecord.headerText,
+                                            listViewContentsRecord.overview,
                                             style: FlutterFlowTheme.bodyText1
                                                 .override(
                                               fontFamily: 'Poppins',
@@ -144,18 +151,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           padding:
                                               EdgeInsets.fromLTRB(0, 0, 0, 10),
                                           child: Text(
-                                            listViewContentsRecord.sender,
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                          child: Text(
-                                            '内容期限：${dateTimeFormat('yMMMd', listViewContentsRecord.period)}',
+                                            listViewContentsRecord.organizer,
                                             style: FlutterFlowTheme.bodyText1
                                                 .override(
                                               fontFamily: 'Poppins',
