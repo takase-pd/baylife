@@ -7,6 +7,8 @@ import 'schema/contents_record.dart';
 import 'schema/categories_record.dart';
 import 'schema/terms_record.dart';
 import 'schema/terms_histories_record.dart';
+import 'schema/cat_dd_record.dart';
+import 'schema/info_inapp_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,6 +19,8 @@ export 'schema/contents_record.dart';
 export 'schema/categories_record.dart';
 export 'schema/terms_record.dart';
 export 'schema/terms_histories_record.dart';
+export 'schema/cat_dd_record.dart';
+export 'schema/info_inapp_record.dart';
 
 Stream<List<ContentsRecord>> queryContentsRecord(
         {Query Function(Query) queryBuilder,
@@ -45,6 +49,20 @@ Stream<List<TermsHistoriesRecord>> queryTermsHistoriesRecord(
         bool singleRecord = false}) =>
     queryCollection(
         TermsHistoriesRecord.collection, TermsHistoriesRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Stream<List<CatDdRecord>> queryCatDdRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(CatDdRecord.collection, CatDdRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Stream<List<InfoInappRecord>> queryInfoInappRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(InfoInappRecord.collection, InfoInappRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(

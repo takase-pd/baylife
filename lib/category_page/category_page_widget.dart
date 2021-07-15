@@ -87,7 +87,9 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                   StreamBuilder<List<ContentsRecord>>(
                     stream: queryContentsRecord(
                       queryBuilder: (contentsRecord) => contentsRecord
-                          .where('category', isEqualTo: widget.catRef),
+                          .where('category', isEqualTo: widget.catRef)
+                          .where('display', isEqualTo: true)
+                          .where('permission', isEqualTo: true),
                     ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
@@ -122,7 +124,10 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ContentPageWidget(),
+                                      builder: (context) => ContentPageWidget(
+                                        contentRef:
+                                            listViewContentsRecord.reference,
+                                      ),
                                     ),
                                   );
                                 },
@@ -152,7 +157,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                           padding:
                                               EdgeInsets.fromLTRB(0, 0, 0, 10),
                                           child: Text(
-                                            listViewContentsRecord.headerText,
+                                            listViewContentsRecord.overview,
                                             style: FlutterFlowTheme.bodyText1
                                                 .override(
                                               fontFamily: 'Poppins',
@@ -163,18 +168,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                           padding:
                                               EdgeInsets.fromLTRB(0, 0, 0, 10),
                                           child: Text(
-                                            listViewContentsRecord.sender,
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                          child: Text(
-                                            '内容期限：${dateTimeFormat('yMMMd', listViewContentsRecord.posted)}',
+                                            listViewContentsRecord.organizer,
                                             style: FlutterFlowTheme.bodyText1
                                                 .override(
                                               fontFamily: 'Poppins',
