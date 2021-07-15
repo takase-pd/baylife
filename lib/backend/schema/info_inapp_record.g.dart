@@ -1,41 +1,30 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'terms_histories_record.dart';
+part of 'info_inapp_record.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<TermsHistoriesRecord> _$termsHistoriesRecordSerializer =
-    new _$TermsHistoriesRecordSerializer();
+Serializer<InfoInappRecord> _$infoInappRecordSerializer =
+    new _$InfoInappRecordSerializer();
 
-class _$TermsHistoriesRecordSerializer
-    implements StructuredSerializer<TermsHistoriesRecord> {
+class _$InfoInappRecordSerializer
+    implements StructuredSerializer<InfoInappRecord> {
   @override
-  final Iterable<Type> types = const [
-    TermsHistoriesRecord,
-    _$TermsHistoriesRecord
-  ];
+  final Iterable<Type> types = const [InfoInappRecord, _$InfoInappRecord];
   @override
-  final String wireName = 'TermsHistoriesRecord';
+  final String wireName = 'InfoInappRecord';
 
   @override
-  Iterable<Object> serialize(
-      Serializers serializers, TermsHistoriesRecord object,
+  Iterable<Object> serialize(Serializers serializers, InfoInappRecord object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
     Object value;
-    value = object.date;
+    value = object.postInfo;
     if (value != null) {
       result
-        ..add('date')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(DateTime)));
-    }
-    value = object.title;
-    if (value != null) {
-      result
-        ..add('title')
+        ..add('post_info')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -51,10 +40,10 @@ class _$TermsHistoriesRecordSerializer
   }
 
   @override
-  TermsHistoriesRecord deserialize(
+  InfoInappRecord deserialize(
       Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new TermsHistoriesRecordBuilder();
+    final result = new InfoInappRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -62,12 +51,8 @@ class _$TermsHistoriesRecordSerializer
       iterator.moveNext();
       final Object value = iterator.current;
       switch (key) {
-        case 'date':
-          result.date = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
-          break;
-        case 'title':
-          result.title = serializers.deserialize(value,
+        case 'post_info':
+          result.postInfo = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'Document__Reference__Field':
@@ -83,80 +68,68 @@ class _$TermsHistoriesRecordSerializer
   }
 }
 
-class _$TermsHistoriesRecord extends TermsHistoriesRecord {
+class _$InfoInappRecord extends InfoInappRecord {
   @override
-  final DateTime date;
-  @override
-  final String title;
+  final String postInfo;
   @override
   final DocumentReference<Object> reference;
 
-  factory _$TermsHistoriesRecord(
-          [void Function(TermsHistoriesRecordBuilder) updates]) =>
-      (new TermsHistoriesRecordBuilder()..update(updates)).build();
+  factory _$InfoInappRecord([void Function(InfoInappRecordBuilder) updates]) =>
+      (new InfoInappRecordBuilder()..update(updates)).build();
 
-  _$TermsHistoriesRecord._({this.date, this.title, this.reference}) : super._();
+  _$InfoInappRecord._({this.postInfo, this.reference}) : super._();
 
   @override
-  TermsHistoriesRecord rebuild(
-          void Function(TermsHistoriesRecordBuilder) updates) =>
+  InfoInappRecord rebuild(void Function(InfoInappRecordBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  TermsHistoriesRecordBuilder toBuilder() =>
-      new TermsHistoriesRecordBuilder()..replace(this);
+  InfoInappRecordBuilder toBuilder() =>
+      new InfoInappRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is TermsHistoriesRecord &&
-        date == other.date &&
-        title == other.title &&
+    return other is InfoInappRecord &&
+        postInfo == other.postInfo &&
         reference == other.reference;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, date.hashCode), title.hashCode), reference.hashCode));
+    return $jf($jc($jc(0, postInfo.hashCode), reference.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('TermsHistoriesRecord')
-          ..add('date', date)
-          ..add('title', title)
+    return (newBuiltValueToStringHelper('InfoInappRecord')
+          ..add('postInfo', postInfo)
           ..add('reference', reference))
         .toString();
   }
 }
 
-class TermsHistoriesRecordBuilder
-    implements Builder<TermsHistoriesRecord, TermsHistoriesRecordBuilder> {
-  _$TermsHistoriesRecord _$v;
+class InfoInappRecordBuilder
+    implements Builder<InfoInappRecord, InfoInappRecordBuilder> {
+  _$InfoInappRecord _$v;
 
-  DateTime _date;
-  DateTime get date => _$this._date;
-  set date(DateTime date) => _$this._date = date;
-
-  String _title;
-  String get title => _$this._title;
-  set title(String title) => _$this._title = title;
+  String _postInfo;
+  String get postInfo => _$this._postInfo;
+  set postInfo(String postInfo) => _$this._postInfo = postInfo;
 
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
       _$this._reference = reference;
 
-  TermsHistoriesRecordBuilder() {
-    TermsHistoriesRecord._initializeBuilder(this);
+  InfoInappRecordBuilder() {
+    InfoInappRecord._initializeBuilder(this);
   }
 
-  TermsHistoriesRecordBuilder get _$this {
+  InfoInappRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _date = $v.date;
-      _title = $v.title;
+      _postInfo = $v.postInfo;
       _reference = $v.reference;
       _$v = null;
     }
@@ -164,21 +137,20 @@ class TermsHistoriesRecordBuilder
   }
 
   @override
-  void replace(TermsHistoriesRecord other) {
+  void replace(InfoInappRecord other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$TermsHistoriesRecord;
+    _$v = other as _$InfoInappRecord;
   }
 
   @override
-  void update(void Function(TermsHistoriesRecordBuilder) updates) {
+  void update(void Function(InfoInappRecordBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$TermsHistoriesRecord build() {
+  _$InfoInappRecord build() {
     final _$result = _$v ??
-        new _$TermsHistoriesRecord._(
-            date: date, title: title, reference: reference);
+        new _$InfoInappRecord._(postInfo: postInfo, reference: reference);
     replace(_$result);
     return _$result;
   }
