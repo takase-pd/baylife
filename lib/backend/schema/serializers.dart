@@ -6,6 +6,7 @@ import 'terms_record.dart';
 import 'terms_histories_record.dart';
 import 'cat_dd_record.dart';
 import 'info_inapp_record.dart';
+import 'users_record.dart';
 
 import 'index.dart';
 
@@ -22,6 +23,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   TermsHistoriesRecord,
   CatDdRecord,
   InfoInappRecord,
+  UsersRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

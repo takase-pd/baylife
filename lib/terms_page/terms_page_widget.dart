@@ -68,7 +68,15 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
-                        return Center(child: CircularProgressIndicator());
+                        return Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: CircularProgressIndicator(
+                              color: FlutterFlowTheme.primaryColor,
+                            ),
+                          ),
+                        );
                       }
                       List<TermsRecord> listViewTermsRecordList = snapshot.data;
                       // Customize what your widget looks like with no query results.
@@ -135,7 +143,15 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
-                        return Center(child: CircularProgressIndicator());
+                        return Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: CircularProgressIndicator(
+                              color: FlutterFlowTheme.primaryColor,
+                            ),
+                          ),
+                        );
                       }
                       List<TermsHistoriesRecord>
                           termsHistoryTermsHistoriesRecordList = snapshot.data;
