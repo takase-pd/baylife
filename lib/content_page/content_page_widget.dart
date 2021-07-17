@@ -60,7 +60,15 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
                 if (!snapshot.hasData) {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        color: FlutterFlowTheme.primaryColor,
+                      ),
+                    ),
+                  );
                 }
                 final columnContentsRecord = snapshot.data;
                 return Padding(
@@ -92,7 +100,14 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                 // Customize what your widget looks like when it's loading.
                                 if (!snapshot.hasData) {
                                   return Center(
-                                      child: CircularProgressIndicator());
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: CircularProgressIndicator(
+                                        color: FlutterFlowTheme.primaryColor,
+                                      ),
+                                    ),
+                                  );
                                 }
                                 final containerCategoriesRecord = snapshot.data;
                                 return Padding(

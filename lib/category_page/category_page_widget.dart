@@ -94,7 +94,15 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
-                        return Center(child: CircularProgressIndicator());
+                        return Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: CircularProgressIndicator(
+                              color: FlutterFlowTheme.primaryColor,
+                            ),
+                          ),
+                        );
                       }
                       List<ContentsRecord> listViewContentsRecordList =
                           snapshot.data;
@@ -182,8 +190,16 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
                                               return Center(
+                                                child: SizedBox(
+                                                  width: 50,
+                                                  height: 50,
                                                   child:
-                                                      CircularProgressIndicator());
+                                                      CircularProgressIndicator(
+                                                    color: FlutterFlowTheme
+                                                        .primaryColor,
+                                                  ),
+                                                ),
+                                              );
                                             }
                                             final rowCategoriesRecord =
                                                 snapshot.data;
