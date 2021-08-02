@@ -1,4 +1,4 @@
-import '../auth/auth_util.dart';
+import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
@@ -7,7 +7,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../post_page/post_page_widget.dart';
 import '../terms_page/terms_page_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -732,38 +731,11 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                           alignment: Alignment(0.95, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              final contentsCreateData = {
-                                                ...createContentsRecordData(
-                                                  category:
-                                                      containerCategoriesRecord
-                                                          .reference,
-                                                  title: widget.title,
-                                                  period: widget.period,
-                                                  posted: getCurrentTimestamp,
-                                                  display: false,
-                                                  catAdd: widget.catNameAdd,
-                                                  contact: widget.contact,
-                                                  detail: widget.detail,
-                                                  homepage: widget.homepage,
-                                                  organizer: widget.organizer,
-                                                  overview: widget.overview,
-                                                  permission: widget.permission,
-                                                  postName: widget.postName,
-                                                  postEmail: widget.postEmail,
-                                                  postPhone: widget.postPhone,
-                                                  postOccupation:
-                                                      widget.postOccupation,
-                                                  to: widget.postEmail,
-                                                  address: widget.address,
-                                                ),
-                                                'bccUids':
-                                                    FieldValue.arrayUnion([
-                                                  'brfikPQtv3KqXdTdm5cH'
-                                                ]),
-                                              };
-                                              await ContentsRecord.collection
-                                                  .doc()
-                                                  .set(contentsCreateData);
+                                              await registContentsCall(
+                                                email: widget.postEmail,
+                                                name: widget.postName,
+                                                content: widget.title,
+                                              );
                                               await showDialog(
                                                 context: context,
                                                 builder: (alertDialogContext) {
@@ -776,18 +748,20 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                         onPressed: () =>
                                                             Navigator.pop(
                                                                 alertDialogContext),
-                                                        child: Text('Ok'),
+                                                        child: Text('OK'),
                                                       ),
                                                     ],
                                                   );
                                                 },
                                               );
-                                              await Navigator.push(
+                                              await Navigator
+                                                  .pushAndRemoveUntil(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
                                                       PostPageWidget(),
                                                 ),
+                                                (r) => false,
                                               );
                                             },
                                             text: '送信',

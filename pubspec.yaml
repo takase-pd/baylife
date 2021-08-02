@@ -26,21 +26,16 @@ dependencies:
   auto_size_text:
   built_collection: ^5.0.0
   built_value: ^8.0.6
-  cached_network_image: 2.5.1
-  # cloud_firestore: ^2.3.0
-  flutter_datetime_picker: 1.5.0
-  cloud_firestore: ^0.16.0
-  firebase_auth: ^0.20.0+1
-  firebase_core: ^0.7.0
+  cached_network_image: ^3.1.0
+  cloud_firestore: ^2.4.0
+  equatable: ^1.2.6
   font_awesome_flutter:
   geolocator:
-  google_fonts: ^1.1.2
-  google_sign_in: ^4.0.16
+  google_fonts: ^2.1.0
   intl:
-  json_serializable: ^3.5.1
+  json_path: ^0.2.1
+  json_serializable: ^4.0.1
   page_transition:
-  rxdart: ^0.25.0
-  sign_in_with_apple: ^2.5.4
   timeago:
   url_launcher:
 
