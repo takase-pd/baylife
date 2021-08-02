@@ -14,9 +14,11 @@ Future<dynamic> registContentsCall({
         'Content-Type': 'application/json',
       },
       params: {
-        'name': name,
-        'email': email,
-        'content': content,
+        'data': {
+          'name': name,
+          'email': email,
+          'content': content,
+        },
       },
       returnResponse: true,
     );

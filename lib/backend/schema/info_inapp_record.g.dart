@@ -33,7 +33,8 @@ class _$InfoInappRecordSerializer
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(DocumentReference)));
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType(Object)])));
     }
     return result;
   }
@@ -56,8 +57,9 @@ class _$InfoInappRecordSerializer
           break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(DocumentReference))
-              as DocumentReference;
+                  specifiedType: const FullType(
+                      DocumentReference, const [const FullType(Object)]))
+              as DocumentReference<Object>;
           break;
       }
     }
@@ -70,7 +72,7 @@ class _$InfoInappRecord extends InfoInappRecord {
   @override
   final String postInfo;
   @override
-  final DocumentReference reference;
+  final DocumentReference<Object> reference;
 
   factory _$InfoInappRecord([void Function(InfoInappRecordBuilder) updates]) =>
       (new InfoInappRecordBuilder()..update(updates)).build();
@@ -115,9 +117,10 @@ class InfoInappRecordBuilder
   String get postInfo => _$this._postInfo;
   set postInfo(String postInfo) => _$this._postInfo = postInfo;
 
-  DocumentReference _reference;
-  DocumentReference get reference => _$this._reference;
-  set reference(DocumentReference reference) => _$this._reference = reference;
+  DocumentReference<Object> _reference;
+  DocumentReference<Object> get reference => _$this._reference;
+  set reference(DocumentReference<Object> reference) =>
+      _$this._reference = reference;
 
   InfoInappRecordBuilder() {
     InfoInappRecord._initializeBuilder(this);

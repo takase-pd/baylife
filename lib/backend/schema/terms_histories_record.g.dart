@@ -44,7 +44,8 @@ class _$TermsHistoriesRecordSerializer
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(DocumentReference)));
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType(Object)])));
     }
     return result;
   }
@@ -71,8 +72,9 @@ class _$TermsHistoriesRecordSerializer
           break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(DocumentReference))
-              as DocumentReference;
+                  specifiedType: const FullType(
+                      DocumentReference, const [const FullType(Object)]))
+              as DocumentReference<Object>;
           break;
       }
     }
@@ -87,7 +89,7 @@ class _$TermsHistoriesRecord extends TermsHistoriesRecord {
   @override
   final String title;
   @override
-  final DocumentReference reference;
+  final DocumentReference<Object> reference;
 
   factory _$TermsHistoriesRecord(
           [void Function(TermsHistoriesRecordBuilder) updates]) =>
@@ -141,9 +143,10 @@ class TermsHistoriesRecordBuilder
   String get title => _$this._title;
   set title(String title) => _$this._title = title;
 
-  DocumentReference _reference;
-  DocumentReference get reference => _$this._reference;
-  set reference(DocumentReference reference) => _$this._reference = reference;
+  DocumentReference<Object> _reference;
+  DocumentReference<Object> get reference => _$this._reference;
+  set reference(DocumentReference<Object> reference) =>
+      _$this._reference = reference;
 
   TermsHistoriesRecordBuilder() {
     TermsHistoriesRecord._initializeBuilder(this);

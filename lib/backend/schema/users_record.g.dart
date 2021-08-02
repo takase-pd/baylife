@@ -66,7 +66,8 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(DocumentReference)));
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType(Object)])));
     }
     return result;
   }
@@ -108,8 +109,9 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(DocumentReference))
-              as DocumentReference;
+                  specifiedType: const FullType(
+                      DocumentReference, const [const FullType(Object)]))
+              as DocumentReference<Object>;
           break;
       }
     }
@@ -132,7 +134,7 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String phoneNumber;
   @override
-  final DocumentReference reference;
+  final DocumentReference<Object> reference;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder) updates]) =>
       (new UsersRecordBuilder()..update(updates)).build();
@@ -222,9 +224,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String get phoneNumber => _$this._phoneNumber;
   set phoneNumber(String phoneNumber) => _$this._phoneNumber = phoneNumber;
 
-  DocumentReference _reference;
-  DocumentReference get reference => _$this._reference;
-  set reference(DocumentReference reference) => _$this._reference = reference;
+  DocumentReference<Object> _reference;
+  DocumentReference<Object> get reference => _$this._reference;
+  set reference(DocumentReference<Object> reference) =>
+      _$this._reference = reference;
 
   UsersRecordBuilder() {
     UsersRecord._initializeBuilder(this);

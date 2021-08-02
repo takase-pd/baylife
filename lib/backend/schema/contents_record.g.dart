@@ -54,7 +54,8 @@ class _$ContentsRecordSerializer
       result
         ..add('category')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(DocumentReference)));
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType(Object)])));
     }
     value = object.catAdd;
     if (value != null) {
@@ -160,7 +161,8 @@ class _$ContentsRecordSerializer
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(DocumentReference)));
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType(Object)])));
     }
     return result;
   }
@@ -195,8 +197,9 @@ class _$ContentsRecordSerializer
           break;
         case 'category':
           result.category = serializers.deserialize(value,
-                  specifiedType: const FullType(DocumentReference))
-              as DocumentReference;
+                  specifiedType: const FullType(
+                      DocumentReference, const [const FullType(Object)]))
+              as DocumentReference<Object>;
           break;
         case 'cat_add':
           result.catAdd = serializers.deserialize(value,
@@ -258,8 +261,9 @@ class _$ContentsRecordSerializer
           break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(DocumentReference))
-              as DocumentReference;
+                  specifiedType: const FullType(
+                      DocumentReference, const [const FullType(Object)]))
+              as DocumentReference<Object>;
           break;
       }
     }
@@ -278,7 +282,7 @@ class _$ContentsRecord extends ContentsRecord {
   @override
   final bool display;
   @override
-  final DocumentReference category;
+  final DocumentReference<Object> category;
   @override
   final String catAdd;
   @override
@@ -308,7 +312,7 @@ class _$ContentsRecord extends ContentsRecord {
   @override
   final String address;
   @override
-  final DocumentReference reference;
+  final DocumentReference<Object> reference;
 
   factory _$ContentsRecord([void Function(ContentsRecordBuilder) updates]) =>
       (new ContentsRecordBuilder()..update(updates)).build();
@@ -459,9 +463,10 @@ class ContentsRecordBuilder
   bool get display => _$this._display;
   set display(bool display) => _$this._display = display;
 
-  DocumentReference _category;
-  DocumentReference get category => _$this._category;
-  set category(DocumentReference category) => _$this._category = category;
+  DocumentReference<Object> _category;
+  DocumentReference<Object> get category => _$this._category;
+  set category(DocumentReference<Object> category) =>
+      _$this._category = category;
 
   String _catAdd;
   String get catAdd => _$this._catAdd;
@@ -521,9 +526,10 @@ class ContentsRecordBuilder
   String get address => _$this._address;
   set address(String address) => _$this._address = address;
 
-  DocumentReference _reference;
-  DocumentReference get reference => _$this._reference;
-  set reference(DocumentReference reference) => _$this._reference = reference;
+  DocumentReference<Object> _reference;
+  DocumentReference<Object> get reference => _$this._reference;
+  set reference(DocumentReference<Object> reference) =>
+      _$this._reference = reference;
 
   ContentsRecordBuilder() {
     ContentsRecord._initializeBuilder(this);
