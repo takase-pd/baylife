@@ -68,39 +68,39 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  StreamBuilder<List<ContentsRecord>>(
-                    stream: queryContentsRecord(
-                      queryBuilder: (contentsRecord) => contentsRecord
-                          .where('display', isEqualTo: true)
-                          .where('permission', isEqualTo: true),
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: CircularProgressIndicator(
-                              color: FlutterFlowTheme.primaryColor,
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    child: StreamBuilder<List<ContentsRecord>>(
+                      stream: queryContentsRecord(
+                        queryBuilder: (contentsRecord) => contentsRecord
+                            .where('display', isEqualTo: true)
+                            .where('permission', isEqualTo: true),
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CircularProgressIndicator(
+                                color: FlutterFlowTheme.primaryColor,
+                              ),
                             ),
-                          ),
-                        );
-                      }
-                      List<ContentsRecord> listViewContentsRecordList =
-                          snapshot.data;
-                      // Customize what your widget looks like with no query results.
-                      if (snapshot.data.isEmpty) {
-                        return Container(
-                          height: 100,
-                          child: Center(
-                            child: Text('No results.'),
-                          ),
-                        );
-                      }
-                      return Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: ListView.builder(
+                          );
+                        }
+                        List<ContentsRecord> listViewContentsRecordList =
+                            snapshot.data;
+                        // Customize what your widget looks like with no query results.
+                        if (snapshot.data.isEmpty) {
+                          return Container(
+                            height: 100,
+                            child: Center(
+                              child: Text('No results.'),
+                            ),
+                          );
+                        }
+                        return ListView.builder(
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
@@ -257,9 +257,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                             );
                           },
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   )
                 ],
               ),

@@ -55,25 +55,25 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            StreamBuilder<ContentsRecord>(
-              stream: ContentsRecord.getDocument(widget.contentRef),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: CircularProgressIndicator(
-                        color: FlutterFlowTheme.primaryColor,
+            Padding(
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: StreamBuilder<ContentsRecord>(
+                stream: ContentsRecord.getDocument(widget.contentRef),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: CircularProgressIndicator(
+                          color: FlutterFlowTheme.primaryColor,
+                        ),
                       ),
-                    ),
-                  );
-                }
-                final columnContentsRecord = snapshot.data;
-                return Padding(
-                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: Column(
+                    );
+                  }
+                  final columnContentsRecord = snapshot.data;
+                  return Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -93,26 +93,27 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                 ),
                               ),
                             ),
-                            StreamBuilder<CategoriesRecord>(
-                              stream: CategoriesRecord.getDocument(
-                                  columnContentsRecord.category),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: CircularProgressIndicator(
-                                        color: FlutterFlowTheme.primaryColor,
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 10, 10),
+                              child: StreamBuilder<CategoriesRecord>(
+                                stream: CategoriesRecord.getDocument(
+                                    columnContentsRecord.category),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: CircularProgressIndicator(
+                                          color: FlutterFlowTheme.primaryColor,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }
-                                final containerCategoriesRecord = snapshot.data;
-                                return Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 0, 10, 10),
-                                  child: InkWell(
+                                    );
+                                  }
+                                  final containerCategoriesRecord =
+                                      snapshot.data;
+                                  return InkWell(
                                     onTap: () async {
                                       await Navigator.push(
                                         context,
@@ -145,9 +146,9 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
+                                  );
+                                },
+                              ),
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
@@ -219,9 +220,9 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                         ),
                       )
                     ],
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             )
           ],
         ),

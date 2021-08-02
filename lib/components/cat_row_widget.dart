@@ -15,36 +15,37 @@ class CatRowWidget extends StatefulWidget {
 class _CatRowWidgetState extends State<CatRowWidget> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<CategoriesRecord>>(
-      stream: queryCategoriesRecord(
-        queryBuilder: (categoriesRecord) => categoriesRecord.orderBy('cat_id'),
-      ),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Center(
-            child: SizedBox(
-              width: 50,
-              height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.primaryColor,
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+      child: StreamBuilder<List<CategoriesRecord>>(
+        stream: queryCategoriesRecord(
+          queryBuilder: (categoriesRecord) =>
+              categoriesRecord.orderBy('cat_id'),
+        ),
+        builder: (context, snapshot) {
+          // Customize what your widget looks like when it's loading.
+          if (!snapshot.hasData) {
+            return Center(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: CircularProgressIndicator(
+                  color: FlutterFlowTheme.primaryColor,
+                ),
               ),
-            ),
-          );
-        }
-        List<CategoriesRecord> rowCategoriesRecordList = snapshot.data;
-        // Customize what your widget looks like with no query results.
-        if (snapshot.data.isEmpty) {
-          return Container(
-            height: 100,
-            child: Center(
-              child: Text('No results.'),
-            ),
-          );
-        }
-        return Padding(
-          padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-          child: Row(
+            );
+          }
+          List<CategoriesRecord> rowCategoriesRecordList = snapshot.data;
+          // Customize what your widget looks like with no query results.
+          if (snapshot.data.isEmpty) {
+            return Container(
+              height: 100,
+              child: Center(
+                child: Text('No results.'),
+              ),
+            );
+          }
+          return Row(
             mainAxisSize: MainAxisSize.max,
             children: List.generate(rowCategoriesRecordList.length, (rowIndex) {
               final rowCategoriesRecord = rowCategoriesRecordList[rowIndex];
@@ -70,9 +71,9 @@ class _CatRowWidgetState extends State<CatRowWidget> {
                 ),
               );
             }),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
