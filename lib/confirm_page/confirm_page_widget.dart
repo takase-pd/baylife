@@ -732,9 +732,27 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               await registContentsCall(
-                                                email: widget.postEmail,
-                                                name: widget.postName,
-                                                content: widget.title,
+                                                catName: widget.catName,
+                                                catNameAdd: widget.catNameAdd,
+                                                title: widget.title,
+                                                overview: widget.overview,
+                                                detail: widget.detail,
+                                                period: dateTimeFormat(
+                                                    'yMMMd', widget.period),
+                                                organizer: widget.organizer,
+                                                contact: widget.contact,
+                                                homepage: widget.homepage,
+                                                postName: widget.postName,
+                                                postEmail: widget.postEmail,
+                                                postPhone: widget.postPhone,
+                                                postOccupation:
+                                                    widget.postOccupation,
+                                                permission: widget.permission,
+                                                address: widget.address,
+                                                display: false,
+                                                posted: dateTimeFormat(
+                                                    'relative',
+                                                    getCurrentTimestamp),
                                               );
                                               await showDialog(
                                                 context: context,
