@@ -13,6 +13,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(InfoInappRecord.serializer)
       ..add(TermsHistoriesRecord.serializer)
       ..add(TermsRecord.serializer)
+      ..add(UsersRecord.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

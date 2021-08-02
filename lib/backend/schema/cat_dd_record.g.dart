@@ -32,8 +32,7 @@ class _$CatDdRecordSerializer implements StructuredSerializer<CatDdRecord> {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+            specifiedType: const FullType(DocumentReference)));
     }
     return result;
   }
@@ -57,9 +56,8 @@ class _$CatDdRecordSerializer implements StructuredSerializer<CatDdRecord> {
           break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+                  specifiedType: const FullType(DocumentReference))
+              as DocumentReference;
           break;
       }
     }
@@ -72,7 +70,7 @@ class _$CatDdRecord extends CatDdRecord {
   @override
   final BuiltList<String> cats;
   @override
-  final DocumentReference<Object> reference;
+  final DocumentReference reference;
 
   factory _$CatDdRecord([void Function(CatDdRecordBuilder) updates]) =>
       (new CatDdRecordBuilder()..update(updates)).build();
@@ -115,10 +113,9 @@ class CatDdRecordBuilder implements Builder<CatDdRecord, CatDdRecordBuilder> {
   ListBuilder<String> get cats => _$this._cats ??= new ListBuilder<String>();
   set cats(ListBuilder<String> cats) => _$this._cats = cats;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  DocumentReference _reference;
+  DocumentReference get reference => _$this._reference;
+  set reference(DocumentReference reference) => _$this._reference = reference;
 
   CatDdRecordBuilder() {
     CatDdRecord._initializeBuilder(this);

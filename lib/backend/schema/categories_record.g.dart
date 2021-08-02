@@ -39,8 +39,7 @@ class _$CategoriesRecordSerializer
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+            specifiedType: const FullType(DocumentReference)));
     }
     return result;
   }
@@ -67,9 +66,8 @@ class _$CategoriesRecordSerializer
           break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+                  specifiedType: const FullType(DocumentReference))
+              as DocumentReference;
           break;
       }
     }
@@ -84,7 +82,7 @@ class _$CategoriesRecord extends CategoriesRecord {
   @override
   final String catName;
   @override
-  final DocumentReference<Object> reference;
+  final DocumentReference reference;
 
   factory _$CategoriesRecord(
           [void Function(CategoriesRecordBuilder) updates]) =>
@@ -137,10 +135,9 @@ class CategoriesRecordBuilder
   String get catName => _$this._catName;
   set catName(String catName) => _$this._catName = catName;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  DocumentReference _reference;
+  DocumentReference get reference => _$this._reference;
+  set reference(DocumentReference reference) => _$this._reference = reference;
 
   CategoriesRecordBuilder() {
     CategoriesRecord._initializeBuilder(this);
