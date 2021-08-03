@@ -24,6 +24,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
   TextEditingController overviewController;
   TextEditingController detailController;
   TextEditingController addressController;
+  TextEditingController startDayController;
+  TextEditingController finalDayController;
   TextEditingController organizerController;
   TextEditingController contactController;
   TextEditingController homepageController;
@@ -42,6 +44,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
     titleController = TextEditingController();
     overviewController = TextEditingController();
     detailController = TextEditingController();
+    startDayController = TextEditingController();
+    finalDayController = TextEditingController();
     organizerController = TextEditingController();
     contactController = TextEditingController();
     homepageController = TextEditingController();
@@ -591,6 +595,142 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                           ),
                                           keyboardType:
                                               TextInputType.streetAddress,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      width: 330,
+                                      height: 60,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(
+                                          color: Color(0xFFE6E6E6),
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                        child: TextFormField(
+                                          controller: startDayController,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelText: '開始日',
+                                            labelStyle: FlutterFlowTheme
+                                                .bodyText2
+                                                .override(
+                                              fontFamily: 'Montserrat',
+                                              color: Color(0xFF8B97A2),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                            enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(4.0),
+                                                topRight: Radius.circular(4.0),
+                                              ),
+                                            ),
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(4.0),
+                                                topRight: Radius.circular(4.0),
+                                              ),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.bodyText2
+                                              .override(
+                                            fontFamily: 'Montserrat',
+                                            color: Color(0xFF8B97A2),
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          keyboardType: TextInputType.datetime,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      width: 330,
+                                      height: 60,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(
+                                          color: Color(0xFFE6E6E6),
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                        child: TextFormField(
+                                          controller: finalDayController,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelText: '終了日',
+                                            labelStyle: FlutterFlowTheme
+                                                .bodyText2
+                                                .override(
+                                              fontFamily: 'Montserrat',
+                                              color: Color(0xFF8B97A2),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                            enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(4.0),
+                                                topRight: Radius.circular(4.0),
+                                              ),
+                                            ),
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(4.0),
+                                                topRight: Radius.circular(4.0),
+                                              ),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.bodyText2
+                                              .override(
+                                            fontFamily: 'Montserrat',
+                                            color: Color(0xFF8B97A2),
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          keyboardType: TextInputType.datetime,
                                         ),
                                       ),
                                     ),

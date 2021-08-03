@@ -15,9 +15,6 @@ abstract class ContentsRecord
   String get title;
 
   @nullable
-  DateTime get period;
-
-  @nullable
   DateTime get posted;
 
   @nullable
@@ -74,6 +71,14 @@ abstract class ContentsRecord
   String get address;
 
   @nullable
+  @BuiltValueField(wireName: 'start_day')
+  DateTime get startDay;
+
+  @nullable
+  @BuiltValueField(wireName: 'final_day')
+  DateTime get finalDay;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -114,7 +119,6 @@ abstract class ContentsRecord
 
 Map<String, dynamic> createContentsRecordData({
   String title,
-  DateTime period,
   DateTime posted,
   bool display,
   DocumentReference category,
@@ -131,12 +135,13 @@ Map<String, dynamic> createContentsRecordData({
   String postOccupation,
   String to,
   String address,
+  DateTime startDay,
+  DateTime finalDay,
 }) =>
     serializers.toFirestore(
         ContentsRecord.serializer,
         ContentsRecord((c) => c
           ..title = title
-          ..period = period
           ..posted = posted
           ..display = display
           ..category = category
@@ -153,4 +158,6 @@ Map<String, dynamic> createContentsRecordData({
           ..postOccupation = postOccupation
           ..to = to
           ..bccUids = null
-          ..address = address));
+          ..address = address
+          ..startDay = startDay
+          ..finalDay = finalDay));

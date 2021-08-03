@@ -6,7 +6,6 @@ Future<dynamic> registContentsCall({
   String title = 'デフォルト',
   String overview = 'デフォルト',
   String detail = 'デフォルト',
-  String period = '',
   String organizer = 'デフォルト',
   String contact = 'デフォルト',
   String homepage = '',
@@ -18,6 +17,8 @@ Future<dynamic> registContentsCall({
   String address = 'デフォルト',
   bool display = false,
   String posted = '',
+  String startDay = '',
+  String finalDay = '',
 }) =>
     ApiManager.instance.makeApiCall(
       callName: 'Regist Contents',
@@ -33,7 +34,6 @@ Future<dynamic> registContentsCall({
         'title': title,
         'overview': overview,
         'detail': detail,
-        'period': period,
         'organizer': organizer,
         'contact': contact,
         'homepage': homepage,
@@ -45,6 +45,8 @@ Future<dynamic> registContentsCall({
         'address': address,
         'display': display,
         'posted': posted,
+        'startDay': startDay,
+        'finalDay': finalDay,
       },
       returnResponse: true,
     );

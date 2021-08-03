@@ -18,7 +18,6 @@ class ConfirmPageWidget extends StatefulWidget {
     this.title,
     this.overview,
     this.detail,
-    this.period,
     this.organizer,
     this.contact,
     this.homepage,
@@ -28,6 +27,8 @@ class ConfirmPageWidget extends StatefulWidget {
     this.postOccupation,
     this.permission,
     this.address,
+    this.startDay,
+    this.finalDay,
   }) : super(key: key);
 
   final String catName;
@@ -35,7 +36,6 @@ class ConfirmPageWidget extends StatefulWidget {
   final String title;
   final String overview;
   final String detail;
-  final DateTime period;
   final String organizer;
   final String contact;
   final String homepage;
@@ -45,6 +45,8 @@ class ConfirmPageWidget extends StatefulWidget {
   final String postOccupation;
   final bool permission;
   final String address;
+  final DateTime startDay;
+  final DateTime finalDay;
 
   @override
   _ConfirmPageWidgetState createState() => _ConfirmPageWidgetState();
@@ -311,6 +313,72 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
                                     child: Text(
                                       widget.address,
+                                      style:
+                                          FlutterFlowTheme.bodyText1.override(
+                                        fontFamily: 'Poppins',
+                                        color: Color(0xFF8B97A2),
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    child: Text(
+                                      dateTimeFormat('yMMMd', widget.startDay),
+                                      style:
+                                          FlutterFlowTheme.bodyText1.override(
+                                        fontFamily: 'Poppins',
+                                        color: Color(0xFF8B97A2),
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    child: Text(
+                                      dateTimeFormat('yMMMd', widget.finalDay),
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
                                         fontFamily: 'Poppins',
@@ -737,8 +805,6 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                 title: widget.title,
                                                 overview: widget.overview,
                                                 detail: widget.detail,
-                                                period: dateTimeFormat(
-                                                    'yMMMd', widget.period),
                                                 organizer: widget.organizer,
                                                 contact: widget.contact,
                                                 homepage: widget.homepage,
@@ -753,6 +819,10 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                 posted: dateTimeFormat(
                                                     'relative',
                                                     getCurrentTimestamp),
+                                                startDay: dateTimeFormat(
+                                                    'yMMMd', widget.startDay),
+                                                finalDay: dateTimeFormat(
+                                                    'yMMMd', widget.finalDay),
                                               );
                                               await showDialog(
                                                 context: context,
