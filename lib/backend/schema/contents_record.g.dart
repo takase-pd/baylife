@@ -28,13 +28,6 @@ class _$ContentsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.period;
-    if (value != null) {
-      result
-        ..add('period')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(DateTime)));
-    }
     value = object.posted;
     if (value != null) {
       result
@@ -156,6 +149,20 @@ class _$ContentsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.startDay;
+    if (value != null) {
+      result
+        ..add('start_day')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.finalDay;
+    if (value != null) {
+      result
+        ..add('final_day')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -182,10 +189,6 @@ class _$ContentsRecordSerializer
         case 'title':
           result.title = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
-          break;
-        case 'period':
-          result.period = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
           break;
         case 'posted':
           result.posted = serializers.deserialize(value,
@@ -259,6 +262,14 @@ class _$ContentsRecordSerializer
           result.address = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'start_day':
+          result.startDay = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+        case 'final_day':
+          result.finalDay = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -275,8 +286,6 @@ class _$ContentsRecordSerializer
 class _$ContentsRecord extends ContentsRecord {
   @override
   final String title;
-  @override
-  final DateTime period;
   @override
   final DateTime posted;
   @override
@@ -312,6 +321,10 @@ class _$ContentsRecord extends ContentsRecord {
   @override
   final String address;
   @override
+  final DateTime startDay;
+  @override
+  final DateTime finalDay;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$ContentsRecord([void Function(ContentsRecordBuilder) updates]) =>
@@ -319,7 +332,6 @@ class _$ContentsRecord extends ContentsRecord {
 
   _$ContentsRecord._(
       {this.title,
-      this.period,
       this.posted,
       this.display,
       this.category,
@@ -337,6 +349,8 @@ class _$ContentsRecord extends ContentsRecord {
       this.to,
       this.bccUids,
       this.address,
+      this.startDay,
+      this.finalDay,
       this.reference})
       : super._();
 
@@ -353,7 +367,6 @@ class _$ContentsRecord extends ContentsRecord {
     if (identical(other, this)) return true;
     return other is ContentsRecord &&
         title == other.title &&
-        period == other.period &&
         posted == other.posted &&
         display == other.display &&
         category == other.category &&
@@ -371,6 +384,8 @@ class _$ContentsRecord extends ContentsRecord {
         to == other.to &&
         bccUids == other.bccUids &&
         address == other.address &&
+        startDay == other.startDay &&
+        finalDay == other.finalDay &&
         reference == other.reference;
   }
 
@@ -394,25 +409,25 @@ class _$ContentsRecord extends ContentsRecord {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc(0, title.hashCode),
-                                                                                period.hashCode),
-                                                                            posted.hashCode),
-                                                                        display.hashCode),
-                                                                    category.hashCode),
-                                                                catAdd.hashCode),
-                                                            contact.hashCode),
-                                                        detail.hashCode),
-                                                    homepage.hashCode),
-                                                organizer.hashCode),
-                                            overview.hashCode),
-                                        permission.hashCode),
-                                    postName.hashCode),
-                                postEmail.hashCode),
-                            postPhone.hashCode),
-                        postOccupation.hashCode),
-                    to.hashCode),
-                bccUids.hashCode),
-            address.hashCode),
+                                                                            $jc($jc($jc(0, title.hashCode), posted.hashCode),
+                                                                                display.hashCode),
+                                                                            category.hashCode),
+                                                                        catAdd.hashCode),
+                                                                    contact.hashCode),
+                                                                detail.hashCode),
+                                                            homepage.hashCode),
+                                                        organizer.hashCode),
+                                                    overview.hashCode),
+                                                permission.hashCode),
+                                            postName.hashCode),
+                                        postEmail.hashCode),
+                                    postPhone.hashCode),
+                                postOccupation.hashCode),
+                            to.hashCode),
+                        bccUids.hashCode),
+                    address.hashCode),
+                startDay.hashCode),
+            finalDay.hashCode),
         reference.hashCode));
   }
 
@@ -420,7 +435,6 @@ class _$ContentsRecord extends ContentsRecord {
   String toString() {
     return (newBuiltValueToStringHelper('ContentsRecord')
           ..add('title', title)
-          ..add('period', period)
           ..add('posted', posted)
           ..add('display', display)
           ..add('category', category)
@@ -438,6 +452,8 @@ class _$ContentsRecord extends ContentsRecord {
           ..add('to', to)
           ..add('bccUids', bccUids)
           ..add('address', address)
+          ..add('startDay', startDay)
+          ..add('finalDay', finalDay)
           ..add('reference', reference))
         .toString();
   }
@@ -450,10 +466,6 @@ class ContentsRecordBuilder
   String _title;
   String get title => _$this._title;
   set title(String title) => _$this._title = title;
-
-  DateTime _period;
-  DateTime get period => _$this._period;
-  set period(DateTime period) => _$this._period = period;
 
   DateTime _posted;
   DateTime get posted => _$this._posted;
@@ -526,6 +538,14 @@ class ContentsRecordBuilder
   String get address => _$this._address;
   set address(String address) => _$this._address = address;
 
+  DateTime _startDay;
+  DateTime get startDay => _$this._startDay;
+  set startDay(DateTime startDay) => _$this._startDay = startDay;
+
+  DateTime _finalDay;
+  DateTime get finalDay => _$this._finalDay;
+  set finalDay(DateTime finalDay) => _$this._finalDay = finalDay;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -539,7 +559,6 @@ class ContentsRecordBuilder
     final $v = _$v;
     if ($v != null) {
       _title = $v.title;
-      _period = $v.period;
       _posted = $v.posted;
       _display = $v.display;
       _category = $v.category;
@@ -557,6 +576,8 @@ class ContentsRecordBuilder
       _to = $v.to;
       _bccUids = $v.bccUids?.toBuilder();
       _address = $v.address;
+      _startDay = $v.startDay;
+      _finalDay = $v.finalDay;
       _reference = $v.reference;
       _$v = null;
     }
@@ -581,7 +602,6 @@ class ContentsRecordBuilder
       _$result = _$v ??
           new _$ContentsRecord._(
               title: title,
-              period: period,
               posted: posted,
               display: display,
               category: category,
@@ -599,6 +619,8 @@ class ContentsRecordBuilder
               to: to,
               bccUids: _bccUids?.build(),
               address: address,
+              startDay: startDay,
+              finalDay: finalDay,
               reference: reference);
     } catch (_) {
       String _$failedField;
