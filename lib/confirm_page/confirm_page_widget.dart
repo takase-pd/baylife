@@ -343,15 +343,34 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
-                                    child: Text(
-                                      dateTimeFormat('yMMMd', widget.startDay),
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xFF8B97A2),
-                                        fontSize: 16,
-                                      ),
+                                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                          child: Text(
+                                            '開始日',
+                                            style: FlutterFlowTheme.bodyText2
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFF8B97A2),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          dateTimeFormat(
+                                              'yMMMd', widget.startDay),
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFF8B97A2),
+                                            fontSize: 16,
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -376,15 +395,34 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
-                                    child: Text(
-                                      dateTimeFormat('yMMMd', widget.finalDay),
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xFF8B97A2),
-                                        fontSize: 16,
-                                      ),
+                                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                          child: Text(
+                                            '終了日',
+                                            style: FlutterFlowTheme.bodyText2
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFF8B97A2),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          dateTimeFormat(
+                                              'yMMMd', widget.finalDay),
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFF8B97A2),
+                                            fontSize: 16,
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),

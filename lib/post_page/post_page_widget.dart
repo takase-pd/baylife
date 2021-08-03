@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../terms_page/terms_page_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PostPageWidget extends StatefulWidget {
@@ -18,14 +19,14 @@ class PostPageWidget extends StatefulWidget {
 }
 
 class _PostPageWidgetState extends State<PostPageWidget> {
+  DateTime datePicked1 = DateTime.now();
   String categoryValue;
   TextEditingController categoryAddController;
   TextEditingController titleController;
   TextEditingController overviewController;
   TextEditingController detailController;
   TextEditingController addressController;
-  TextEditingController startDayController;
-  TextEditingController finalDayController;
+  DateTime datePicked2 = DateTime.now();
   TextEditingController organizerController;
   TextEditingController contactController;
   TextEditingController homepageController;
@@ -44,8 +45,6 @@ class _PostPageWidgetState extends State<PostPageWidget> {
     titleController = TextEditingController();
     overviewController = TextEditingController();
     detailController = TextEditingController();
-    startDayController = TextEditingController();
-    finalDayController = TextEditingController();
     organizerController = TextEditingController();
     contactController = TextEditingController();
     homepageController = TextEditingController();
@@ -116,7 +115,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -620,49 +619,73 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                       child: Padding(
                                         padding:
-                                            EdgeInsets.fromLTRB(16, 0, 0, 0),
-                                        child: TextFormField(
-                                          controller: startDayController,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            labelText: '開始日',
-                                            labelStyle: FlutterFlowTheme
-                                                .bodyText2
-                                                .override(
-                                              fontFamily: 'Montserrat',
-                                              color: Color(0xFF8B97A2),
-                                              fontWeight: FontWeight.w500,
+                                            EdgeInsets.fromLTRB(16, 0, 10, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  '開始日',
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Poppins',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      5, 0, 0, 0),
+                                                  child: Text(
+                                                    dateTimeFormat(
+                                                        'yMMMd', datePicked1),
+                                                    style: FlutterFlowTheme
+                                                        .bodyText2
+                                                        .override(
+                                                      fontFamily: 'Poppins',
+                                                      color: Color(0xFF8B97A2),
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
                                             ),
-                                            enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1,
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                await DatePicker.showDatePicker(
+                                                    context,
+                                                    showTitleActions: true,
+                                                    onConfirm: (date) {
+                                                  setState(
+                                                      () => datePicked1 = date);
+                                                }, currentTime: DateTime.now());
+                                              },
+                                              text: '日付',
+                                              options: FFButtonOptions(
+                                                width: 100,
+                                                height: 40,
+                                                color: FlutterFlowTheme
+                                                    .primaryColor,
+                                                textStyle: FlutterFlowTheme
+                                                    .subtitle2
+                                                    .override(
+                                                  fontFamily: 'Poppins',
+                                                  color: Colors.white,
+                                                ),
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1,
+                                                ),
+                                                borderRadius: 12,
                                               ),
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                topLeft: Radius.circular(4.0),
-                                                topRight: Radius.circular(4.0),
-                                              ),
-                                            ),
-                                            focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                topLeft: Radius.circular(4.0),
-                                                topRight: Radius.circular(4.0),
-                                              ),
-                                            ),
-                                          ),
-                                          style: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Color(0xFF8B97A2),
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          keyboardType: TextInputType.datetime,
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -688,49 +711,73 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                       child: Padding(
                                         padding:
-                                            EdgeInsets.fromLTRB(16, 0, 0, 0),
-                                        child: TextFormField(
-                                          controller: finalDayController,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            labelText: '終了日',
-                                            labelStyle: FlutterFlowTheme
-                                                .bodyText2
-                                                .override(
-                                              fontFamily: 'Montserrat',
-                                              color: Color(0xFF8B97A2),
-                                              fontWeight: FontWeight.w500,
+                                            EdgeInsets.fromLTRB(16, 0, 10, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  '終了日',
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Poppins',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      5, 0, 0, 0),
+                                                  child: Text(
+                                                    dateTimeFormat(
+                                                        'yMMMd', datePicked2),
+                                                    style: FlutterFlowTheme
+                                                        .bodyText2
+                                                        .override(
+                                                      fontFamily: 'Poppins',
+                                                      color: Color(0xFF8B97A2),
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
                                             ),
-                                            enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1,
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                await DatePicker.showDatePicker(
+                                                    context,
+                                                    showTitleActions: true,
+                                                    onConfirm: (date) {
+                                                  setState(
+                                                      () => datePicked2 = date);
+                                                }, currentTime: DateTime.now());
+                                              },
+                                              text: '日付',
+                                              options: FFButtonOptions(
+                                                width: 100,
+                                                height: 40,
+                                                color: FlutterFlowTheme
+                                                    .primaryColor,
+                                                textStyle: FlutterFlowTheme
+                                                    .subtitle2
+                                                    .override(
+                                                  fontFamily: 'Poppins',
+                                                  color: Colors.white,
+                                                ),
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1,
+                                                ),
+                                                borderRadius: 12,
                                               ),
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                topLeft: Radius.circular(4.0),
-                                                topRight: Radius.circular(4.0),
-                                              ),
-                                            ),
-                                            focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                topLeft: Radius.circular(4.0),
-                                                topRight: Radius.circular(4.0),
-                                              ),
-                                            ),
-                                          ),
-                                          style: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Color(0xFF8B97A2),
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          keyboardType: TextInputType.datetime,
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -1330,6 +1377,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                                       checkboxListTileValue,
                                                   address:
                                                       addressController.text,
+                                                  startDay: datePicked1,
+                                                  finalDay: datePicked2,
                                                 ),
                                               ),
                                             );
