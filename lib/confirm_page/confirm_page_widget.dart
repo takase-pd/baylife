@@ -854,9 +854,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                 permission: widget.permission,
                                                 address: widget.address,
                                                 display: false,
-                                                posted: dateTimeFormat(
-                                                    'relative',
-                                                    getCurrentTimestamp),
+                                                posted:
+                                                    '${dateTimeFormat('yMMMd', getCurrentTimestamp)} ${dateTimeFormat('Hm', getCurrentTimestamp)}',
                                                 startDay: dateTimeFormat(
                                                     'yMMMd', widget.startDay),
                                                 finalDay: dateTimeFormat(
