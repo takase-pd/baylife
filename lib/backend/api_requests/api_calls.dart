@@ -15,8 +15,6 @@ Future<dynamic> registContentsCall({
   String postOccupation = 'デフォルト',
   bool permission = false,
   String address = 'デフォルト',
-  bool display = false,
-  String posted = '',
   String startDay = '',
   String finalDay = '',
 }) =>
@@ -44,8 +42,6 @@ Future<dynamic> registContentsCall({
           'postOccupation': postOccupation,
           'permission': permission,
           'address': address,
-          'display': display,
-          'posted': posted,
           'startDay': startDay,
           'finalDay': finalDay,
         },
