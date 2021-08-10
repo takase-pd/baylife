@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mime_type/mime_type.dart';
 
@@ -12,6 +13,91 @@ class SelectedMedia {
   const SelectedMedia(this.storagePath, this.bytes);
   final String storagePath;
   final Uint8List bytes;
+}
+
+Future<SelectedMedia> selectMediaWithSourceBottomSheet({
+  BuildContext context,
+  double maxWidth,
+  double maxHeight,
+  bool isVideo = false,
+  String pickerFontFamily = 'Roboto',
+  Color textColor = const Color(0xFF111417),
+  Color backgroundColor = const Color(0xFFF5F5F5),
+}) async {
+  final fromCamera = await showModalBottomSheet<bool>(
+      context: context,
+      backgroundColor: backgroundColor,
+      builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+              child: ListTile(
+                title: Text(
+                  'Choose Source',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.getFont(
+                    pickerFontFamily,
+                    color: textColor.withOpacity(0.65),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                  ),
+                ),
+                tileColor: backgroundColor,
+                dense: false,
+              ),
+            ),
+            const Divider(),
+            ListTile(
+              title: Text(
+                'Gallery',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.getFont(
+                  pickerFontFamily,
+                  color: textColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                ),
+              ),
+              tileColor: backgroundColor,
+              dense: false,
+              onTap: () {
+                Navigator.pop(context, false);
+              },
+            ),
+            const Divider(),
+            ListTile(
+              title: Text(
+                'Camera',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.getFont(
+                  pickerFontFamily,
+                  color: textColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                ),
+              ),
+              tileColor: backgroundColor,
+              dense: false,
+              onTap: () {
+                Navigator.pop(context, true);
+              },
+            ),
+            const Divider(),
+            const SizedBox(height: 10),
+          ],
+        );
+      });
+  if (fromCamera == null) {
+    return null;
+  }
+  return selectMedia(
+    maxWidth: maxWidth,
+    maxHeight: maxHeight,
+    isVideo: isVideo,
+    fromCamera: fromCamera,
+  );
 }
 
 Future<SelectedMedia> selectMedia({

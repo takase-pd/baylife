@@ -1470,7 +1470,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                           Padding(
                             padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
                             child: CheckboxListTile(
-                              value: checkboxListTileValue ?? false,
+                              value: checkboxListTileValue ??= false,
                               onChanged: (newValue) => setState(
                                   () => checkboxListTileValue = newValue),
                               title: Text(

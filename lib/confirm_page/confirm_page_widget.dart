@@ -770,7 +770,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                         Padding(
                           padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
                           child: CheckboxListTile(
-                            value: checkboxListTileValue ?? widget.permission,
+                            value: checkboxListTileValue ??= widget.permission,
                             onChanged: (newValue) => setState(
                                 () => checkboxListTileValue = newValue),
                             title: Text(
