@@ -1556,6 +1556,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                                         addressController.text,
                                                     startDay: datePicked1,
                                                     finalDay: datePicked2,
+                                                    filePath: '',
                                                   ),
                                                 ),
                                               );
