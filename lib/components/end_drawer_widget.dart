@@ -1,5 +1,7 @@
+import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../login_page/login_page_widget.dart';
 import '../post_page/post_page_widget.dart';
 import '../terms_page/terms_page_widget.dart';
 import 'package:flutter/material.dart';
@@ -135,6 +137,36 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                   ),
                 )
               ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+            child: InkWell(
+              onTap: () async {
+                await signOut();
+                await Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPageWidget(),
+                  ),
+                  (r) => false,
+                );
+              },
+              child: ListTile(
+                title: Text(
+                  'ログアウト',
+                  style: FlutterFlowTheme.subtitle2.override(
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+                trailing: Icon(
+                  Icons.logout,
+                  color: Color(0xFF303030),
+                  size: 20,
+                ),
+                tileColor: FlutterFlowTheme.tertiaryColor,
+                dense: false,
+              ),
             ),
           )
         ],
