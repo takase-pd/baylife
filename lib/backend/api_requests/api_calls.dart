@@ -17,6 +17,7 @@ Future<dynamic> registContentsCall({
   String address = 'デフォルト',
   String startDay = '',
   String finalDay = '',
+  String filePath = '',
 }) =>
     ApiManager.instance.makeApiCall(
       callName: 'Regist Contents',
@@ -44,6 +45,7 @@ Future<dynamic> registContentsCall({
           'address': address,
           'startDay': startDay,
           'finalDay': finalDay,
+          'filePath': filePath,
         },
       },
       returnResponse: true,

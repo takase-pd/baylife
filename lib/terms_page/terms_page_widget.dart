@@ -30,7 +30,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: Colors.black,
+            color: FlutterFlowTheme.secondaryColor,
             size: 24,
           ),
         ),

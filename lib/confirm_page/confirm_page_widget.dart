@@ -29,6 +29,7 @@ class ConfirmPageWidget extends StatefulWidget {
     this.address,
     this.startDay,
     this.finalDay,
+    this.filePath,
   }) : super(key: key);
 
   final String catName;
@@ -47,6 +48,7 @@ class ConfirmPageWidget extends StatefulWidget {
   final String address;
   final DateTime startDay;
   final DateTime finalDay;
+  final String filePath;
 
   @override
   _ConfirmPageWidgetState createState() => _ConfirmPageWidgetState();
@@ -70,7 +72,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: Colors.black,
+            color: FlutterFlowTheme.secondaryColor,
             size: 24,
           ),
         ),
@@ -528,6 +530,56 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                               )
                             ],
                           ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                          child: Text(
+                                            '添付',
+                                            style: FlutterFlowTheme.bodyText2
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFF8B97A2),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                        Image.network(
+                                          widget.filePath,
+                                          width: 100,
+                                          height: 100,
+                                          fit: BoxFit.scaleDown,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         )
                       ],
                     ),
@@ -718,7 +770,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                         Padding(
                           padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
                           child: CheckboxListTile(
-                            value: checkboxListTileValue ?? widget.permission,
+                            value: checkboxListTileValue ??= widget.permission,
                             onChanged: (newValue) => setState(
                                 () => checkboxListTileValue = newValue),
                             title: Text(
@@ -857,6 +909,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                     'yMMMd', widget.startDay),
                                                 finalDay: dateTimeFormat(
                                                     'yMMMd', widget.finalDay),
+                                                filePath: widget.filePath,
                                               );
                                               await showDialog(
                                                 context: context,

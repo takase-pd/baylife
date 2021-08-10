@@ -37,7 +37,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: Colors.black,
+            color: FlutterFlowTheme.secondaryColor,
             size: 24,
           ),
         ),
