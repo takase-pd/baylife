@@ -1135,11 +1135,17 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                     padding:
                                                         EdgeInsets.fromLTRB(
                                                             5, 0, 0, 0),
-                                                    child: Image.network(
+                                                    child: Text(
                                                       uploadedFileUrl,
-                                                      width: 100,
-                                                      height: 100,
-                                                      fit: BoxFit.scaleDown,
+                                                      style: FlutterFlowTheme
+                                                          .bodyText2
+                                                          .override(
+                                                        fontFamily: 'Poppins',
+                                                        color:
+                                                            Color(0xFF8B97A2),
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
                                                     ),
                                                   )
                                                 ],
