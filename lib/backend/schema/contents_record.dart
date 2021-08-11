@@ -79,6 +79,10 @@ abstract class ContentsRecord
   DateTime get finalDay;
 
   @nullable
+  @BuiltValueField(wireName: 'file_path')
+  String get filePath;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -98,7 +102,8 @@ abstract class ContentsRecord
     ..postOccupation = ''
     ..to = ''
     ..bccUids = ListBuilder()
-    ..address = '';
+    ..address = ''
+    ..filePath = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('contents');
@@ -137,6 +142,7 @@ Map<String, dynamic> createContentsRecordData({
   String address,
   DateTime startDay,
   DateTime finalDay,
+  String filePath,
 }) =>
     serializers.toFirestore(
         ContentsRecord.serializer,
@@ -160,4 +166,5 @@ Map<String, dynamic> createContentsRecordData({
           ..bccUids = null
           ..address = address
           ..startDay = startDay
-          ..finalDay = finalDay));
+          ..finalDay = finalDay
+          ..filePath = filePath));

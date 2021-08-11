@@ -29,12 +29,12 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
   TextEditingController titleController;
   TextEditingController overviewController;
   TextEditingController detailController;
+  String uploadedFileUrl = '';
   TextEditingController addressController;
   DateTime datePicked2 = DateTime.now();
   TextEditingController organizerController;
   TextEditingController contactController;
   TextEditingController homepageController;
-  String uploadedFileUrl = '';
   TextEditingController postOccupationController;
   TextEditingController postPhoneController;
   bool checkboxListTileValue;
@@ -593,6 +593,135 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         ),
                                         child: Padding(
                                           padding:
+                                              EdgeInsets.fromLTRB(16, 0, 10, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    '添付画像',
+                                                    style: FlutterFlowTheme
+                                                        .bodyText2
+                                                        .override(
+                                                      fontFamily: 'Poppins',
+                                                      color: Color(0xFF8B97A2),
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            0, 3, 0, 0),
+                                                    child: Text(
+                                                      '画像は次のページで確認できます。',
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: FlutterFlowTheme
+                                                          .bodyText2
+                                                          .override(
+                                                        fontFamily: 'Poppins',
+                                                        color:
+                                                            Color(0xFF8B97A2),
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              FFButtonWidget(
+                                                onPressed: () async {
+                                                  final selectedMedia =
+                                                      await selectMedia(
+                                                    maxWidth: 300.00,
+                                                    maxHeight: 300.00,
+                                                  );
+                                                  if (selectedMedia != null &&
+                                                      validateFileFormat(
+                                                          selectedMedia
+                                                              .storagePath,
+                                                          context)) {
+                                                    showUploadMessage(context,
+                                                        'Uploading file...',
+                                                        showLoading: true);
+                                                    final downloadUrl =
+                                                        await uploadData(
+                                                            selectedMedia
+                                                                .storagePath,
+                                                            selectedMedia
+                                                                .bytes);
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .hideCurrentSnackBar();
+                                                    if (downloadUrl != null) {
+                                                      setState(() =>
+                                                          uploadedFileUrl =
+                                                              downloadUrl);
+                                                      showUploadMessage(
+                                                          context, 'Success!');
+                                                    } else {
+                                                      showUploadMessage(context,
+                                                          'Failed to upload media');
+                                                      return;
+                                                    }
+                                                  }
+                                                },
+                                                text: '選択',
+                                                options: FFButtonOptions(
+                                                  width: 100,
+                                                  height: 40,
+                                                  color: FlutterFlowTheme
+                                                      .primaryColor,
+                                                  textStyle: FlutterFlowTheme
+                                                      .subtitle2
+                                                      .override(
+                                                    fontFamily: 'Poppins',
+                                                    color: Colors.white,
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius: 12,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        width: 330,
+                                        height: 60,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          border: Border.all(
+                                            color: Color(0xFFE6E6E6),
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
                                               EdgeInsets.fromLTRB(16, 0, 0, 0),
                                           child: TextFormField(
                                             controller: addressController,
@@ -1085,128 +1214,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                             keyboardType: TextInputType.url,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        width: 330,
-                                        height: 60,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          border: Border.all(
-                                            color: Color(0xFFE6E6E6),
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(16, 0, 10, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    '添付',
-                                                    style: FlutterFlowTheme
-                                                        .bodyText2
-                                                        .override(
-                                                      fontFamily: 'Poppins',
-                                                      color: Color(0xFF8B97A2),
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            5, 0, 0, 0),
-                                                    child: Text(
-                                                      uploadedFileUrl,
-                                                      style: FlutterFlowTheme
-                                                          .bodyText2
-                                                          .override(
-                                                        fontFamily: 'Poppins',
-                                                        color:
-                                                            Color(0xFF8B97A2),
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  final selectedMedia =
-                                                      await selectMedia(
-                                                    maxWidth: 300.00,
-                                                    maxHeight: 300.00,
-                                                  );
-                                                  if (selectedMedia != null &&
-                                                      validateFileFormat(
-                                                          selectedMedia
-                                                              .storagePath,
-                                                          context)) {
-                                                    showUploadMessage(context,
-                                                        'Uploading file...',
-                                                        showLoading: true);
-                                                    final downloadUrl =
-                                                        await uploadData(
-                                                            selectedMedia
-                                                                .storagePath,
-                                                            selectedMedia
-                                                                .bytes);
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .hideCurrentSnackBar();
-                                                    if (downloadUrl != null) {
-                                                      setState(() =>
-                                                          uploadedFileUrl =
-                                                              downloadUrl);
-                                                      showUploadMessage(
-                                                          context, 'Success!');
-                                                    } else {
-                                                      showUploadMessage(context,
-                                                          'Failed to upload media');
-                                                      return;
-                                                    }
-                                                  }
-                                                },
-                                                text: '選択',
-                                                options: FFButtonOptions(
-                                                  width: 100,
-                                                  height: 40,
-                                                  color: FlutterFlowTheme
-                                                      .primaryColor,
-                                                  textStyle: FlutterFlowTheme
-                                                      .subtitle2
-                                                      .override(
-                                                    fontFamily: 'Poppins',
-                                                    color: Colors.white,
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1,
-                                                  ),
-                                                  borderRadius: 12,
-                                                ),
-                                              )
-                                            ],
                                           ),
                                         ),
                                       ),

@@ -312,6 +312,56 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
+                                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                          child: Text(
+                                            '添付画像',
+                                            style: FlutterFlowTheme.bodyText2
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFF8B97A2),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                        Image.network(
+                                          widget.filePath,
+                                          width: 100,
+                                          height: 60,
+                                          fit: BoxFit.cover,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
                                     padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
                                     child: Text(
                                       widget.address,
@@ -524,56 +574,6 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                         color: Color(0xFF8B97A2),
                                         fontSize: 16,
                                       ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  width: 330,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: Color(0xFFE6E6E6),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 0, 5, 0),
-                                          child: Text(
-                                            '添付',
-                                            style: FlutterFlowTheme.bodyText2
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFF8B97A2),
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                        Image.network(
-                                          widget.filePath,
-                                          width: 100,
-                                          height: 100,
-                                          fit: BoxFit.scaleDown,
-                                        )
-                                      ],
                                     ),
                                   ),
                                 ),
