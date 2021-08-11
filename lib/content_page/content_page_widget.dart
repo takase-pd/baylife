@@ -215,6 +215,12 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   ),
                                 ),
                               ),
+                            ),
+                            Image.network(
+                              columnContentsRecord.filePath,
+                              width: 300,
+                              height: 300,
+                              fit: BoxFit.scaleDown,
                             )
                           ],
                         ),
