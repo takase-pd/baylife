@@ -47,9 +47,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           'トップ',
-                          style: FlutterFlowTheme.title3.override(
+                          style: FlutterFlowTheme.subtitle1.override(
                             fontFamily: 'Poppins',
-                            color: FlutterFlowTheme.textPrimary,
                           ),
                         ),
                         trailing: Icon(
@@ -76,9 +75,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           '投稿',
-                          style: FlutterFlowTheme.title3.override(
+                          style: FlutterFlowTheme.subtitle1.override(
                             fontFamily: 'Poppins',
-                            color: FlutterFlowTheme.textPrimary,
                           ),
                         ),
                         trailing: Icon(
@@ -105,9 +103,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           '要望送信',
-                          style: FlutterFlowTheme.title3.override(
+                          style: FlutterFlowTheme.subtitle1.override(
                             fontFamily: 'Poppins',
-                            color: FlutterFlowTheme.textPrimary,
                           ),
                         ),
                         trailing: Icon(
@@ -134,9 +131,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           '利用規約',
-                          style: FlutterFlowTheme.title3.override(
+                          style: FlutterFlowTheme.subtitle1.override(
                             fontFamily: 'Poppins',
-                            color: FlutterFlowTheme.textPrimary,
                           ),
                         ),
                         trailing: Icon(
@@ -159,9 +155,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           'プライバシーポリシー',
-                          style: FlutterFlowTheme.title3.override(
+                          style: FlutterFlowTheme.subtitle1.override(
                             fontFamily: 'Poppins',
-                            color: FlutterFlowTheme.textPrimary,
                           ),
                         ),
                         trailing: Icon(
@@ -195,7 +190,6 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     'ログアウト',
                     style: FlutterFlowTheme.subtitle2.override(
                       fontFamily: 'Poppins',
-                      color: FlutterFlowTheme.textPrimary,
                     ),
                   ),
                   trailing: Icon(
