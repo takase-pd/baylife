@@ -21,8 +21,8 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.secondaryColor),
+        backgroundColor: FlutterFlowTheme.primaryColor,
+        iconTheme: IconThemeData(color: FlutterFlowTheme.textPrimary),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -39,7 +39,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.grayLight,
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
@@ -58,6 +58,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
                     '利用規約',
                     style: FlutterFlowTheme.title1.override(
                       fontFamily: 'Poppins',
+                      color: FlutterFlowTheme.textPrimary,
                     ),
                   ),
                   Padding(
@@ -106,6 +107,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
                                   '${listViewTermsRecord.number.toString()}. ${listViewTermsRecord.title}',
                                   style: FlutterFlowTheme.title2.override(
                                     fontFamily: 'Poppins',
+                                    color: FlutterFlowTheme.textDark,
                                   ),
                                 ),
                                 subtitle: Text(
@@ -114,7 +116,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
                                     fontFamily: 'Poppins',
                                   ),
                                 ),
-                                tileColor: FlutterFlowTheme.tertiaryColor,
+                                tileColor: FlutterFlowTheme.grayLight,
                                 dense: false,
                               ),
                             );
@@ -132,6 +134,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Poppins',
+                          color: FlutterFlowTheme.textDark,
                         ),
                       )
                     ],
@@ -179,9 +182,10 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
                               termsHistoryTermsHistoriesRecord.title,
                               style: FlutterFlowTheme.bodyText1.override(
                                 fontFamily: 'Poppins',
+                                color: FlutterFlowTheme.textDark,
                               ),
                             ),
-                            tileColor: FlutterFlowTheme.tertiaryColor,
+                            tileColor: FlutterFlowTheme.grayLight,
                             dense: false,
                           );
                         },

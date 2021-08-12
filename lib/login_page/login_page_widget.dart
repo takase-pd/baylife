@@ -46,8 +46,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.secondaryColor),
+        backgroundColor: FlutterFlowTheme.primaryColor,
+        iconTheme: IconThemeData(color: FlutterFlowTheme.textPrimary),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -64,6 +64,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
+      backgroundColor: FlutterFlowTheme.grayLight,
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
@@ -74,7 +75,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
         child: Column(
           children: [
             TabBar(
-              labelColor: FlutterFlowTheme.primaryColor,
+              labelColor: FlutterFlowTheme.textPrimary,
               indicatorColor: FlutterFlowTheme.secondaryColor,
               tabs: [
                 Tab(
@@ -119,13 +120,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
-                                          color: Color(0xFF8B97A2),
+                                          color: FlutterFlowTheme.textDark,
                                         ),
                                         hintText: 'メールアドレスを入力',
                                         hintStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
-                                          color: Color(0xFF8B97A2),
+                                          color: FlutterFlowTheme.textDark,
                                         ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
@@ -151,7 +152,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
                                         fontFamily: 'Poppins',
-                                        color: Color(0xFF8B97A2),
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                       keyboardType: TextInputType.emailAddress,
                                     ),
@@ -179,13 +180,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
-                                          color: Color(0xFF8B97A2),
+                                          color: FlutterFlowTheme.textDark,
                                         ),
                                         hintText: 'パスワードを入力',
                                         hintStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
-                                          color: Color(0xFF8B97A2),
+                                          color: FlutterFlowTheme.textDark,
                                         ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
@@ -224,7 +225,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
                                         fontFamily: 'Poppins',
-                                        color: Color(0xFF8B97A2),
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                       keyboardType:
                                           TextInputType.visiblePassword,
@@ -261,7 +262,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   color: FlutterFlowTheme.secondaryColor,
                                   textStyle: GoogleFonts.getFont(
                                     'Roboto',
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.textLight,
                                     fontSize: 17,
                                   ),
                                   elevation: 4,
@@ -468,13 +469,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
-                                          color: Color(0xFF8B97A2),
+                                          color: FlutterFlowTheme.textDark,
                                         ),
                                         hintText: 'メールアドレスを入力',
                                         hintStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
-                                          color: Color(0xFF8B97A2),
+                                          color: FlutterFlowTheme.textDark,
                                         ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
@@ -500,7 +501,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
                                         fontFamily: 'Poppins',
-                                        color: Color(0xFF8B97A2),
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                       keyboardType: TextInputType.emailAddress,
                                     ),
@@ -528,13 +529,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
-                                          color: Color(0xFF8B97A2),
+                                          color: FlutterFlowTheme.textDark,
                                         ),
                                         hintText: 'パスワードを入力',
                                         hintStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
-                                          color: Color(0xFF8B97A2),
+                                          color: FlutterFlowTheme.textDark,
                                         ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
@@ -573,7 +574,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
                                         fontFamily: 'Poppins',
-                                        color: Color(0xFF8B97A2),
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                       keyboardType:
                                           TextInputType.visiblePassword,
@@ -602,13 +603,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
-                                          color: Color(0xFF8B97A2),
+                                          color: FlutterFlowTheme.textDark,
                                         ),
                                         hintText: 'パスワードを再入力',
                                         hintStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
-                                          color: Color(0xFF8B97A2),
+                                          color: FlutterFlowTheme.textDark,
                                         ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
@@ -647,7 +648,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
                                         fontFamily: 'Poppins',
-                                        color: Color(0xFF8B97A2),
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                       keyboardType:
                                           TextInputType.visiblePassword,
@@ -696,7 +697,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   color: FlutterFlowTheme.secondaryColor,
                                   textStyle: GoogleFonts.getFont(
                                     'Roboto',
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.textLight,
                                     fontSize: 17,
                                   ),
                                   elevation: 4,
