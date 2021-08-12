@@ -11,6 +11,7 @@ import 'schema/terms_histories_record.dart';
 import 'schema/cat_dd_record.dart';
 import 'schema/info_inapp_record.dart';
 import 'schema/users_record.dart';
+import 'schema/logoname_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -24,6 +25,7 @@ export 'schema/terms_histories_record.dart';
 export 'schema/cat_dd_record.dart';
 export 'schema/info_inapp_record.dart';
 export 'schema/users_record.dart';
+export 'schema/logoname_record.dart';
 
 Stream<List<ContentsRecord>> queryContentsRecord(
         {Query Function(Query) queryBuilder,
@@ -73,6 +75,13 @@ Stream<List<UsersRecord>> queryUsersRecord(
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollection(UsersRecord.collection, UsersRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Stream<List<LogonameRecord>> queryLogonameRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(LogonameRecord.collection, LogonameRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(

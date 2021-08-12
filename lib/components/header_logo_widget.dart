@@ -1,3 +1,4 @@
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../home_page/home_page_widget.dart';
@@ -14,34 +15,83 @@ class HeaderLogoWidget extends StatefulWidget {
 class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () async {
-        await Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomePageWidget(),
+    return StreamBuilder<List<LogonameRecord>>(
+      stream: queryLogonameRecord(
+        singleRecord: true,
+      ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Center(
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: CircularProgressIndicator(
+                color: FlutterFlowTheme.primaryColor,
+              ),
+            ),
+          );
+        }
+        List<LogonameRecord> columnLogonameRecordList = snapshot.data;
+        // Customize what your widget looks like with no query results.
+        if (snapshot.data.isEmpty) {
+          return Container(
+            height: 100,
+            child: Center(
+              child: Text('No results.'),
+            ),
+          );
+        }
+        final columnLogonameRecord = columnLogonameRecordList.first;
+        return InkWell(
+          onTap: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePageWidget(),
+              ),
+            );
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Text(
+                columnLogonameRecord.first,
+                style: FlutterFlowTheme.title2.override(
+                  fontFamily: 'Poppins',
+                  color: FlutterFlowTheme.textPrimary,
+                  fontSize: 18,
+                ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                    child: Text(
+                      columnLogonameRecord.second,
+                      style: FlutterFlowTheme.title3.override(
+                        fontFamily: 'Poppins',
+                        color: FlutterFlowTheme.textPrimary,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    columnLogonameRecord.version,
+                    style: FlutterFlowTheme.title3.override(
+                      fontFamily: 'Poppins',
+                      color: Colors.white,
+                      fontSize: 10,
+                    ),
+                  )
+                ],
+              )
+            ],
           ),
         );
       },
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Text(
-            'MAKUHARI',
-            style: FlutterFlowTheme.title2.override(
-              fontFamily: 'Poppins',
-              fontSize: 18,
-            ),
-          ),
-          Text(
-            'Bay Life',
-            style: FlutterFlowTheme.title3.override(
-              fontFamily: 'Poppins',
-              fontSize: 18,
-            ),
-          )
-        ],
-      ),
     );
   }
 }

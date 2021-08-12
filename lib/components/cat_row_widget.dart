@@ -66,6 +66,7 @@ class _CatRowWidgetState extends State<CatRowWidget> {
                     rowCategoriesRecord.catName,
                     style: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Poppins',
+                      color: FlutterFlowTheme.textPrimary,
                     ),
                   ),
                 ),

@@ -2,6 +2,7 @@ import '../backend/backend.dart';
 import '../category_page/category_page_widget.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
+import '../flutter_flow/flutter_flow_ad_banner.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,8 +29,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.secondaryColor),
+        backgroundColor: FlutterFlowTheme.primaryColor,
+        iconTheme: IconThemeData(color: FlutterFlowTheme.textPrimary),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -46,7 +47,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.grayLight,
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
@@ -88,7 +89,16 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                               child: Text(
                                 columnContentsRecord.title,
-                                style: FlutterFlowTheme.title3.override(
+                                style: FlutterFlowTheme.title1.override(
+                                  fontFamily: 'Poppins',
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              child: Text(
+                                columnContentsRecord.organizer,
+                                style: FlutterFlowTheme.subtitle2.override(
                                   fontFamily: 'Poppins',
                                 ),
                               ),
@@ -130,7 +140,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                       width: 70,
                                       height: 30,
                                       decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.primaryColor,
+                                        color: FlutterFlowTheme.tertiaryColor,
                                         borderRadius: BorderRadius.circular(5),
                                       ),
                                       child: Padding(
@@ -142,6 +152,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                           style: FlutterFlowTheme.bodyText2
                                               .override(
                                             fontFamily: 'Poppins',
+                                            color: FlutterFlowTheme.textLight,
                                           ),
                                         ),
                                       ),
@@ -154,13 +165,20 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                               child: Text(
                                 columnContentsRecord.overview,
-                                style: FlutterFlowTheme.bodyText1.override(
+                                style: FlutterFlowTheme.subtitle1.override(
                                   fontFamily: 'Poppins',
+                                  fontSize: 14,
                                 ),
                               ),
                             ),
                             Divider(
                               color: FlutterFlowTheme.primaryColor,
+                            ),
+                            Image.network(
+                              columnContentsRecord.filePath,
+                              width: 300,
+                              height: 300,
+                              fit: BoxFit.scaleDown,
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -168,6 +186,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                 columnContentsRecord.detail,
                                 style: FlutterFlowTheme.bodyText1.override(
                                   fontFamily: 'Poppins',
+                                  color: FlutterFlowTheme.textDark,
                                 ),
                               ),
                             ),
@@ -178,25 +197,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                               child: Text(
                                 columnContentsRecord.address,
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Poppins',
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                              child: Text(
-                                columnContentsRecord.organizer,
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Poppins',
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                              child: Text(
-                                columnContentsRecord.contact,
-                                style: FlutterFlowTheme.bodyText1.override(
+                                style: FlutterFlowTheme.bodyText2.override(
                                   fontFamily: 'Poppins',
                                 ),
                               ),
@@ -210,17 +211,29 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                 },
                                 child: Text(
                                   columnContentsRecord.homepage,
-                                  style: FlutterFlowTheme.bodyText1.override(
+                                  style: FlutterFlowTheme.bodyText2.override(
                                     fontFamily: 'Poppins',
                                   ),
                                 ),
                               ),
                             ),
-                            Image.network(
-                              columnContentsRecord.filePath,
-                              width: 300,
-                              height: 300,
-                              fit: BoxFit.scaleDown,
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              child: Text(
+                                columnContentsRecord.organizer,
+                                style: FlutterFlowTheme.bodyText2.override(
+                                  fontFamily: 'Poppins',
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              child: Text(
+                                columnContentsRecord.contact,
+                                style: FlutterFlowTheme.bodyText2.override(
+                                  fontFamily: 'Poppins',
+                                ),
+                              ),
                             )
                           ],
                         ),
@@ -229,6 +242,13 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                   );
                 },
               ),
+            ),
+            FlutterFlowAdBanner(
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              showsTestAd: true,
+              iOSAdUnitID: 'ca-app-pub-8134368906531041/4883719188',
+              androidAdUnitID: 'ca-app-pub-8134368906531041/3047893333',
             )
           ],
         ),

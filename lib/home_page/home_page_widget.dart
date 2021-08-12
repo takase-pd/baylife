@@ -7,6 +7,7 @@ import '../content_page/content_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../post_page/post_page_widget.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,15 +26,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.secondaryColor),
+        backgroundColor: FlutterFlowTheme.primaryColor,
+        iconTheme: IconThemeData(color: FlutterFlowTheme.textPrimary),
         automaticallyImplyLeading: true,
         title: HeaderLogoWidget(),
         actions: [],
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.grayLight,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(
@@ -43,11 +44,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             ),
           );
         },
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: FlutterFlowTheme.secondaryColor,
         elevation: 8,
         child: Icon(
           Icons.post_add_sharp,
-          color: FlutterFlowTheme.secondaryColor,
+          color: FlutterFlowTheme.textSecondary,
           size: 24,
         ),
       ),
@@ -124,7 +125,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 },
                                 child: Card(
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  color: Color(0xFFF5F5F5),
+                                  color: FlutterFlowTheme.grayDark,
                                   child: Padding(
                                     padding:
                                         EdgeInsets.fromLTRB(10, 10, 10, 10),
@@ -141,28 +142,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             style: FlutterFlowTheme.title3
                                                 .override(
                                               fontFamily: 'Poppins',
+                                              color:
+                                                  FlutterFlowTheme.textPrimary,
                                             ),
                                           ),
                                         ),
                                         Padding(
                                           padding:
                                               EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                          child: Text(
+                                          child: AutoSizeText(
                                             listViewContentsRecord.overview,
                                             style: FlutterFlowTheme.bodyText1
                                                 .override(
                                               fontFamily: 'Poppins',
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                          child: Text(
-                                            listViewContentsRecord.organizer,
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Poppins',
+                                              color: FlutterFlowTheme.textDark,
                                             ),
                                           ),
                                         ),
@@ -192,59 +185,88 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Padding(
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      0, 0, 10, 0),
-                                                  child: InkWell(
-                                                    onTap: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              CategoryPageWidget(
-                                                            catRef:
-                                                                rowCategoriesRecord
-                                                                    .reference,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                    child: Container(
-                                                      width: 70,
-                                                      height: 30,
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                            .primaryColor,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                3, 3, 0, 0),
-                                                        child: Text(
-                                                          rowCategoriesRecord
-                                                              .catName,
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .bodyText2
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                          ),
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              0, 0, 0, 10),
+                                                      child: Text(
+                                                        listViewContentsRecord
+                                                            .organizer,
+                                                        style: FlutterFlowTheme
+                                                            .bodyText2
+                                                            .override(
+                                                          fontFamily: 'Poppins',
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              0, 0, 10, 0),
+                                                      child: InkWell(
+                                                        onTap: () async {
+                                                          await Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  CategoryPageWidget(
+                                                                catRef:
+                                                                    rowCategoriesRecord
+                                                                        .reference,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Container(
+                                                          width: 70,
+                                                          height: 30,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                .tertiaryColor,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                          ),
+                                                          child: Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(
+                                                                    3, 3, 0, 0),
+                                                            child: Text(
+                                                              rowCategoriesRecord
+                                                                  .catName,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style:
+                                                                  FlutterFlowTheme
+                                                                      .bodyText2
+                                                                      .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: FlutterFlowTheme
+                                                                    .textLight,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ],
                                                 ),
-                                                Icon(
-                                                  Icons.bookmark_sharp,
-                                                  color: FlutterFlowTheme
-                                                      .primaryColor,
-                                                  size: 24,
+                                                Image.network(
+                                                  listViewContentsRecord
+                                                      .filePath,
+                                                  width: 100,
+                                                  height: 100,
+                                                  fit: BoxFit.scaleDown,
                                                 )
                                               ],
                                             );
