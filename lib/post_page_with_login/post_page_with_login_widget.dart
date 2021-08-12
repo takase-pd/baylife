@@ -1523,7 +1523,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     child: Align(
