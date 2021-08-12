@@ -1,6 +1,6 @@
 # get the latest FlutterFlow version
-# git fetch
-# git merge origin/flutterflow
+git fetch
+git merge origin/flutterflow
 
 # Flutter compile
 flutter pub get
