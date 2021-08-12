@@ -142,7 +142,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(10, 20, 10, 100),
+                    padding: EdgeInsets.fromLTRB(10, 20, 10, 120),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
