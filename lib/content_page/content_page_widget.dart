@@ -2,7 +2,6 @@ import '../backend/backend.dart';
 import '../category_page/category_page_widget.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
-import '../flutter_flow/flutter_flow_ad_banner.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -242,7 +241,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                   );
                 },
               ),
-            ),
+            )
           ],
         ),
       ),
