@@ -1394,6 +1394,13 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                             keyboardType: TextInputType.phone,
+                                            validator: (val) {
+                                              if (val.isEmpty) {
+                                                return '投稿者の電話番号を記入してください。';
+                                              }
+
+                                              return null;
+                                            },
                                           ),
                                         ),
                                       ),
