@@ -82,29 +82,6 @@ class _PostPageWidgetState extends State<PostPageWidget> {
           elevation: 4,
         ),
         backgroundColor: FlutterFlowTheme.grayLight,
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => LoginPageWidget(),
-              ),
-            );
-          },
-          backgroundColor: FlutterFlowTheme.secondaryColor,
-          icon: Icon(
-            Icons.login_outlined,
-            color: FlutterFlowTheme.textSecondary,
-          ),
-          elevation: 8,
-          label: Text(
-            'ログインして投稿',
-            style: FlutterFlowTheme.bodyText1.override(
-              fontFamily: 'Poppins',
-              color: FlutterFlowTheme.textSecondary,
-            ),
-          ),
-        ),
         endDrawer: Drawer(
           elevation: 16,
           child: EndDrawerWidget(),
