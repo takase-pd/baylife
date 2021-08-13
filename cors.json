@@ -1,5 +1,5 @@
 [{
-    "origin": ["https://baylife-ff782.firebaseapp.com", "http://localhost:5000"],
+    "origin": ["https://baylife-ff782.firebaseapp.com", "https://baylife-ff782.web.app", "http://localhost:5000"],
     "responseHeader": ["*"],
     "method": ["GET"],
     "maxAgeSeconds": 3600
