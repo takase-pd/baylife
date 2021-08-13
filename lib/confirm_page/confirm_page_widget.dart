@@ -908,13 +908,13 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                               width: 140,
                                               height: 60,
                                               color: FlutterFlowTheme
-                                                  .tertiaryColor,
+                                                  .secondaryDark,
                                               textStyle: FlutterFlowTheme
                                                   .subtitle2
                                                   .override(
                                                 fontFamily: 'Montserrat',
-                                                color:
-                                                    FlutterFlowTheme.textLight,
+                                                color: FlutterFlowTheme
+                                                    .textSecondary,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.w500,
                                               ),
