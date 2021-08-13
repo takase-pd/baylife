@@ -173,11 +173,17 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                             Divider(
                               color: FlutterFlowTheme.secondaryDark,
                             ),
-                            Image.network(
-                              columnContentsRecord.filePath,
-                              width: 300,
-                              height: 300,
-                              fit: BoxFit.scaleDown,
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.network(
+                                  columnContentsRecord.filePath,
+                                  width: 300,
+                                  height: 300,
+                                  fit: BoxFit.scaleDown,
+                                )
+                              ],
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
