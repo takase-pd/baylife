@@ -120,7 +120,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 16),
                       child: StreamBuilder<List<InfoInappRecord>>(
                         stream: queryInfoInappRecord(
                           singleRecord: true,
@@ -185,32 +185,15 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                            child: Text(
-                              'ログインして投稿すると、画像を添付することができます。',
-                              style: FlutterFlowTheme.bodyText2.override(
-                                fontFamily: 'Poppins',
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  '投稿内容',
-                                  style: FlutterFlowTheme.title2.override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.textPrimary,
-                                  ),
-                                )
-                              ],
+                          Text(
+                            '投稿内容',
+                            style: FlutterFlowTheme.title2.override(
+                              fontFamily: 'Poppins',
+                              color: FlutterFlowTheme.textPrimary,
                             ),
                           ),
                           Text(
-                            '投稿に表示されます。秘密情報などは記載しないでください。',
+                            '投稿に表示されます。秘密情報などは記載しないでください。ログインして投稿すると、画像を添付することができます。',
                             style: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Poppins',
                             ),
