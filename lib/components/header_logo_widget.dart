@@ -63,30 +63,24 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
                   fontSize: 18,
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
-                    child: Text(
-                      columnLogonameRecord.second,
-                      style: FlutterFlowTheme.title3.override(
-                        fontFamily: 'Poppins',
-                        color: FlutterFlowTheme.textPrimary,
-                        fontSize: 18,
-                      ),
-                    ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                child: Text(
+                  columnLogonameRecord.second,
+                  style: FlutterFlowTheme.title3.override(
+                    fontFamily: 'Poppins',
+                    color: FlutterFlowTheme.textPrimary,
+                    fontSize: 18,
                   ),
-                  Text(
-                    columnLogonameRecord.version,
-                    style: FlutterFlowTheme.title3.override(
-                      fontFamily: 'Poppins',
-                      color: Colors.white,
-                      fontSize: 10,
-                    ),
-                  )
-                ],
+                ),
+              ),
+              Text(
+                columnLogonameRecord.version,
+                style: FlutterFlowTheme.title3.override(
+                  fontFamily: 'Poppins',
+                  color: Colors.white,
+                  fontSize: 10,
+                ),
               )
             ],
           ),

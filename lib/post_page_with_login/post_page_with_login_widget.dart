@@ -1360,7 +1360,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         controller: postPhoneController,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: '電話番号＊任意',
+                                          labelText: '電話番号',
                                           labelStyle: FlutterFlowTheme.bodyText2
                                               .override(
                                             fontFamily: 'Montserrat',

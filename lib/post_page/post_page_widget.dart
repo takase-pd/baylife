@@ -1351,7 +1351,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                             controller: postPhoneController,
                                             obscureText: false,
                                             decoration: InputDecoration(
-                                              labelText: '電話番号＊任意',
+                                              labelText: '電話番号',
                                               labelStyle: FlutterFlowTheme
                                                   .bodyText2
                                                   .override(
