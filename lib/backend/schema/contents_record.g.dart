@@ -163,6 +163,13 @@ class _$ContentsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
+    value = object.filePath;
+    if (value != null) {
+      result
+        ..add('file_path')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -270,6 +277,10 @@ class _$ContentsRecordSerializer
           result.finalDay = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime;
           break;
+        case 'file_path':
+          result.filePath = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -325,6 +336,8 @@ class _$ContentsRecord extends ContentsRecord {
   @override
   final DateTime finalDay;
   @override
+  final String filePath;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$ContentsRecord([void Function(ContentsRecordBuilder) updates]) =>
@@ -351,6 +364,7 @@ class _$ContentsRecord extends ContentsRecord {
       this.address,
       this.startDay,
       this.finalDay,
+      this.filePath,
       this.reference})
       : super._();
 
@@ -386,6 +400,7 @@ class _$ContentsRecord extends ContentsRecord {
         address == other.address &&
         startDay == other.startDay &&
         finalDay == other.finalDay &&
+        filePath == other.filePath &&
         reference == other.reference;
   }
 
@@ -409,25 +424,25 @@ class _$ContentsRecord extends ContentsRecord {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc(0, title.hashCode), posted.hashCode),
-                                                                                display.hashCode),
-                                                                            category.hashCode),
-                                                                        catAdd.hashCode),
-                                                                    contact.hashCode),
-                                                                detail.hashCode),
-                                                            homepage.hashCode),
-                                                        organizer.hashCode),
-                                                    overview.hashCode),
-                                                permission.hashCode),
-                                            postName.hashCode),
-                                        postEmail.hashCode),
-                                    postPhone.hashCode),
-                                postOccupation.hashCode),
-                            to.hashCode),
-                        bccUids.hashCode),
-                    address.hashCode),
-                startDay.hashCode),
-            finalDay.hashCode),
+                                                                            $jc($jc($jc($jc(0, title.hashCode), posted.hashCode), display.hashCode),
+                                                                                category.hashCode),
+                                                                            catAdd.hashCode),
+                                                                        contact.hashCode),
+                                                                    detail.hashCode),
+                                                                homepage.hashCode),
+                                                            organizer.hashCode),
+                                                        overview.hashCode),
+                                                    permission.hashCode),
+                                                postName.hashCode),
+                                            postEmail.hashCode),
+                                        postPhone.hashCode),
+                                    postOccupation.hashCode),
+                                to.hashCode),
+                            bccUids.hashCode),
+                        address.hashCode),
+                    startDay.hashCode),
+                finalDay.hashCode),
+            filePath.hashCode),
         reference.hashCode));
   }
 
@@ -454,6 +469,7 @@ class _$ContentsRecord extends ContentsRecord {
           ..add('address', address)
           ..add('startDay', startDay)
           ..add('finalDay', finalDay)
+          ..add('filePath', filePath)
           ..add('reference', reference))
         .toString();
   }
@@ -546,6 +562,10 @@ class ContentsRecordBuilder
   DateTime get finalDay => _$this._finalDay;
   set finalDay(DateTime finalDay) => _$this._finalDay = finalDay;
 
+  String _filePath;
+  String get filePath => _$this._filePath;
+  set filePath(String filePath) => _$this._filePath = filePath;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -578,6 +598,7 @@ class ContentsRecordBuilder
       _address = $v.address;
       _startDay = $v.startDay;
       _finalDay = $v.finalDay;
+      _filePath = $v.filePath;
       _reference = $v.reference;
       _$v = null;
     }
@@ -621,6 +642,7 @@ class ContentsRecordBuilder
               address: address,
               startDay: startDay,
               finalDay: finalDay,
+              filePath: filePath,
               reference: reference);
     } catch (_) {
       String _$failedField;
