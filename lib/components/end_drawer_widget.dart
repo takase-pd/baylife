@@ -34,7 +34,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                 scrollDirection: Axis.vertical,
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                     child: InkWell(
                       onTap: () async {
                         await Navigator.push(
@@ -62,7 +62,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                     child: InkWell(
                       onTap: () async {
                         await Navigator.push(
@@ -90,15 +90,11 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                     child: InkWell(
                       onTap: () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PostPageWidget(),
-                          ),
-                        );
+                        await launchURL(
+                            'https://www.particledrawing.com/contact');
                       },
                       child: ListTile(
                         title: Text(
@@ -118,7 +114,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                     child: InkWell(
                       onTap: () async {
                         await Navigator.push(
@@ -146,7 +142,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                     child: InkWell(
                       onTap: () async {
                         await launchURL(
