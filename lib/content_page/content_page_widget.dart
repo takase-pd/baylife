@@ -243,13 +243,6 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                 },
               ),
             ),
-            FlutterFlowAdBanner(
-              width: MediaQuery.of(context).size.width,
-              height: 50,
-              showsTestAd: true,
-              iOSAdUnitID: 'ca-app-pub-8134368906531041/4883719188',
-              androidAdUnitID: 'ca-app-pub-8134368906531041/3047893333',
-            )
           ],
         ),
       ),
