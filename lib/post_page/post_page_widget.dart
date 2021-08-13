@@ -174,6 +174,15 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                 ),
                               ),
                               Padding(
+                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: Text(
+                                  'ログインして投稿すると、画像を添付することができます。',
+                                  style: FlutterFlowTheme.bodyText2.override(
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
+                              ),
+                              Padding(
                                 padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -1342,7 +1351,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                             controller: postPhoneController,
                                             obscureText: false,
                                             decoration: InputDecoration(
-                                              labelText: '電話番号',
+                                              labelText: '電話番号＊任意',
                                               labelStyle: FlutterFlowTheme
                                                   .bodyText2
                                                   .override(

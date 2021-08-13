@@ -172,7 +172,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               ),
                             ),
                             Divider(
-                              color: FlutterFlowTheme.primaryColor,
+                              color: FlutterFlowTheme.tertiaryColor,
                             ),
                             Image.network(
                               columnContentsRecord.filePath,
@@ -191,7 +191,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               ),
                             ),
                             Divider(
-                              color: FlutterFlowTheme.primaryColor,
+                              color: FlutterFlowTheme.tertiaryColor,
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 0, 10),

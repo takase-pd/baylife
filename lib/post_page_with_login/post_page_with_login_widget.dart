@@ -615,7 +615,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    '添付画像',
+                                                    '添付画像 300X300px以内',
                                                     style: FlutterFlowTheme
                                                         .bodyText2
                                                         .override(
@@ -1360,7 +1360,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         controller: postPhoneController,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: '電話番号',
+                                          labelText: '電話番号＊任意',
                                           labelStyle: FlutterFlowTheme.bodyText2
                                               .override(
                                             fontFamily: 'Montserrat',
