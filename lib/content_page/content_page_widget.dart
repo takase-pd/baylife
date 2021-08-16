@@ -78,7 +78,6 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                   final columnContentsRecord = snapshot.data;
                   double imageWidth = 300;
                   double imageHeight = 300;
-                  print('filePath: ' + columnContentsRecord.filePath);
                   if (columnContentsRecord.filePath == noImage) {
                     imageWidth = 100;
                     imageHeight = 60;
