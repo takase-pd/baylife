@@ -170,7 +170,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Text(
-                            '投稿に表示されます。秘密情報などは記載しないでください。ログインして投稿すると、画像を添付することができます。',
+                            '投稿に表示されます。秘密情報などは記載しないでください。',
                             style: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Poppins',
                             ),
