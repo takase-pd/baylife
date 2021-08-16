@@ -758,14 +758,12 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 165,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Container(
                                     width: 165,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     child: Align(
@@ -803,7 +801,6 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 165,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: StreamBuilder<List<CategoriesRecord>>(
@@ -845,7 +842,6 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                         width: 165,
                                         height: 60,
                                         decoration: BoxDecoration(
-                                          color: Colors.white,
                                           borderRadius:
                                               BorderRadius.circular(8),
                                         ),
