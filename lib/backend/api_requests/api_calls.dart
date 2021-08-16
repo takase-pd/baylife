@@ -21,8 +21,7 @@ Future<dynamic> registContentsCall({
 }) =>
     ApiManager.instance.makeApiCall(
       callName: 'Regist Contents',
-      apiDomain: 'us-central1-baylife-ff782.cloudfunctions.net',
-      apiEndpoint: 'sendMail',
+      apiUrl: 'https://us-central1-baylife-ff782.cloudfunctions.net/sendMail',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',

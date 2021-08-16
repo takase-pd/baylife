@@ -20,14 +20,14 @@ class PostPageWidget extends StatefulWidget {
 }
 
 class _PostPageWidgetState extends State<PostPageWidget> {
-  DateTime datePicked1 = DateTime.now();
+  DateTime datePicked1;
   String categoryValue;
   TextEditingController categoryAddController;
   TextEditingController titleController;
   TextEditingController overviewController;
   TextEditingController detailController;
   TextEditingController addressController;
-  DateTime datePicked2 = DateTime.now();
+  DateTime datePicked2;
   TextEditingController organizerController;
   TextEditingController contactController;
   TextEditingController homepageController;
