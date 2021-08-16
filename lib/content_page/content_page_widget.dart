@@ -20,6 +20,9 @@ class ContentPageWidget extends StatefulWidget {
   _ContentPageWidgetState createState() => _ContentPageWidgetState();
 }
 
+final noImage =
+    'https://firebasestorage.googleapis.com/v0/b/baylife-ff782.appspot.com/o/assets%2FNoImage.png?alt=media&token=cfb3d70b-69d2-4f7f-be63-f429cc9872da';
+
 class _ContentPageWidgetState extends State<ContentPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -73,6 +76,13 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                     );
                   }
                   final columnContentsRecord = snapshot.data;
+                  double imageWidth = 300;
+                  double imageHeight = 300;
+                  print('filePath: ' + columnContentsRecord.filePath);
+                  if (columnContentsRecord.filePath == noImage) {
+                    imageWidth = 100;
+                    imageHeight = 60;
+                  }
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -179,8 +189,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               children: [
                                 Image.network(
                                   columnContentsRecord.filePath,
-                                  width: 300,
-                                  height: 300,
+                                  width: imageWidth,
+                                  height: imageHeight,
                                   fit: BoxFit.scaleDown,
                                 )
                               ],
