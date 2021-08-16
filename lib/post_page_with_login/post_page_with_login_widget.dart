@@ -23,7 +23,7 @@ class PostPageWithLoginWidget extends StatefulWidget {
 }
 
 class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
-  DateTime datePicked1 = DateTime.now();
+  DateTime datePicked1;
   String categoryValue;
   TextEditingController categoryAddController;
   TextEditingController titleController;
@@ -31,7 +31,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
   TextEditingController detailController;
   String uploadedFileUrl = '';
   TextEditingController addressController;
-  DateTime datePicked2 = DateTime.now();
+  DateTime datePicked2;
   TextEditingController organizerController;
   TextEditingController contactController;
   TextEditingController homepageController;

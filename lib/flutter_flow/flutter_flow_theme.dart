@@ -14,6 +14,7 @@ class FlutterFlowTheme {
   static const Color grayDark = Color(0xFFE0E0E0);
   static const Color textDark = Color(0xFF000000);
   static const Color textLight = Color(0xFFFFFFFF);
+  static const Color customColor1 = Color(0xFF83B9FF);
 
   String primaryFontFamily = 'Poppins';
   String secondaryFontFamily = 'Roboto';
