@@ -44,11 +44,32 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
         elevation: 16,
         child: EndDrawerWidget(),
       ),
-      body: FlutterFlowWebView(
-        url: 'https://baylife-ff782.web.app/terms.html',
-        bypass: false,
-        verticalScroll: false,
-        horizontalScroll: false,
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+            child: InkWell(
+              onTap: () async {
+                await launchURL('https://baylife-ff782.web.app/terms.html');
+              },
+              child: Text(
+                '表示されない場合はこちらをクリック',
+                style: FlutterFlowTheme.bodyText2.override(
+                  fontFamily: 'Poppins',
+                  color: FlutterFlowTheme.textSecondary,
+                ),
+              ),
+            ),
+          ),
+          FlutterFlowWebView(
+            url: 'https://baylife-ff782.web.app/terms.html',
+            bypass: false,
+            height: MediaQuery.of(context).size.height * 0.9,
+            verticalScroll: false,
+            horizontalScroll: false,
+          )
+        ],
       ),
     );
   }

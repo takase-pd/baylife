@@ -806,13 +806,17 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              await DatePicker.showDatePicker(
-                                                  context,
-                                                  showTitleActions: true,
-                                                  onConfirm: (date) {
-                                                setState(
-                                                    () => datePicked1 = date);
-                                              }, currentTime: DateTime.now());
+                                              await DatePicker
+                                                  .showDateTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(
+                                                      () => datePicked1 = date);
+                                                },
+                                                currentTime: DateTime.now(),
+                                                minTime: DateTime.now(),
+                                              );
                                             },
                                             text: '日付',
                                             options: FFButtonOptions(
@@ -900,13 +904,17 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              await DatePicker.showDatePicker(
-                                                  context,
-                                                  showTitleActions: true,
-                                                  onConfirm: (date) {
-                                                setState(
-                                                    () => datePicked2 = date);
-                                              }, currentTime: DateTime.now());
+                                              await DatePicker
+                                                  .showDateTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(
+                                                      () => datePicked2 = date);
+                                                },
+                                                currentTime: DateTime.now(),
+                                                minTime: DateTime.now(),
+                                              );
                                             },
                                             text: '日付',
                                             options: FFButtonOptions(
