@@ -48,7 +48,7 @@ dependencies:
   sign_in_with_apple: ^3.0.0
   timeago:
   url_launcher:
-  webviewx:
+  webviewx: ^0.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
