@@ -149,6 +149,15 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     fontSize: 10,
                                   ),
                                 ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: Text(
+                                  columnInfoInappRecord.postRule,
+                                  style: FlutterFlowTheme.bodyText2.override(
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
                               )
                             ],
                           );
@@ -806,8 +815,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              await DatePicker
-                                                  .showDateTimePicker(
+                                              await DatePicker.showDatePicker(
                                                 context,
                                                 showTitleActions: true,
                                                 onConfirm: (date) {
@@ -815,7 +823,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                       () => datePicked1 = date);
                                                 },
                                                 currentTime: DateTime.now(),
-                                                minTime: DateTime.now(),
                                               );
                                             },
                                             text: '日付',
@@ -904,8 +911,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              await DatePicker
-                                                  .showDateTimePicker(
+                                              await DatePicker.showDatePicker(
                                                 context,
                                                 showTitleActions: true,
                                                 onConfirm: (date) {
@@ -913,7 +919,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                       () => datePicked2 = date);
                                                 },
                                                 currentTime: DateTime.now(),
-                                                minTime: DateTime.now(),
                                               );
                                             },
                                             text: '日付',

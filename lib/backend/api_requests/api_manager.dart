@@ -10,17 +10,25 @@ enum ApiCallType {
   POST,
 }
 
+enum BodyType {
+  NONE,
+  JSON,
+  TEXT,
+  X_WWW_FORM_URL_ENCODED,
+}
+
 class ApiCallRecord extends Equatable {
-  ApiCallRecord(
-      this.callName, this.domain, this.endpoint, this.headers, this.params);
+  ApiCallRecord(this.callName, this.apiUrl, this.headers, this.params,
+      this.body, this.bodyType);
   final String callName;
-  final String domain;
-  final String endpoint;
+  final String apiUrl;
   final Map<String, dynamic> headers;
   final Map<String, dynamic> params;
+  final String body;
+  final BodyType bodyType;
 
   @override
-  List<Object> get props => [callName, domain, endpoint, headers, params];
+  List<Object> get props => [callName, apiUrl, headers, params, body, bodyType];
 }
 
 class ApiManager {
@@ -70,24 +78,57 @@ class ApiManager {
     String apiUrl,
     Map<String, dynamic> headers,
     Map<String, dynamic> params,
+    String body,
+    BodyType bodyType,
     bool returnResponse,
   ) async {
-    final response = await http.post(
-      Uri.parse(apiUrl),
-      headers: toStringMap(headers),
-      body: json.encode(params),
-    );
+    final postBody = createPostBody(headers, params, body, bodyType);
+    final response = await http.post(Uri.parse(apiUrl),
+        headers: toStringMap(headers), body: postBody);
     return returnResponse ? json.decode(response.body) : null;
   }
 
-  Future<dynamic> makeApiCall({
-    String callName,
-    String apiUrl,
-    ApiCallType callType,
-    Map<String, dynamic> headers = const {},
-    Map<String, dynamic> params = const {},
-    bool returnResponse,
-  }) async {
+  static dynamic createPostBody(
+    Map<String, dynamic> headers,
+    Map<String, dynamic> params,
+    String body,
+    BodyType bodyType,
+  ) {
+    String contentType;
+    dynamic postBody;
+    switch (bodyType) {
+      case BodyType.NONE:
+        break;
+      case BodyType.JSON:
+        contentType = 'application/json';
+        postBody = body ?? json.encode(params ?? {});
+        break;
+      case BodyType.TEXT:
+        contentType = 'text/plain';
+        postBody = body ?? json.encode(params ?? {});
+        break;
+      case BodyType.X_WWW_FORM_URL_ENCODED:
+        contentType = 'application/x-www-form-urlencoded';
+        postBody = toStringMap(params);
+    }
+    if (contentType != null) {
+      headers['Content-Type'] = contentType;
+    }
+    return postBody;
+  }
+
+  Future<dynamic> makeApiCall(
+      {String callName,
+      String apiUrl,
+      ApiCallType callType,
+      Map<String, dynamic> headers = const {},
+      Map<String, dynamic> params = const {},
+      String body,
+      BodyType bodyType,
+      bool returnResponse,
+      bool cache = false}) async {
+    final callRecord =
+        ApiCallRecord(callName, apiUrl, headers, params, body, bodyType);
     // Modify for your specific needs if this differs from your API.
     if (_accessToken != null) {
       headers[HttpHeaders.authorizationHeader] = 'Token $_accessToken';
@@ -96,14 +137,26 @@ class ApiManager {
       apiUrl = 'https://$apiUrl';
     }
 
+    // If we've already made this exact call before and caching is on,
+    // return the cached result.
+    if (cache && _apiCache.containsKey(callRecord)) {
+      return _apiCache[callRecord];
+    }
+
     var result;
     switch (callType) {
       case ApiCallType.GET:
         result = await getRequest(apiUrl, headers, params, returnResponse);
         break;
       case ApiCallType.POST:
-        result = await postRequest(apiUrl, headers, params, returnResponse);
+        result = await postRequest(
+            apiUrl, headers, params, body, bodyType, returnResponse);
         break;
+    }
+
+    // If caching is on, cache the result (if present).
+    if (cache && result != null) {
+      _apiCache[callRecord] = result;
     }
 
     return result;
