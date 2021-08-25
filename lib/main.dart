@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'auth/firebase_user_provider.dart';
+import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:bay_life/login_page/login_page_widget.dart';
 import 'package:bay_life/home_page/home_page_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';

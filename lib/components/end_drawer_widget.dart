@@ -3,7 +3,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../home_page/home_page_widget.dart';
 import '../login_page/login_page_widget.dart';
-import '../post_page/post_page_widget.dart';
 import '../terms_page/terms_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,7 +46,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           'トップ',
-                          style: FlutterFlowTheme.subtitle1.override(
+                          style: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Poppins',
                           ),
                         ),
@@ -68,14 +67,14 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => PostPageWidget(),
+                            builder: (context) => LoginPageWidget(),
                           ),
                         );
                       },
                       child: ListTile(
                         title: Text(
                           '投稿',
-                          style: FlutterFlowTheme.subtitle1.override(
+                          style: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Poppins',
                           ),
                         ),
@@ -99,7 +98,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           '要望送信',
-                          style: FlutterFlowTheme.subtitle1.override(
+                          style: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Poppins',
                           ),
                         ),
@@ -127,7 +126,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           '利用規約',
-                          style: FlutterFlowTheme.subtitle1.override(
+                          style: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Poppins',
                           ),
                         ),
@@ -151,7 +150,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           'プライバシーポリシー',
-                          style: FlutterFlowTheme.subtitle1.override(
+                          style: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Poppins',
                           ),
                         ),

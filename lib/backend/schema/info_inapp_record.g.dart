@@ -28,6 +28,13 @@ class _$InfoInappRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.postRule;
+    if (value != null) {
+      result
+        ..add('post_rule')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -55,6 +62,10 @@ class _$InfoInappRecordSerializer
           result.postInfo = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'post_rule':
+          result.postRule = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -72,12 +83,15 @@ class _$InfoInappRecord extends InfoInappRecord {
   @override
   final String postInfo;
   @override
+  final String postRule;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$InfoInappRecord([void Function(InfoInappRecordBuilder) updates]) =>
       (new InfoInappRecordBuilder()..update(updates)).build();
 
-  _$InfoInappRecord._({this.postInfo, this.reference}) : super._();
+  _$InfoInappRecord._({this.postInfo, this.postRule, this.reference})
+      : super._();
 
   @override
   InfoInappRecord rebuild(void Function(InfoInappRecordBuilder) updates) =>
@@ -92,18 +106,21 @@ class _$InfoInappRecord extends InfoInappRecord {
     if (identical(other, this)) return true;
     return other is InfoInappRecord &&
         postInfo == other.postInfo &&
+        postRule == other.postRule &&
         reference == other.reference;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, postInfo.hashCode), reference.hashCode));
+    return $jf($jc(
+        $jc($jc(0, postInfo.hashCode), postRule.hashCode), reference.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('InfoInappRecord')
           ..add('postInfo', postInfo)
+          ..add('postRule', postRule)
           ..add('reference', reference))
         .toString();
   }
@@ -116,6 +133,10 @@ class InfoInappRecordBuilder
   String _postInfo;
   String get postInfo => _$this._postInfo;
   set postInfo(String postInfo) => _$this._postInfo = postInfo;
+
+  String _postRule;
+  String get postRule => _$this._postRule;
+  set postRule(String postRule) => _$this._postRule = postRule;
 
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
@@ -130,6 +151,7 @@ class InfoInappRecordBuilder
     final $v = _$v;
     if ($v != null) {
       _postInfo = $v.postInfo;
+      _postRule = $v.postRule;
       _reference = $v.reference;
       _$v = null;
     }
@@ -150,7 +172,8 @@ class InfoInappRecordBuilder
   @override
   _$InfoInappRecord build() {
     final _$result = _$v ??
-        new _$InfoInappRecord._(postInfo: postInfo, reference: reference);
+        new _$InfoInappRecord._(
+            postInfo: postInfo, postRule: postRule, reference: reference);
     replace(_$result);
     return _$result;
   }

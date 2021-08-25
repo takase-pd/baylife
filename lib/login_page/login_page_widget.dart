@@ -346,95 +346,47 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                           ),
                         ),
-                        Align(
-                          alignment: Alignment(0, 0),
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
-                            child: Container(
-                              width: 230,
-                              height: 44,
-                              child: Stack(
-                                children: [
-                                  Align(
-                                    alignment: Alignment(0, 0),
-                                    child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
-                                      },
-                                      text: 'Sign in with Facebook',
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: Colors.transparent,
-                                        size: 20,
+                        isIos
+                            ? Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    final user = await signInWithApple(context);
+                                    if (user == null) {
+                                      return;
+                                    }
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            PostPageWithLoginWidget(),
                                       ),
-                                      options: FFButtonOptions(
-                                        width: 230,
-                                        height: 44,
-                                        color: Colors.white,
-                                        textStyle: GoogleFonts.getFont(
-                                          'Roboto',
-                                          color: Color(0xFF1877F2),
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 17,
-                                        ),
-                                        elevation: 4,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 0,
-                                        ),
-                                        borderRadius: 12,
-                                      ),
-                                    ),
+                                    );
+                                  },
+                                  text: 'Sign in with Apple',
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.apple,
+                                    size: 20,
                                   ),
-                                  Align(
-                                    alignment: Alignment(-0.83, 0),
-                                    child: Container(
-                                      width: 22,
-                                      height: 22,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.network(
-                                        'https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512',
-                                        fit: BoxFit.contain,
-                                      ),
+                                  options: FFButtonOptions(
+                                    width: 230,
+                                    height: 44,
+                                    color: Colors.white,
+                                    textStyle: GoogleFonts.getFont(
+                                      'Roboto',
+                                      color: Colors.black,
+                                      fontSize: 17,
                                     ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: 'Sign in with Apple',
-                            icon: FaIcon(
-                              FontAwesomeIcons.apple,
-                              size: 20,
-                            ),
-                            options: FFButtonOptions(
-                              width: 230,
-                              height: 44,
-                              color: Colors.white,
-                              textStyle: GoogleFonts.getFont(
-                                'Roboto',
-                                color: Colors.black,
-                                fontSize: 17,
-                              ),
-                              elevation: 4,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 0,
-                              ),
-                              borderRadius: 12,
-                            ),
-                          ),
-                        )
+                                    elevation: 4,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 0,
+                                    ),
+                                    borderRadius: 12,
+                                  ),
+                                ),
+                              )
+                            : Container()
                       ],
                     ),
                   ),
@@ -781,95 +733,47 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                           ),
                         ),
-                        Align(
-                          alignment: Alignment(0, 0),
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
-                            child: Container(
-                              width: 230,
-                              height: 44,
-                              child: Stack(
-                                children: [
-                                  Align(
-                                    alignment: Alignment(0, 0),
-                                    child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
-                                      },
-                                      text: 'Sign up with Facebook',
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: Colors.transparent,
-                                        size: 20,
+                        isIos
+                            ? Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    final user = await signInWithApple(context);
+                                    if (user == null) {
+                                      return;
+                                    }
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            PostPageWithLoginWidget(),
                                       ),
-                                      options: FFButtonOptions(
-                                        width: 230,
-                                        height: 44,
-                                        color: Colors.white,
-                                        textStyle: GoogleFonts.getFont(
-                                          'Roboto',
-                                          color: Color(0xFF1877F2),
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 17,
-                                        ),
-                                        elevation: 4,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 0,
-                                        ),
-                                        borderRadius: 12,
-                                      ),
-                                    ),
+                                    );
+                                  },
+                                  text: 'Sign up with Apple',
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.apple,
+                                    size: 20,
                                   ),
-                                  Align(
-                                    alignment: Alignment(-0.83, 0),
-                                    child: Container(
-                                      width: 22,
-                                      height: 22,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.network(
-                                        'https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512',
-                                        fit: BoxFit.contain,
-                                      ),
+                                  options: FFButtonOptions(
+                                    width: 230,
+                                    height: 44,
+                                    color: Colors.white,
+                                    textStyle: GoogleFonts.getFont(
+                                      'Roboto',
+                                      color: Colors.black,
+                                      fontSize: 17,
                                     ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: 'Sign up with Apple',
-                            icon: FaIcon(
-                              FontAwesomeIcons.apple,
-                              size: 20,
-                            ),
-                            options: FFButtonOptions(
-                              width: 230,
-                              height: 44,
-                              color: Colors.white,
-                              textStyle: GoogleFonts.getFont(
-                                'Roboto',
-                                color: Colors.black,
-                                fontSize: 17,
-                              ),
-                              elevation: 4,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 0,
-                              ),
-                              borderRadius: 12,
-                            ),
-                          ),
-                        )
+                                    elevation: 4,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 0,
+                                    ),
+                                    borderRadius: 12,
+                                  ),
+                                ),
+                              )
+                            : Container()
                       ],
                     ),
                   )

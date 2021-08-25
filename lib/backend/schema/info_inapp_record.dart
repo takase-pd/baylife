@@ -16,11 +16,16 @@ abstract class InfoInappRecord
   String get postInfo;
 
   @nullable
+  @BuiltValueField(wireName: 'post_rule')
+  String get postRule;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
-  static void _initializeBuilder(InfoInappRecordBuilder builder) =>
-      builder..postInfo = '';
+  static void _initializeBuilder(InfoInappRecordBuilder builder) => builder
+    ..postInfo = ''
+    ..postRule = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('info_inapp');
@@ -41,6 +46,10 @@ abstract class InfoInappRecord
 
 Map<String, dynamic> createInfoInappRecordData({
   String postInfo,
+  String postRule,
 }) =>
-    serializers.toFirestore(InfoInappRecord.serializer,
-        InfoInappRecord((i) => i..postInfo = postInfo));
+    serializers.toFirestore(
+        InfoInappRecord.serializer,
+        InfoInappRecord((i) => i
+          ..postInfo = postInfo
+          ..postRule = postRule));
