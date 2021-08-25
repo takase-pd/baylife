@@ -193,6 +193,13 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                             );
                           },
                         );
+                        await Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePageWidget(),
+                          ),
+                          (r) => false,
+                        );
                       },
                       child: ListTile(
                         title: Text(
