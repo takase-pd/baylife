@@ -163,6 +163,53 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                         dense: false,
                       ),
                     ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                    child: InkWell(
+                      onTap: () async {
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: Text('退会確認'),
+                              content: Text(
+                                  '退会するとユーザー情報、投稿が削除されます。退会しますか？＊退会をクリックすると、すぐに退会となります。'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('キャンセル'),
+                                ),
+                                TextButton(
+                                  onPressed: () async {
+                                    Navigator.pop(alertDialogContext);
+                                    await currentUserReference.delete();
+                                    ;
+                                  },
+                                  child: Text('退会'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      child: ListTile(
+                        title: Text(
+                          '退会',
+                          style: FlutterFlowTheme.subtitle2.override(
+                            fontFamily: 'Poppins',
+                          ),
+                        ),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                          color: FlutterFlowTheme.textPrimary,
+                          size: 20,
+                        ),
+                        tileColor: FlutterFlowTheme.tertiaryColor,
+                        dense: false,
+                      ),
+                    ),
                   )
                 ],
               ),
