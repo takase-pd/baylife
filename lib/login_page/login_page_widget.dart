@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../post_page/post_page_widget.dart';
 import '../post_page_with_login/post_page_with_login_widget.dart';
+import '../terms_page/terms_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -386,7 +387,49 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                 ),
                               )
-                            : Container()
+                            : Container(),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: InkWell(
+                                  onTap: () async {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => TermsPageWidget(),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    '利用規約',
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: InkWell(
+                                  onTap: () async {
+                                    await launchURL(
+                                        'https://www.particledrawing.com/privacy');
+                                  },
+                                  child: Text(
+                                    'プライバシーポリシー',
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -773,7 +816,55 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                 ),
                               )
-                            : Container()
+                            : Container(),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'ユーザー登録完了時に以下に同意したものとみなします。',
+                                style: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Poppins',
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: InkWell(
+                                  onTap: () async {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => TermsPageWidget(),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    '利用規約',
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: InkWell(
+                                  onTap: () async {
+                                    await launchURL(
+                                        'https://www.particledrawing.com/privacy');
+                                  },
+                                  child: Text(
+                                    'プライバシーポリシー',
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   )
