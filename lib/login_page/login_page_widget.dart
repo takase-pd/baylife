@@ -117,7 +117,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       controller: emailController1,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'Email Address',
+                                        labelText: 'メールアドレス',
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
@@ -177,7 +177,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       controller: passwordController1,
                                       obscureText: !passwordVisibility1,
                                       decoration: InputDecoration(
-                                        labelText: 'Password',
+                                        labelText: 'パスワード',
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
@@ -460,7 +460,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       controller: emailController2,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'Email Address',
+                                        labelText: 'メールアドレス',
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
@@ -520,7 +520,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       controller: passwordController2,
                                       obscureText: !passwordVisibility2,
                                       decoration: InputDecoration(
-                                        labelText: 'Password',
+                                        labelText: 'パスワード',
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
@@ -594,7 +594,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       controller: confirmPasswordController,
                                       obscureText: !confirmPasswordVisibility,
                                       decoration: InputDecoration(
-                                        labelText: 'Password',
+                                        labelText: 'パスワード',
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
