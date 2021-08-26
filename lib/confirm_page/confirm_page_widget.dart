@@ -5,7 +5,7 @@ import '../components/header_logo_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../post_page/post_page_widget.dart';
+import '../post_page_with_login/post_page_with_login_widget.dart';
 import '../terms_page/terms_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -894,7 +894,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      PostPageWidget(),
+                                                      PostPageWithLoginWidget(),
                                                 ),
                                                 (r) => false,
                                               );
