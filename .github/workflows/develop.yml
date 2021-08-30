@@ -2,7 +2,7 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   build_iOS:
@@ -28,7 +28,7 @@ jobs:
       - name: Import Provisioning Profile
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/comparticledrawingbaylife.mobileprovision
+          echo -n ${{ secrets.PROVISIONING_PROFILE_DEV }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/comparticledrawingbaylife.mobileprovision
 
       - name: Import Code-Signing Certificates
         uses: apple-actions/import-codesign-certs@v1
