@@ -12,6 +12,11 @@ jobs:
       - name: Checks-out my repository
         uses: actions/checkout@v2
 
+      - name: Select Xcode version
+        run: sudo xcode-select -s '/Applications/Xcode_12.5.1.app/Contents/Developer'
+      - name: Show Xcode version
+        run: xcodebuild -version
+
       - name: Install Flutter
         run: git clone https://github.com/flutter/flutter.git -b stable
 
