@@ -1,4 +1,4 @@
-name: CI
+name: CI Develop
 on:
   push:
     branches:
@@ -56,9 +56,12 @@ jobs:
         with:
           name: ios
 
+      - name: Check exist IPA
+        run: ls
+
       - name: Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
         with:
-          appId: ${{secrets.FIREBASE_APP_ID_IOS}}
-          token: ${{secrets.FIREBASE_TOKEN}}
-          file: ios/bay_life.ipa
+          appId: ${{ secrets.FIREBASE_APP_ID_IOS }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          file: bay_life.ipa
