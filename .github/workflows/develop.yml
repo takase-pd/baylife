@@ -48,6 +48,9 @@ jobs:
   deploy:
     needs: [build_iOS]
     runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
     steps:
       - uses: actions/checkout@v2
 
@@ -63,3 +66,19 @@ jobs:
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: Admin
           file: bay_life.ipa
+
+      - name: Slack Notification on Success
+        if: success()
+        uses: rtCamp/action-slack-notify@v2.0.2
+        env:
+          SLACK_CHANNEL: build_app
+          SLACK_TITLE: Build Success
+          SLACK_COLOR: good
+
+      - name: Slack Notification on Failure
+        uses: rtCamp/action-slack-notify@v2.0.2
+        if: failure()
+        env:
+          SLACK_CHANNEL: build_app
+          SLACK_TITLE: Build Failure
+          SLACK_COLOR: danger
