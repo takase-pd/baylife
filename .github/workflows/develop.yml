@@ -36,6 +36,8 @@ jobs:
           p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
           p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
 
+      - run: echo ${GITHUB_RUN_NUMBER}
+
       - name: Create ipa file
         run: flutter build ipa --export-options-plist=ExportOptionsDev.plist --build-number ${GITHUB_RUN_NUMBER}
 
@@ -56,12 +58,10 @@ jobs:
         with:
           name: ios
 
-      - name: Check exist IPA
-        run: ls
-
       - name: Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
         with:
           appId: ${{ secrets.FIREBASE_APP_ID_IOS }}
           token: ${{ secrets.FIREBASE_TOKEN }}
+          groups: Admin
           file: bay_life.ipa
