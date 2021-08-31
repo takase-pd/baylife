@@ -1,4 +1,4 @@
-name: CI
+name: CI Delivery
 on:
   push:
     branches:
@@ -38,6 +38,12 @@ jobs:
 
       - name: Create ipa file
         run: flutter build ipa --export-options-plist=ExportOptions.plist --build-number ${GITHUB_RUN_NUMBER}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ios
+          path: ./build/ios/ipa/bay_life.ipa
 
       # AppStoreConnect にアップロードする
       # - name: Upload to AppStoreConnect
