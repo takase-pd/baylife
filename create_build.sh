@@ -30,7 +30,7 @@ flutter packages pub run build_runner build —delete-conflicting-outputs
 # Distribute AppはFlutterの下記だけでOK ＊今まで二重に実行していたよう
 # ただし、下記を実行するためには、ExportOption.plistが必要
 # 今までXcode上で作成されたものを流用すればOK
-flutter build ipa  --release --build-name=${TARGET_APP_VERSION} --build-number=${TARGET_BUILD_NO} --export-options-plist=/path/to/ExportOptions.plist
+flutter build ipa  --release --build-name=${TARGET_APP_VERSION} --build-number=${TARGET_BUILD_NO} --export-options-plist=ExportOptions.plist
 
 # Firebase App Distributionへアップ
 # firebase appdistribution:distribute ./build/ios/ipa/bay_life.ipa  \
