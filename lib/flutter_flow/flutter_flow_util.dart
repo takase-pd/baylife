@@ -10,6 +10,7 @@ import 'package:json_path/json_path.dart';
 
 import 'lat_lng.dart';
 
+export 'package:page_transition/page_transition.dart';
 export 'lat_lng.dart';
 export 'place.dart';
 
@@ -44,11 +45,20 @@ dynamic getJsonField(dynamic response, String jsonPath) {
 
 bool get isIos => !kIsWeb && Platform.isIOS;
 
-Future<LatLng> get getCurrentUserLocation =>
-    queryCurrentUserLocation().onError((error, _) {
-      print("Error querying user location: $error");
-      return null;
-    });
+LatLng cachedUserLocation;
+Future<LatLng> getCurrentUserLocation(
+        {LatLng defaultLocation, bool cached = false}) async =>
+    cached && cachedUserLocation != null
+        ? cachedUserLocation
+        : queryCurrentUserLocation().then((loc) {
+            if (loc != null) {
+              cachedUserLocation = loc;
+            }
+            return loc;
+          }).onError((error, _) {
+            print("Error querying user location: $error");
+            return defaultLocation;
+          });
 
 Future<LatLng> queryCurrentUserLocation() async {
   final serviceEnabled = await Geolocator.isLocationServiceEnabled();
