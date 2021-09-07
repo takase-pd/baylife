@@ -36,7 +36,6 @@ dependencies:
   font_awesome_flutter:
   geolocator:
   google_fonts: ^2.1.0
-  google_mobile_ads: ^0.13.2
   google_sign_in: ^4.5.9
   image_picker: ^0.8.2
   intl:
@@ -67,7 +66,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: 'assets/images/MAKUHARI_logo.png'
+  image_path: 'assets/images/app_launcher_icon.png'
 
 
 # For information on the generic Dart part of this file, see the
