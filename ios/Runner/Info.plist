@@ -40,7 +40,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>In order to take a picture or video, this app requires permission to access the camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>In order to upload media, this app requires permission to access the photo library.</string>
+	<string>投稿に掲載する写真を選択するために写真にアクセスします。</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
