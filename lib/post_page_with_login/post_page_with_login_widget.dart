@@ -119,10 +119,12 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                               snapshot.data;
                           // Customize what your widget looks like with no query results.
                           if (snapshot.data.isEmpty) {
-                            return Container(
-                              height: 100,
-                              child: Center(
-                                child: Text('No results.'),
+                            return Material(
+                              child: Container(
+                                height: 100,
+                                child: Center(
+                                  child: Text('No results.'),
+                                ),
                               ),
                             );
                           }
@@ -223,10 +225,12 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                             snapshot.data;
                                         // Customize what your widget looks like with no query results.
                                         if (snapshot.data.isEmpty) {
-                                          return Container(
-                                            height: 100,
-                                            child: Center(
-                                              child: Text('No results.'),
+                                          return Material(
+                                            child: Container(
+                                              height: 100,
+                                              child: Center(
+                                                child: Text('No results.'),
+                                              ),
                                             ),
                                           );
                                         }
