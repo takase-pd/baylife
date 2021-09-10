@@ -46,5 +46,5 @@ jobs:
           path: ./build/ios/ipa/bay_life.ipa
 
       # AppStoreConnect にアップロードする
-      # - name: Upload to AppStoreConnect
-      #   run: xcrun altool --upload-app -f "./build/ios/ipa/github_actios_sample.ipa" -u "${{ secrets.APPLE_ID }}" -p "${{ secrets.APPLE_APP_PASS }}"
+      - name: Upload to AppStoreConnect
+        run: xcrun altool --upload-app -f "./build/ios/ipa/bay_life.ipa" -u "${{ secrets.APPLE_ID }}" -p "${{ secrets.APPLE_APP_PASS }}"
