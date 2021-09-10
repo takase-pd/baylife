@@ -401,11 +401,7 @@
 				MARKETING_VERSION = "$(FLUTTER_BUILD_NAME)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.particledrawing.baylife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
 				PROVISIONING_PROFILE_SPECIFIER = com.particledrawing.baylife;
-=======
-				PROVISIONING_PROFILE_SPECIFIER = comparticledrawingbaylife;
->>>>>>> ecc3647fea2e81046ce4bae19ecb64330462fbcb
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -550,11 +546,7 @@
 				MARKETING_VERSION = "$(FLUTTER_BUILD_NAME)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.particledrawing.baylife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
 				PROVISIONING_PROFILE_SPECIFIER = com.particledrawing.baylife;
-=======
-				PROVISIONING_PROFILE_SPECIFIER = comparticledrawingbaylife;
->>>>>>> ecc3647fea2e81046ce4bae19ecb64330462fbcb
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -591,11 +583,7 @@
 				MARKETING_VERSION = "$(FLUTTER_BUILD_NAME)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.particledrawing.baylife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
 				PROVISIONING_PROFILE_SPECIFIER = com.particledrawing.baylife;
-=======
-				PROVISIONING_PROFILE_SPECIFIER = comparticledrawingbaylife;
->>>>>>> ecc3647fea2e81046ce4bae19ecb64330462fbcb
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
