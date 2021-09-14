@@ -91,17 +91,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
               child: TabBarView(
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 10),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
                                   height: 50,
@@ -112,7 +113,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 0, 10, 0),
                                     child: TextFormField(
                                       controller: emailController1,
                                       obscureText: false,
@@ -161,7 +163,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
                                   height: 50,
@@ -172,7 +175,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 0, 10, 0),
                                     child: TextFormField(
                                       controller: passwordController1,
                                       obscureText: !passwordVisibility1,
@@ -278,16 +282,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           ),
                         ),
                         Align(
-                          alignment: Alignment(0, 0),
+                          alignment: AlignmentDirectional(0, 0),
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: 230,
                               height: 44,
                               child: Stack(
                                 children: [
                                   Align(
-                                    alignment: Alignment(0, 0),
+                                    alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         final user =
@@ -328,7 +333,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: Alignment(-0.83, 0),
+                                    alignment: AlignmentDirectional(-0.83, 0),
                                     child: Container(
                                       width: 22,
                                       height: 22,
@@ -349,7 +354,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         ),
                         isIos
                             ? Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     final user = await signInWithApple(context);
@@ -389,12 +395,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               )
                             : Container(),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
                                     await Navigator.push(
@@ -413,7 +420,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
                                     await launchURL(
@@ -434,17 +442,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 10),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
                                   height: 50,
@@ -455,7 +464,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 0, 10, 0),
                                     child: TextFormField(
                                       controller: emailController2,
                                       obscureText: false,
@@ -504,7 +514,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
                                   height: 50,
@@ -515,7 +526,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 0, 10, 0),
                                     child: TextFormField(
                                       controller: passwordController2,
                                       obscureText: !passwordVisibility2,
@@ -578,7 +590,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
                                   height: 50,
@@ -589,7 +602,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 0, 10, 0),
                                     child: TextFormField(
                                       controller: confirmPasswordController,
                                       obscureText: !confirmPasswordVisibility,
@@ -707,16 +721,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           ),
                         ),
                         Align(
-                          alignment: Alignment(0, 0),
+                          alignment: AlignmentDirectional(0, 0),
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: 230,
                               height: 44,
                               child: Stack(
                                 children: [
                                   Align(
-                                    alignment: Alignment(0, 0),
+                                    alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         final user =
@@ -757,7 +772,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: Alignment(-0.83, 0),
+                                    alignment: AlignmentDirectional(-0.83, 0),
                                     child: Container(
                                       width: 22,
                                       height: 22,
@@ -778,7 +793,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         ),
                         isIos
                             ? Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     final user = await signInWithApple(context);
@@ -818,7 +834,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               )
                             : Container(),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -829,7 +845,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
                                     await Navigator.push(
@@ -848,7 +865,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
                                     await launchURL(

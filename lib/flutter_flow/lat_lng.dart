@@ -1,6 +1,3 @@
-import 'package:flutter/foundation.dart';
-
-@immutable
 class LatLng {
   const LatLng(this.latitude, this.longitude);
   final double latitude;

@@ -16,7 +16,7 @@ class _CatRowWidgetState extends State<CatRowWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
       child: StreamBuilder<List<CategoriesRecord>>(
         stream: queryCategoriesRecord(
           queryBuilder: (categoriesRecord) =>
@@ -52,7 +52,7 @@ class _CatRowWidgetState extends State<CatRowWidget> {
             children: List.generate(rowCategoriesRecordList.length, (rowIndex) {
               final rowCategoriesRecord = rowCategoriesRecordList[rowIndex];
               return Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                 child: InkWell(
                   onTap: () async {
                     await Navigator.push(

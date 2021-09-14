@@ -109,15 +109,15 @@ Future<SelectedMedia> selectMedia({
   final picker = ImagePicker();
   final source = fromCamera ? ImageSource.camera : ImageSource.gallery;
   final pickedMediaFuture = isVideo
-      ? picker.getVideo(source: source)
-      : picker.getImage(
+      ? picker.pickVideo(source: source)
+      : picker.pickImage(
           maxWidth: maxWidth, maxHeight: maxHeight, source: source);
   final pickedMedia = await pickedMediaFuture;
   final mediaBytes = await pickedMedia?.readAsBytes();
   if (mediaBytes == null) {
     return null;
   }
-  final path = storagePath(currentUserUid, pickedMedia.path, isVideo);
+  final path = storagePath(currentUserUid, pickedMedia.name, isVideo);
   return SelectedMedia(path, mediaBytes);
 }
 
@@ -151,7 +151,7 @@ void showUploadMessage(BuildContext context, String message,
           children: [
             if (showLoading)
               Padding(
-                padding: EdgeInsets.only(right: 10.0),
+                padding: EdgeInsetsDirectional.only(end: 10.0),
                 child: CircularProgressIndicator(),
               ),
             Text(message),

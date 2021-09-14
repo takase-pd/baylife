@@ -23,7 +23,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
         color: Color(0xFFEEEEEE),
       ),
       child: Padding(
-        padding: EdgeInsets.fromLTRB(10, 200, 10, 0),
+        padding: EdgeInsetsDirectional.fromSTEB(10, 200, 10, 0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -33,7 +33,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                 scrollDirection: Axis.vertical,
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                     child: InkWell(
                       onTap: () async {
                         await Navigator.push(
@@ -61,7 +61,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                     child: InkWell(
                       onTap: () async {
                         await Navigator.push(
@@ -89,7 +89,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                     child: InkWell(
                       onTap: () async {
                         await launchURL(
@@ -113,7 +113,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                     child: InkWell(
                       onTap: () async {
                         await Navigator.push(
@@ -141,7 +141,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                     child: InkWell(
                       onTap: () async {
                         await launchURL(
@@ -165,7 +165,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                     child: InkWell(
                       onTap: () async {
                         await showDialog(
@@ -222,7 +222,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
               child: InkWell(
                 onTap: () async {
                   await signOut();
