@@ -71,7 +71,7 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
                     child: Text(
                       columnLogonameRecord.second,
                       style: FlutterFlowTheme.title3.override(

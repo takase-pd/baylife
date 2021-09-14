@@ -114,13 +114,13 @@ class _PostPageWidgetState extends State<PostPageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(10, 20, 10, 120),
+                padding: EdgeInsetsDirectional.fromSTEB(10, 20, 10, 120),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 16),
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 16),
                       child: StreamBuilder<List<InfoInappRecord>>(
                         stream: queryInfoInappRecord(
                           singleRecord: true,
@@ -165,7 +165,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: Text(
                                   columnInfoInappRecord.postInfo,
                                   style: FlutterFlowTheme.bodyText2.override(
@@ -176,7 +177,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: Text(
                                   columnInfoInappRecord.postRule,
                                   style: FlutterFlowTheme.bodyText2.override(
@@ -190,7 +192,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -210,7 +212,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -278,7 +281,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                           borderWidth: 0,
                                           borderRadius: 0,
                                           margin:
-                                              EdgeInsets.fromLTRB(8, 4, 8, 4),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8, 4, 8, 4),
                                         );
                                       },
                                     ),
@@ -288,7 +292,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -304,7 +309,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: categoryAddController,
                                         obscureText: false,
@@ -360,7 +366,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -376,7 +383,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: titleController,
                                         obscureText: false,
@@ -432,7 +440,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -448,7 +457,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: overviewController,
                                         obscureText: false,
@@ -506,7 +516,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -522,7 +533,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: detailController,
                                         obscureText: false,
@@ -580,7 +592,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -596,7 +609,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: addressController,
                                         obscureText: false,
@@ -661,7 +675,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -677,8 +692,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(16, 0, 10, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 10, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -699,8 +714,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    5, 0, 0, 0),
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(5, 0, 0, 0),
                                                 child: Text(
                                                   dateTimeFormat(
                                                       'yMMMd', datePicked1),
@@ -757,7 +772,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -773,8 +789,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(16, 0, 10, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 10, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -795,8 +811,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    5, 0, 0, 0),
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(5, 0, 0, 0),
                                                 child: Text(
                                                   dateTimeFormat(
                                                       'yMMMd', datePicked2),
@@ -853,7 +869,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -869,7 +886,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: organizerController,
                                         obscureText: false,
@@ -925,7 +943,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -941,7 +960,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: contactController,
                                         obscureText: false,
@@ -997,7 +1017,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -1013,7 +1034,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: homepageController,
                                         obscureText: false,
@@ -1066,7 +1088,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1090,7 +1112,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -1106,7 +1129,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: postNameController,
                                         obscureText: false,
@@ -1163,7 +1187,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -1179,7 +1204,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: postEmailController,
                                         obscureText: false,
@@ -1237,7 +1263,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -1253,7 +1280,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: postPhoneController,
                                         obscureText: false,
@@ -1303,7 +1331,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -1319,7 +1348,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: postOccupationController,
                                         obscureText: false,
@@ -1371,7 +1401,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1394,7 +1424,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: CheckboxListTile(
                               value: checkboxListTileValue ??= false,
                               onChanged: (newValue) => setState(
@@ -1412,7 +1443,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -1425,7 +1457,7 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     child: Align(
-                                      alignment: Alignment(0.95, 0),
+                                      alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           if (!formKey.currentState

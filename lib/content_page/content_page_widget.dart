@@ -2,6 +2,7 @@ import '../backend/backend.dart';
 import '../category_page/category_page_widget.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
+import '../flutter_flow/flutter_flow_ad_banner.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -56,7 +57,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
               child: StreamBuilder<ContentsRecord>(
                 stream: ContentsRecord.getDocument(widget.contentRef),
                 builder: (context, snapshot) {
@@ -79,13 +80,14 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
-                        padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 20, 10, 10),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                               child: Text(
                                 columnContentsRecord.title,
                                 style: FlutterFlowTheme.title1.override(
@@ -94,7 +96,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                               child: Text(
                                 columnContentsRecord.organizer,
                                 style: FlutterFlowTheme.subtitle2.override(
@@ -103,7 +106,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 10, 10),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
                               child: StreamBuilder<CategoriesRecord>(
                                 stream: CategoriesRecord.getDocument(
                                     columnContentsRecord.category),
@@ -143,8 +147,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                         borderRadius: BorderRadius.circular(5),
                                       ),
                                       child: Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(3, 3, 0, 0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            3, 3, 0, 0),
                                         child: Text(
                                           containerCategoriesRecord.catName,
                                           textAlign: TextAlign.center,
@@ -161,7 +165,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                               child: Text(
                                 columnContentsRecord.overview,
                                 style: FlutterFlowTheme.subtitle1.override(
@@ -186,7 +191,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                               child: Text(
                                 columnContentsRecord.detail,
                                 style: FlutterFlowTheme.bodyText1.override(
@@ -199,7 +205,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               color: FlutterFlowTheme.secondaryDark,
                             ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                               child: Text(
                                 columnContentsRecord.address,
                                 style: FlutterFlowTheme.bodyText2.override(
@@ -208,7 +215,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                               child: InkWell(
                                 onTap: () async {
                                   await launchURL(
@@ -223,7 +231,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                               child: Text(
                                 columnContentsRecord.organizer,
                                 style: FlutterFlowTheme.bodyText2.override(
@@ -232,13 +241,21 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                               child: Text(
                                 columnContentsRecord.contact,
                                 style: FlutterFlowTheme.bodyText2.override(
                                   fontFamily: 'Poppins',
                                 ),
                               ),
+                            ),
+                            FlutterFlowAdBanner(
+                              width: MediaQuery.of(context).size.width,
+                              height: 50,
+                              showsTestAd: true,
+                              iOSAdUnitID:
+                                  'ca-app-pub-8134368906531041/4883719188',
                             )
                           ],
                         ),
