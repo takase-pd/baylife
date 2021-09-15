@@ -78,14 +78,14 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
           children: [
             CatRowWidget(),
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                     child: StreamBuilder<List<ContentsRecord>>(
                       stream: queryContentsRecord(
                         queryBuilder: (contentsRecord) => contentsRecord
@@ -128,7 +128,8 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                             final listViewContentsRecord =
                                 listViewContentsRecordList[listViewIndex];
                             return Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                               child: InkWell(
                                 onTap: () async {
                                   await Navigator.push(
@@ -145,8 +146,8 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
                                   color: FlutterFlowTheme.grayDark,
                                   child: Padding(
-                                    padding:
-                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 10, 10, 10),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -154,7 +155,8 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 10),
                                           child: Text(
                                             listViewContentsRecord.title,
                                             style: FlutterFlowTheme.title3
@@ -167,7 +169,8 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 10),
                                           child: Text(
                                             listViewContentsRecord.overview,
                                             style: FlutterFlowTheme.bodyText1
@@ -211,8 +214,9 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              0, 0, 0, 10),
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 0, 10),
                                                       child: Text(
                                                         listViewContentsRecord
                                                             .organizer,
@@ -225,8 +229,9 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              0, 0, 10, 0),
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 10, 0),
                                                       child: InkWell(
                                                         onTap: () async {
                                                           await Navigator.push(
@@ -254,9 +259,13 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                                         5),
                                                           ),
                                                           child: Padding(
-                                                            padding: EdgeInsets
-                                                                .fromLTRB(
-                                                                    3, 3, 0, 0),
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        3,
+                                                                        3,
+                                                                        0,
+                                                                        0),
                                                             child: Text(
                                                               rowCategoriesRecord
                                                                   .catName,

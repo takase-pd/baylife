@@ -91,13 +91,13 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+              padding: EdgeInsetsDirectional.fromSTEB(10, 20, 10, 10),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -111,7 +111,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -131,7 +131,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -147,7 +147,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.catName,
                                       style:
@@ -162,7 +163,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -178,7 +179,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.catNameAdd,
                                       style:
@@ -193,7 +195,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -209,7 +211,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.title,
                                       style:
@@ -224,7 +227,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -240,7 +243,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.overview,
                                       style:
@@ -255,7 +259,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -271,7 +275,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.detail,
                                       style:
@@ -286,7 +291,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -302,7 +307,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 0, 0, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -310,7 +316,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 5, 0),
                                           child: Text(
                                             '添付画像',
                                             style: FlutterFlowTheme.bodyText2
@@ -334,7 +341,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -350,7 +357,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.address,
                                       style:
@@ -365,7 +373,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -381,13 +389,15 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 0, 0, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 5, 0),
                                           child: Text(
                                             '開始日',
                                             style: FlutterFlowTheme.bodyText2
@@ -413,7 +423,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -429,13 +439,15 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 0, 0, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 5, 0),
                                           child: Text(
                                             '終了日',
                                             style: FlutterFlowTheme.bodyText2
@@ -461,7 +473,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -477,7 +489,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.organizer,
                                       style:
@@ -492,7 +505,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -508,7 +521,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.contact,
                                       style:
@@ -523,7 +537,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -539,7 +553,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.homepage,
                                       style:
@@ -557,13 +572,13 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -583,7 +598,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -599,7 +614,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.postName,
                                       style:
@@ -614,7 +630,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -630,7 +646,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.postEmail,
                                       style:
@@ -645,7 +662,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -661,7 +678,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.postPhone,
                                       style:
@@ -676,7 +694,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -692,7 +710,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 12, 0, 10),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
                                     child: Text(
                                       widget.postOccupation,
                                       style:
@@ -710,7 +729,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -732,7 +751,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: CheckboxListTile(
                             value: checkboxListTileValue ??= widget.permission,
                             onChanged: (newValue) => setState(
@@ -749,7 +768,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -767,7 +786,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     child: Align(
-                                      alignment: Alignment(0.95, 0),
+                                      alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           Navigator.pop(context);
@@ -848,7 +867,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                               BorderRadius.circular(8),
                                         ),
                                         child: Align(
-                                          alignment: Alignment(0.95, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.95, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               await registContentsCall(

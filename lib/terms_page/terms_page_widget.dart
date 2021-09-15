@@ -48,7 +48,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
             child: InkWell(
               onTap: () async {
                 await launchURL('https://baylife-ff782.web.app/terms.html');
