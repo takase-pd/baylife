@@ -735,7 +735,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                               Expanded(
                                 child: Container(
                                   width: 330,
-                                  height: 60,
+                                  height: 200,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(8),

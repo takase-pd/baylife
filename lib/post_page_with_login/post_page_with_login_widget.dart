@@ -1429,7 +1429,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                 Expanded(
                                   child: Container(
                                     width: 330,
-                                    height: 60,
+                                    height: 200,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(8),
@@ -1480,6 +1480,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           color: FlutterFlowTheme.textDark,
                                           fontWeight: FontWeight.w500,
                                         ),
+                                        maxLines: 20,
+                                        keyboardType: TextInputType.multiline,
                                       ),
                                     ),
                                   ),
