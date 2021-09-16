@@ -30,6 +30,7 @@ class ConfirmPageWidget extends StatefulWidget {
     this.startDay,
     this.finalDay,
     this.filePath,
+    this.postRemarks,
   }) : super(key: key);
 
   final String catName;
@@ -49,6 +50,7 @@ class ConfirmPageWidget extends StatefulWidget {
   final DateTime startDay;
   final DateTime finalDay;
   final String filePath;
+  final String postRemarks;
 
   @override
   _ConfirmPageWidgetState createState() => _ConfirmPageWidgetState();
@@ -714,6 +716,38 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                         16, 12, 0, 10),
                                     child: Text(
                                       widget.postOccupation,
+                                      style:
+                                          FlutterFlowTheme.bodyText2.override(
+                                        fontFamily: 'Poppins',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
+                                    child: Text(
+                                      widget.postRemarks,
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Poppins',
