@@ -37,6 +37,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
   TextEditingController homepageController;
   TextEditingController postOccupationController;
   TextEditingController postPhoneController;
+  TextEditingController postRemarksController;
   bool checkboxListTileValue;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -54,6 +55,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
     homepageController = TextEditingController();
     postOccupationController = TextEditingController();
     postPhoneController = TextEditingController();
+    postRemarksController = TextEditingController();
   }
 
   @override
@@ -1417,6 +1419,73 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                 )
                               ],
                             ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    width: 330,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(
+                                        color: Color(0xFFE6E6E6),
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
+                                      child: TextFormField(
+                                        controller: postRemarksController,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          labelText: '備考',
+                                          labelStyle: FlutterFlowTheme.bodyText2
+                                              .override(
+                                            fontFamily: 'Montserrat',
+                                            color: FlutterFlowTheme.textDark,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                        ),
+                                        style:
+                                            FlutterFlowTheme.bodyText2.override(
+                                          fontFamily: 'Montserrat',
+                                          color: FlutterFlowTheme.textDark,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -1515,6 +1584,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 startDay: datePicked1,
                                                 finalDay: datePicked2,
                                                 filePath: uploadedFileUrl,
+                                                postRemarks:
+                                                    postRemarksController.text,
                                               ),
                                             ),
                                           );
