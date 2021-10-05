@@ -4,7 +4,7 @@ import '../backend/firebase_storage/storage.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
 import '../confirm_page/confirm_page_widget.dart';
-import '../flutter_flow/flutter_flow_drop_down_template.dart';
+import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -244,10 +244,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         return FlutterFlowDropDown(
                                           options:
                                               categoryCatDdRecord.cats.toList(),
-                                          onChanged: (value) {
-                                            setState(
-                                                () => categoryValue = value);
-                                          },
+                                          onChanged: (val) => setState(
+                                              () => categoryValue = val),
                                           width: 130,
                                           height: 40,
                                           textStyle: FlutterFlowTheme.bodyText1
@@ -1235,13 +1233,15 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           16, 16, 16, 16),
-                                      child: Text(
-                                        currentUserDisplayName,
-                                        style:
-                                            FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.textDark,
-                                          fontWeight: FontWeight.w500,
+                                      child: AuthUserStreamWidget(
+                                        child: Text(
+                                          currentUserDisplayName,
+                                          style: FlutterFlowTheme.bodyText2
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            color: FlutterFlowTheme.textDark,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -1270,13 +1270,15 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           16, 16, 16, 16),
-                                      child: Text(
-                                        currentUserEmail,
-                                        style:
-                                            FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.textDark,
-                                          fontWeight: FontWeight.w500,
+                                      child: AuthUserStreamWidget(
+                                        child: Text(
+                                          currentUserEmail,
+                                          style: FlutterFlowTheme.bodyText2
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            color: FlutterFlowTheme.textDark,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
                                     ),

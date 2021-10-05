@@ -123,8 +123,8 @@ abstract class ContentsRecord
 
   static ContentsRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(
-          serializer, {...data, kDocumentReferenceField: reference});
+      serializers.deserializeWith(serializer,
+          {...mapFromFirestore(data), kDocumentReferenceField: reference});
 }
 
 Map<String, dynamic> createContentsRecordData({

@@ -926,6 +926,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                 finalDay: dateTimeFormat(
                                                     'yMMMd', widget.finalDay),
                                                 filePath: widget.filePath,
+                                                postRemarks: widget.postRemarks,
                                               );
                                               await showDialog(
                                                 context: context,
