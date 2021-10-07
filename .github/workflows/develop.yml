@@ -24,7 +24,6 @@ jobs:
       - name: Download Flutter packages
         run: flutter pub get
       - run: flutter packages pub run build_runner build --delete-conflicting-outputs
-      - run: flutter build web --web-renderer html
 
       - name: Import Provisioning Profile
         run: |
