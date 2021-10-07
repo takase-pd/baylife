@@ -111,3 +111,7 @@ node_modules/
 # dotenv environment variables file
 .env
 gitignore
+pubspec.lock
+android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+ios/Runner/GeneratedPluginRegistrant.h
+ios/Runner/GeneratedPluginRegistrant.m
