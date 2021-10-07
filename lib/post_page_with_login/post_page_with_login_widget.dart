@@ -24,20 +24,24 @@ class PostPageWithLoginWidget extends StatefulWidget {
 
 class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
   DateTime datePicked1;
+  bool _loadingButton2 = false;
   String categoryValue;
   TextEditingController categoryAddController;
   TextEditingController titleController;
   TextEditingController overviewController;
   TextEditingController detailController;
   String uploadedFileUrl = '';
+  bool _loadingButton1 = false;
   TextEditingController addressController;
   DateTime datePicked2;
+  bool _loadingButton3 = false;
   TextEditingController organizerController;
   TextEditingController contactController;
   TextEditingController homepageController;
   TextEditingController postOccupationController;
   TextEditingController postPhoneController;
   TextEditingController postRemarksController;
+  bool _loadingButton4 = false;
   bool checkboxListTileValue;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -119,19 +123,14 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                           }
                           List<InfoInappRecord> columnInfoInappRecordList =
                               snapshot.data;
-                          // Customize what your widget looks like with no query results.
+                          // Return an empty Container when the document does not exist.
                           if (snapshot.data.isEmpty) {
-                            return Material(
-                              child: Container(
-                                height: 100,
-                                child: Center(
-                                  child: Text('No results.'),
-                                ),
-                              ),
-                            );
+                            return Container();
                           }
                           final columnInfoInappRecord =
-                              columnInfoInappRecordList.first;
+                              columnInfoInappRecordList.isNotEmpty
+                                  ? columnInfoInappRecordList.first
+                                  : null;
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -228,19 +227,14 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         List<CatDdRecord>
                                             categoryCatDdRecordList =
                                             snapshot.data;
-                                        // Customize what your widget looks like with no query results.
+                                        // Return an empty Container when the document does not exist.
                                         if (snapshot.data.isEmpty) {
-                                          return Material(
-                                            child: Container(
-                                              height: 100,
-                                              child: Center(
-                                                child: Text('No results.'),
-                                              ),
-                                            ),
-                                          );
+                                          return Container();
                                         }
                                         final categoryCatDdRecord =
-                                            categoryCatDdRecordList.first;
+                                            categoryCatDdRecordList.isNotEmpty
+                                                ? categoryCatDdRecordList.first
+                                                : null;
                                         return FlutterFlowDropDown(
                                           options:
                                               categoryCatDdRecord.cats.toList(),
@@ -633,36 +627,46 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              final selectedMedia =
-                                                  await selectMedia(
-                                                maxWidth: 300.00,
-                                                maxHeight: 300.00,
-                                              );
-                                              if (selectedMedia != null &&
-                                                  validateFileFormat(
-                                                      selectedMedia.storagePath,
-                                                      context)) {
-                                                showUploadMessage(context,
-                                                    'Uploading file...',
-                                                    showLoading: true);
-                                                final downloadUrl =
-                                                    await uploadData(
+                                              setState(
+                                                  () => _loadingButton1 = true);
+                                              try {
+                                                final selectedMedia =
+                                                    await selectMedia(
+                                                  maxWidth: 300.00,
+                                                  maxHeight: 300.00,
+                                                  mediaSource:
+                                                      MediaSource.photoGallery,
+                                                );
+                                                if (selectedMedia != null &&
+                                                    validateFileFormat(
                                                         selectedMedia
                                                             .storagePath,
-                                                        selectedMedia.bytes);
-                                                ScaffoldMessenger.of(context)
-                                                    .hideCurrentSnackBar();
-                                                if (downloadUrl != null) {
-                                                  setState(() =>
-                                                      uploadedFileUrl =
-                                                          downloadUrl);
-                                                  showUploadMessage(
-                                                      context, 'Success!');
-                                                } else {
+                                                        context)) {
                                                   showUploadMessage(context,
-                                                      'Failed to upload media');
-                                                  return;
+                                                      'Uploading file...',
+                                                      showLoading: true);
+                                                  final downloadUrl =
+                                                      await uploadData(
+                                                          selectedMedia
+                                                              .storagePath,
+                                                          selectedMedia.bytes);
+                                                  ScaffoldMessenger.of(context)
+                                                      .hideCurrentSnackBar();
+                                                  if (downloadUrl != null) {
+                                                    setState(() =>
+                                                        uploadedFileUrl =
+                                                            downloadUrl);
+                                                    showUploadMessage(
+                                                        context, 'Success!');
+                                                  } else {
+                                                    showUploadMessage(context,
+                                                        'Failed to upload media');
+                                                    return;
+                                                  }
                                                 }
+                                              } finally {
+                                                setState(() =>
+                                                    _loadingButton1 = false);
                                               }
                                             },
                                             text: '選択',
@@ -684,6 +688,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               ),
                                               borderRadius: 12,
                                             ),
+                                            loading: _loadingButton1,
                                           )
                                         ],
                                       ),
@@ -835,15 +840,22 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              await DatePicker.showDatePicker(
-                                                context,
-                                                showTitleActions: true,
-                                                onConfirm: (date) {
-                                                  setState(
-                                                      () => datePicked1 = date);
-                                                },
-                                                currentTime: DateTime.now(),
-                                              );
+                                              setState(
+                                                  () => _loadingButton2 = true);
+                                              try {
+                                                await DatePicker.showDatePicker(
+                                                  context,
+                                                  showTitleActions: true,
+                                                  onConfirm: (date) {
+                                                    setState(() =>
+                                                        datePicked1 = date);
+                                                  },
+                                                  currentTime: DateTime.now(),
+                                                );
+                                              } finally {
+                                                setState(() =>
+                                                    _loadingButton2 = false);
+                                              }
                                             },
                                             text: '日付',
                                             options: FFButtonOptions(
@@ -864,6 +876,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               ),
                                               borderRadius: 12,
                                             ),
+                                            loading: _loadingButton2,
                                           )
                                         ],
                                       ),
@@ -932,15 +945,22 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              await DatePicker.showDatePicker(
-                                                context,
-                                                showTitleActions: true,
-                                                onConfirm: (date) {
-                                                  setState(
-                                                      () => datePicked2 = date);
-                                                },
-                                                currentTime: DateTime.now(),
-                                              );
+                                              setState(
+                                                  () => _loadingButton3 = true);
+                                              try {
+                                                await DatePicker.showDatePicker(
+                                                  context,
+                                                  showTitleActions: true,
+                                                  onConfirm: (date) {
+                                                    setState(() =>
+                                                        datePicked2 = date);
+                                                  },
+                                                  currentTime: DateTime.now(),
+                                                );
+                                              } finally {
+                                                setState(() =>
+                                                    _loadingButton3 = false);
+                                              }
                                             },
                                             text: '日付',
                                             options: FFButtonOptions(
@@ -961,6 +981,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               ),
                                               borderRadius: 12,
                                             ),
+                                            loading: _loadingButton3,
                                           )
                                         ],
                                       ),
@@ -1553,46 +1574,57 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          if (!formKey.currentState
-                                              .validate()) {
-                                            return;
-                                          }
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ConfirmPageWidget(
-                                                catName: categoryValue,
-                                                catNameAdd:
-                                                    categoryAddController.text,
-                                                title: titleController.text,
-                                                overview:
-                                                    overviewController.text,
-                                                detail: detailController.text,
-                                                organizer:
-                                                    organizerController.text,
-                                                contact: contactController.text,
-                                                homepage:
-                                                    homepageController.text,
-                                                postName:
-                                                    currentUserDisplayName,
-                                                postEmail: currentUserEmail,
-                                                postPhone:
-                                                    postPhoneController.text,
-                                                postOccupation:
-                                                    postOccupationController
-                                                        .text,
-                                                permission:
-                                                    checkboxListTileValue,
-                                                address: addressController.text,
-                                                startDay: datePicked1,
-                                                finalDay: datePicked2,
-                                                filePath: uploadedFileUrl,
-                                                postRemarks:
-                                                    postRemarksController.text,
+                                          setState(
+                                              () => _loadingButton4 = true);
+                                          try {
+                                            if (!formKey.currentState
+                                                .validate()) {
+                                              return;
+                                            }
+                                            await Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ConfirmPageWidget(
+                                                  catName: categoryValue,
+                                                  catNameAdd:
+                                                      categoryAddController
+                                                          .text,
+                                                  title: titleController.text,
+                                                  overview:
+                                                      overviewController.text,
+                                                  detail: detailController.text,
+                                                  organizer:
+                                                      organizerController.text,
+                                                  contact:
+                                                      contactController.text,
+                                                  homepage:
+                                                      homepageController.text,
+                                                  postName:
+                                                      currentUserDisplayName,
+                                                  postEmail: currentUserEmail,
+                                                  postPhone:
+                                                      postPhoneController.text,
+                                                  postOccupation:
+                                                      postOccupationController
+                                                          .text,
+                                                  permission:
+                                                      checkboxListTileValue,
+                                                  address:
+                                                      addressController.text,
+                                                  startDay: datePicked1,
+                                                  finalDay: datePicked2,
+                                                  filePath: uploadedFileUrl,
+                                                  postRemarks:
+                                                      postRemarksController
+                                                          .text,
+                                                ),
                                               ),
-                                            ),
-                                          );
+                                            );
+                                          } finally {
+                                            setState(
+                                                () => _loadingButton4 = false);
+                                          }
                                         },
                                         text: '確認',
                                         options: FFButtonOptions(
@@ -1614,6 +1646,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           ),
                                           borderRadius: 8,
                                         ),
+                                        loading: _loadingButton4,
                                       ),
                                     ),
                                   ),
