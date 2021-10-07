@@ -33,18 +33,13 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
           );
         }
         List<LogonameRecord> columnLogonameRecordList = snapshot.data;
-        // Customize what your widget looks like with no query results.
+        // Return an empty Container when the document does not exist.
         if (snapshot.data.isEmpty) {
-          return Material(
-            child: Container(
-              height: 100,
-              child: Center(
-                child: Text('No results.'),
-              ),
-            ),
-          );
+          return Container();
         }
-        final columnLogonameRecord = columnLogonameRecordList.first;
+        final columnLogonameRecord = columnLogonameRecordList.isNotEmpty
+            ? columnLogonameRecordList.first
+            : null;
         return InkWell(
           onTap: () async {
             await Navigator.push(

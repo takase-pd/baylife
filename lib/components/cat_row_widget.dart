@@ -36,17 +36,6 @@ class _CatRowWidgetState extends State<CatRowWidget> {
             );
           }
           List<CategoriesRecord> rowCategoriesRecordList = snapshot.data;
-          // Customize what your widget looks like with no query results.
-          if (snapshot.data.isEmpty) {
-            return Material(
-              child: Container(
-                height: 100,
-                child: Center(
-                  child: Text('No results.'),
-                ),
-              ),
-            );
-          }
           return Row(
             mainAxisSize: MainAxisSize.max,
             children: List.generate(rowCategoriesRecordList.length, (rowIndex) {
