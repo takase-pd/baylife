@@ -8,11 +8,14 @@ on:
 jobs:
   build_iOS:
     name: Build for iOS
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: '12.5.1'
+
+      - name: Show Xcode version
+        run: xcodebuild -version
 
       - name: Checks-out my repository
         uses: actions/checkout@v2
@@ -73,7 +76,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.0.2
         env:
           SLACK_CHANNEL: build_app
-          SLACK_TITLE: Build Success MAKUHARI Bay Life
+          SLACK_TITLE: Build Success! Dev MAKUHARI Bay Life
           SLACK_COLOR: good
 
       - name: Slack Notification on Failure
@@ -81,5 +84,5 @@ jobs:
         if: failure()
         env:
           SLACK_CHANNEL: build_app
-          SLACK_TITLE: Build Failure MAKUHARI Bay Life
+          SLACK_TITLE: Build Failure Dev MAKUHARI Bay Life
           SLACK_COLOR: danger

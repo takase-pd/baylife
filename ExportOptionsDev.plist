@@ -11,7 +11,7 @@
 		<key>provisioningProfiles</key>
 		<dict>
 			<key>com.particledrawing.baylife</key>
-			<string>comparticledrawingbaylife_test</string>
+			<string>com.particledrawing.baylifedev</string>
 		</dict>
 		<key>signingCertificate</key>
 		<string>Apple Distribution</string>
