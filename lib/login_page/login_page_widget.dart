@@ -24,9 +24,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   TextEditingController emailController2;
   TextEditingController passwordController2;
   bool passwordVisibility2;
+  bool _loadingButton4 = false;
+  bool _loadingButton5 = false;
+  bool _loadingButton6 = false;
   TextEditingController emailController1;
   TextEditingController passwordController1;
   bool passwordVisibility1;
+  bool _loadingButton1 = false;
+  bool _loadingButton2 = false;
+  bool _loadingButton3 = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -240,21 +246,26 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  final user = await signInWithEmail(
-                                    context,
-                                    emailController1.text,
-                                    passwordController1.text,
-                                  );
-                                  if (user == null) {
-                                    return;
-                                  }
+                                  setState(() => _loadingButton1 = true);
+                                  try {
+                                    final user = await signInWithEmail(
+                                      context,
+                                      emailController1.text,
+                                      passwordController1.text,
+                                    );
+                                    if (user == null) {
+                                      return;
+                                    }
 
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => PostPageWidget(),
-                                    ),
-                                  );
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PostPageWidget(),
+                                      ),
+                                    );
+                                  } finally {
+                                    setState(() => _loadingButton1 = false);
+                                  }
                                 },
                                 text: 'Sign in with  Email',
                                 icon: Icon(
@@ -277,6 +288,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   borderRadius: 12,
                                 ),
+                                loading: _loadingButton1,
                               )
                             ],
                           ),
@@ -295,18 +307,24 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        final user =
-                                            await signInWithGoogle(context);
-                                        if (user == null) {
-                                          return;
+                                        setState(() => _loadingButton2 = true);
+                                        try {
+                                          final user =
+                                              await signInWithGoogle(context);
+                                          if (user == null) {
+                                            return;
+                                          }
+                                          await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PostPageWithLoginWidget(),
+                                            ),
+                                          );
+                                        } finally {
+                                          setState(
+                                              () => _loadingButton2 = false);
                                         }
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                PostPageWithLoginWidget(),
-                                          ),
-                                        );
                                       },
                                       text: 'Sign in with Google',
                                       icon: Icon(
@@ -330,6 +348,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         ),
                                         borderRadius: 12,
                                       ),
+                                      loading: _loadingButton2,
                                     ),
                                   ),
                                   Align(
@@ -358,17 +377,23 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    final user = await signInWithApple(context);
-                                    if (user == null) {
-                                      return;
+                                    setState(() => _loadingButton3 = true);
+                                    try {
+                                      final user =
+                                          await signInWithApple(context);
+                                      if (user == null) {
+                                        return;
+                                      }
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              PostPageWithLoginWidget(),
+                                        ),
+                                      );
+                                    } finally {
+                                      setState(() => _loadingButton3 = false);
                                     }
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            PostPageWithLoginWidget(),
-                                      ),
-                                    );
                                   },
                                   text: 'Sign in with Apple',
                                   icon: FaIcon(
@@ -391,6 +416,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                     borderRadius: 12,
                                   ),
+                                  loading: _loadingButton3,
                                 ),
                               )
                             : Container(),
@@ -667,33 +693,39 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  if (passwordController1.text !=
-                                      confirmPasswordController.text) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          "Passwords don't match!",
+                                  setState(() => _loadingButton4 = true);
+                                  try {
+                                    if (passwordController1.text !=
+                                        confirmPasswordController.text) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            "Passwords don't match!",
+                                          ),
                                         ),
+                                      );
+                                      return;
+                                    }
+
+                                    final user = await createAccountWithEmail(
+                                      context,
+                                      emailController1.text,
+                                      passwordController1.text,
+                                    );
+                                    if (user == null) {
+                                      return;
+                                    }
+
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PostPageWidget(),
                                       ),
                                     );
-                                    return;
+                                  } finally {
+                                    setState(() => _loadingButton4 = false);
                                   }
-
-                                  final user = await createAccountWithEmail(
-                                    context,
-                                    emailController1.text,
-                                    passwordController1.text,
-                                  );
-                                  if (user == null) {
-                                    return;
-                                  }
-
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => PostPageWidget(),
-                                    ),
-                                  );
                                 },
                                 text: 'Sign up with  Email',
                                 icon: Icon(
@@ -716,6 +748,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   borderRadius: 12,
                                 ),
+                                loading: _loadingButton4,
                               )
                             ],
                           ),
@@ -734,18 +767,24 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        final user =
-                                            await signInWithGoogle(context);
-                                        if (user == null) {
-                                          return;
+                                        setState(() => _loadingButton5 = true);
+                                        try {
+                                          final user =
+                                              await signInWithGoogle(context);
+                                          if (user == null) {
+                                            return;
+                                          }
+                                          await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PostPageWidget(),
+                                            ),
+                                          );
+                                        } finally {
+                                          setState(
+                                              () => _loadingButton5 = false);
                                         }
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                PostPageWidget(),
-                                          ),
-                                        );
                                       },
                                       text: 'Sign up with Google',
                                       icon: Icon(
@@ -769,6 +808,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         ),
                                         borderRadius: 12,
                                       ),
+                                      loading: _loadingButton5,
                                     ),
                                   ),
                                   Align(
@@ -797,17 +837,23 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    final user = await signInWithApple(context);
-                                    if (user == null) {
-                                      return;
+                                    setState(() => _loadingButton6 = true);
+                                    try {
+                                      final user =
+                                          await signInWithApple(context);
+                                      if (user == null) {
+                                        return;
+                                      }
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              PostPageWithLoginWidget(),
+                                        ),
+                                      );
+                                    } finally {
+                                      setState(() => _loadingButton6 = false);
                                     }
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            PostPageWithLoginWidget(),
-                                      ),
-                                    );
                                   },
                                   text: 'Sign up with Apple',
                                   icon: FaIcon(
@@ -830,6 +876,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                     borderRadius: 12,
                                   ),
+                                  loading: _loadingButton6,
                                 ),
                               )
                             : Container(),

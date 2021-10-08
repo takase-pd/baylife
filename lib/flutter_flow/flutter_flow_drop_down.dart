@@ -46,10 +46,7 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      dropDownValue = widget.initialOption ?? widget.options.first;
-      widget.onChanged(dropDownValue);
-    });
+    dropDownValue = widget.initialOption ?? widget.options.first;
   }
 
   @override

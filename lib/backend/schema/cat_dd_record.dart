@@ -32,8 +32,8 @@ abstract class CatDdRecord implements Built<CatDdRecord, CatDdRecordBuilder> {
 
   static CatDdRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(
-          serializer, {...data, kDocumentReferenceField: reference});
+      serializers.deserializeWith(serializer,
+          {...mapFromFirestore(data), kDocumentReferenceField: reference});
 }
 
 Map<String, dynamic> createCatDdRecordData() => serializers.toFirestore(

@@ -92,17 +92,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         }
                         List<ContentsRecord> listViewContentsRecordList =
                             snapshot.data;
-                        // Customize what your widget looks like with no query results.
-                        if (snapshot.data.isEmpty) {
-                          return Material(
-                            child: Container(
-                              height: 100,
-                              child: Center(
-                                child: Text('No results.'),
-                              ),
-                            ),
-                          );
-                        }
                         return ListView.builder(
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
