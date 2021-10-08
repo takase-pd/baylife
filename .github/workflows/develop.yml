@@ -76,7 +76,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.0.2
         env:
           SLACK_CHANNEL: build_app
-          SLACK_TITLE: Build Success Dev MAKUHARI Bay Life
+          SLACK_TITLE: Build Success! Dev MAKUHARI Bay Life
           SLACK_COLOR: good
 
       - name: Slack Notification on Failure
