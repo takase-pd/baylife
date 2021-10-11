@@ -182,11 +182,15 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Image.network(
-                                  columnContentsRecord.filePath,
-                                  width: 300,
-                                  height: 300,
-                                  fit: BoxFit.scaleDown,
+                                Visibility(
+                                  visible:
+                                      columnContentsRecord.showImage ?? true,
+                                  child: Image.network(
+                                    columnContentsRecord.filePath,
+                                    width: 300,
+                                    height: 300,
+                                    fit: BoxFit.scaleDown,
+                                  ),
                                 )
                               ],
                             ),
@@ -217,33 +221,16 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        await launchURL(
-                                            columnContentsRecord.homepage);
-                                      },
-                                      child: Text(
-                                        columnContentsRecord.homepage,
-                                        style:
-                                            FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    ),
-                                    Icon(
-                                      Icons.open_in_new_rounded,
-                                      color: FlutterFlowTheme.textDark,
-                                      size: 18,
-                                    )
-                                  ],
+                              child: InkWell(
+                                onTap: () async {
+                                  await launchURL(
+                                      columnContentsRecord.homepage);
+                                },
+                                child: Text(
+                                  columnContentsRecord.homepage,
+                                  style: FlutterFlowTheme.bodyText2.override(
+                                    fontFamily: 'Poppins',
+                                  ),
                                 ),
                               ),
                             ),

@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../post_page_with_login/post_page_with_login_widget.dart';
 import '../terms_page/terms_page_widget.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -938,6 +939,9 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                   filePath: widget.filePath,
                                                   postRemarks:
                                                       widget.postRemarks,
+                                                  showImage:
+                                                      functions.checkImage(
+                                                          widget.filePath),
                                                 );
                                                 await showDialog(
                                                   context: context,
