@@ -214,21 +214,34 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                              child: InkWell(
-                                onTap: () async {
-                                  await launchURL(
-                                      columnContentsRecord.homepage);
-                                },
-                                child: Text(
-                                  columnContentsRecord.homepage,
-                                  style: FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Poppins',
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 10),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      await launchURL(
+                                          columnContentsRecord.homepage);
+                                    },
+                                    child: Text(
+                                      columnContentsRecord.homepage,
+                                      style:
+                                          FlutterFlowTheme.bodyText2.override(
+                                        fontFamily: 'Poppins',
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                                Icon(
+                                  Icons.open_in_new_rounded,
+                                  color: FlutterFlowTheme.textDark,
+                                  size: 18,
+                                )
+                              ],
                             ),
                             Padding(
                               padding:
