@@ -44,7 +44,7 @@ dynamic getJsonField(dynamic response, String jsonPath) {
   return field.isNotEmpty ? field.first.value : null;
 }
 
-bool get isIos => !kIsWeb && Platform.isIOS;
+bool get isAndroid => !kIsWeb && Platform.isAndroid;
 
 LatLng cachedUserLocation;
 Future<LatLng> getCurrentUserLocation(

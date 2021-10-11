@@ -371,8 +371,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                           ),
                         ),
-                        isIos
-                            ? Padding(
+                        isAndroid
+                            ? Container()
+                            : Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
@@ -418,8 +419,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   loading: _loadingButton3,
                                 ),
-                              )
-                            : Container(),
+                              ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: Column(
@@ -831,8 +831,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                           ),
                         ),
-                        isIos
-                            ? Padding(
+                        isAndroid
+                            ? Container()
+                            : Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
@@ -878,8 +879,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   loading: _loadingButton6,
                                 ),
-                              )
-                            : Container(),
+                              ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: Column(

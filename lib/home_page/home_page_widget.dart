@@ -137,6 +137,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               fontFamily: 'Poppins',
                                               color:
                                                   FlutterFlowTheme.textPrimary,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                         ),
@@ -190,7 +191,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0, 0, 0, 10),
-                                                      child: Text(
+                                                      child: AutoSizeText(
                                                         listViewContentsRecord
                                                             .organizer,
                                                         style: FlutterFlowTheme
