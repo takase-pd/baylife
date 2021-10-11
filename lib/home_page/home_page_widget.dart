@@ -191,9 +191,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0, 0, 0, 10),
-                                                      child: AutoSizeText(
+                                                      child: Text(
                                                         listViewContentsRecord
-                                                            .organizer,
+                                                            .organizer
+                                                            .maybeHandleOverflow(
+                                                                maxChars: 20),
                                                         style: FlutterFlowTheme
                                                             .bodyText2
                                                             .override(

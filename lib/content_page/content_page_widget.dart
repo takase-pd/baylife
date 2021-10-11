@@ -228,7 +228,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                           columnContentsRecord.homepage);
                                     },
                                     child: Text(
-                                      columnContentsRecord.homepage,
+                                      columnContentsRecord.homepage
+                                          .maybeHandleOverflow(maxChars: 30),
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Poppins',
