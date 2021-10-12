@@ -137,7 +137,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               fontFamily: 'Poppins',
                                               color:
                                                   FlutterFlowTheme.textPrimary,
-                                              fontWeight: FontWeight.bold,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                         ),
@@ -264,12 +264,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     )
                                                   ],
                                                 ),
-                                                Image.network(
-                                                  listViewContentsRecord
-                                                      .filePath,
-                                                  width: 100,
-                                                  height: 100,
-                                                  fit: BoxFit.scaleDown,
+                                                Visibility(
+                                                  visible:
+                                                      listViewContentsRecord
+                                                              .showImage ??
+                                                          true,
+                                                  child: Image.network(
+                                                    listViewContentsRecord
+                                                        .filePath,
+                                                    width: 100,
+                                                    height: 100,
+                                                    fit: BoxFit.scaleDown,
+                                                  ),
                                                 )
                                               ],
                                             );
