@@ -90,7 +90,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         }
                         List<ContentsRecord> listViewContentsRecordList =
                             snapshot.data;
-                        return ListView.builder(
+                        return Flexible(
+                            child: ListView.builder(
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
@@ -286,7 +287,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                             );
                           },
-                        );
+                        ));
                       },
                     ),
                   )
