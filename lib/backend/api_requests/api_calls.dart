@@ -20,7 +20,6 @@ Future<dynamic> registContentsCall({
   String filePath =
       'https://firebasestorage.googleapis.com/v0/b/baylife-ff782.appspot.com/o/assets%2FNoImage.png?alt=media&token=cfb3d70b-69d2-4f7f-be63-f429cc9872da',
   String postRemarks = '',
-  bool showImage = false,
 }) {
   final body = '''
 {
@@ -42,8 +41,7 @@ Future<dynamic> registContentsCall({
     "startDay": "$startDay",
     "finalDay": "$finalDay",
     "filePath": "$filePath",
-    "postRemarks": "$postRemarks",
-    "showImage": $showImage
+    "postRemarks": "$postRemarks"
   }
 }''';
   return ApiManager.instance.makeApiCall(
@@ -73,7 +71,6 @@ Future<dynamic> registContentsCall({
       'finalDay': finalDay,
       'filePath': filePath,
       'postRemarks': postRemarks,
-      'showImage': showImage,
     },
     body: body,
     bodyType: BodyType.JSON,
