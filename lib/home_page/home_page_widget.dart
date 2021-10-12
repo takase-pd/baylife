@@ -1,6 +1,5 @@
 import '../backend/backend.dart';
 import '../category_page/category_page_widget.dart';
-import '../components/cat_row_widget.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
 import '../content_page/content_page_widget.dart';
@@ -61,7 +60,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CatRowWidget(),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
             child: SingleChildScrollView(
