@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
@@ -941,6 +942,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                   filePath: widget.filePath,
                                                   postRemarks:
                                                       widget.postRemarks,
+                                                  uid: currentUserUid,
                                                 );
                                                 await showDialog(
                                                   context: context,
