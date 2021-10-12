@@ -87,6 +87,7 @@ abstract class ContentsRecord
   String get postRemarks;
 
   @nullable
+  @BuiltValueField(wireName: 'show_image')
   bool get showImage;
 
   @nullable
