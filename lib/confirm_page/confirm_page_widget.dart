@@ -331,7 +331,10 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                           ),
                                         ),
                                         Image.network(
-                                          widget.filePath,
+                                          valueOrDefault<String>(
+                                            widget.filePath,
+                                            'https://firebasestorage.googleapis.com/v0/b/baylife-ff782.appspot.com/o/assets%2FNoImage.png?alt=media&token=cfb3d70b-69d2-4f7f-be63-f429cc9872da',
+                                          ),
                                           width: 100,
                                           height: 60,
                                           fit: BoxFit.cover,
