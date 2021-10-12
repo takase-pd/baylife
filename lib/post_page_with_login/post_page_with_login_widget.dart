@@ -1614,7 +1614,11 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                       addressController.text,
                                                   startDay: datePicked1,
                                                   finalDay: datePicked2,
-                                                  filePath: uploadedFileUrl,
+                                                  filePath:
+                                                      valueOrDefault<String>(
+                                                    uploadedFileUrl,
+                                                    'https://firebasestorage.googleapis.com/v0/b/baylife-ff782.appspot.com/o/assets%2FNoImage.png?alt=media&token=cfb3d70b-69d2-4f7f-be63-f429cc9872da',
+                                                  ),
                                                   postRemarks:
                                                       postRemarksController
                                                           .text,
