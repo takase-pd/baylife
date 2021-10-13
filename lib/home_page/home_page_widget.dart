@@ -175,9 +175,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       .fromSTEB(0, 0, 0, 10),
                                                   child: Text(
                                                     listViewContentsRecord
-                                                        .organizer
-                                                        .maybeHandleOverflow(
-                                                            maxChars: 20),
+                                                        .organizer,
                                                     style: FlutterFlowTheme
                                                         .bodyText2
                                                         .override(
