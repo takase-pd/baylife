@@ -163,87 +163,95 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 0, 10),
-                                                child: Text(
-                                                  listViewContentsRecord
-                                                      .organizer
-                                                      .maybeHandleOverflow(
-                                                          maxChars: 20),
-                                                  style: FlutterFlowTheme
-                                                      .bodyText2
-                                                      .override(
-                                                    fontFamily: 'Poppins',
+                                          Expanded(
+                                            flex: 7,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 10),
+                                                  child: Text(
+                                                    listViewContentsRecord
+                                                        .organizer
+                                                        .maybeHandleOverflow(
+                                                            maxChars: 20),
+                                                    style: FlutterFlowTheme
+                                                        .bodyText2
+                                                        .override(
+                                                      fontFamily: 'Poppins',
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 10, 0),
-                                                child: InkWell(
-                                                  onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            CategoryPageWidget(
-                                                          catRef:
-                                                              rowCategoriesRecord
-                                                                  .reference,
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 10, 0),
+                                                  child: InkWell(
+                                                    onTap: () async {
+                                                      await Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              CategoryPageWidget(
+                                                            catRef:
+                                                                rowCategoriesRecord
+                                                                    .reference,
+                                                          ),
                                                         ),
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      width: 70,
+                                                      height: 30,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                            .tertiaryColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
                                                       ),
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    width: 70,
-                                                    height: 30,
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                          .tertiaryColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  3, 3, 0, 0),
-                                                      child: Text(
-                                                        rowCategoriesRecord
-                                                            .catName,
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: FlutterFlowTheme
-                                                            .bodyText2
-                                                            .override(
-                                                          fontFamily: 'Poppins',
-                                                          color:
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    3, 3, 0, 0),
+                                                        child: Text(
+                                                          rowCategoriesRecord
+                                                              .catName,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style:
                                                               FlutterFlowTheme
-                                                                  .textLight,
+                                                                  .bodyText2
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            color:
+                                                                FlutterFlowTheme
+                                                                    .textLight,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              )
-                                            ],
+                                                )
+                                              ],
+                                            ),
                                           ),
                                           Visibility(
                                             visible: listViewContentsRecord
                                                     .showImage ??
                                                 true,
-                                            child: Image.network(
-                                              listViewContentsRecord.filePath,
-                                              width: 100,
-                                              height: 100,
-                                              fit: BoxFit.scaleDown,
+                                            child: Expanded(
+                                              flex: 3,
+                                              child: Image.network(
+                                                listViewContentsRecord.filePath,
+                                                width: 100,
+                                                height: 100,
+                                                fit: BoxFit.scaleDown,
+                                              ),
                                             ),
                                           )
                                         ],

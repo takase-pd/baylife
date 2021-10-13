@@ -734,7 +734,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                                     setState(() =>
                                                         datePicked1 = date);
                                                   },
-                                                  currentTime: DateTime.now(),
+                                                  currentTime:
+                                                      getCurrentTimestamp,
                                                 );
                                               } finally {
                                                 setState(() =>
@@ -839,7 +840,8 @@ class _PostPageWidgetState extends State<PostPageWidget> {
                                                     setState(() =>
                                                         datePicked2 = date);
                                                   },
-                                                  currentTime: DateTime.now(),
+                                                  currentTime:
+                                                      getCurrentTimestamp,
                                                 );
                                               } finally {
                                                 setState(() =>
