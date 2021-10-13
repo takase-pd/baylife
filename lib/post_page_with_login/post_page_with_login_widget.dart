@@ -850,7 +850,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                     setState(() =>
                                                         datePicked1 = date);
                                                   },
-                                                  currentTime: DateTime.now(),
+                                                  currentTime:
+                                                      getCurrentTimestamp,
                                                 );
                                               } finally {
                                                 setState(() =>
@@ -955,7 +956,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                     setState(() =>
                                                         datePicked2 = date);
                                                   },
-                                                  currentTime: DateTime.now(),
+                                                  currentTime:
+                                                      getCurrentTimestamp,
                                                 );
                                               } finally {
                                                 setState(() =>
