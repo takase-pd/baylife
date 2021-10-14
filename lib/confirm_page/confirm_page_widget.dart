@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
@@ -7,6 +8,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../post_page_with_login/post_page_with_login_widget.dart';
 import '../terms_page/terms_page_widget.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -154,6 +156,38 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         16, 12, 0, 10),
                                     child: Text(
+                                      widget.title,
+                                      style:
+                                          FlutterFlowTheme.bodyText2.override(
+                                        fontFamily: 'Poppins',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
+                                    child: Text(
                                       widget.catName,
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
@@ -187,38 +221,6 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                         16, 12, 0, 10),
                                     child: Text(
                                       widget.catNameAdd,
-                                      style:
-                                          FlutterFlowTheme.bodyText2.override(
-                                        fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  width: 330,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: Color(0xFFE6E6E6),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 12, 0, 10),
-                                    child: Text(
-                                      widget.title,
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Poppins',
@@ -331,44 +333,15 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                           ),
                                         ),
                                         Image.network(
-                                          widget.filePath,
+                                          valueOrDefault<String>(
+                                            widget.filePath,
+                                            'https://firebasestorage.googleapis.com/v0/b/baylife-ff782.appspot.com/o/assets%2FNoImage.png?alt=media&token=cfb3d70b-69d2-4f7f-be63-f429cc9872da',
+                                          ),
                                           width: 100,
                                           height: 60,
                                           fit: BoxFit.cover,
                                         )
                                       ],
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  width: 330,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: Color(0xFFE6E6E6),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 12, 0, 10),
-                                    child: Text(
-                                      widget.address,
-                                      style:
-                                          FlutterFlowTheme.bodyText2.override(
-                                        fontFamily: 'Poppins',
-                                      ),
                                     ),
                                   ),
                                 ),
@@ -496,6 +469,70 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         16, 12, 0, 10),
                                     child: Text(
+                                      widget.address,
+                                      style:
+                                          FlutterFlowTheme.bodyText2.override(
+                                        fontFamily: 'Poppins',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
+                                    child: Text(
+                                      widget.homepage,
+                                      style:
+                                          FlutterFlowTheme.bodyText2.override(
+                                        fontFamily: 'Poppins',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
+                                    child: Text(
                                       widget.organizer,
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
@@ -529,38 +566,6 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                         16, 12, 0, 10),
                                     child: Text(
                                       widget.contact,
-                                      style:
-                                          FlutterFlowTheme.bodyText2.override(
-                                        fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  width: 330,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: Color(0xFFE6E6E6),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 12, 0, 10),
-                                    child: Text(
-                                      widget.homepage,
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Poppins',
@@ -919,8 +924,12 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                   catName: widget.catName,
                                                   catNameAdd: widget.catNameAdd,
                                                   title: widget.title,
-                                                  overview: widget.overview,
-                                                  detail: widget.detail,
+                                                  overview: functions
+                                                      .getMultilineText(
+                                                          widget.overview),
+                                                  detail: functions
+                                                      .getMultilineText(
+                                                          widget.detail),
                                                   organizer: widget.organizer,
                                                   contact: widget.contact,
                                                   homepage: widget.homepage,
@@ -938,6 +947,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                   filePath: widget.filePath,
                                                   postRemarks:
                                                       widget.postRemarks,
+                                                  uid: currentUserUid,
                                                 );
                                                 await showDialog(
                                                   context: context,

@@ -26,18 +26,18 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
   DateTime datePicked1;
   bool _loadingButton2 = false;
   String categoryValue;
-  TextEditingController categoryAddController;
   TextEditingController titleController;
+  TextEditingController categoryAddController;
   TextEditingController overviewController;
   TextEditingController detailController;
   String uploadedFileUrl = '';
   bool _loadingButton1 = false;
-  TextEditingController addressController;
   DateTime datePicked2;
   bool _loadingButton3 = false;
+  TextEditingController addressController;
+  TextEditingController homepageController;
   TextEditingController organizerController;
   TextEditingController contactController;
-  TextEditingController homepageController;
   TextEditingController postOccupationController;
   TextEditingController postPhoneController;
   TextEditingController postRemarksController;
@@ -54,9 +54,9 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
     titleController = TextEditingController();
     overviewController = TextEditingController();
     detailController = TextEditingController();
+    homepageController = TextEditingController();
     organizerController = TextEditingController();
     contactController = TextEditingController();
-    homepageController = TextEditingController();
     postOccupationController = TextEditingController();
     postPhoneController = TextEditingController();
     postRemarksController = TextEditingController();
@@ -206,57 +206,138 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         color: Color(0xFFE6E6E6),
                                       ),
                                     ),
-                                    child: StreamBuilder<List<CatDdRecord>>(
-                                      stream: queryCatDdRecord(
-                                        singleRecord: true,
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50,
-                                              height: 50,
-                                              child: CircularProgressIndicator(
-                                                color: FlutterFlowTheme
-                                                    .primaryColor,
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<CatDdRecord>
-                                            categoryCatDdRecordList =
-                                            snapshot.data;
-                                        // Return an empty Container when the document does not exist.
-                                        if (snapshot.data.isEmpty) {
-                                          return Container();
-                                        }
-                                        final categoryCatDdRecord =
-                                            categoryCatDdRecordList.isNotEmpty
-                                                ? categoryCatDdRecordList.first
-                                                : null;
-                                        return FlutterFlowDropDown(
-                                          options:
-                                              categoryCatDdRecord.cats.toList(),
-                                          onChanged: (val) => setState(
-                                              () => categoryValue = val),
-                                          width: 130,
-                                          height: 40,
-                                          textStyle: FlutterFlowTheme.bodyText1
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 0, 0),
+                                      child: TextFormField(
+                                        controller: titleController,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          labelText: 'タイトル  ＊必須',
+                                          labelStyle: FlutterFlowTheme.bodyText2
                                               .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Montserrat',
                                             color: FlutterFlowTheme.textDark,
+                                            fontWeight: FontWeight.w500,
                                           ),
-                                          fillColor: Colors.white,
-                                          elevation: 2,
-                                          borderColor: Colors.transparent,
-                                          borderWidth: 0,
-                                          borderRadius: 0,
-                                          margin:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  8, 4, 8, 4),
-                                        );
-                                      },
+                                          enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                        ),
+                                        style:
+                                            FlutterFlowTheme.bodyText2.override(
+                                          fontFamily: 'Montserrat',
+                                          color: FlutterFlowTheme.textDark,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        validator: (val) {
+                                          if (val.isEmpty) {
+                                            return 'タイトルを入力してください。';
+                                          }
+
+                                          return null;
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    width: 330,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(
+                                        color: Color(0xFFE6E6E6),
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          3, 3, 3, 3),
+                                      child: StreamBuilder<List<CatDdRecord>>(
+                                        stream: queryCatDdRecord(
+                                          singleRecord: true,
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50,
+                                                height: 50,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: FlutterFlowTheme
+                                                      .primaryColor,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<CatDdRecord>
+                                              categoryCatDdRecordList =
+                                              snapshot.data;
+                                          // Return an empty Container when the document does not exist.
+                                          if (snapshot.data.isEmpty) {
+                                            return Container();
+                                          }
+                                          final categoryCatDdRecord =
+                                              categoryCatDdRecordList.isNotEmpty
+                                                  ? categoryCatDdRecordList
+                                                      .first
+                                                  : null;
+                                          return FlutterFlowDropDown(
+                                            initialOption: categoryValue ??=
+                                                '総合',
+                                            options: categoryCatDdRecord.cats
+                                                .toList(),
+                                            onChanged: (val) => setState(
+                                                () => categoryValue = val),
+                                            textStyle: FlutterFlowTheme
+                                                .bodyText1
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              color: FlutterFlowTheme.textDark,
+                                            ),
+                                            fillColor: Colors.white,
+                                            elevation: 2,
+                                            borderColor: Colors.transparent,
+                                            borderWidth: 0,
+                                            borderRadius: 0,
+                                            margin:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 4, 8, 4),
+                                          );
+                                        },
+                                      ),
                                     ),
                                   ),
                                 )
@@ -346,80 +427,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                 Expanded(
                                   child: Container(
                                     width: 330,
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                        color: Color(0xFFE6E6E6),
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 0, 0, 0),
-                                      child: TextFormField(
-                                        controller: titleController,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: 'タイトル',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          enabledBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(4.0),
-                                              topRight: Radius.circular(4.0),
-                                            ),
-                                          ),
-                                          focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(4.0),
-                                              topRight: Radius.circular(4.0),
-                                            ),
-                                          ),
-                                        ),
-                                        style:
-                                            FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Montserrat',
-                                          color: FlutterFlowTheme.textDark,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                        validator: (val) {
-                                          if (val.isEmpty) {
-                                            return 'タイトルを入力してください。';
-                                          }
-
-                                          return null;
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    width: 330,
                                     height: 120,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
@@ -435,8 +442,15 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         controller: overviewController,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: '概要＊投稿一覧ページに表示されます。',
+                                          labelText: '概要 ＊必須',
                                           labelStyle: FlutterFlowTheme.bodyText2
+                                              .override(
+                                            fontFamily: 'Montserrat',
+                                            color: FlutterFlowTheme.textDark,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          hintText: '投稿一覧ページに表示されます。',
+                                          hintStyle: FlutterFlowTheme.bodyText2
                                               .override(
                                             fontFamily: 'Montserrat',
                                             color: FlutterFlowTheme.textDark,
@@ -511,7 +525,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         controller: detailController,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: '投稿詳細',
+                                          labelText: '投稿詳細 ＊必須',
                                           labelStyle: FlutterFlowTheme.bodyText2
                                               .override(
                                             fontFamily: 'Montserrat',
@@ -610,7 +624,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 3, 0, 0),
                                                 child: Text(
-                                                  '画像は次のページで確認できます。',
+                                                  '選択すると画像をアップロードします。',
                                                   textAlign: TextAlign.start,
                                                   style: FlutterFlowTheme
                                                       .bodyText2
@@ -669,7 +683,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                     _loadingButton1 = false);
                                               }
                                             },
-                                            text: '選択',
+                                            text: '画像',
                                             options: FFButtonOptions(
                                               width: 100,
                                               height: 40,
@@ -717,12 +731,224 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 10, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '開始日 ＊必須',
+                                                style: FlutterFlowTheme
+                                                    .bodyText2
+                                                    .override(
+                                                  fontFamily: 'Poppins',
+                                                  color:
+                                                      FlutterFlowTheme.textDark,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(5, 0, 0, 0),
+                                                child: Text(
+                                                  dateTimeFormat(
+                                                      'yMMMd', datePicked1),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Poppins',
+                                                    color: FlutterFlowTheme
+                                                        .textDark,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          FFButtonWidget(
+                                            onPressed: () async {
+                                              setState(
+                                                  () => _loadingButton2 = true);
+                                              try {
+                                                await DatePicker.showDatePicker(
+                                                  context,
+                                                  showTitleActions: true,
+                                                  onConfirm: (date) {
+                                                    setState(() =>
+                                                        datePicked1 = date);
+                                                  },
+                                                  currentTime:
+                                                      getCurrentTimestamp,
+                                                );
+                                              } finally {
+                                                setState(() =>
+                                                    _loadingButton2 = false);
+                                              }
+                                            },
+                                            text: '日付',
+                                            options: FFButtonOptions(
+                                              width: 100,
+                                              height: 40,
+                                              color: FlutterFlowTheme
+                                                  .secondaryDark,
+                                              textStyle: FlutterFlowTheme
+                                                  .subtitle2
+                                                  .override(
+                                                fontFamily: 'Poppins',
+                                                color: FlutterFlowTheme
+                                                    .textSecondary,
+                                              ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius: 12,
+                                            ),
+                                            loading: _loadingButton2,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    width: 330,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(
+                                        color: Color(0xFFE6E6E6),
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 10, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '終了日 ＊必須',
+                                                style: FlutterFlowTheme
+                                                    .bodyText2
+                                                    .override(
+                                                  fontFamily: 'Poppins',
+                                                  color:
+                                                      FlutterFlowTheme.textDark,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(5, 0, 0, 0),
+                                                child: Text(
+                                                  dateTimeFormat(
+                                                      'yMMMd', datePicked2),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Poppins',
+                                                    color: FlutterFlowTheme
+                                                        .textDark,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          FFButtonWidget(
+                                            onPressed: () async {
+                                              setState(
+                                                  () => _loadingButton3 = true);
+                                              try {
+                                                await DatePicker.showDatePicker(
+                                                  context,
+                                                  showTitleActions: true,
+                                                  onConfirm: (date) {
+                                                    setState(() =>
+                                                        datePicked2 = date);
+                                                  },
+                                                  currentTime:
+                                                      getCurrentTimestamp,
+                                                );
+                                              } finally {
+                                                setState(() =>
+                                                    _loadingButton3 = false);
+                                              }
+                                            },
+                                            text: '日付',
+                                            options: FFButtonOptions(
+                                              width: 100,
+                                              height: 40,
+                                              color: FlutterFlowTheme
+                                                  .secondaryDark,
+                                              textStyle: FlutterFlowTheme
+                                                  .subtitle2
+                                                  .override(
+                                                fontFamily: 'Poppins',
+                                                color: FlutterFlowTheme
+                                                    .textSecondary,
+                                              ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius: 12,
+                                            ),
+                                            loading: _loadingButton3,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    width: 330,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(
+                                        color: Color(0xFFE6E6E6),
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           16, 0, 0, 0),
                                       child: TextFormField(
                                         controller: addressController,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: '開催場所',
+                                          labelText: '開催場所 ＊必須',
                                           labelStyle: FlutterFlowTheme.bodyText2
                                               .override(
                                             fontFamily: 'Montserrat',
@@ -800,190 +1026,48 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 0, 10, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                '開始日',
-                                                style: FlutterFlowTheme
-                                                    .bodyText2
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color:
-                                                      FlutterFlowTheme.textDark,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(5, 0, 0, 0),
-                                                child: Text(
-                                                  dateTimeFormat(
-                                                      'yMMMd', datePicked1),
-                                                  style: FlutterFlowTheme
-                                                      .bodyText2
-                                                      .override(
-                                                    fontFamily: 'Poppins',
-                                                    color: FlutterFlowTheme
-                                                        .textDark,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              )
-                                            ],
+                                          16, 0, 0, 0),
+                                      child: TextFormField(
+                                        controller: homepageController,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          labelText: 'ホームページ',
+                                          labelStyle: FlutterFlowTheme.bodyText2
+                                              .override(
+                                            fontFamily: 'Montserrat',
+                                            color: FlutterFlowTheme.textDark,
+                                            fontWeight: FontWeight.w500,
                                           ),
-                                          FFButtonWidget(
-                                            onPressed: () async {
-                                              setState(
-                                                  () => _loadingButton2 = true);
-                                              try {
-                                                await DatePicker.showDatePicker(
-                                                  context,
-                                                  showTitleActions: true,
-                                                  onConfirm: (date) {
-                                                    setState(() =>
-                                                        datePicked1 = date);
-                                                  },
-                                                  currentTime: DateTime.now(),
-                                                );
-                                              } finally {
-                                                setState(() =>
-                                                    _loadingButton2 = false);
-                                              }
-                                            },
-                                            text: '日付',
-                                            options: FFButtonOptions(
-                                              width: 100,
-                                              height: 40,
-                                              color: FlutterFlowTheme
-                                                  .secondaryDark,
-                                              textStyle: FlutterFlowTheme
-                                                  .subtitle2
-                                                  .override(
-                                                fontFamily: 'Poppins',
-                                                color: FlutterFlowTheme
-                                                    .textSecondary,
-                                              ),
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1,
-                                              ),
-                                              borderRadius: 12,
+                                          enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1,
                                             ),
-                                            loading: _loadingButton2,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    width: 330,
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                        color: Color(0xFFE6E6E6),
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 0, 10, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                '終了日',
-                                                style: FlutterFlowTheme
-                                                    .bodyText2
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color:
-                                                      FlutterFlowTheme.textDark,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(5, 0, 0, 0),
-                                                child: Text(
-                                                  dateTimeFormat(
-                                                      'yMMMd', datePicked2),
-                                                  style: FlutterFlowTheme
-                                                      .bodyText2
-                                                      .override(
-                                                    fontFamily: 'Poppins',
-                                                    color: FlutterFlowTheme
-                                                        .textDark,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              )
-                                            ],
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
                                           ),
-                                          FFButtonWidget(
-                                            onPressed: () async {
-                                              setState(
-                                                  () => _loadingButton3 = true);
-                                              try {
-                                                await DatePicker.showDatePicker(
-                                                  context,
-                                                  showTitleActions: true,
-                                                  onConfirm: (date) {
-                                                    setState(() =>
-                                                        datePicked2 = date);
-                                                  },
-                                                  currentTime: DateTime.now(),
-                                                );
-                                              } finally {
-                                                setState(() =>
-                                                    _loadingButton3 = false);
-                                              }
-                                            },
-                                            text: '日付',
-                                            options: FFButtonOptions(
-                                              width: 100,
-                                              height: 40,
-                                              color: FlutterFlowTheme
-                                                  .secondaryDark,
-                                              textStyle: FlutterFlowTheme
-                                                  .subtitle2
-                                                  .override(
-                                                fontFamily: 'Poppins',
-                                                color: FlutterFlowTheme
-                                                    .textSecondary,
-                                              ),
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1,
-                                              ),
-                                              borderRadius: 12,
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1,
                                             ),
-                                            loading: _loadingButton3,
-                                          )
-                                        ],
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                        ),
+                                        style:
+                                            FlutterFlowTheme.bodyText2.override(
+                                          fontFamily: 'Montserrat',
+                                          color: FlutterFlowTheme.textDark,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        keyboardType: TextInputType.url,
                                       ),
                                     ),
                                   ),
@@ -1015,7 +1099,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         controller: organizerController,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: '主催',
+                                          labelText: '主催 ＊必須',
                                           labelStyle: FlutterFlowTheme.bodyText2
                                               .override(
                                             fontFamily: 'Montserrat',
@@ -1089,7 +1173,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         controller: contactController,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: '問い合わせ先（担当者名・部署など）',
+                                          labelText: '問い合わせ先（担当者名・部署など） ＊必須',
                                           labelStyle: FlutterFlowTheme.bodyText2
                                               .override(
                                             fontFamily: 'Montserrat',
@@ -1132,74 +1216,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
 
                                           return null;
                                         },
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    width: 330,
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                        color: Color(0xFFE6E6E6),
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 0, 0, 0),
-                                      child: TextFormField(
-                                        controller: homepageController,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: 'ホームページ',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          enabledBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(4.0),
-                                              topRight: Radius.circular(4.0),
-                                            ),
-                                          ),
-                                          focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(4.0),
-                                              topRight: Radius.circular(4.0),
-                                            ),
-                                          ),
-                                        ),
-                                        style:
-                                            FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Montserrat',
-                                          color: FlutterFlowTheme.textDark,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                        keyboardType: TextInputType.url,
                                       ),
                                     ),
                                   ),
@@ -1614,7 +1630,11 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                       addressController.text,
                                                   startDay: datePicked1,
                                                   finalDay: datePicked2,
-                                                  filePath: uploadedFileUrl,
+                                                  filePath:
+                                                      valueOrDefault<String>(
+                                                    uploadedFileUrl,
+                                                    'https://firebasestorage.googleapis.com/v0/b/baylife-ff782.appspot.com/o/assets%2FNoImage.png?alt=media&token=cfb3d70b-69d2-4f7f-be63-f429cc9872da',
+                                                  ),
                                                   postRemarks:
                                                       postRemarksController
                                                           .text,

@@ -70,240 +70,220 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
         elevation: 16,
         child: EndDrawerWidget(),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CatRowWidget(),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                    child: StreamBuilder<List<ContentsRecord>>(
-                      stream: queryContentsRecord(
-                        queryBuilder: (contentsRecord) => contentsRecord
-                            .where('category', isEqualTo: widget.catRef)
-                            .where('display', isEqualTo: true)
-                            .where('permission', isEqualTo: true),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CatRowWidget(),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+              child: StreamBuilder<List<ContentsRecord>>(
+                stream: queryContentsRecord(
+                  queryBuilder: (contentsRecord) => contentsRecord
+                      .where('category', isEqualTo: widget.catRef)
+                      .where('display', isEqualTo: true)
+                      .where('permission', isEqualTo: true),
+                ),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: CircularProgressIndicator(
+                          color: FlutterFlowTheme.primaryColor,
+                        ),
                       ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: CircularProgressIndicator(
-                                color: FlutterFlowTheme.primaryColor,
-                              ),
-                            ),
-                          );
-                        }
-                        List<ContentsRecord> listViewContentsRecordList =
-                            snapshot.data;
-                        return ListView.builder(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: listViewContentsRecordList.length,
-                          itemBuilder: (context, listViewIndex) {
-                            final listViewContentsRecord =
-                                listViewContentsRecordList[listViewIndex];
-                            return Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                              child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ContentPageWidget(
-                                        contentRef:
-                                            listViewContentsRecord.reference,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Card(
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  color: FlutterFlowTheme.grayDark,
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10, 10, 10, 10),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 10),
-                                          child: Text(
-                                            listViewContentsRecord.title,
-                                            style: FlutterFlowTheme.title3
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                              color:
-                                                  FlutterFlowTheme.textPrimary,
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 10),
-                                          child: Text(
-                                            listViewContentsRecord.overview,
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                              color: FlutterFlowTheme.textDark,
-                                            ),
-                                          ),
-                                        ),
-                                        StreamBuilder<CategoriesRecord>(
-                                          stream: CategoriesRecord.getDocument(
-                                              widget.catRef),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50,
-                                                  height: 50,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    color: FlutterFlowTheme
-                                                        .primaryColor,
-                                                  ),
-                                                ),
-                                              );
-                                            }
-                                            final rowCategoriesRecord =
-                                                snapshot.data;
-                                            return Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 10),
-                                                      child: Text(
-                                                        listViewContentsRecord
-                                                            .organizer,
-                                                        style: FlutterFlowTheme
-                                                            .bodyText2
-                                                            .override(
-                                                          fontFamily: 'Poppins',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 10, 0),
-                                                      child: InkWell(
-                                                        onTap: () async {
-                                                          await Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  CategoryPageWidget(
-                                                                catRef:
-                                                                    rowCategoriesRecord
-                                                                        .reference,
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                        child: Container(
-                                                          width: 70,
-                                                          height: 30,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                .tertiaryColor,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        3,
-                                                                        3,
-                                                                        0,
-                                                                        0),
-                                                            child: Text(
-                                                              rowCategoriesRecord
-                                                                  .catName,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              style:
-                                                                  FlutterFlowTheme
-                                                                      .bodyText2
-                                                                      .override(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                color: FlutterFlowTheme
-                                                                    .textLight,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                                Image.network(
-                                                  listViewContentsRecord
-                                                      .filePath,
-                                                  width: 100,
-                                                  height: 100,
-                                                  fit: BoxFit.scaleDown,
-                                                )
-                                              ],
-                                            );
-                                          },
-                                        )
-                                      ],
-                                    ),
-                                  ),
+                    );
+                  }
+                  List<ContentsRecord> listViewContentsRecordList =
+                      snapshot.data;
+                  return ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: listViewContentsRecordList.length,
+                    itemBuilder: (context, listViewIndex) {
+                      final listViewContentsRecord =
+                          listViewContentsRecordList[listViewIndex];
+                      return Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                        child: InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ContentPageWidget(
+                                  contentRef: listViewContentsRecord.reference,
                                 ),
                               ),
                             );
                           },
-                        );
-                      },
-                    ),
-                  )
-                ],
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: FlutterFlowTheme.grayDark,
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10, 10, 10, 10),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 10),
+                                    child: Text(
+                                      listViewContentsRecord.title,
+                                      style: FlutterFlowTheme.title3.override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.textPrimary,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 10),
+                                    child: Text(
+                                      listViewContentsRecord.overview,
+                                      style:
+                                          FlutterFlowTheme.bodyText1.override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.textDark,
+                                      ),
+                                    ),
+                                  ),
+                                  StreamBuilder<CategoriesRecord>(
+                                    stream: CategoriesRecord.getDocument(
+                                        widget.catRef),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: CircularProgressIndicator(
+                                              color:
+                                                  FlutterFlowTheme.primaryColor,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      final rowCategoriesRecord = snapshot.data;
+                                      return Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            flex: 7,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 10),
+                                                  child: Text(
+                                                    listViewContentsRecord
+                                                        .organizer,
+                                                    style: FlutterFlowTheme
+                                                        .bodyText2
+                                                        .override(
+                                                      fontFamily: 'Poppins',
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 10, 0),
+                                                  child: InkWell(
+                                                    onTap: () async {
+                                                      await Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              CategoryPageWidget(
+                                                            catRef:
+                                                                rowCategoriesRecord
+                                                                    .reference,
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      width: 70,
+                                                      height: 30,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                            .tertiaryColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    3, 3, 0, 0),
+                                                        child: Text(
+                                                          rowCategoriesRecord
+                                                              .catName,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .bodyText2
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            color:
+                                                                FlutterFlowTheme
+                                                                    .textLight,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Visibility(
+                                            visible: listViewContentsRecord
+                                                    .showImage ??
+                                                true,
+                                            child: Expanded(
+                                              flex: 3,
+                                              child: Image.network(
+                                                listViewContentsRecord.filePath,
+                                                width: 100,
+                                                height: 100,
+                                                fit: BoxFit.scaleDown,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    },
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
