@@ -316,8 +316,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                   : null;
                                           return FlutterFlowDropDown(
                                             initialOption: categoryValue ??=
-                                                categoryCatDdRecord.cats.length
-                                                    .toString(),
+                                                '総合',
                                             options: categoryCatDdRecord.cats
                                                 .toList(),
                                             onChanged: (val) => setState(
