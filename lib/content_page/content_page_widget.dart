@@ -203,6 +203,47 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 2, 5, 0),
                               child: Icon(
+                                Icons.today_sharp,
+                                color: FlutterFlowTheme.textDark,
+                                size: 16,
+                              ),
+                            ),
+                            Text(
+                              dateTimeFormat(
+                                  'yMMMd', columnContentsRecord.startDay),
+                              style: FlutterFlowTheme.bodyText2.override(
+                                fontFamily: 'Poppins',
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 2, 5, 0),
+                              child: Icon(
+                                Icons.double_arrow_sharp,
+                                color: FlutterFlowTheme.textDark,
+                                size: 16,
+                              ),
+                            ),
+                            Text(
+                              dateTimeFormat(
+                                  'yMMMd', columnContentsRecord.finalDay),
+                              style: FlutterFlowTheme.bodyText2.override(
+                                fontFamily: 'Poppins',
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 2, 5, 0),
+                              child: Icon(
                                 Icons.place_outlined,
                                 color: FlutterFlowTheme.textDark,
                                 size: 16,
