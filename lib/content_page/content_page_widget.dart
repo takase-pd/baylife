@@ -201,7 +201,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                           children: [
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 2, 5, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: Icon(
                                 Icons.today_sharp,
                                 color: FlutterFlowTheme.textDark,
@@ -217,7 +217,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                             ),
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 2, 5, 0),
+                                  EdgeInsetsDirectional.fromSTEB(7, 3, 7, 0),
                               child: Icon(
                                 Icons.double_arrow_sharp,
                                 color: FlutterFlowTheme.textDark,
@@ -242,7 +242,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                           children: [
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 2, 5, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: Icon(
                                 Icons.place_outlined,
                                 color: FlutterFlowTheme.textDark,
@@ -268,7 +268,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                           children: [
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 2, 5, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: Icon(
                                 Icons.open_in_new_rounded,
                                 color: FlutterFlowTheme.textDark,
@@ -300,7 +300,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                           children: [
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 2, 5, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: FaIcon(
                                 FontAwesomeIcons.smile,
                                 color: FlutterFlowTheme.textDark,
@@ -326,7 +326,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                           children: [
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 2, 5, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: Icon(
                                 Icons.add_to_home_screen_outlined,
                                 color: FlutterFlowTheme.textDark,
