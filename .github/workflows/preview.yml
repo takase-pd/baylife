@@ -1,8 +1,8 @@
-name: CI Develop
+name: CI Preview
 on:
   push:
     branches:
-      - develop
+      - preview
 
 jobs:
   build_iOS:
@@ -31,7 +31,7 @@ jobs:
       - name: Import Provisioning Profile
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo -n ${{ secrets.PROVISIONING_PROFILE_DEV }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/develop.mobileprovision
+          echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/develop.mobileprovision
 
       - name: Import Code-Signing Certificates
         uses: apple-actions/import-codesign-certs@v1
@@ -40,7 +40,7 @@ jobs:
           p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
 
       - name: Create ipa file
-        run: flutter build ipa --export-options-plist=ExportOptionsDev.plist --build-number=${GITHUB_RUN_NUMBER}
+        run: flutter build ipa --export-options-plist=ExportOptions.plist --build-number=${GITHUB_RUN_NUMBER}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
