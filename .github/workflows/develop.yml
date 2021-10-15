@@ -3,27 +3,31 @@ on:
   push:
     branches:
       - develop
+      - preview
 
 jobs:
   build_iOS:
     name: Build for iOS
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: '12.5.1'
+
+      - name: Show Xcode version
+        run: xcodebuild -version
 
       - name: Checks-out my repository
         uses: actions/checkout@v2
 
       - name: Install Flutter
-        run: git clone https://github.com/flutter/flutter.git -b stable
-
-      - name: Add path
-        run: echo "$(pwd)/flutter/bin" >> $GITHUB_PATH
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version:  '2.2.3'
 
       - name: Download Flutter packages
         run: flutter pub get
+      - run: flutter packages pub run build_runner build --delete-conflicting-outputs
 
       - name: Import Provisioning Profile
         run: |
@@ -72,7 +76,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.0.2
         env:
           SLACK_CHANNEL: build_app
-          SLACK_TITLE: Build Success MAKUHARI Bay Life
+          SLACK_TITLE: Build Success! Pre MAKUHARI Bay Life
           SLACK_COLOR: good
 
       - name: Slack Notification on Failure
@@ -80,5 +84,5 @@ jobs:
         if: failure()
         env:
           SLACK_CHANNEL: build_app
-          SLACK_TITLE: Build Failure MAKUHARI Bay Life
+          SLACK_TITLE: Build Failure Pre MAKUHARI Bay Life
           SLACK_COLOR: danger

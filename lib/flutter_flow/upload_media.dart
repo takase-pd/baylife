@@ -15,16 +15,42 @@ class SelectedMedia {
   final Uint8List bytes;
 }
 
+enum MediaSource {
+  photoGallery,
+  videoGallery,
+  camera,
+}
+
 Future<SelectedMedia> selectMediaWithSourceBottomSheet({
   BuildContext context,
   double maxWidth,
   double maxHeight,
-  bool isVideo = false,
+  bool allowPhoto,
+  bool allowVideo = false,
   String pickerFontFamily = 'Roboto',
   Color textColor = const Color(0xFF111417),
   Color backgroundColor = const Color(0xFFF5F5F5),
 }) async {
-  final fromCamera = await showModalBottomSheet<bool>(
+  final createUploadMediaListTile =
+      (String label, MediaSource mediaSource) => ListTile(
+            title: Text(
+              label,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.getFont(
+                pickerFontFamily,
+                color: textColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
+            tileColor: backgroundColor,
+            dense: false,
+            onTap: () => Navigator.pop(
+              context,
+              mediaSource,
+            ),
+          );
+  final mediaSource = await showModalBottomSheet<MediaSource>(
       context: context,
       backgroundColor: backgroundColor,
       builder: (context) {
@@ -49,54 +75,42 @@ Future<SelectedMedia> selectMediaWithSourceBottomSheet({
               ),
             ),
             const Divider(),
-            ListTile(
-              title: Text(
+            if (allowPhoto && allowVideo) ...[
+              createUploadMediaListTile(
+                'Gallery (Photo)',
+                MediaSource.photoGallery,
+              ),
+              const Divider(),
+              createUploadMediaListTile(
+                'Gallery (Video)',
+                MediaSource.videoGallery,
+              ),
+            ] else if (allowPhoto)
+              createUploadMediaListTile(
                 'Gallery',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.getFont(
-                  pickerFontFamily,
-                  color: textColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                ),
+                MediaSource.photoGallery,
+              )
+            else
+              createUploadMediaListTile(
+                'Gallery',
+                MediaSource.videoGallery,
               ),
-              tileColor: backgroundColor,
-              dense: false,
-              onTap: () {
-                Navigator.pop(context, false);
-              },
-            ),
             const Divider(),
-            ListTile(
-              title: Text(
-                'Camera',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.getFont(
-                  pickerFontFamily,
-                  color: textColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                ),
-              ),
-              tileColor: backgroundColor,
-              dense: false,
-              onTap: () {
-                Navigator.pop(context, true);
-              },
-            ),
+            createUploadMediaListTile('Camera', MediaSource.camera),
             const Divider(),
             const SizedBox(height: 10),
           ],
         );
       });
-  if (fromCamera == null) {
+  if (mediaSource == null) {
     return null;
   }
   return selectMedia(
     maxWidth: maxWidth,
     maxHeight: maxHeight,
-    isVideo: isVideo,
-    fromCamera: fromCamera,
+    isVideo: mediaSource == MediaSource.videoGallery ||
+        (mediaSource == MediaSource.camera && allowVideo && !allowPhoto),
+    mediaSource: mediaSource,
   );
 }
 
@@ -104,10 +118,12 @@ Future<SelectedMedia> selectMedia({
   double maxWidth,
   double maxHeight,
   bool isVideo = false,
-  bool fromCamera = false,
+  MediaSource mediaSource = MediaSource.camera,
 }) async {
   final picker = ImagePicker();
-  final source = fromCamera ? ImageSource.camera : ImageSource.gallery;
+  final source = mediaSource == MediaSource.camera
+      ? ImageSource.camera
+      : ImageSource.gallery;
   final pickedMediaFuture = isVideo
       ? picker.pickVideo(source: source)
       : picker.pickImage(

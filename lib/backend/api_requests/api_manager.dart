@@ -71,7 +71,13 @@ class ApiManager {
     }
     final response =
         await http.get(Uri.parse(apiUrl), headers: toStringMap(headers));
-    return returnResponse ? json.decode(response.body) : null;
+    var jsonResponse;
+    try {
+      jsonResponse = json.decode(response.body);
+    } catch (_) {
+      // response may be empty, or invalid JSON.
+    }
+    return returnResponse ? jsonResponse ?? {} : null;
   }
 
   static Future<dynamic> postRequest(
@@ -85,7 +91,13 @@ class ApiManager {
     final postBody = createPostBody(headers, params, body, bodyType);
     final response = await http.post(Uri.parse(apiUrl),
         headers: toStringMap(headers), body: postBody);
-    return returnResponse ? json.decode(response.body) : null;
+    var jsonResponse;
+    try {
+      jsonResponse = json.decode(response.body);
+    } catch (_) {
+      // response may be empty, or invalid JSON.
+    }
+    return returnResponse ? jsonResponse ?? {} : null;
   }
 
   static dynamic createPostBody(

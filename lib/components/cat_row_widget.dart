@@ -16,7 +16,7 @@ class _CatRowWidgetState extends State<CatRowWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
       child: StreamBuilder<List<CategoriesRecord>>(
         stream: queryCategoriesRecord(
           queryBuilder: (categoriesRecord) =>
@@ -36,23 +36,12 @@ class _CatRowWidgetState extends State<CatRowWidget> {
             );
           }
           List<CategoriesRecord> rowCategoriesRecordList = snapshot.data;
-          // Customize what your widget looks like with no query results.
-          if (snapshot.data.isEmpty) {
-            return Material(
-              child: Container(
-                height: 100,
-                child: Center(
-                  child: Text('No results.'),
-                ),
-              ),
-            );
-          }
           return Row(
             mainAxisSize: MainAxisSize.max,
             children: List.generate(rowCategoriesRecordList.length, (rowIndex) {
               final rowCategoriesRecord = rowCategoriesRecordList[rowIndex];
               return Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
                 child: InkWell(
                   onTap: () async {
                     await Navigator.push(

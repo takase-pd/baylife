@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
@@ -7,6 +8,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../post_page_with_login/post_page_with_login_widget.dart';
 import '../terms_page/terms_page_widget.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -30,6 +32,7 @@ class ConfirmPageWidget extends StatefulWidget {
     this.startDay,
     this.finalDay,
     this.filePath,
+    this.postRemarks,
   }) : super(key: key);
 
   final String catName;
@@ -49,12 +52,15 @@ class ConfirmPageWidget extends StatefulWidget {
   final DateTime startDay;
   final DateTime finalDay;
   final String filePath;
+  final String postRemarks;
 
   @override
   _ConfirmPageWidgetState createState() => _ConfirmPageWidgetState();
 }
 
 class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
+  bool _loadingButton1 = false;
+  bool _loadingButton2 = false;
   bool checkboxListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -150,6 +156,38 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         16, 12, 0, 10),
                                     child: Text(
+                                      widget.title,
+                                      style:
+                                          FlutterFlowTheme.bodyText2.override(
+                                        fontFamily: 'Poppins',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
+                                    child: Text(
                                       widget.catName,
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
@@ -183,38 +221,6 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                         16, 12, 0, 10),
                                     child: Text(
                                       widget.catNameAdd,
-                                      style:
-                                          FlutterFlowTheme.bodyText2.override(
-                                        fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  width: 330,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: Color(0xFFE6E6E6),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 12, 0, 10),
-                                    child: Text(
-                                      widget.title,
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Poppins',
@@ -327,44 +333,15 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                           ),
                                         ),
                                         Image.network(
-                                          widget.filePath,
+                                          valueOrDefault<String>(
+                                            widget.filePath,
+                                            'https://firebasestorage.googleapis.com/v0/b/baylife-ff782.appspot.com/o/assets%2FNoImage.png?alt=media&token=cfb3d70b-69d2-4f7f-be63-f429cc9872da',
+                                          ),
                                           width: 100,
                                           height: 60,
                                           fit: BoxFit.cover,
                                         )
                                       ],
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  width: 330,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: Color(0xFFE6E6E6),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 12, 0, 10),
-                                    child: Text(
-                                      widget.address,
-                                      style:
-                                          FlutterFlowTheme.bodyText2.override(
-                                        fontFamily: 'Poppins',
-                                      ),
                                     ),
                                   ),
                                 ),
@@ -492,6 +469,70 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         16, 12, 0, 10),
                                     child: Text(
+                                      widget.address,
+                                      style:
+                                          FlutterFlowTheme.bodyText2.override(
+                                        fontFamily: 'Poppins',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
+                                    child: Text(
+                                      widget.homepage,
+                                      style:
+                                          FlutterFlowTheme.bodyText2.override(
+                                        fontFamily: 'Poppins',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
+                                    child: Text(
                                       widget.organizer,
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
@@ -525,38 +566,6 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                         16, 12, 0, 10),
                                     child: Text(
                                       widget.contact,
-                                      style:
-                                          FlutterFlowTheme.bodyText2.override(
-                                        fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  width: 330,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: Color(0xFFE6E6E6),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 12, 0, 10),
-                                    child: Text(
-                                      widget.homepage,
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Poppins',
@@ -724,6 +733,38 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                               )
                             ],
                           ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE6E6E6),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 0, 10),
+                                    child: Text(
+                                      widget.postRemarks,
+                                      style:
+                                          FlutterFlowTheme.bodyText2.override(
+                                        fontFamily: 'Poppins',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         )
                       ],
                     ),
@@ -789,7 +830,14 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          Navigator.pop(context);
+                                          setState(
+                                              () => _loadingButton1 = true);
+                                          try {
+                                            Navigator.pop(context);
+                                          } finally {
+                                            setState(
+                                                () => _loadingButton1 = false);
+                                          }
                                         },
                                         text: '戻る',
                                         options: FFButtonOptions(
@@ -810,6 +858,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                           ),
                                           borderRadius: 8,
                                         ),
+                                        loading: _loadingButton1,
                                       ),
                                     ),
                                   ),
@@ -846,19 +895,16 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       List<CategoriesRecord>
                                           containerCategoriesRecordList =
                                           snapshot.data;
-                                      // Customize what your widget looks like with no query results.
+                                      // Return an empty Container when the document does not exist.
                                       if (snapshot.data.isEmpty) {
-                                        return Material(
-                                          child: Container(
-                                            height: 100,
-                                            child: Center(
-                                              child: Text('No results.'),
-                                            ),
-                                          ),
-                                        );
+                                        return Container();
                                       }
                                       final containerCategoriesRecord =
-                                          containerCategoriesRecordList.first;
+                                          containerCategoriesRecordList
+                                                  .isNotEmpty
+                                              ? containerCategoriesRecordList
+                                                  .first
+                                              : null;
                                       return Container(
                                         width: 165,
                                         height: 60,
@@ -871,55 +917,70 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                               AlignmentDirectional(0.95, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              await registContentsCall(
-                                                catName: widget.catName,
-                                                catNameAdd: widget.catNameAdd,
-                                                title: widget.title,
-                                                overview: widget.overview,
-                                                detail: widget.detail,
-                                                organizer: widget.organizer,
-                                                contact: widget.contact,
-                                                homepage: widget.homepage,
-                                                postName: widget.postName,
-                                                postEmail: widget.postEmail,
-                                                postPhone: widget.postPhone,
-                                                postOccupation:
-                                                    widget.postOccupation,
-                                                permission: widget.permission,
-                                                address: widget.address,
-                                                startDay: dateTimeFormat(
-                                                    'yMMMd', widget.startDay),
-                                                finalDay: dateTimeFormat(
-                                                    'yMMMd', widget.finalDay),
-                                                filePath: widget.filePath,
-                                              );
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: Text('送信完了'),
-                                                    content: Text(
-                                                        '投稿ありがとうございます。投稿内容を審査しますので、お待ち下さい。'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('OK'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                              await Navigator
-                                                  .pushAndRemoveUntil(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PostPageWithLoginWidget(),
-                                                ),
-                                                (r) => false,
-                                              );
+                                              setState(
+                                                  () => _loadingButton2 = true);
+                                              try {
+                                                await registContentsCall(
+                                                  catName: widget.catName,
+                                                  catNameAdd: widget.catNameAdd,
+                                                  title: widget.title,
+                                                  overview: functions
+                                                      .getMultilineText(
+                                                          widget.overview),
+                                                  detail: functions
+                                                      .getMultilineText(
+                                                          widget.detail),
+                                                  organizer: widget.organizer,
+                                                  contact: widget.contact,
+                                                  homepage: widget.homepage,
+                                                  postName: widget.postName,
+                                                  postEmail: widget.postEmail,
+                                                  postPhone: widget.postPhone,
+                                                  postOccupation:
+                                                      widget.postOccupation,
+                                                  permission: widget.permission,
+                                                  address: widget.address,
+                                                  startDay: dateTimeFormat(
+                                                      'yMMMd', widget.startDay),
+                                                  finalDay: dateTimeFormat(
+                                                      'yMMMd', widget.finalDay),
+                                                  filePath: widget.filePath,
+                                                  postRemarks:
+                                                      widget.postRemarks,
+                                                  uid: currentUserUid,
+                                                );
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text('送信完了'),
+                                                      content: Text(
+                                                          '投稿ありがとうございます。投稿内容を審査しますので、お待ち下さい。'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('OK'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                                await Navigator
+                                                    .pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        PostPageWithLoginWidget(),
+                                                  ),
+                                                  (r) => false,
+                                                );
+                                              } finally {
+                                                setState(() =>
+                                                    _loadingButton2 = false);
+                                              }
                                             },
                                             text: '送信',
                                             options: FFButtonOptions(
@@ -943,6 +1004,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                               ),
                                               borderRadius: 8,
                                             ),
+                                            loading: _loadingButton2,
                                           ),
                                         ),
                                       );

@@ -83,6 +83,14 @@ abstract class ContentsRecord
   String get filePath;
 
   @nullable
+  @BuiltValueField(wireName: 'post_remarks')
+  String get postRemarks;
+
+  @nullable
+  @BuiltValueField(wireName: 'show_image')
+  bool get showImage;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -103,7 +111,9 @@ abstract class ContentsRecord
     ..to = ''
     ..bccUids = ListBuilder()
     ..address = ''
-    ..filePath = '';
+    ..filePath = ''
+    ..postRemarks = ''
+    ..showImage = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('contents');
@@ -118,8 +128,8 @@ abstract class ContentsRecord
 
   static ContentsRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(
-          serializer, {...data, kDocumentReferenceField: reference});
+      serializers.deserializeWith(serializer,
+          {...mapFromFirestore(data), kDocumentReferenceField: reference});
 }
 
 Map<String, dynamic> createContentsRecordData({
@@ -143,6 +153,8 @@ Map<String, dynamic> createContentsRecordData({
   DateTime startDay,
   DateTime finalDay,
   String filePath,
+  String postRemarks,
+  bool showImage,
 }) =>
     serializers.toFirestore(
         ContentsRecord.serializer,
@@ -167,4 +179,6 @@ Map<String, dynamic> createContentsRecordData({
           ..address = address
           ..startDay = startDay
           ..finalDay = finalDay
-          ..filePath = filePath));
+          ..filePath = filePath
+          ..postRemarks = postRemarks
+          ..showImage = showImage));

@@ -17,7 +17,10 @@ Future<dynamic> registContentsCall({
   String address = 'デフォルト',
   String startDay = '',
   String finalDay = '',
-  String filePath = '',
+  String filePath =
+      'https://firebasestorage.googleapis.com/v0/b/baylife-ff782.appspot.com/o/assets%2FNoImage.png?alt=media&token=cfb3d70b-69d2-4f7f-be63-f429cc9872da',
+  String postRemarks = '',
+  String uid = '',
 }) {
   final body = '''
 {
@@ -38,12 +41,15 @@ Future<dynamic> registContentsCall({
     "address": "$address",
     "startDay": "$startDay",
     "finalDay": "$finalDay",
-    "filePath": "$filePath"
+    "filePath": "$filePath",
+    "postRemarks": "$postRemarks",
+    "uid": "$uid"
   }
 }''';
   return ApiManager.instance.makeApiCall(
     callName: 'Regist Contents',
-    apiUrl: 'https://us-central1-baylife-ff782.cloudfunctions.net/sendMail',
+    apiUrl:
+        'https://asia-northeast1-baylife-ff782.cloudfunctions.net/sendMailV1',
     callType: ApiCallType.POST,
     headers: {
       'Content-Type': 'application/json',
@@ -66,6 +72,8 @@ Future<dynamic> registContentsCall({
       'startDay': startDay,
       'finalDay': finalDay,
       'filePath': filePath,
+      'postRemarks': postRemarks,
+      'uid': uid,
     },
     body: body,
     bodyType: BodyType.JSON,
