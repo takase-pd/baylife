@@ -354,7 +354,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
               child: FlutterFlowAdBanner(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
-                showsTestAd: true,
+                showsTestAd: false,
                 iOSAdUnitID: 'ca-app-pub-8134368906531041/4883719188',
               ),
             )
