@@ -36,34 +36,38 @@ class _CatRowWidgetState extends State<CatRowWidget> {
             );
           }
           List<CategoriesRecord> rowCategoriesRecordList = snapshot.data;
-          return Row(
-            mainAxisSize: MainAxisSize.max,
-            children: List.generate(rowCategoriesRecordList.length, (rowIndex) {
-              final rowCategoriesRecord = rowCategoriesRecordList[rowIndex];
-              return Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
-                child: InkWell(
-                  onTap: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CategoryPageWidget(
-                          catRef: rowCategoriesRecord.reference,
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children:
+                  List.generate(rowCategoriesRecordList.length, (rowIndex) {
+                final rowCategoriesRecord = rowCategoriesRecordList[rowIndex];
+                return Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+                  child: InkWell(
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CategoryPageWidget(
+                            catRef: rowCategoriesRecord.reference,
+                          ),
                         ),
+                      );
+                    },
+                    child: Text(
+                      rowCategoriesRecord.catName,
+                      style: FlutterFlowTheme.title3.override(
+                        fontFamily: 'Poppins',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
                       ),
-                    );
-                  },
-                  child: Text(
-                    rowCategoriesRecord.catName,
-                    style: FlutterFlowTheme.title3.override(
-                      fontFamily: 'Poppins',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                ),
-              );
-            }),
+                );
+              }),
+            ),
           );
         },
       ),
