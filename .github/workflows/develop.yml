@@ -63,7 +63,17 @@ jobs:
         with:
           name: ios
 
-      - name: Firebase App Distribution
+      - name: Firebase App Distribution for Dev
+        if: github.ref == 'refs/heads/develop'
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID_IOS_DEV }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          groups: Admin
+          file: bay_life.ipa
+
+      - name: Firebase App Distribution for Preview
+        if: github.ref == 'refs/heads/preview'
         uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
         with:
           appId: ${{ secrets.FIREBASE_APP_ID_IOS }}
@@ -80,8 +90,8 @@ jobs:
           SLACK_COLOR: good
 
       - name: Slack Notification on Failure
-        uses: rtCamp/action-slack-notify@v2.0.2
         if: failure()
+        uses: rtCamp/action-slack-notify@v2.0.2
         env:
           SLACK_CHANNEL: build_app
           SLACK_TITLE: Build Failure Dev MAKUHARI Bay Life
