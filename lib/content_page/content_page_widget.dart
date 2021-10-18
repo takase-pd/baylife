@@ -343,19 +343,19 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                             )
                           ],
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        child: FlutterFlowAdBanner(
-                          width: MediaQuery.of(context).size.width,
-                          height: 50,
-                          showsTestAd: true,
-                          iOSAdUnitID: 'ca-app-pub-8134368906531041/4883719188',
-                        ),
                       )
                     ],
                   );
                 },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+              child: FlutterFlowAdBanner(
+                width: MediaQuery.of(context).size.width,
+                height: 50,
+                showsTestAd: false,
+                iOSAdUnitID: 'ca-app-pub-8134368906531041/4883719188',
               ),
             )
           ],
