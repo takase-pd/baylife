@@ -868,7 +868,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                         options: FFButtonOptions(
                                           width: 140,
                                           height: 60,
-                                          color: FlutterFlowTheme.tDark,
+                                          color: FlutterFlowTheme.sLight,
                                           textStyle: FlutterFlowTheme.subtitle2
                                               .override(
                                             fontFamily: 'Montserrat',
