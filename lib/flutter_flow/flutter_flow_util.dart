@@ -2,11 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
+import 'package:json_path/json_path.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:json_path/json_path.dart';
 
 import 'lat_lng.dart';
 
@@ -39,52 +38,23 @@ Future launchURL(String url) async {
 
 DateTime get getCurrentTimestamp => DateTime.now();
 
+extension DateTimeComparisonOperators on DateTime {
+  bool operator <(DateTime other) => isBefore(other);
+  bool operator >(DateTime other) => isAfter(other);
+  bool operator <=(DateTime other) => this < other || isAtSameMomentAs(other);
+  bool operator >=(DateTime other) => this > other || isAtSameMomentAs(other);
+}
+
 dynamic getJsonField(dynamic response, String jsonPath) {
   final field = JsonPath(jsonPath).read(response);
-  return field.isNotEmpty ? field.first.value : null;
+  return field.isNotEmpty
+      ? field.length > 1
+          ? field.map((f) => f.value).toList()
+          : field.first.value
+      : null;
 }
 
 bool get isAndroid => !kIsWeb && Platform.isAndroid;
-
-LatLng cachedUserLocation;
-Future<LatLng> getCurrentUserLocation(
-        {LatLng defaultLocation, bool cached = false}) async =>
-    cached && cachedUserLocation != null
-        ? cachedUserLocation
-        : queryCurrentUserLocation().then((loc) {
-            if (loc != null) {
-              cachedUserLocation = loc;
-            }
-            return loc;
-          }).onError((error, _) {
-            print("Error querying user location: $error");
-            return defaultLocation;
-          });
-
-Future<LatLng> queryCurrentUserLocation() async {
-  final serviceEnabled = await Geolocator.isLocationServiceEnabled();
-  if (!serviceEnabled) {
-    return Future.error('Location services are disabled.');
-  }
-
-  var permission = await Geolocator.checkPermission();
-  if (permission == LocationPermission.denied) {
-    permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied) {
-      return Future.error('Location permissions are denied');
-    }
-  }
-
-  if (permission == LocationPermission.deniedForever) {
-    return Future.error(
-        'Location permissions are permanently denied, we cannot request permissions.');
-  }
-
-  final position = await Geolocator.getCurrentPosition();
-  return position != null && position.latitude != 0 && position.longitude != 0
-      ? LatLng(position.latitude, position.longitude)
-      : null;
-}
 
 void showSnackbar(
   BuildContext context,

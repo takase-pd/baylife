@@ -46,6 +46,9 @@ Future resetPassword({String email, BuildContext context}) async {
   );
 }
 
+Future sendEmailVerification() async =>
+    currentUser?.user?.sendEmailVerification();
+
 String get currentUserEmail =>
     currentUserDocument?.email ?? currentUser?.user?.email ?? '';
 
@@ -60,6 +63,8 @@ String get currentUserPhoto =>
 
 String get currentPhoneNumber =>
     currentUserDocument?.phoneNumber ?? currentUser?.user?.phoneNumber ?? '';
+
+bool get currentUserEmailVerified => currentUser?.user?.emailVerified ?? false;
 
 // Set when using phone verification (after phone number is provided).
 String _phoneAuthVerificationCode;

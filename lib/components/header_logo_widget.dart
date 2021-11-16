@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../home_page/home_page_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HeaderLogoWidget extends StatefulWidget {
@@ -26,8 +27,9 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
             child: SizedBox(
               width: 50,
               height: 50,
-              child: CircularProgressIndicator(
+              child: SpinKitPulse(
                 color: FlutterFlowTheme.primaryColor,
+                size: 50,
               ),
             ),
           );
@@ -55,8 +57,8 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
               Text(
                 columnLogonameRecord.first,
                 style: FlutterFlowTheme.title2.override(
-                  fontFamily: 'Poppins',
-                  color: FlutterFlowTheme.textPrimary,
+                  fontFamily: 'Open Sans',
+                  color: FlutterFlowTheme.textSecondary,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -70,8 +72,8 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
                     child: Text(
                       columnLogonameRecord.second,
                       style: FlutterFlowTheme.title3.override(
-                        fontFamily: 'Poppins',
-                        color: FlutterFlowTheme.textPrimary,
+                        fontFamily: 'Open Sans',
+                        color: FlutterFlowTheme.textSecondary,
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
@@ -80,8 +82,8 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
                   Text(
                     columnLogonameRecord.version,
                     style: FlutterFlowTheme.title3.override(
-                      fontFamily: 'Poppins',
-                      color: Colors.white,
+                      fontFamily: 'Open Sans',
+                      color: FlutterFlowTheme.textSecondary,
                       fontSize: 10,
                     ),
                   )

@@ -9,6 +9,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../login_page/login_page_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -27,14 +28,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textPrimary),
+        iconTheme: IconThemeData(color: FlutterFlowTheme.textSecondary),
         automaticallyImplyLeading: true,
         title: HeaderLogoWidget(),
         actions: [],
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.grayLight,
+      backgroundColor: FlutterFlowTheme.tertiaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(
@@ -77,8 +78,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       child: SizedBox(
                         width: 50,
                         height: 50,
-                        child: CircularProgressIndicator(
+                        child: SpinKitPulse(
                           color: FlutterFlowTheme.primaryColor,
+                          size: 50,
                         ),
                       ),
                     );
@@ -108,7 +110,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           },
                           child: Card(
                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: FlutterFlowTheme.grayDark,
+                            color: Colors.white,
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10, 10, 10, 10),
@@ -122,7 +124,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     child: Text(
                                       listViewContentsRecord.title,
                                       style: FlutterFlowTheme.title3.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.textPrimary,
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -135,8 +137,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       listViewContentsRecord.overview,
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.textDark,
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.textPrimary,
                                       ),
                                     ),
                                   ),
@@ -150,9 +152,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           child: SizedBox(
                                             width: 50,
                                             height: 50,
-                                            child: CircularProgressIndicator(
+                                            child: SpinKitPulse(
                                               color:
                                                   FlutterFlowTheme.primaryColor,
+                                              size: 50,
                                             ),
                                           ),
                                         );
@@ -179,7 +182,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     style: FlutterFlowTheme
                                                         .bodyText2
                                                         .override(
-                                                      fontFamily: 'Poppins',
+                                                      fontFamily: 'Open Sans',
+                                                      color: FlutterFlowTheme
+                                                          .textPrimary,
                                                     ),
                                                   ),
                                                 ),
@@ -205,7 +210,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       height: 30,
                                                       decoration: BoxDecoration(
                                                         color: FlutterFlowTheme
-                                                            .tertiaryColor,
+                                                            .secondaryColor,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(5),
@@ -225,10 +230,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   .bodyText2
                                                                   .override(
                                                             fontFamily:
-                                                                'Poppins',
-                                                            color:
-                                                                FlutterFlowTheme
-                                                                    .textLight,
+                                                                'Open Sans',
+                                                            color: FlutterFlowTheme
+                                                                .textSecondary,
                                                           ),
                                                         ),
                                                       ),

@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,7 +32,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textPrimary),
+        iconTheme: IconThemeData(color: FlutterFlowTheme.textSecondary),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -39,7 +40,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.secondaryColor,
+            color: FlutterFlowTheme.textSecondary,
             size: 24,
           ),
         ),
@@ -48,7 +49,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.grayLight,
+      backgroundColor: Colors.white,
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
@@ -68,8 +69,9 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                       child: SizedBox(
                         width: 50,
                         height: 50,
-                        child: CircularProgressIndicator(
+                        child: SpinKitPulse(
                           color: FlutterFlowTheme.primaryColor,
+                          size: 50,
                         ),
                       ),
                     );
@@ -84,7 +86,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                         child: Text(
                           columnContentsRecord.title,
                           style: FlutterFlowTheme.title1.override(
-                            fontFamily: 'Poppins',
+                            fontFamily: 'Open Sans',
+                            color: FlutterFlowTheme.textPrimary,
                           ),
                         ),
                       ),
@@ -93,7 +96,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                         child: Text(
                           columnContentsRecord.organizer,
                           style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Poppins',
+                            fontFamily: 'Open Sans',
+                            color: FlutterFlowTheme.textPrimary,
                           ),
                         ),
                       ),
@@ -109,8 +113,9 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                 child: SizedBox(
                                   width: 50,
                                   height: 50,
-                                  child: CircularProgressIndicator(
+                                  child: SpinKitPulse(
                                     color: FlutterFlowTheme.primaryColor,
+                                    size: 50,
                                   ),
                                 ),
                               );
@@ -132,7 +137,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                 width: 70,
                                 height: 30,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
+                                  color: FlutterFlowTheme.secondaryColor,
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Padding(
@@ -142,8 +147,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                     containerCategoriesRecord.catName,
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.bodyText2.override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.textLight,
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.textSecondary,
                                     ),
                                   ),
                                 ),
@@ -157,13 +162,14 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                         child: Text(
                           columnContentsRecord.overview,
                           style: FlutterFlowTheme.subtitle1.override(
-                            fontFamily: 'Poppins',
+                            fontFamily: 'Open Sans',
+                            color: FlutterFlowTheme.textPrimary,
                             fontSize: 14,
                           ),
                         ),
                       ),
                       Divider(
-                        color: FlutterFlowTheme.secondaryDark,
+                        color: FlutterFlowTheme.secondaryColor,
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -185,13 +191,13 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                         child: Text(
                           columnContentsRecord.detail,
                           style: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Poppins',
-                            color: FlutterFlowTheme.textDark,
+                            fontFamily: 'Open Sans',
+                            color: FlutterFlowTheme.textPrimary,
                           ),
                         ),
                       ),
                       Divider(
-                        color: FlutterFlowTheme.secondaryDark,
+                        color: FlutterFlowTheme.secondaryColor,
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
@@ -204,7 +210,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: Icon(
                                 Icons.today_sharp,
-                                color: FlutterFlowTheme.textDark,
+                                color: FlutterFlowTheme.textPrimary,
                                 size: 16,
                               ),
                             ),
@@ -212,7 +218,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               dateTimeFormat(
                                   'yMMMd', columnContentsRecord.startDay),
                               style: FlutterFlowTheme.bodyText2.override(
-                                fontFamily: 'Poppins',
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.textPrimary,
                               ),
                             ),
                             Padding(
@@ -220,7 +227,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(7, 3, 7, 0),
                               child: Icon(
                                 Icons.double_arrow_sharp,
-                                color: FlutterFlowTheme.textDark,
+                                color: FlutterFlowTheme.textPrimary,
                                 size: 16,
                               ),
                             ),
@@ -228,7 +235,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               dateTimeFormat(
                                   'yMMMd', columnContentsRecord.finalDay),
                               style: FlutterFlowTheme.bodyText2.override(
-                                fontFamily: 'Poppins',
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.textPrimary,
                               ),
                             )
                           ],
@@ -245,7 +253,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: Icon(
                                 Icons.place_outlined,
-                                color: FlutterFlowTheme.textDark,
+                                color: FlutterFlowTheme.textPrimary,
                                 size: 16,
                               ),
                             ),
@@ -253,7 +261,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               child: Text(
                                 columnContentsRecord.address,
                                 style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.textPrimary,
                                 ),
                               ),
                             )
@@ -271,7 +280,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: Icon(
                                 Icons.open_in_new_rounded,
-                                color: FlutterFlowTheme.textDark,
+                                color: FlutterFlowTheme.textPrimary,
                                 size: 16,
                               ),
                             ),
@@ -284,7 +293,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                 child: Text(
                                   columnContentsRecord.homepage,
                                   style: FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'Open Sans',
+                                    color: FlutterFlowTheme.textPrimary,
                                   ),
                                 ),
                               ),
@@ -303,7 +313,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: FaIcon(
                                 FontAwesomeIcons.smile,
-                                color: FlutterFlowTheme.textDark,
+                                color: FlutterFlowTheme.textPrimary,
                                 size: 16,
                               ),
                             ),
@@ -311,7 +321,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               child: Text(
                                 columnContentsRecord.organizer,
                                 style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.textPrimary,
                                 ),
                               ),
                             )
@@ -329,7 +340,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: Icon(
                                 Icons.add_to_home_screen_outlined,
-                                color: FlutterFlowTheme.textDark,
+                                color: FlutterFlowTheme.textPrimary,
                                 size: 16,
                               ),
                             ),
@@ -337,7 +348,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               child: Text(
                                 columnContentsRecord.contact,
                                 style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.textPrimary,
                                 ),
                               ),
                             )
