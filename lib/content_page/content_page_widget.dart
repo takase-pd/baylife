@@ -49,7 +49,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: Colors.white,
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
