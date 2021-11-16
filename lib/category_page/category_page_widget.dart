@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../login_page/login_page_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CategoryPageWidget extends StatefulWidget {
@@ -31,7 +32,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.secondaryColor),
+        iconTheme: IconThemeData(color: FlutterFlowTheme.textSecondary),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -39,7 +40,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.secondaryColor,
+            color: FlutterFlowTheme.textSecondary,
             size: 24,
           ),
         ),
@@ -48,7 +49,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.grayLight,
+      backgroundColor: FlutterFlowTheme.tertiaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(
@@ -93,8 +94,9 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                       child: SizedBox(
                         width: 50,
                         height: 50,
-                        child: CircularProgressIndicator(
+                        child: SpinKitPulse(
                           color: FlutterFlowTheme.primaryColor,
+                          size: 50,
                         ),
                       ),
                     );
@@ -124,7 +126,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                           },
                           child: Card(
                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: FlutterFlowTheme.grayDark,
+                            color: Colors.white,
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10, 10, 10, 10),
@@ -138,7 +140,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                     child: Text(
                                       listViewContentsRecord.title,
                                       style: FlutterFlowTheme.title3.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.textPrimary,
                                       ),
                                     ),
@@ -150,8 +152,8 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                       listViewContentsRecord.overview,
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.textDark,
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.textPrimary,
                                       ),
                                     ),
                                   ),
@@ -165,9 +167,10 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                           child: SizedBox(
                                             width: 50,
                                             height: 50,
-                                            child: CircularProgressIndicator(
+                                            child: SpinKitPulse(
                                               color:
                                                   FlutterFlowTheme.primaryColor,
+                                              size: 50,
                                             ),
                                           ),
                                         );
@@ -194,7 +197,9 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                     style: FlutterFlowTheme
                                                         .bodyText2
                                                         .override(
-                                                      fontFamily: 'Poppins',
+                                                      fontFamily: 'Open Sans',
+                                                      color: FlutterFlowTheme
+                                                          .textPrimary,
                                                     ),
                                                   ),
                                                 ),
@@ -220,7 +225,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                       height: 30,
                                                       decoration: BoxDecoration(
                                                         color: FlutterFlowTheme
-                                                            .tertiaryColor,
+                                                            .secondaryColor,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(5),
@@ -240,10 +245,9 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                                   .bodyText2
                                                                   .override(
                                                             fontFamily:
-                                                                'Poppins',
-                                                            color:
-                                                                FlutterFlowTheme
-                                                                    .textLight,
+                                                                'Open Sans',
+                                                            color: FlutterFlowTheme
+                                                                .textSecondary,
                                                           ),
                                                         ),
                                                       ),

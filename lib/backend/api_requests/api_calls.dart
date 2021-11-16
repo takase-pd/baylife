@@ -25,25 +25,25 @@ Future<dynamic> registContentsCall({
   final body = '''
 {
   "data": {
-    "catName": "$catName",
-    "catNameAdd": "$catNameAdd",
-    "title": "$title",
-    "overview": "$overview",
-    "detail": "$detail",
-    "organizer": "$organizer",
-    "contact": "$contact",
-    "homepage": "$homepage",
-    "postName": "$postName",
-    "postEmail": "$postEmail",
-    "postPhone": "$postPhone",
-    "postOccupation": "$postOccupation",
-    "permission": $permission,
-    "address": "$address",
-    "startDay": "$startDay",
-    "finalDay": "$finalDay",
-    "filePath": "$filePath",
-    "postRemarks": "$postRemarks",
-    "uid": "$uid"
+    "catName": "${catName}",
+    "catNameAdd": "${catNameAdd}",
+    "title": "${title}",
+    "overview": "${overview}",
+    "detail": "${detail}",
+    "organizer": "${organizer}",
+    "contact": "${contact}",
+    "homepage": "${homepage}",
+    "postName": "${postName}",
+    "postEmail": "${postEmail}",
+    "postPhone": "${postPhone}",
+    "postOccupation": "${postOccupation}",
+    "permission": ${permission},
+    "address": "${address}",
+    "startDay": "${startDay}",
+    "finalDay": "${finalDay}",
+    "filePath": "${filePath}",
+    "postRemarks": "${postRemarks}",
+    "uid": "${uid}"
   }
 }''';
   return ApiManager.instance.makeApiCall(
