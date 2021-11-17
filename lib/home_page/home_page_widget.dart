@@ -28,7 +28,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textSecondary),
+        iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
         automaticallyImplyLeading: true,
         title: HeaderLogoWidget(),
         actions: [],
@@ -49,7 +49,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         elevation: 8,
         child: Icon(
           Icons.post_add_sharp,
-          color: FlutterFlowTheme.textSecondary,
+          color: FlutterFlowTheme.textLight,
           size: 24,
         ),
       ),
@@ -110,7 +110,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           },
                           child: Card(
                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: Colors.white,
+                            color: FlutterFlowTheme.background,
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10, 10, 10, 10),
@@ -125,7 +125,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       listViewContentsRecord.title,
                                       style: FlutterFlowTheme.title3.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -138,7 +138,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -184,7 +184,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .override(
                                                       fontFamily: 'Open Sans',
                                                       color: FlutterFlowTheme
-                                                          .textPrimary,
+                                                          .textDark,
                                                     ),
                                                   ),
                                                 ),
@@ -231,8 +231,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   .override(
                                                             fontFamily:
                                                                 'Open Sans',
-                                                            color: FlutterFlowTheme
-                                                                .textSecondary,
+                                                            color:
+                                                                FlutterFlowTheme
+                                                                    .textLight,
                                                           ),
                                                         ),
                                                       ),

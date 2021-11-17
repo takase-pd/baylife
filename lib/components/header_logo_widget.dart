@@ -58,7 +58,7 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
                 columnLogonameRecord.first,
                 style: FlutterFlowTheme.title2.override(
                   fontFamily: 'Open Sans',
-                  color: FlutterFlowTheme.textSecondary,
+                  color: FlutterFlowTheme.textLight,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -73,7 +73,7 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
                       columnLogonameRecord.second,
                       style: FlutterFlowTheme.title3.override(
                         fontFamily: 'Open Sans',
-                        color: FlutterFlowTheme.textSecondary,
+                        color: FlutterFlowTheme.textLight,
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
@@ -83,7 +83,7 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
                     columnLogonameRecord.version,
                     style: FlutterFlowTheme.title3.override(
                       fontFamily: 'Open Sans',
-                      color: FlutterFlowTheme.textSecondary,
+                      color: FlutterFlowTheme.textLight,
                       fontSize: 10,
                     ),
                   )

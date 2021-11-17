@@ -32,7 +32,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textSecondary),
+        iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -40,7 +40,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.textSecondary,
+            color: FlutterFlowTheme.textLight,
             size: 24,
           ),
         ),
@@ -63,7 +63,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
         elevation: 8,
         child: Icon(
           Icons.post_add_sharp,
-          color: FlutterFlowTheme.textSecondary,
+          color: FlutterFlowTheme.textLight,
           size: 24,
         ),
       ),
@@ -126,7 +126,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                           },
                           child: Card(
                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: Colors.white,
+                            color: FlutterFlowTheme.background,
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10, 10, 10, 10),
@@ -141,7 +141,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                       listViewContentsRecord.title,
                                       style: FlutterFlowTheme.title3.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -153,7 +153,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -199,7 +199,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                         .override(
                                                       fontFamily: 'Open Sans',
                                                       color: FlutterFlowTheme
-                                                          .textPrimary,
+                                                          .textDark,
                                                     ),
                                                   ),
                                                 ),
@@ -246,8 +246,9 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                                   .override(
                                                             fontFamily:
                                                                 'Open Sans',
-                                                            color: FlutterFlowTheme
-                                                                .textSecondary,
+                                                            color:
+                                                                FlutterFlowTheme
+                                                                    .textLight,
                                                           ),
                                                         ),
                                                       ),
