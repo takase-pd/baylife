@@ -54,13 +54,12 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(primarySwatch: Colors.blue),
       home: initialUser == null
-          ? const Center(
-              child: SizedBox(
-                width: 50,
-                height: 50,
-                child: SpinKitPulse(
-                  color: FlutterFlowTheme.primaryColor,
-                  size: 50,
+          ? Container(
+              color: FlutterFlowTheme.tertiaryColor,
+              child: Builder(
+                builder: (context) => Image.asset(
+                  'assets/images/BayLifeIcon_v1.png',
+                  fit: BoxFit.contain,
                 ),
               ),
             )
