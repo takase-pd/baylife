@@ -71,7 +71,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textSecondary),
+        iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -79,7 +79,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.textSecondary,
+            color: FlutterFlowTheme.textLight,
             size: 24,
           ),
         ),
@@ -115,7 +115,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           textAlign: TextAlign.center,
                           style: FlutterFlowTheme.title1.override(
                             fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textPrimary,
+                            color: FlutterFlowTheme.textDark,
                           ),
                         ),
                         Padding(
@@ -127,7 +127,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                 '投稿内容',
                                 style: FlutterFlowTheme.title2.override(
                                   fontFamily: 'Open Sans',
-                                  color: FlutterFlowTheme.textPrimary,
+                                  color: FlutterFlowTheme.textDark,
                                 ),
                               )
                             ],
@@ -137,7 +137,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           '投稿に表示されます。秘密情報などは記載しないでください。',
                           style: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textPrimary,
+                            color: FlutterFlowTheme.textDark,
                           ),
                         ),
                         Padding(
@@ -150,7 +150,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -164,7 +164,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -183,7 +183,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -197,7 +197,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -216,7 +216,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -230,7 +230,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -249,7 +249,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 120,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -263,7 +263,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -282,7 +282,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 300,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -296,7 +296,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -315,7 +315,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -338,8 +338,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                             style: FlutterFlowTheme.bodyText2
                                                 .override(
                                               fontFamily: 'Open Sans',
-                                              color:
-                                                  FlutterFlowTheme.textPrimary,
+                                              color: FlutterFlowTheme.textDark,
                                             ),
                                           ),
                                         ),
@@ -370,7 +369,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -391,8 +390,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                             style: FlutterFlowTheme.bodyText2
                                                 .override(
                                               fontFamily: 'Open Sans',
-                                              color:
-                                                  FlutterFlowTheme.textPrimary,
+                                              color: FlutterFlowTheme.textDark,
                                             ),
                                           ),
                                         ),
@@ -402,7 +400,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                           style: FlutterFlowTheme.bodyText2
                                               .override(
                                             fontFamily: 'Open Sans',
-                                            color: FlutterFlowTheme.textPrimary,
+                                            color: FlutterFlowTheme.textDark,
                                           ),
                                         )
                                       ],
@@ -423,7 +421,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -444,8 +442,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                             style: FlutterFlowTheme.bodyText2
                                                 .override(
                                               fontFamily: 'Open Sans',
-                                              color:
-                                                  FlutterFlowTheme.textPrimary,
+                                              color: FlutterFlowTheme.textDark,
                                             ),
                                           ),
                                         ),
@@ -455,7 +452,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                           style: FlutterFlowTheme.bodyText2
                                               .override(
                                             fontFamily: 'Open Sans',
-                                            color: FlutterFlowTheme.textPrimary,
+                                            color: FlutterFlowTheme.textDark,
                                           ),
                                         )
                                       ],
@@ -476,7 +473,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -490,7 +487,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -509,7 +506,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -523,7 +520,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -542,7 +539,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -556,7 +553,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -575,7 +572,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -589,7 +586,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -616,7 +613,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                 '投稿者情報',
                                 style: FlutterFlowTheme.title2.override(
                                   fontFamily: 'Open Sans',
-                                  color: FlutterFlowTheme.textPrimary,
+                                  color: FlutterFlowTheme.textDark,
                                 ),
                               )
                             ],
@@ -626,7 +623,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           '投稿には表示されません。投稿の確認、連絡などに使用します。',
                           style: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textPrimary,
+                            color: FlutterFlowTheme.textDark,
                           ),
                         ),
                         Padding(
@@ -639,7 +636,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -653,7 +650,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -672,7 +669,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -686,7 +683,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -705,7 +702,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -719,7 +716,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -738,7 +735,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                       color: FlutterFlowTheme.secondaryColor,
@@ -752,7 +749,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText2.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textPrimary,
+                                        color: FlutterFlowTheme.textDark,
                                       ),
                                     ),
                                   ),
@@ -771,10 +768,10 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   width: 330,
                                   height: 200,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.textPrimary,
+                                      color: FlutterFlowTheme.secondaryColor,
                                     ),
                                   ),
                                   child: Padding(
@@ -812,7 +809,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                             '＊利用規約に従い投稿します。',
                             style: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Open Sans',
-                              color: FlutterFlowTheme.textPrimary,
+                              color: FlutterFlowTheme.textDark,
                             ),
                           ),
                         ),
@@ -826,7 +823,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                               '上記内容に同意',
                               style: FlutterFlowTheme.bodyText2.override(
                                 fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.textPrimary,
+                                color: FlutterFlowTheme.textDark,
                               ),
                             ),
                             dense: false,
@@ -872,8 +869,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                           textStyle: FlutterFlowTheme.subtitle2
                                               .override(
                                             fontFamily: 'Montserrat',
-                                            color:
-                                                FlutterFlowTheme.textSecondary,
+                                            color: FlutterFlowTheme.textLight,
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -1019,8 +1015,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                   .subtitle2
                                                   .override(
                                                 fontFamily: 'Montserrat',
-                                                color: FlutterFlowTheme
-                                                    .textSecondary,
+                                                color:
+                                                    FlutterFlowTheme.textLight,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.w500,
                                               ),

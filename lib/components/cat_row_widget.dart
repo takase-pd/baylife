@@ -62,7 +62,7 @@ class _CatRowWidgetState extends State<CatRowWidget> {
                       rowCategoriesRecord.catName,
                       style: FlutterFlowTheme.title3.override(
                         fontFamily: 'Open Sans',
-                        color: FlutterFlowTheme.textPrimary,
+                        color: FlutterFlowTheme.textDark,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),

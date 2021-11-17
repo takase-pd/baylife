@@ -49,12 +49,12 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                           'トップ',
                           style: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textPrimary,
+                            color: FlutterFlowTheme.textDark,
                           ),
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.textPrimary,
+                          color: FlutterFlowTheme.textDark,
                           size: 20,
                         ),
                         dense: false,
@@ -77,12 +77,12 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                           '投稿',
                           style: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textPrimary,
+                            color: FlutterFlowTheme.textDark,
                           ),
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.textPrimary,
+                          color: FlutterFlowTheme.textDark,
                           size: 20,
                         ),
                         dense: false,
@@ -101,12 +101,12 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                           '要望送信',
                           style: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textPrimary,
+                            color: FlutterFlowTheme.textDark,
                           ),
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.textPrimary,
+                          color: FlutterFlowTheme.textDark,
                           size: 20,
                         ),
                         dense: false,
@@ -129,12 +129,12 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                           '利用規約',
                           style: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textPrimary,
+                            color: FlutterFlowTheme.textDark,
                           ),
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.textPrimary,
+                          color: FlutterFlowTheme.textDark,
                           size: 20,
                         ),
                         dense: false,
@@ -153,12 +153,12 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                           'プライバシーポリシー',
                           style: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textPrimary,
+                            color: FlutterFlowTheme.textDark,
                           ),
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.textPrimary,
+                          color: FlutterFlowTheme.textDark,
                           size: 20,
                         ),
                         dense: false,
@@ -207,12 +207,12 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                           '退会',
                           style: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textPrimary,
+                            color: FlutterFlowTheme.textDark,
                           ),
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.textPrimary,
+                          color: FlutterFlowTheme.textDark,
                           size: 20,
                         ),
                         dense: false,
@@ -240,12 +240,12 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     'ログアウト',
                     style: FlutterFlowTheme.subtitle2.override(
                       fontFamily: 'Open Sans',
-                      color: FlutterFlowTheme.textPrimary,
+                      color: FlutterFlowTheme.textDark,
                     ),
                   ),
                   trailing: Icon(
                     Icons.logout,
-                    color: Color(0xFF303030),
+                    color: FlutterFlowTheme.textDark,
                     size: 20,
                   ),
                   dense: false,
