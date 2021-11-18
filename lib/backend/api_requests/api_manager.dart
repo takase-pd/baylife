@@ -8,6 +8,7 @@ import 'package:equatable/equatable.dart';
 enum ApiCallType {
   GET,
   POST,
+  DELETE,
 }
 
 enum BodyType {
@@ -57,7 +58,8 @@ class ApiManager {
   static String asQueryParams(Map<String, dynamic> map) =>
       map.entries.map((e) => "${e.key}=${e.value}").join('&');
 
-  static Future<dynamic> getRequest(
+  static Future<dynamic> urlRequest(
+    ApiCallType callType,
     String apiUrl,
     Map<String, dynamic> headers,
     Map<String, dynamic> params,
@@ -69,8 +71,9 @@ class ApiManager {
       apiUrl =
           '$apiUrl${needsParamSpecifier ? '?' : ''}${asQueryParams(params)}';
     }
+    final makeRequest = callType == ApiCallType.GET ? http.get : http.delete;
     final response =
-        await http.get(Uri.parse(apiUrl), headers: toStringMap(headers));
+        await makeRequest(Uri.parse(apiUrl), headers: toStringMap(headers));
     var jsonResponse;
     try {
       jsonResponse = json.decode(response.body);
@@ -158,7 +161,9 @@ class ApiManager {
     var result;
     switch (callType) {
       case ApiCallType.GET:
-        result = await getRequest(apiUrl, headers, params, returnResponse);
+      case ApiCallType.DELETE:
+        result =
+            await urlRequest(callType, apiUrl, headers, params, returnResponse);
         break;
       case ApiCallType.POST:
         result = await postRequest(

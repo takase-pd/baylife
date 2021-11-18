@@ -9,6 +9,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:bay_life/login_page/login_page_widget.dart';
 import 'package:bay_life/home_page/home_page_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,12 +54,16 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(primarySwatch: Colors.blue),
       home: initialUser == null
-          ? const Center(
-              child: SizedBox(
-                width: 50,
-                height: 50,
-                child: CircularProgressIndicator(
-                  color: FlutterFlowTheme.primaryColor,
+          ? Container(
+              color: FlutterFlowTheme.tertiaryColor,
+              child: Center(
+                child: Builder(
+                  builder: (context) => Image.asset(
+                    'assets/images/BayLifeIcon_v1.png',
+                    width: 256,
+                    height: 256,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             )

@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_web_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TermsPageWidget extends StatefulWidget {
@@ -22,7 +23,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textPrimary),
+        iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -30,7 +31,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.secondaryColor,
+            color: FlutterFlowTheme.textLight,
             size: 24,
           ),
         ),
@@ -39,7 +40,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.grayLight,
+      backgroundColor: FlutterFlowTheme.tertiaryColor,
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
@@ -56,8 +57,8 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
               child: Text(
                 '表示されない場合はこちらをクリック',
                 style: FlutterFlowTheme.bodyText2.override(
-                  fontFamily: 'Poppins',
-                  color: FlutterFlowTheme.textSecondary,
+                  fontFamily: 'Open Sans',
+                  color: FlutterFlowTheme.textDark,
                 ),
               ),
             ),

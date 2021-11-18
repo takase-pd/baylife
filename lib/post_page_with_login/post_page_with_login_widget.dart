@@ -12,6 +12,7 @@ import '../flutter_flow/upload_media.dart';
 import '../terms_page/terms_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PostPageWithLoginWidget extends StatefulWidget {
@@ -70,7 +71,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
         key: scaffoldKey,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.primaryColor,
-          iconTheme: IconThemeData(color: FlutterFlowTheme.textPrimary),
+          iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
           automaticallyImplyLeading: true,
           leading: InkWell(
             onTap: () async {
@@ -78,7 +79,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
             },
             child: Icon(
               Icons.arrow_back_ios_outlined,
-              color: FlutterFlowTheme.secondaryColor,
+              color: FlutterFlowTheme.textLight,
               size: 24,
             ),
           ),
@@ -87,7 +88,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
           centerTitle: true,
           elevation: 4,
         ),
-        backgroundColor: FlutterFlowTheme.grayLight,
+        backgroundColor: FlutterFlowTheme.tertiaryColor,
         endDrawer: Drawer(
           elevation: 16,
           child: EndDrawerWidget(),
@@ -115,8 +116,9 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                               child: SizedBox(
                                 width: 50,
                                 height: 50,
-                                child: CircularProgressIndicator(
+                                child: SpinKitPulse(
                                   color: FlutterFlowTheme.primaryColor,
+                                  size: 50,
                                 ),
                               ),
                             );
@@ -138,8 +140,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                 '投稿',
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.title1.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.textPrimary,
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.textDark,
                                 ),
                               ),
                               Padding(
@@ -148,8 +150,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                 child: Text(
                                   columnInfoInappRecord.postInfo,
                                   style: FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.textPrimary,
+                                    fontFamily: 'Open Sans',
+                                    color: FlutterFlowTheme.textDark,
                                     fontSize: 10,
                                   ),
                                 ),
@@ -160,7 +162,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                 child: Text(
                                   columnInfoInappRecord.postRule,
                                   style: FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'Open Sans',
+                                    color: FlutterFlowTheme.textDark,
                                   ),
                                 ),
                               )
@@ -179,14 +182,15 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                           Text(
                             '投稿内容',
                             style: FlutterFlowTheme.title2.override(
-                              fontFamily: 'Poppins',
-                              color: FlutterFlowTheme.textPrimary,
+                              fontFamily: 'Open Sans',
+                              color: FlutterFlowTheme.textDark,
                             ),
                           ),
                           Text(
                             '投稿に表示されます。秘密情報などは記載しないでください。',
                             style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Poppins',
+                              fontFamily: 'Open Sans',
+                              color: FlutterFlowTheme.textDark,
                             ),
                           ),
                           Padding(
@@ -200,10 +204,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -274,10 +278,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -294,10 +298,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               child: SizedBox(
                                                 width: 50,
                                                 height: 50,
-                                                child:
-                                                    CircularProgressIndicator(
+                                                child: SpinKitPulse(
                                                   color: FlutterFlowTheme
                                                       .primaryColor,
+                                                  size: 50,
                                                 ),
                                               ),
                                             );
@@ -324,7 +328,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                             textStyle: FlutterFlowTheme
                                                 .bodyText1
                                                 .override(
-                                              fontFamily: 'Poppins',
+                                              fontFamily: 'Open Sans',
                                               color: FlutterFlowTheme.textDark,
                                             ),
                                             fillColor: Colors.white,
@@ -355,10 +359,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -429,10 +433,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 120,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -512,10 +516,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 300,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -588,10 +592,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -614,7 +618,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 style: FlutterFlowTheme
                                                     .bodyText2
                                                     .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Open Sans',
                                                   color:
                                                       FlutterFlowTheme.textDark,
                                                   fontWeight: FontWeight.w500,
@@ -629,7 +633,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                   style: FlutterFlowTheme
                                                       .bodyText2
                                                       .override(
-                                                    fontFamily: 'Poppins',
+                                                    fontFamily: 'Open Sans',
                                                     color: FlutterFlowTheme
                                                         .textDark,
                                                     fontSize: 10,
@@ -688,13 +692,13 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               width: 100,
                                               height: 40,
                                               color: FlutterFlowTheme
-                                                  .secondaryDark,
+                                                  .secondaryColor,
                                               textStyle: FlutterFlowTheme
                                                   .subtitle2
                                                   .override(
                                                 fontFamily: 'Source Sans Pro',
-                                                color: FlutterFlowTheme
-                                                    .textSecondary,
+                                                color:
+                                                    FlutterFlowTheme.textLight,
                                               ),
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
@@ -723,10 +727,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -745,7 +749,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 style: FlutterFlowTheme
                                                     .bodyText2
                                                     .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Open Sans',
                                                   color:
                                                       FlutterFlowTheme.textDark,
                                                   fontWeight: FontWeight.w500,
@@ -760,7 +764,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                   style: FlutterFlowTheme
                                                       .bodyText2
                                                       .override(
-                                                    fontFamily: 'Poppins',
+                                                    fontFamily: 'Open Sans',
                                                     color: FlutterFlowTheme
                                                         .textDark,
                                                     fontWeight: FontWeight.w500,
@@ -794,13 +798,13 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               width: 100,
                                               height: 40,
                                               color: FlutterFlowTheme
-                                                  .secondaryDark,
+                                                  .secondaryColor,
                                               textStyle: FlutterFlowTheme
                                                   .subtitle2
                                                   .override(
-                                                fontFamily: 'Poppins',
-                                                color: FlutterFlowTheme
-                                                    .textSecondary,
+                                                fontFamily: 'Open Sans',
+                                                color:
+                                                    FlutterFlowTheme.textLight,
                                               ),
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
@@ -829,10 +833,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -851,7 +855,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 style: FlutterFlowTheme
                                                     .bodyText2
                                                     .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Open Sans',
                                                   color:
                                                       FlutterFlowTheme.textDark,
                                                   fontWeight: FontWeight.w500,
@@ -866,7 +870,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                   style: FlutterFlowTheme
                                                       .bodyText2
                                                       .override(
-                                                    fontFamily: 'Poppins',
+                                                    fontFamily: 'Open Sans',
                                                     color: FlutterFlowTheme
                                                         .textDark,
                                                     fontWeight: FontWeight.w500,
@@ -900,13 +904,13 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               width: 100,
                                               height: 40,
                                               color: FlutterFlowTheme
-                                                  .secondaryDark,
+                                                  .secondaryColor,
                                               textStyle: FlutterFlowTheme
                                                   .subtitle2
                                                   .override(
-                                                fontFamily: 'Poppins',
-                                                color: FlutterFlowTheme
-                                                    .textSecondary,
+                                                fontFamily: 'Open Sans',
+                                                color:
+                                                    FlutterFlowTheme.textLight,
                                               ),
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
@@ -935,10 +939,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -1018,10 +1022,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -1086,10 +1090,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -1160,10 +1164,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -1238,8 +1242,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                               Text(
                                 '投稿者情報',
                                 style: FlutterFlowTheme.title2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.textPrimary,
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.textDark,
                                 ),
                               )
                             ],
@@ -1247,7 +1251,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                           Text(
                             '投稿には表示されません。管理者から投稿の確認、連絡などに使用します。',
                             style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Poppins',
+                              fontFamily: 'Open Sans',
+                              color: FlutterFlowTheme.textDark,
                             ),
                           ),
                           Padding(
@@ -1261,10 +1266,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -1275,7 +1280,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           currentUserDisplayName,
                                           style: FlutterFlowTheme.bodyText2
                                               .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.textDark,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -1298,10 +1303,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -1312,7 +1317,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           currentUserEmail,
                                           style: FlutterFlowTheme.bodyText2
                                               .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.textDark,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -1335,10 +1340,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -1403,10 +1408,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -1470,10 +1475,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     width: 330,
                                     height: 200,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.background,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: FlutterFlowTheme.secondaryColor,
                                       ),
                                     ),
                                     child: Padding(
@@ -1549,7 +1554,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                             child: Text(
                               '＊利用規約に従い投稿します。',
                               style: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
+                                fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.textDark,
                               ),
                             ),
@@ -1564,11 +1569,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                               title: Text(
                                 '上記内容に同意',
                                 style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Open Sans',
                                   color: FlutterFlowTheme.textDark,
                                 ),
                               ),
-                              tileColor: FlutterFlowTheme.grayLight,
                               dense: false,
                               controlAffinity: ListTileControlAffinity.trailing,
                             ),
@@ -1650,12 +1654,12 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         options: FFButtonOptions(
                                           width: 140,
                                           height: 60,
-                                          color: FlutterFlowTheme.secondaryDark,
+                                          color:
+                                              FlutterFlowTheme.secondaryColor,
                                           textStyle: FlutterFlowTheme.subtitle2
                                               .override(
                                             fontFamily: 'Montserrat',
-                                            color:
-                                                FlutterFlowTheme.textSecondary,
+                                            color: FlutterFlowTheme.textLight,
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
                                           ),
