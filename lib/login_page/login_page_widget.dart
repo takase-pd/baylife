@@ -1,13 +1,14 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../post_page/post_page_widget.dart';
 import '../post_page_with_login/post_page_with_login_widget.dart';
 import '../terms_page/terms_page_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -54,7 +55,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textPrimary),
+        iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -62,7 +63,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.secondaryColor,
+            color: FlutterFlowTheme.textLight,
             size: 24,
           ),
         ),
@@ -71,7 +72,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.grayLight,
+      backgroundColor: FlutterFlowTheme.tertiaryColor,
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
@@ -82,7 +83,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
         child: Column(
           children: [
             TabBar(
-              labelColor: FlutterFlowTheme.textPrimary,
+              labelColor: FlutterFlowTheme.textDark,
+              unselectedLabelColor: FlutterFlowTheme.textDark,
+              labelStyle: GoogleFonts.getFont(
+                'Roboto',
+              ),
               indicatorColor: FlutterFlowTheme.secondaryColor,
               tabs: [
                 Tab(
@@ -113,9 +118,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   width: 230,
                                   height: 50,
                                   decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.primaryColor,
+                                      color: FlutterFlowTheme.secondaryColor,
                                     ),
                                   ),
                                   child: Padding(
@@ -128,13 +134,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         labelText: 'メールアドレス',
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.textDark,
                                         ),
                                         hintText: 'メールアドレスを入力',
                                         hintStyle:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.textDark,
                                         ),
                                         enabledBorder: UnderlineInputBorder(
@@ -160,7 +166,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       ),
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.textDark,
                                       ),
                                       keyboardType: TextInputType.emailAddress,
@@ -175,9 +181,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   width: 230,
                                   height: 50,
                                   decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.primaryColor,
+                                      color: FlutterFlowTheme.secondaryColor,
                                     ),
                                   ),
                                   child: Padding(
@@ -190,13 +197,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         labelText: 'パスワード',
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.textDark,
                                         ),
                                         hintText: 'パスワードを入力',
                                         hintStyle:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.textDark,
                                         ),
                                         enabledBorder: UnderlineInputBorder(
@@ -235,7 +242,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       ),
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.textDark,
                                       ),
                                       keyboardType:
@@ -260,7 +267,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => PostPageWidget(),
+                                        builder: (context) =>
+                                            PostPageWithLoginWidget(),
                                       ),
                                     );
                                   } finally {
@@ -440,7 +448,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   child: Text(
                                     '利用規約',
                                     style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.textDark,
                                     ),
                                   ),
                                 ),
@@ -456,7 +465,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   child: Text(
                                     'プライバシーポリシー',
                                     style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.textDark,
                                     ),
                                   ),
                                 ),
@@ -484,9 +494,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   width: 230,
                                   height: 50,
                                   decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.primaryColor,
+                                      color: FlutterFlowTheme.secondaryColor,
                                     ),
                                   ),
                                   child: Padding(
@@ -499,13 +510,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         labelText: 'メールアドレス',
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.textDark,
                                         ),
                                         hintText: 'メールアドレスを入力',
                                         hintStyle:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.textDark,
                                         ),
                                         enabledBorder: UnderlineInputBorder(
@@ -531,7 +542,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       ),
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.textDark,
                                       ),
                                       keyboardType: TextInputType.emailAddress,
@@ -546,9 +557,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   width: 230,
                                   height: 50,
                                   decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.primaryColor,
+                                      color: FlutterFlowTheme.secondaryColor,
                                     ),
                                   ),
                                   child: Padding(
@@ -561,13 +573,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         labelText: 'パスワード',
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.textDark,
                                         ),
                                         hintText: 'パスワードを入力',
                                         hintStyle:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.textDark,
                                         ),
                                         enabledBorder: UnderlineInputBorder(
@@ -606,7 +618,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       ),
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.textDark,
                                       ),
                                       keyboardType:
@@ -622,9 +634,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   width: 230,
                                   height: 50,
                                   decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.primaryColor,
+                                      color: FlutterFlowTheme.secondaryColor,
                                     ),
                                   ),
                                   child: Padding(
@@ -637,13 +650,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         labelText: 'パスワード',
                                         labelStyle:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.textDark,
                                         ),
                                         hintText: 'パスワードを再入力',
                                         hintStyle:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.textDark,
                                         ),
                                         enabledBorder: UnderlineInputBorder(
@@ -682,7 +695,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       ),
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.textDark,
                                       ),
                                       keyboardType:
@@ -717,10 +730,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       return;
                                     }
 
+                                    final usersCreateData =
+                                        createUsersRecordData(
+                                      email: emailController2.text,
+                                    );
+                                    await UsersRecord.collection
+                                        .doc(user.uid)
+                                        .update(usersCreateData);
+
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => PostPageWidget(),
+                                        builder: (context) =>
+                                            PostPageWithLoginWidget(),
                                       ),
                                     );
                                   } finally {
@@ -778,7 +800,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  PostPageWidget(),
+                                                  PostPageWithLoginWidget(),
                                             ),
                                           );
                                         } finally {
@@ -888,7 +910,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               Text(
                                 'ユーザー登録完了時に以下に同意したものとみなします。',
                                 style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.textDark,
                                 ),
                               ),
                               Padding(
@@ -906,7 +929,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   child: Text(
                                     '利用規約',
                                     style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.textDark,
                                     ),
                                   ),
                                 ),
@@ -922,7 +946,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   child: Text(
                                     'プライバシーポリシー',
                                     style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.textDark,
                                     ),
                                   ),
                                 ),

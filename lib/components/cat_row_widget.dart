@@ -3,6 +3,7 @@ import '../category_page/category_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CatRowWidget extends StatefulWidget {
@@ -29,8 +30,9 @@ class _CatRowWidgetState extends State<CatRowWidget> {
               child: SizedBox(
                 width: 50,
                 height: 50,
-                child: CircularProgressIndicator(
+                child: SpinKitPulse(
                   color: FlutterFlowTheme.primaryColor,
+                  size: 50,
                 ),
               ),
             );
@@ -59,7 +61,8 @@ class _CatRowWidgetState extends State<CatRowWidget> {
                     child: Text(
                       rowCategoriesRecord.catName,
                       style: FlutterFlowTheme.title3.override(
-                        fontFamily: 'Poppins',
+                        fontFamily: 'Open Sans',
+                        color: FlutterFlowTheme.textDark,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
