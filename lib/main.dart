@@ -56,10 +56,14 @@ class _MyAppState extends State<MyApp> {
       home: initialUser == null
           ? Container(
               color: FlutterFlowTheme.tertiaryColor,
-              child: Builder(
-                builder: (context) => Image.asset(
-                  'assets/images/BayLifeIcon_v1.png',
-                  fit: BoxFit.contain,
+              child: Center(
+                child: Builder(
+                  builder: (context) => Image.asset(
+                    'assets/images/BayLifeIcon_v1.png',
+                    width: 256,
+                    height: 256,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             )
