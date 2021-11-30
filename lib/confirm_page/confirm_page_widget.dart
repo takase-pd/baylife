@@ -14,7 +14,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ConfirmPageWidget extends StatefulWidget {
-  ConfirmPageWidget({
+  const ConfirmPageWidget({
     Key key,
     this.catName,
     this.catNameAdd,
