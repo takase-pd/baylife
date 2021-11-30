@@ -12,7 +12,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CategoryPageWidget extends StatefulWidget {
-  CategoryPageWidget({
+  const CategoryPageWidget({
     Key key,
     this.catRef,
   }) : super(key: key);

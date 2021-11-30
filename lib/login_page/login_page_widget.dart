@@ -13,7 +13,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPageWidget extends StatefulWidget {
-  LoginPageWidget({Key key}) : super(key: key);
+  const LoginPageWidget({Key key}) : super(key: key);
 
   @override
   _LoginPageWidgetState createState() => _LoginPageWidgetState();
@@ -22,15 +22,15 @@ class LoginPageWidget extends StatefulWidget {
 class _LoginPageWidgetState extends State<LoginPageWidget> {
   TextEditingController confirmPasswordController;
   bool confirmPasswordVisibility;
+  TextEditingController createPasswordController;
+  bool createPasswordVisibility;
   TextEditingController emailController2;
-  TextEditingController passwordController2;
-  bool passwordVisibility2;
   bool _loadingButton4 = false;
   bool _loadingButton5 = false;
   bool _loadingButton6 = false;
   TextEditingController emailController1;
-  TextEditingController passwordController1;
-  bool passwordVisibility1;
+  TextEditingController passwordController;
+  bool passwordVisibility;
   bool _loadingButton1 = false;
   bool _loadingButton2 = false;
   bool _loadingButton3 = false;
@@ -41,12 +41,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     super.initState();
     confirmPasswordController = TextEditingController();
     confirmPasswordVisibility = false;
+    createPasswordController = TextEditingController();
+    createPasswordVisibility = false;
     emailController2 = TextEditingController();
-    passwordController2 = TextEditingController();
-    passwordVisibility2 = false;
     emailController1 = TextEditingController();
-    passwordController1 = TextEditingController();
-    passwordVisibility1 = false;
+    passwordController = TextEditingController();
+    passwordVisibility = false;
   }
 
   @override
@@ -191,8 +191,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 10, 0),
                                     child: TextFormField(
-                                      controller: passwordController1,
-                                      obscureText: !passwordVisibility1,
+                                      controller: passwordController,
+                                      obscureText: !passwordVisibility,
                                       decoration: InputDecoration(
                                         labelText: 'パスワード',
                                         labelStyle:
@@ -228,11 +228,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         ),
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
-                                            () => passwordVisibility1 =
-                                                !passwordVisibility1,
+                                            () => passwordVisibility =
+                                                !passwordVisibility,
                                           ),
                                           child: Icon(
-                                            passwordVisibility1
+                                            passwordVisibility
                                                 ? Icons.visibility_outlined
                                                 : Icons.visibility_off_outlined,
                                             color: Color(0xFF757575),
@@ -258,7 +258,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     final user = await signInWithEmail(
                                       context,
                                       emailController1.text,
-                                      passwordController1.text,
+                                      passwordController.text,
                                     );
                                     if (user == null) {
                                       return;
@@ -567,8 +567,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 10, 0),
                                     child: TextFormField(
-                                      controller: passwordController2,
-                                      obscureText: !passwordVisibility2,
+                                      controller: createPasswordController,
+                                      obscureText: !createPasswordVisibility,
                                       decoration: InputDecoration(
                                         labelText: 'パスワード',
                                         labelStyle:
@@ -604,11 +604,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         ),
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
-                                            () => passwordVisibility2 =
-                                                !passwordVisibility2,
+                                            () => createPasswordVisibility =
+                                                !createPasswordVisibility,
                                           ),
                                           child: Icon(
-                                            passwordVisibility2
+                                            createPasswordVisibility
                                                 ? Icons.visibility_outlined
                                                 : Icons.visibility_off_outlined,
                                             color: Color(0xFF757575),
@@ -708,7 +708,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 onPressed: () async {
                                   setState(() => _loadingButton4 = true);
                                   try {
-                                    if (passwordController1.text !=
+                                    if (createPasswordController.text !=
                                         confirmPasswordController.text) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -724,7 +724,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     final user = await createAccountWithEmail(
                                       context,
                                       emailController1.text,
-                                      passwordController1.text,
+                                      createPasswordController.text,
                                     );
                                     if (user == null) {
                                       return;
@@ -908,7 +908,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Text(
-                                'ユーザー登録完了時に以下に同意したものとみなします。',
+                                '以下の利用規約、プライバシーポリシーに同意の上、ご登録ください。',
                                 style: FlutterFlowTheme.bodyText1.override(
                                   fontFamily: 'Open Sans',
                                   color: FlutterFlowTheme.textDark,
