@@ -22,13 +22,13 @@ class LoginPageWidget extends StatefulWidget {
 class _LoginPageWidgetState extends State<LoginPageWidget> {
   TextEditingController confirmPasswordController;
   bool confirmPasswordVisibility;
+  TextEditingController createEmailController;
   TextEditingController createPasswordController;
   bool createPasswordVisibility;
-  TextEditingController emailController2;
   bool _loadingButton4 = false;
   bool _loadingButton5 = false;
   bool _loadingButton6 = false;
-  TextEditingController emailController1;
+  TextEditingController emailController;
   TextEditingController passwordController;
   bool passwordVisibility;
   bool _loadingButton1 = false;
@@ -41,10 +41,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     super.initState();
     confirmPasswordController = TextEditingController();
     confirmPasswordVisibility = false;
+    createEmailController = TextEditingController();
     createPasswordController = TextEditingController();
     createPasswordVisibility = false;
-    emailController2 = TextEditingController();
-    emailController1 = TextEditingController();
+    emailController = TextEditingController();
     passwordController = TextEditingController();
     passwordVisibility = false;
   }
@@ -128,7 +128,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 10, 0),
                                     child: TextFormField(
-                                      controller: emailController1,
+                                      controller: emailController,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'メールアドレス',
@@ -257,7 +257,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   try {
                                     final user = await signInWithEmail(
                                       context,
-                                      emailController1.text,
+                                      emailController.text,
                                       passwordController.text,
                                     );
                                     if (user == null) {
@@ -504,7 +504,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 10, 0),
                                     child: TextFormField(
-                                      controller: emailController2,
+                                      controller: createEmailController,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'メールアドレス',
@@ -723,7 +723,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
                                     final user = await createAccountWithEmail(
                                       context,
-                                      emailController1.text,
+                                      createEmailController.text,
                                       createPasswordController.text,
                                     );
                                     if (user == null) {
@@ -732,7 +732,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
                                     final usersCreateData =
                                         createUsersRecordData(
-                                      email: emailController2.text,
+                                      email: createEmailController.text,
                                     );
                                     await UsersRecord.collection
                                         .doc(user.uid)
