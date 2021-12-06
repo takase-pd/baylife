@@ -65,6 +65,7 @@ jobs:
       - name: Upload to Google Play Console
         if: github.ref == 'refs/heads/main'
         run: ./gradlew publishBundle
+        working-directory: ./android
 
       - name: Slack Notification on Success
         if: success()
