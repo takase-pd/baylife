@@ -1,7 +1,8 @@
-name: CI Develop for Android
+name: CI for Android
 on:
   push:
     branches:
+      - main
       - preview
 
 jobs:
@@ -47,10 +48,10 @@ jobs:
           name: android
           path: ./build/app/outputs/bundle/release/app-release.aab
 
-      # - name: Download artifact
-      #   uses: actions/download-artifact@v2
-      #   with:
-      #     name: android
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: android
 
       # - name: Firebase App Distribution for Preview
       #   if: github.ref == 'refs/heads/preview'
@@ -61,12 +62,17 @@ jobs:
       #     groups: Admin
       #     file: app-release.aab
 
+      - name: Upload to Google Play Console
+        if: github.ref == 'refs/heads/main'
+        run: ./gradlew publishReleaseBundle
+        working-directory: ./android
+
       - name: Slack Notification on Success
         if: success()
         uses: rtCamp/action-slack-notify@v2.0.2
         env:
           SLACK_CHANNEL: build_app
-          SLACK_TITLE: Build Success! Pre MAKUHARI Bay Life
+          SLACK_TITLE: Build Success! MAKUHARI Bay Life
           SLACK_COLOR: good
 
       - name: Slack Notification on Failure
@@ -74,5 +80,5 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.0.2
         env:
           SLACK_CHANNEL: build_app
-          SLACK_TITLE: Build Failure Pre MAKUHARI Bay Life
+          SLACK_TITLE: Build Failure MAKUHARI Bay Life
           SLACK_COLOR: danger
