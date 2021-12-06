@@ -42,11 +42,11 @@ jobs:
       - name: Building Android AppBundle
         run: flutter build appbundle --build-number=${GITHUB_RUN_NUMBER}
 
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: android
-      #     path: ./build/app/outputs/bundle/release/app-release.aab
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: android
+          path: ./build/app/outputs/bundle/release/app-release.aab
 
       # - name: Download artifact
       #   uses: actions/download-artifact@v2
@@ -62,10 +62,10 @@ jobs:
       #     groups: Admin
       #     file: app-release.aab
 
-      - name: Upload to Google Play Console
-        if: github.ref == 'refs/heads/main'
-        run: ./gradlew publishBundle
-        working-directory: ./android
+      # - name: Upload to Google Play Console
+      #   if: github.ref == 'refs/heads/main'
+      #   run: ./gradlew publishReleaseBundle
+      #   working-directory: ./android
 
       - name: Slack Notification on Success
         if: success()

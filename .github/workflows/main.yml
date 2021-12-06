@@ -2,7 +2,7 @@ name: CI Delivery
 on:
   push:
     branches:
-      # - main
+      - main
 
 jobs:
   build_iOS:
