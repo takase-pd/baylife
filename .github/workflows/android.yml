@@ -62,14 +62,14 @@ jobs:
       #     groups: Admin
       #     file: app-release.aab
 
-      - name: Check tasks
-        run: ./gradlew tasks
-        working-directory: ./android
-
-      # - name: Upload to Google Play Console
-      #   if: github.ref == 'refs/heads/preview'
-      #   run: ./gradlew publishReleaseBundle
+      # - name: Check tasks
+      #   run: ./gradlew tasks
       #   working-directory: ./android
+
+      - name: Upload to Google Play Console
+        if: github.ref == 'refs/heads/preview'
+        run: ./gradlew publishReleaseBundle
+        working-directory: ./android
 
       - name: Slack Notification on Success
         if: success()
