@@ -31,7 +31,7 @@
 .pub/
 /build/
 
-# Firebase – this is necessary if you use Firebase since it could otherwise 
+# Firebase – this is necessary if you use Firebase since it could otherwise
 # lead to leaking of private certificates to your repository, which is no bueno.
 .firebase/
 
@@ -115,7 +115,10 @@ node_modules/
 # dotenv environment variables file
 .env
 gitignore
+
 pubspec.lock
 android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
 ios/Runner/GeneratedPluginRegistrant.h
 ios/Runner/GeneratedPluginRegistrant.m
+android/release.keystore
+android/service-account-key.json
