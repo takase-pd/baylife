@@ -42,11 +42,11 @@ jobs:
       - name: Building Android AppBundle
         run: flutter build appbundle --build-number=${GITHUB_RUN_NUMBER}
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: android
-          path: ./build/app/outputs/bundle/release/app-release.aab
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: android
+      #     path: ./build/app/outputs/bundle/release/app-release.aab
 
       # - name: Download artifact
       #   uses: actions/download-artifact@v2
@@ -61,6 +61,9 @@ jobs:
       #     token: ${{ secrets.FIREBASE_TOKEN }}
       #     groups: Admin
       #     file: app-release.aab
+
+      - name: Check tasks
+        run: ./gradlew tasks
 
       # - name: Upload to Google Play Console
       #   if: github.ref == 'refs/heads/main'
