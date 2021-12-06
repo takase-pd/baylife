@@ -42,16 +42,16 @@ jobs:
       - name: Building Android AppBundle
         run: flutter build appbundle --build-number=${GITHUB_RUN_NUMBER}
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: android
-          path: ./build/app/outputs/bundle/release/app-release.aab
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: android
+      #     path: ./build/app/outputs/bundle/release/app-release.aab
 
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: android
+      # - name: Download artifact
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: android
 
       # - name: Firebase App Distribution for Preview
       #   if: github.ref == 'refs/heads/preview'
