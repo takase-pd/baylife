@@ -25,15 +25,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   TextEditingController createEmailController;
   TextEditingController createPasswordController;
   bool createPasswordVisibility;
-  bool _loadingButton4 = false;
-  bool _loadingButton5 = false;
-  bool _loadingButton6 = false;
   TextEditingController emailController;
   TextEditingController passwordController;
   bool passwordVisibility;
-  bool _loadingButton1 = false;
-  bool _loadingButton2 = false;
-  bool _loadingButton3 = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -116,7 +110,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
-                                  height: 50,
+                                  height: 56,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
@@ -179,7 +173,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
-                                  height: 50,
+                                  height: 56,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
@@ -253,27 +247,22 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  setState(() => _loadingButton1 = true);
-                                  try {
-                                    final user = await signInWithEmail(
-                                      context,
-                                      emailController.text,
-                                      passwordController.text,
-                                    );
-                                    if (user == null) {
-                                      return;
-                                    }
-
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            PostPageWithLoginWidget(),
-                                      ),
-                                    );
-                                  } finally {
-                                    setState(() => _loadingButton1 = false);
+                                  final user = await signInWithEmail(
+                                    context,
+                                    emailController.text,
+                                    passwordController.text,
+                                  );
+                                  if (user == null) {
+                                    return;
                                   }
+
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          PostPageWithLoginWidget(),
+                                    ),
+                                  );
                                 },
                                 text: 'Sign in with  Email',
                                 icon: Icon(
@@ -296,7 +285,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   borderRadius: 12,
                                 ),
-                                loading: _loadingButton1,
                               )
                             ],
                           ),
@@ -315,24 +303,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        setState(() => _loadingButton2 = true);
-                                        try {
-                                          final user =
-                                              await signInWithGoogle(context);
-                                          if (user == null) {
-                                            return;
-                                          }
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  PostPageWithLoginWidget(),
-                                            ),
-                                          );
-                                        } finally {
-                                          setState(
-                                              () => _loadingButton2 = false);
+                                        final user =
+                                            await signInWithGoogle(context);
+                                        if (user == null) {
+                                          return;
                                         }
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                PostPageWithLoginWidget(),
+                                          ),
+                                        );
                                       },
                                       text: 'Sign in with Google',
                                       icon: Icon(
@@ -356,7 +338,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         ),
                                         borderRadius: 12,
                                       ),
-                                      loading: _loadingButton2,
                                     ),
                                   ),
                                   Align(
@@ -386,23 +367,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    setState(() => _loadingButton3 = true);
-                                    try {
-                                      final user =
-                                          await signInWithApple(context);
-                                      if (user == null) {
-                                        return;
-                                      }
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              PostPageWithLoginWidget(),
-                                        ),
-                                      );
-                                    } finally {
-                                      setState(() => _loadingButton3 = false);
+                                    final user = await signInWithApple(context);
+                                    if (user == null) {
+                                      return;
                                     }
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            PostPageWithLoginWidget(),
+                                      ),
+                                    );
                                   },
                                   text: 'Sign in with Apple',
                                   icon: FaIcon(
@@ -425,7 +400,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                     borderRadius: 12,
                                   ),
-                                  loading: _loadingButton3,
                                 ),
                               ),
                         Padding(
@@ -492,7 +466,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
-                                  height: 50,
+                                  height: 56,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
@@ -555,7 +529,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
-                                  height: 50,
+                                  height: 56,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
@@ -632,7 +606,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
-                                  height: 50,
+                                  height: 56,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
@@ -706,48 +680,41 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  setState(() => _loadingButton4 = true);
-                                  try {
-                                    if (createPasswordController.text !=
-                                        confirmPasswordController.text) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            "Passwords don't match!",
-                                          ),
+                                  if (createPasswordController.text !=
+                                      confirmPasswordController.text) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          "Passwords don't match!",
                                         ),
-                                      );
-                                      return;
-                                    }
-
-                                    final user = await createAccountWithEmail(
-                                      context,
-                                      createEmailController.text,
-                                      createPasswordController.text,
-                                    );
-                                    if (user == null) {
-                                      return;
-                                    }
-
-                                    final usersCreateData =
-                                        createUsersRecordData(
-                                      email: createEmailController.text,
-                                    );
-                                    await UsersRecord.collection
-                                        .doc(user.uid)
-                                        .update(usersCreateData);
-
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            PostPageWithLoginWidget(),
                                       ),
                                     );
-                                  } finally {
-                                    setState(() => _loadingButton4 = false);
+                                    return;
                                   }
+
+                                  final user = await createAccountWithEmail(
+                                    context,
+                                    createEmailController.text,
+                                    createPasswordController.text,
+                                  );
+                                  if (user == null) {
+                                    return;
+                                  }
+
+                                  final usersCreateData = createUsersRecordData(
+                                    email: createEmailController.text,
+                                  );
+                                  await UsersRecord.collection
+                                      .doc(user.uid)
+                                      .update(usersCreateData);
+
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          PostPageWithLoginWidget(),
+                                    ),
+                                  );
                                 },
                                 text: 'Sign up with  Email',
                                 icon: Icon(
@@ -770,7 +737,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   borderRadius: 12,
                                 ),
-                                loading: _loadingButton4,
                               )
                             ],
                           ),
@@ -789,24 +755,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        setState(() => _loadingButton5 = true);
-                                        try {
-                                          final user =
-                                              await signInWithGoogle(context);
-                                          if (user == null) {
-                                            return;
-                                          }
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  PostPageWithLoginWidget(),
-                                            ),
-                                          );
-                                        } finally {
-                                          setState(
-                                              () => _loadingButton5 = false);
+                                        final user =
+                                            await signInWithGoogle(context);
+                                        if (user == null) {
+                                          return;
                                         }
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                PostPageWithLoginWidget(),
+                                          ),
+                                        );
                                       },
                                       text: 'Sign up with Google',
                                       icon: Icon(
@@ -830,7 +790,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         ),
                                         borderRadius: 12,
                                       ),
-                                      loading: _loadingButton5,
                                     ),
                                   ),
                                   Align(
@@ -860,23 +819,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    setState(() => _loadingButton6 = true);
-                                    try {
-                                      final user =
-                                          await signInWithApple(context);
-                                      if (user == null) {
-                                        return;
-                                      }
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              PostPageWithLoginWidget(),
-                                        ),
-                                      );
-                                    } finally {
-                                      setState(() => _loadingButton6 = false);
+                                    final user = await signInWithApple(context);
+                                    if (user == null) {
+                                      return;
                                     }
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            PostPageWithLoginWidget(),
+                                      ),
+                                    );
                                   },
                                   text: 'Sign up with Apple',
                                   icon: FaIcon(
@@ -899,7 +852,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                     borderRadius: 12,
                                   ),
-                                  loading: _loadingButton6,
                                 ),
                               ),
                         Padding(
