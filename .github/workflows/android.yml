@@ -54,8 +54,17 @@ jobs:
       #   with:
       #     name: android
 
-      - name: Firebase App Distribution for Preview
+      - name: Firebase App Distribution for Develop
         if: github.ref == 'refs/heads/develop'
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID_ANDROID_DEV }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          groups: Admin
+          file: ./build/app/outputs/bundle/release/app-release.aab
+
+      - name: Firebase App Distribution for Preview
+        if: github.ref == 'refs/heads/preview'
         uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
         with:
           appId: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
@@ -64,7 +73,7 @@ jobs:
           file: ./build/app/outputs/bundle/release/app-release.aab
 
       - name: Upload to Google Play Console
-        if: github.ref == 'refs/heads/preview'
+        if: github.ref == 'refs/heads/main'
         run: ./gradlew publishReleaseBundle
         working-directory: ./android
 
