@@ -60,8 +60,6 @@ class ConfirmPageWidget extends StatefulWidget {
 }
 
 class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
-  bool _loadingButton1 = false;
-  bool _loadingButton2 = false;
   bool checkboxListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -852,14 +850,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          setState(
-                                              () => _loadingButton1 = true);
-                                          try {
-                                            Navigator.pop(context);
-                                          } finally {
-                                            setState(
-                                                () => _loadingButton1 = false);
-                                          }
+                                          Navigator.pop(context);
                                         },
                                         text: '戻る',
                                         options: FFButtonOptions(
@@ -880,7 +871,6 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                           ),
                                           borderRadius: 8,
                                         ),
-                                        loading: _loadingButton1,
                                       ),
                                     ),
                                   ),
@@ -940,70 +930,61 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                               AlignmentDirectional(0.95, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              setState(
-                                                  () => _loadingButton2 = true);
-                                              try {
-                                                await registContentsCall(
-                                                  catName: widget.catName,
-                                                  catNameAdd: widget.catNameAdd,
-                                                  title: widget.title,
-                                                  overview: functions
-                                                      .getMultilineText(
-                                                          widget.overview),
-                                                  detail: functions
-                                                      .getMultilineText(
-                                                          widget.detail),
-                                                  organizer: widget.organizer,
-                                                  contact: widget.contact,
-                                                  homepage: widget.homepage,
-                                                  postName: widget.postName,
-                                                  postEmail: widget.postEmail,
-                                                  postPhone: widget.postPhone,
-                                                  postOccupation:
-                                                      widget.postOccupation,
-                                                  permission: widget.permission,
-                                                  address: widget.address,
-                                                  startDay: dateTimeFormat(
-                                                      'yMMMd', widget.startDay),
-                                                  finalDay: dateTimeFormat(
-                                                      'yMMMd', widget.finalDay),
-                                                  filePath: widget.filePath,
-                                                  postRemarks:
-                                                      widget.postRemarks,
-                                                  uid: currentUserUid,
-                                                );
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text('送信完了'),
-                                                      content: Text(
-                                                          '投稿ありがとうございます。投稿内容を審査しますので、お待ち下さい。'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('OK'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                                await Navigator
-                                                    .pushAndRemoveUntil(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        PostPageWithLoginWidget(),
-                                                  ),
-                                                  (r) => false,
-                                                );
-                                              } finally {
-                                                setState(() =>
-                                                    _loadingButton2 = false);
-                                              }
+                                              await registContentsCall(
+                                                catName: widget.catName,
+                                                catNameAdd: widget.catNameAdd,
+                                                title: widget.title,
+                                                overview:
+                                                    functions.getMultilineText(
+                                                        widget.overview),
+                                                detail:
+                                                    functions.getMultilineText(
+                                                        widget.detail),
+                                                organizer: widget.organizer,
+                                                contact: widget.contact,
+                                                homepage: widget.homepage,
+                                                postName: widget.postName,
+                                                postEmail: widget.postEmail,
+                                                postPhone: widget.postPhone,
+                                                postOccupation:
+                                                    widget.postOccupation,
+                                                permission: widget.permission,
+                                                address: widget.address,
+                                                startDay: dateTimeFormat(
+                                                    'yMMMd', widget.startDay),
+                                                finalDay: dateTimeFormat(
+                                                    'yMMMd', widget.finalDay),
+                                                filePath: widget.filePath,
+                                                postRemarks: widget.postRemarks,
+                                                uid: currentUserUid,
+                                              );
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text('送信完了'),
+                                                    content: Text(
+                                                        '投稿ありがとうございます。投稿内容を審査しますので、お待ち下さい。'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('OK'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                              await Navigator
+                                                  .pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PostPageWithLoginWidget(),
+                                                ),
+                                                (r) => false,
+                                              );
                                             },
                                             text: '送信',
                                             options: FFButtonOptions(
@@ -1027,7 +1008,6 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                               ),
                                               borderRadius: 8,
                                             ),
-                                            loading: _loadingButton2,
                                           ),
                                         ),
                                       );
