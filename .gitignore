@@ -117,3 +117,5 @@ node_modules/
 gitignore
 
 android/release.jks
+android/release.keystore
+android/service-account-key.json

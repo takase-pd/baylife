@@ -27,7 +27,7 @@ service cloud.firestore {
         allow read: if true;
       }
     }
-    
+
     function userDoc() {
       return /databases/$(database)/documents/users/$(request.auth.uid);
     }
@@ -40,37 +40,38 @@ service cloud.firestore {
     // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
     // security rules for this collection before publishing your app.
     match /categories/{id} {
-      allow read, write: if true;
+      allow read: if true;
     }
 
     // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
     // security rules for this collection before publishing your app.
     match /info_admin/{id} {
-      allow read, write: if true;
+      allow read: if true;
     }
 
     // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
     // security rules for this collection before publishing your app.
     match /cat_dd/{id} {
-      allow read, write: if true;
+      allow read: if true;
     }
 
     // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
     // security rules for this collection before publishing your app.
     match /contents/{id} {
-      allow read, write: if true;
+      allow read: if true;
+      allow create: if request.auth != null;
     }
 
     // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
     // security rules for this collection before publishing your app.
     match /info_inapp/{id} {
-      allow read, write: if true;
+      allow read: if true;
     }
 
     // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
     // security rules for this collection before publishing your app.
     match /logoname/{id} {
-      allow read, write: if true;
+      allow read: if true;
     }
   }
 }
