@@ -72,8 +72,6 @@ android {
 
     play {
         serviceAccountCredentials = rootProject.file (keystoreProperties['serviceAccountFile'])
-        // defaultToAppBundles.set(true)
-        releaseStatus.set(ReleaseStatus.DRAFT)
     }
 }
 
