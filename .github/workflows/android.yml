@@ -1,0 +1,85 @@
+name: CI for Android
+on:
+  push:
+    branches:
+      - main
+      - preview
+      - develop
+
+jobs:
+  build_Android:
+    name: Build for Android
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+    steps:
+      - name: Checks-out my repository
+        uses: actions/checkout@v2
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version:  '2.2.3'
+
+      - name: Download Flutter packages
+        run: flutter pub get
+      - run: flutter packages pub run build_runner build --delete-conflicting-outputs
+
+      - name: Create release.keystore
+        run: echo -n ${{ secrets.ANDROID_KEY_STORE }} | base64 -d > android/release.keystore
+
+      - name: Create service-account-key.json
+        run: echo -n ${{ secrets.SERVICE_ACCOUNT_KEY_JSON }} | base64 -d > android/service-account-key.json
+
+      - name: Create key.properties
+        run: |
+          echo 'storeFile=release.keystore' > android/key.properties
+          echo 'serviceAccountFile=service-account-key.json' >> android/key.properties
+          echo 'storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}' >> android/key.properties
+          echo 'keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}' >> android/key.properties
+          echo 'keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}' >> android/key.properties
+
+      - name: Building Android AppBundle
+        run: flutter build appbundle --build-number=${GITHUB_RUN_NUMBER}
+
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: android
+      #     path: ./build/app/outputs/bundle/release/app-release.aab
+
+      # - name: Download artifact
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: android
+
+      - name: Firebase App Distribution for Preview
+        if: github.ref == 'refs/heads/develop'
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          groups: Admin
+          file: ./build/app/outputs/bundle/release/app-release.aab
+
+      - name: Upload to Google Play Console
+        if: github.ref == 'refs/heads/preview'
+        run: ./gradlew publishReleaseBundle
+        working-directory: ./android
+
+      - name: Slack Notification on Success
+        if: success()
+        uses: rtCamp/action-slack-notify@v2.0.2
+        env:
+          SLACK_CHANNEL: build_app
+          SLACK_TITLE: Build Success! MAKUHARI Bay Life
+          SLACK_COLOR: good
+
+      - name: Slack Notification on Failure
+        if: failure()
+        uses: rtCamp/action-slack-notify@v2.0.2
+        env:
+          SLACK_CHANNEL: build_app
+          SLACK_TITLE: Build Failure MAKUHARI Bay Life
+          SLACK_COLOR: danger
