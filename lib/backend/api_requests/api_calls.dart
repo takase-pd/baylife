@@ -1,6 +1,8 @@
 import 'api_manager.dart';
 
-Future<dynamic> registContentsCall({
+export 'api_manager.dart' show ApiCallResponse;
+
+Future<ApiCallResponse> registContentsCall({
   String catName = 'デフォルト',
   String catNameAdd = '',
   String title = 'デフォルト',
@@ -77,6 +79,6 @@ Future<dynamic> registContentsCall({
     },
     body: body,
     bodyType: BodyType.JSON,
-    returnResponse: true,
+    returnBody: true,
   );
 }

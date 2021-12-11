@@ -13,7 +13,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPageWidget extends StatefulWidget {
-  LoginPageWidget({Key key}) : super(key: key);
+  const LoginPageWidget({Key key}) : super(key: key);
 
   @override
   _LoginPageWidgetState createState() => _LoginPageWidgetState();
@@ -22,18 +22,12 @@ class LoginPageWidget extends StatefulWidget {
 class _LoginPageWidgetState extends State<LoginPageWidget> {
   TextEditingController confirmPasswordController;
   bool confirmPasswordVisibility;
-  TextEditingController emailController2;
-  TextEditingController passwordController2;
-  bool passwordVisibility2;
-  bool _loadingButton4 = false;
-  bool _loadingButton5 = false;
-  bool _loadingButton6 = false;
-  TextEditingController emailController1;
-  TextEditingController passwordController1;
-  bool passwordVisibility1;
-  bool _loadingButton1 = false;
-  bool _loadingButton2 = false;
-  bool _loadingButton3 = false;
+  TextEditingController createEmailController;
+  TextEditingController createPasswordController;
+  bool createPasswordVisibility;
+  TextEditingController emailController;
+  TextEditingController passwordController;
+  bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -41,12 +35,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     super.initState();
     confirmPasswordController = TextEditingController();
     confirmPasswordVisibility = false;
-    emailController2 = TextEditingController();
-    passwordController2 = TextEditingController();
-    passwordVisibility2 = false;
-    emailController1 = TextEditingController();
-    passwordController1 = TextEditingController();
-    passwordVisibility1 = false;
+    createEmailController = TextEditingController();
+    createPasswordController = TextEditingController();
+    createPasswordVisibility = false;
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    passwordVisibility = false;
   }
 
   @override
@@ -116,7 +110,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
-                                  height: 50,
+                                  height: 56,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
@@ -128,7 +122,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 10, 0),
                                     child: TextFormField(
-                                      controller: emailController1,
+                                      controller: emailController,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'メールアドレス',
@@ -179,7 +173,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
-                                  height: 50,
+                                  height: 56,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
@@ -191,8 +185,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 10, 0),
                                     child: TextFormField(
-                                      controller: passwordController1,
-                                      obscureText: !passwordVisibility1,
+                                      controller: passwordController,
+                                      obscureText: !passwordVisibility,
                                       decoration: InputDecoration(
                                         labelText: 'パスワード',
                                         labelStyle:
@@ -228,11 +222,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         ),
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
-                                            () => passwordVisibility1 =
-                                                !passwordVisibility1,
+                                            () => passwordVisibility =
+                                                !passwordVisibility,
                                           ),
                                           child: Icon(
-                                            passwordVisibility1
+                                            passwordVisibility
                                                 ? Icons.visibility_outlined
                                                 : Icons.visibility_off_outlined,
                                             color: Color(0xFF757575),
@@ -253,27 +247,22 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  setState(() => _loadingButton1 = true);
-                                  try {
-                                    final user = await signInWithEmail(
-                                      context,
-                                      emailController1.text,
-                                      passwordController1.text,
-                                    );
-                                    if (user == null) {
-                                      return;
-                                    }
-
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            PostPageWithLoginWidget(),
-                                      ),
-                                    );
-                                  } finally {
-                                    setState(() => _loadingButton1 = false);
+                                  final user = await signInWithEmail(
+                                    context,
+                                    emailController.text,
+                                    passwordController.text,
+                                  );
+                                  if (user == null) {
+                                    return;
                                   }
+
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          PostPageWithLoginWidget(),
+                                    ),
+                                  );
                                 },
                                 text: 'Sign in with  Email',
                                 icon: Icon(
@@ -296,7 +285,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   borderRadius: 12,
                                 ),
-                                loading: _loadingButton1,
                               )
                             ],
                           ),
@@ -315,24 +303,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        setState(() => _loadingButton2 = true);
-                                        try {
-                                          final user =
-                                              await signInWithGoogle(context);
-                                          if (user == null) {
-                                            return;
-                                          }
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  PostPageWithLoginWidget(),
-                                            ),
-                                          );
-                                        } finally {
-                                          setState(
-                                              () => _loadingButton2 = false);
+                                        final user =
+                                            await signInWithGoogle(context);
+                                        if (user == null) {
+                                          return;
                                         }
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                PostPageWithLoginWidget(),
+                                          ),
+                                        );
                                       },
                                       text: 'Sign in with Google',
                                       icon: Icon(
@@ -356,7 +338,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         ),
                                         borderRadius: 12,
                                       ),
-                                      loading: _loadingButton2,
                                     ),
                                   ),
                                   Align(
@@ -386,23 +367,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    setState(() => _loadingButton3 = true);
-                                    try {
-                                      final user =
-                                          await signInWithApple(context);
-                                      if (user == null) {
-                                        return;
-                                      }
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              PostPageWithLoginWidget(),
-                                        ),
-                                      );
-                                    } finally {
-                                      setState(() => _loadingButton3 = false);
+                                    final user = await signInWithApple(context);
+                                    if (user == null) {
+                                      return;
                                     }
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            PostPageWithLoginWidget(),
+                                      ),
+                                    );
                                   },
                                   text: 'Sign in with Apple',
                                   icon: FaIcon(
@@ -425,7 +400,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                     borderRadius: 12,
                                   ),
-                                  loading: _loadingButton3,
                                 ),
                               ),
                         Padding(
@@ -492,7 +466,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
-                                  height: 50,
+                                  height: 56,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
@@ -504,7 +478,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 10, 0),
                                     child: TextFormField(
-                                      controller: emailController2,
+                                      controller: createEmailController,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'メールアドレス',
@@ -555,7 +529,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
-                                  height: 50,
+                                  height: 56,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
@@ -567,8 +541,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 10, 0),
                                     child: TextFormField(
-                                      controller: passwordController2,
-                                      obscureText: !passwordVisibility2,
+                                      controller: createPasswordController,
+                                      obscureText: !createPasswordVisibility,
                                       decoration: InputDecoration(
                                         labelText: 'パスワード',
                                         labelStyle:
@@ -604,11 +578,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         ),
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
-                                            () => passwordVisibility2 =
-                                                !passwordVisibility2,
+                                            () => createPasswordVisibility =
+                                                !createPasswordVisibility,
                                           ),
                                           child: Icon(
-                                            passwordVisibility2
+                                            createPasswordVisibility
                                                 ? Icons.visibility_outlined
                                                 : Icons.visibility_off_outlined,
                                             color: Color(0xFF757575),
@@ -632,7 +606,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: Container(
                                   width: 230,
-                                  height: 50,
+                                  height: 56,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.background,
                                     borderRadius: BorderRadius.circular(8),
@@ -706,48 +680,41 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  setState(() => _loadingButton4 = true);
-                                  try {
-                                    if (passwordController1.text !=
-                                        confirmPasswordController.text) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            "Passwords don't match!",
-                                          ),
+                                  if (createPasswordController.text !=
+                                      confirmPasswordController.text) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          "Passwords don't match!",
                                         ),
-                                      );
-                                      return;
-                                    }
-
-                                    final user = await createAccountWithEmail(
-                                      context,
-                                      emailController1.text,
-                                      passwordController1.text,
-                                    );
-                                    if (user == null) {
-                                      return;
-                                    }
-
-                                    final usersCreateData =
-                                        createUsersRecordData(
-                                      email: emailController2.text,
-                                    );
-                                    await UsersRecord.collection
-                                        .doc(user.uid)
-                                        .update(usersCreateData);
-
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            PostPageWithLoginWidget(),
                                       ),
                                     );
-                                  } finally {
-                                    setState(() => _loadingButton4 = false);
+                                    return;
                                   }
+
+                                  final user = await createAccountWithEmail(
+                                    context,
+                                    createEmailController.text,
+                                    createPasswordController.text,
+                                  );
+                                  if (user == null) {
+                                    return;
+                                  }
+
+                                  final usersCreateData = createUsersRecordData(
+                                    email: createEmailController.text,
+                                  );
+                                  await UsersRecord.collection
+                                      .doc(user.uid)
+                                      .update(usersCreateData);
+
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          PostPageWithLoginWidget(),
+                                    ),
+                                  );
                                 },
                                 text: 'Sign up with  Email',
                                 icon: Icon(
@@ -770,7 +737,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   borderRadius: 12,
                                 ),
-                                loading: _loadingButton4,
                               )
                             ],
                           ),
@@ -789,24 +755,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        setState(() => _loadingButton5 = true);
-                                        try {
-                                          final user =
-                                              await signInWithGoogle(context);
-                                          if (user == null) {
-                                            return;
-                                          }
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  PostPageWithLoginWidget(),
-                                            ),
-                                          );
-                                        } finally {
-                                          setState(
-                                              () => _loadingButton5 = false);
+                                        final user =
+                                            await signInWithGoogle(context);
+                                        if (user == null) {
+                                          return;
                                         }
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                PostPageWithLoginWidget(),
+                                          ),
+                                        );
                                       },
                                       text: 'Sign up with Google',
                                       icon: Icon(
@@ -830,7 +790,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         ),
                                         borderRadius: 12,
                                       ),
-                                      loading: _loadingButton5,
                                     ),
                                   ),
                                   Align(
@@ -860,23 +819,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    setState(() => _loadingButton6 = true);
-                                    try {
-                                      final user =
-                                          await signInWithApple(context);
-                                      if (user == null) {
-                                        return;
-                                      }
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              PostPageWithLoginWidget(),
-                                        ),
-                                      );
-                                    } finally {
-                                      setState(() => _loadingButton6 = false);
+                                    final user = await signInWithApple(context);
+                                    if (user == null) {
+                                      return;
                                     }
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            PostPageWithLoginWidget(),
+                                      ),
+                                    );
                                   },
                                   text: 'Sign up with Apple',
                                   icon: FaIcon(
@@ -899,7 +852,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                     borderRadius: 12,
                                   ),
-                                  loading: _loadingButton6,
                                 ),
                               ),
                         Padding(
@@ -908,7 +860,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Text(
-                                'ユーザー登録完了時に以下に同意したものとみなします。',
+                                '以下の利用規約、プライバシーポリシーに同意の上、ご登録ください。',
                                 style: FlutterFlowTheme.bodyText1.override(
                                   fontFamily: 'Open Sans',
                                   color: FlutterFlowTheme.textDark,
