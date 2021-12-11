@@ -12,7 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ContentPageWidget extends StatefulWidget {
-  ContentPageWidget({
+  const ContentPageWidget({
     Key key,
     this.contentRef,
   }) : super(key: key);
