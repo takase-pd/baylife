@@ -180,7 +180,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               columnContentsRecord.filePath,
                               width: 300,
                               height: 300,
-                              fit: BoxFit.scaleDown,
+                              fit: BoxFit.contain,
                             ),
                         ],
                       ),
