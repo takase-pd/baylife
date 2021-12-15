@@ -218,7 +218,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                         dense: false,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -251,7 +251,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                   dense: false,
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

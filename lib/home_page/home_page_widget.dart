@@ -239,15 +239,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       ),
                                                     ),
                                                   ),
-                                                )
+                                                ),
                                               ],
                                             ),
                                           ),
-                                          Visibility(
-                                            visible: listViewContentsRecord
-                                                    .showImage ??
-                                                true,
-                                            child: Expanded(
+                                          if (listViewContentsRecord
+                                                  .showImage ??
+                                              true)
+                                            Expanded(
                                               flex: 3,
                                               child: Image.network(
                                                 listViewContentsRecord.filePath,
@@ -256,11 +255,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 fit: BoxFit.scaleDown,
                                               ),
                                             ),
-                                          )
                                         ],
                                       );
                                     },
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -272,7 +270,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 },
               ),
             ),
-          )
+          ),
         ],
       ),
     );
