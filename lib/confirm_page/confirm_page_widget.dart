@@ -127,7 +127,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   fontFamily: 'Open Sans',
                                   color: FlutterFlowTheme.textDark,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -167,7 +167,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -200,7 +200,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -233,7 +233,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -266,7 +266,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -299,7 +299,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -348,12 +348,12 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                           width: 100,
                                           height: 60,
                                           fit: BoxFit.cover,
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -400,12 +400,12 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                             fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.textDark,
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -452,12 +452,12 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                             fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.textDark,
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -490,7 +490,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -523,7 +523,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -556,7 +556,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -589,10 +589,10 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -613,7 +613,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                   fontFamily: 'Open Sans',
                                   color: FlutterFlowTheme.textDark,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -653,7 +653,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -686,7 +686,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -719,7 +719,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -752,7 +752,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -781,10 +781,10 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -1014,16 +1014,16 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                     },
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

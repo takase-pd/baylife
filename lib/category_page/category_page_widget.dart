@@ -142,6 +142,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                       style: FlutterFlowTheme.title3.override(
                                         fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.textDark,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ),
@@ -254,15 +255,14 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                       ),
                                                     ),
                                                   ),
-                                                )
+                                                ),
                                               ],
                                             ),
                                           ),
-                                          Visibility(
-                                            visible: listViewContentsRecord
-                                                    .showImage ??
-                                                true,
-                                            child: Expanded(
+                                          if (listViewContentsRecord
+                                                  .showImage ??
+                                              true)
+                                            Expanded(
                                               flex: 3,
                                               child: Image.network(
                                                 listViewContentsRecord.filePath,
@@ -271,11 +271,10 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                 fit: BoxFit.scaleDown,
                                               ),
                                             ),
-                                          )
                                         ],
                                       );
                                     },
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -287,7 +286,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                 },
               ),
             ),
-          )
+          ),
         ],
       ),
     );

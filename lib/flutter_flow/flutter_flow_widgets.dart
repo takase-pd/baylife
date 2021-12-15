@@ -90,7 +90,9 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
             setState(() => loading = true);
             try {
               await widget.onPressed();
-            } catch (_) {}
+            } catch (e) {
+              print('On pressed error:\n$e');
+            }
             setState(() => loading = false);
           }
         : () => widget.onPressed();

@@ -86,9 +86,9 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
                       color: FlutterFlowTheme.textLight,
                       fontSize: 10,
                     ),
-                  )
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         );

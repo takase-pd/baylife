@@ -162,7 +162,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     color: FlutterFlowTheme.textDark,
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           );
                         },
@@ -259,7 +259,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -340,7 +340,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -414,7 +414,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -497,7 +497,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -573,7 +573,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -636,7 +636,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                     fontWeight: FontWeight.w300,
                                                   ),
                                                 ),
-                                              )
+                                              ),
                                             ],
                                           ),
                                           FFButtonWidget(
@@ -694,12 +694,12 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               ),
                                               borderRadius: 12,
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -757,7 +757,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                     fontWeight: FontWeight.w500,
                                                   ),
                                                 ),
-                                              )
+                                              ),
                                             ],
                                           ),
                                           FFButtonWidget(
@@ -792,12 +792,12 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               ),
                                               borderRadius: 12,
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -855,7 +855,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                     fontWeight: FontWeight.w500,
                                                   ),
                                                 ),
-                                              )
+                                              ),
                                             ],
                                           ),
                                           FFButtonWidget(
@@ -890,12 +890,12 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               ),
                                               borderRadius: 12,
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -978,7 +978,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -1046,7 +1046,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -1120,7 +1120,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -1194,10 +1194,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -1216,7 +1216,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                   fontFamily: 'Open Sans',
                                   color: FlutterFlowTheme.textDark,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           Text(
@@ -1259,7 +1259,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -1296,7 +1296,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -1364,7 +1364,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -1431,7 +1431,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -1500,10 +1500,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -1633,16 +1633,16 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

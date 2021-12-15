@@ -89,7 +89,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 ),
                 Tab(
                   text: 'ユーザー登録',
-                )
+                ),
               ],
             ),
             Expanded(
@@ -285,7 +285,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   borderRadius: 12,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -354,7 +354,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         fit: BoxFit.contain,
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -444,10 +444,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -737,7 +737,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   borderRadius: 12,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -806,7 +806,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         fit: BoxFit.contain,
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -903,13 +903,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

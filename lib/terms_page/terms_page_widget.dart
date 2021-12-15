@@ -69,7 +69,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
             height: MediaQuery.of(context).size.height * 0.9,
             verticalScroll: false,
             horizontalScroll: false,
-          )
+          ),
         ],
       ),
     );
