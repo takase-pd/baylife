@@ -119,3 +119,5 @@ gitignore
 android/release.jks
 android/release.keystore
 android/service-account-key.json
+
+.fvm/flutter_sdk
