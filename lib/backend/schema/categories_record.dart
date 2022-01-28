@@ -34,6 +34,10 @@ abstract class CategoriesRecord
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
+  static Future<CategoriesRecord> getDocumentOnce(DocumentReference ref) => ref
+      .get()
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+
   CategoriesRecord._();
   factory CategoriesRecord([void Function(CategoriesRecordBuilder) updates]) =
       _$CategoriesRecord;

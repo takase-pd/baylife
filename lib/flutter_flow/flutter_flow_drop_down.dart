@@ -4,6 +4,7 @@ import 'package:flutter/scheduler.dart';
 class FlutterFlowDropDown extends StatefulWidget {
   const FlutterFlowDropDown({
     this.initialOption,
+    this.hintText,
     @required this.options,
     @required this.onChanged,
     this.icon,
@@ -20,6 +21,7 @@ class FlutterFlowDropDown extends StatefulWidget {
   });
 
   final String initialOption;
+  final String hintText;
   final List<String> options;
   final Function(String) onChanged;
   final Widget icon;
@@ -46,13 +48,16 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
   @override
   void initState() {
     super.initState();
-    dropDownValue = widget.initialOption ?? widget.options.first;
+    dropDownValue = widget.initialOption;
   }
 
   @override
   Widget build(BuildContext context) {
     final dropdownWidget = DropdownButton<String>(
       value: effectiveOptions.contains(dropDownValue) ? dropDownValue : null,
+      hint: widget.hintText != null
+          ? Text(widget.hintText, style: widget.textStyle)
+          : null,
       items: effectiveOptions
           .map((e) => DropdownMenuItem(
                 value: e,

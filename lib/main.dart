@@ -7,13 +7,17 @@ import 'auth/auth_util.dart';
 
 import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:bay_life/login_page/login_page_widget.dart';
-import 'package:bay_life/home_page/home_page_widget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'home_page/home_page_widget.dart';
+import 'survey_page/survey_page_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 
@@ -71,6 +75,66 @@ class _MyAppState extends State<MyApp> {
               ),
             )
           : HomePageWidget(),
+    );
+  }
+}
+
+class NavBarPage extends StatefulWidget {
+  NavBarPage({Key key, this.initialPage}) : super(key: key);
+
+  final String initialPage;
+
+  @override
+  _NavBarPageState createState() => _NavBarPageState();
+}
+
+/// This is the private State class that goes with NavBarPage.
+class _NavBarPageState extends State<NavBarPage> {
+  String _currentPage = 'HomePage';
+
+  @override
+  void initState() {
+    super.initState();
+    _currentPage = widget.initialPage ?? _currentPage;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final tabs = {
+      'HomePage': HomePageWidget(),
+      'SurveyPage': SurveyPageWidget(),
+    };
+    final currentIndex = tabs.keys.toList().indexOf(_currentPage);
+    return Scaffold(
+      body: tabs[_currentPage],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
+        backgroundColor: FlutterFlowTheme.background,
+        selectedItemColor: FlutterFlowTheme.secondaryColor,
+        unselectedItemColor: FlutterFlowTheme.tDark,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        type: BottomNavigationBarType.fixed,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.infoCircle,
+              size: 24,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.solidComments,
+              size: 24,
+            ),
+            label: 'アンケート',
+            tooltip: '',
+          )
+        ],
+      ),
     );
   }
 }

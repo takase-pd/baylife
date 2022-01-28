@@ -34,6 +34,10 @@ abstract class InfoInappRecord
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
+  static Future<InfoInappRecord> getDocumentOnce(DocumentReference ref) => ref
+      .get()
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+
   InfoInappRecord._();
   factory InfoInappRecord([void Function(InfoInappRecordBuilder) updates]) =
       _$InfoInappRecord;
