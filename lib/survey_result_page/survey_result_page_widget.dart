@@ -6,7 +6,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
-import '../custom_code/widgets/index.dart' as custom_widgets;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -112,11 +111,17 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                             .toList()
                                             ?.toList() ??
                                         [];
+                                    final results = columnSurveyRecord.results
+                                            .toList()
+                                            ?.toList() ??
+                                        [];
                                     return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: List.generate(choices.length,
                                           (choicesIndex) {
                                         final choicesItem =
+                                            choices[choicesIndex];
+                                        final resultsItem =
                                             choices[choicesIndex];
                                         return Padding(
                                           padding:
@@ -133,7 +138,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                     FlutterFlowTheme.subtitle2,
                                               ),
                                               Text(
-                                                '32.1 %',
+                                                resultsItem,
                                                 style:
                                                     FlutterFlowTheme.subtitle2,
                                               ),
@@ -144,10 +149,6 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                     );
                                   },
                                 ),
-                              ),
-                              custom_widgets.SurveyResult(
-                                width: double.infinity,
-                                height: 30,
                               ),
                               Padding(
                                 padding:
