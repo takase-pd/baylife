@@ -1,55 +1,67 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function userDoc() {
-      return /databases/$(database)/documents/users/$(request.auth.uid);
-    }
-
-    match /users/{userId} {
+    match /contents/{document} {
+      allow create: if true;
       allow read: if true;
-      allow create, update: if request.auth.uid == userId;
+      allow write: if false;
+      allow delete: if false;
     }
 
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /contents/{id} {
-      allow read, write: if true;
+    match /categories/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /categories/{id} {
-      allow read, write: if true;
+    match /terms/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /terms/{id} {
-      allow read, write: if true;
+    match /terms_histories/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /terms_histories/{id} {
-      allow read, write: if true;
+    match /cat_dd/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /cat_dd/{id} {
-      allow read, write: if true;
+    match /info_inapp/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /info_inapp/{id} {
-      allow read, write: if true;
+    match /users/{document} {
+      allow create: if request.auth.uid == document;
+      allow read: if true;
+      allow write: if request.auth.uid == document;
+      allow delete: if false;
     }
 
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /logoname/{id} {
-      allow read, write: if true;
+    match /logoname/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /survey/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
     }
   }
 }

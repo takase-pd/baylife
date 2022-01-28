@@ -180,7 +180,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               columnContentsRecord.filePath,
                               width: 300,
                               height: 300,
-                              fit: BoxFit.scaleDown,
+                              fit: BoxFit.contain,
                             ),
                         ],
                       ),
@@ -360,12 +360,13 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 16),
               child: FlutterFlowAdBanner(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
                 showsTestAd: false,
                 iOSAdUnitID: 'ca-app-pub-8134368906531041/4883719188',
+                androidAdUnitID: 'ca-app-pub-8134368906531041/3047893333',
               ),
             ),
           ],

@@ -29,7 +29,10 @@ Future<User> signInOrCreateAccount(
   }
 }
 
-Future signOut() => FirebaseAuth.instance.signOut();
+Future signOut() {
+  _currentJwtToken = '';
+  FirebaseAuth.instance.signOut();
+}
 
 Future resetPassword({String email, BuildContext context}) async {
   try {
@@ -49,6 +52,8 @@ Future resetPassword({String email, BuildContext context}) async {
 Future sendEmailVerification() async =>
     currentUser?.user?.sendEmailVerification();
 
+String _currentJwtToken = '';
+
 String get currentUserEmail =>
     currentUserDocument?.email ?? currentUser?.user?.email ?? '';
 
@@ -63,6 +68,8 @@ String get currentUserPhoto =>
 
 String get currentPhoneNumber =>
     currentUserDocument?.phoneNumber ?? currentUser?.user?.phoneNumber ?? '';
+
+String get currentJwtToken => _currentJwtToken ?? '';
 
 bool get currentUserEmailVerified {
   // Reloads the user when checking in order to get the most up to date
@@ -146,7 +153,13 @@ DocumentReference get currentUserReference => currentUser?.user != null
 UsersRecord currentUserDocument;
 final authenticatedUserStream = FirebaseAuth.instance
     .authStateChanges()
-    .map<String>((user) => user?.uid ?? '')
+    .map<String>((user) {
+      // Store jwt token on user update.
+      () async {
+        _currentJwtToken = await user?.getIdToken();
+      }();
+      return user?.uid ?? '';
+    })
     .switchMap((uid) => queryUsersRecord(
         queryBuilder: (user) => user.where('uid', isEqualTo: uid),
         singleRecord: true))

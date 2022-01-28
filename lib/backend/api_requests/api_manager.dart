@@ -9,6 +9,8 @@ enum ApiCallType {
   GET,
   POST,
   DELETE,
+  PUT,
+  PATCH,
 }
 
 enum BodyType {
@@ -94,7 +96,8 @@ class ApiManager {
     return createResponse(response, returnBody);
   }
 
-  static Future<ApiCallResponse> postRequest(
+  static Future<ApiCallResponse> requestWithBody(
+    ApiCallType type,
     String apiUrl,
     Map<String, dynamic> headers,
     Map<String, dynamic> params,
@@ -102,13 +105,22 @@ class ApiManager {
     BodyType bodyType,
     bool returnBody,
   ) async {
-    final postBody = createPostBody(headers, params, body, bodyType);
-    final response = await http.post(Uri.parse(apiUrl),
+    assert(
+      {ApiCallType.POST, ApiCallType.PUT, ApiCallType.PATCH}.contains(type),
+      'Invalid ApiCallType $type for request with body',
+    );
+    final postBody = createBody(headers, params, body, bodyType);
+    final requestFn = {
+      ApiCallType.POST: http.post,
+      ApiCallType.PUT: http.put,
+      ApiCallType.PATCH: http.patch,
+    }[type];
+    final response = await requestFn(Uri.parse(apiUrl),
         headers: toStringMap(headers), body: postBody);
     return createResponse(response, returnBody);
   }
 
-  static dynamic createPostBody(
+  static dynamic createBody(
     Map<String, dynamic> headers,
     Map<String, dynamic> params,
     String body,
@@ -171,8 +183,10 @@ class ApiManager {
             await urlRequest(callType, apiUrl, headers, params, returnBody);
         break;
       case ApiCallType.POST:
-        result = await postRequest(
-            apiUrl, headers, params, body, bodyType, returnBody);
+      case ApiCallType.PUT:
+      case ApiCallType.PATCH:
+        result = await requestWithBody(
+            callType, apiUrl, headers, params, body, bodyType, returnBody);
         break;
     }
 

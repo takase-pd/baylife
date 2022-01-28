@@ -26,6 +26,10 @@ abstract class CatDdRecord implements Built<CatDdRecord, CatDdRecordBuilder> {
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
+  static Future<CatDdRecord> getDocumentOnce(DocumentReference ref) => ref
+      .get()
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+
   CatDdRecord._();
   factory CatDdRecord([void Function(CatDdRecordBuilder) updates]) =
       _$CatDdRecord;

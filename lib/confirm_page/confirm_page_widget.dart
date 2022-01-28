@@ -930,7 +930,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                               AlignmentDirectional(0.95, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              await registContentsCall(
+                                              await RegistContentsCall.call(
                                                 catName: widget.catName,
                                                 catNameAdd: widget.catNameAdd,
                                                 title: widget.title,

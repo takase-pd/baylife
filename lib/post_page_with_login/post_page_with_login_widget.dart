@@ -318,6 +318,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                             initialOption: categoryValue ??=
                                                 '総合',
                                             options: categoryCatDdRecord.cats
+                                                .toList()
                                                 .toList(),
                                             onChanged: (val) => setState(
                                                 () => categoryValue = val),
@@ -610,7 +611,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                '添付画像 300X300px以内',
+                                                '添付画像',
                                                 style: FlutterFlowTheme
                                                     .bodyText2
                                                     .override(
@@ -1283,15 +1284,13 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           16, 16, 16, 16),
-                                      child: AuthUserStreamWidget(
-                                        child: Text(
-                                          currentUserEmail,
-                                          style: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Open Sans',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                      child: Text(
+                                        currentUserEmail,
+                                        style:
+                                            FlutterFlowTheme.bodyText2.override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.textDark,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                     ),
