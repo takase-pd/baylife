@@ -122,7 +122,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                         final choicesItem =
                                             choices[choicesIndex];
                                         final resultsItem =
-                                            choices[choicesIndex];
+                                            results[choicesIndex];
                                         return Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -137,10 +137,26 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                 style:
                                                     FlutterFlowTheme.subtitle2,
                                               ),
-                                              Text(
-                                                resultsItem,
-                                                style:
-                                                    FlutterFlowTheme.subtitle2,
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 4, 0),
+                                                    child: Text(
+                                                      '$resultsItem',
+                                                      style: FlutterFlowTheme
+                                                          .subtitle2,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    '%',
+                                                    style: FlutterFlowTheme
+                                                        .subtitle2,
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
