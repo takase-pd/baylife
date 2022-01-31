@@ -28,9 +28,29 @@ class SurveyPostPageWidget extends StatefulWidget {
 }
 
 class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
+  ApiCallResponse answers;
   ApiCallResponse apiCallOutput1;
   String dropDownValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future(() async {
+      final output = await AnswersCall.call(
+        uid: currentUserUid,
+      );
+      if (mounted) {
+        print('mounted');
+        setState(() {
+          answers = output;
+        });
+      }
+      List test = getJsonField(answers.jsonBody, r'''$.result''');
+      print(test.length);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
