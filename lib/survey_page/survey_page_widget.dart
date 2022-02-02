@@ -30,18 +30,17 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
 
   Future<List> getAnswers() async {
     if (!currentUser.loggedIn) {
-      return [];
+      answers = [];
+    } else {
+      final apiCallOutput = await AnswersCall.call(
+        uid: currentUserUid,
+      );
+      answers = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
     }
-    final apiCallOutput = await AnswersCall.call(
-      uid: currentUserUid,
-    );
-    answers = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
     return answers;
   }
 
   bool existsAnswer(String sid) {
-    print(sid);
-    print(answers);
     final exists = answers.contains(sid);
     return exists;
   }
@@ -99,179 +98,181 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                     );
                   }
                   List<SurveyRecord> listViewSurveyRecordList = snapshot.data;
-                  return ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: listViewSurveyRecordList.length,
-                    itemBuilder: (context, listViewIndex) {
-                      final listViewSurveyRecord =
-                          listViewSurveyRecordList[listViewIndex];
-                      print(listViewSurveyRecord.sid);
-                      return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                        child: Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: FlutterFlowTheme.background,
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
+                  return FutureBuilder(
+                    future: getAnswers(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        return ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: listViewSurveyRecordList.length,
+                          itemBuilder: (context, listViewIndex) {
+                            final listViewSurveyRecord =
+                                listViewSurveyRecordList[listViewIndex];
+                            return Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                              child: Card(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                color: FlutterFlowTheme.background,
+                                child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 10),
-                                  child: Text(
-                                    listViewSurveyRecord.question,
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.textDark,
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    FutureBuilder(
-                                        future: getAnswers(),
-                                        builder: (context, snapshot) {
-                                          if (snapshot.connectionState ==
-                                              ConnectionState.done) {
-                                            if (existsAnswer(
-                                                listViewSurveyRecord.sid)) {
-                                              return Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    '回答済み',
-                                                    style: FlutterFlowTheme
-                                                        .subtitle2,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                4, 0, 0, 0),
-                                                    child: Icon(
-                                                      Icons
-                                                          .check_circle_rounded,
-                                                      color: FlutterFlowTheme
-                                                          .primaryColor,
-                                                      size: 24,
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            } else {
-                                              return Visibility(
-                                                visible:
-                                                    listViewSurveyRecord.status,
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    if (currentUser.loggedIn) {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              SurveyPostPageWidget(
-                                                            surveyRef:
-                                                                listViewSurveyRecord
-                                                                    .reference,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    } else {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              SurveyLoginPageWidget(
-                                                            surveyRef:
-                                                                listViewSurveyRecord
-                                                                    .reference,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                  },
-                                                  text: '回答',
-                                                  options: FFButtonOptions(
-                                                    width: 88,
-                                                    height: 32,
-                                                    color:
-                                                        FlutterFlowTheme.pDark,
-                                                    textStyle: FlutterFlowTheme
-                                                        .subtitle2
-                                                        .override(
-                                                      fontFamily: 'Open Sans',
-                                                      color: Colors.white,
-                                                    ),
-                                                    borderSide: BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 1,
-                                                    ),
-                                                    borderRadius: 8,
-                                                  ),
-                                                ),
-                                              );
-                                            }
-                                          } else {
-                                            return CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                FlutterFlowTheme.pDark,
-                                              ),
-                                            );
-                                          }
-                                        }),
-                                    if (!(listViewSurveyRecord.status) ?? true)
+                                      10, 10, 10, 10),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            4, 0, 0, 0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            await Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SurveyResultPageWidget(
-                                                  surveyRef:
-                                                      listViewSurveyRecord
-                                                          .reference,
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                          text: '結果',
-                                          options: FFButtonOptions(
-                                            width: 88,
-                                            height: 32,
-                                            color:
-                                                FlutterFlowTheme.secondaryColor,
-                                            textStyle: FlutterFlowTheme
-                                                .subtitle2
-                                                .override(
-                                              fontFamily: 'Open Sans',
-                                              color: Colors.white,
-                                            ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
-                                            ),
-                                            borderRadius: 8,
+                                            0, 0, 0, 10),
+                                        child: Text(
+                                          listViewSurveyRecord.question,
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.textDark,
                                           ),
                                         ),
-                                      )
-                                  ],
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          if (existsAnswer(
+                                              listViewSurveyRecord.sid))
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  '回答済み',
+                                                  style: FlutterFlowTheme
+                                                      .subtitle2,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(4, 0, 0, 0),
+                                                  child: Icon(
+                                                    Icons.check_circle_rounded,
+                                                    color: FlutterFlowTheme
+                                                        .primaryColor,
+                                                    size: 24,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          if (!existsAnswer(listViewSurveyRecord
+                                                      .sid) &&
+                                                  listViewSurveyRecord.status ??
+                                              true)
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                if (currentUser.loggedIn) {
+                                                  await Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          SurveyPostPageWidget(
+                                                        surveyRef:
+                                                            listViewSurveyRecord
+                                                                .reference,
+                                                      ),
+                                                    ),
+                                                  );
+                                                } else {
+                                                  await Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          SurveyLoginPageWidget(
+                                                        surveyRef:
+                                                            listViewSurveyRecord
+                                                                .reference,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                              },
+                                              text: '回答',
+                                              options: FFButtonOptions(
+                                                width: 88,
+                                                height: 32,
+                                                color: FlutterFlowTheme.pDark,
+                                                textStyle: FlutterFlowTheme
+                                                    .subtitle2
+                                                    .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: Colors.white,
+                                                ),
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1,
+                                                ),
+                                                borderRadius: 8,
+                                              ),
+                                            ),
+                                          if (!(listViewSurveyRecord.status) ??
+                                              true)
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(4, 0, 0, 0),
+                                              child: FFButtonWidget(
+                                                onPressed: () async {
+                                                  await Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          SurveyResultPageWidget(
+                                                        surveyRef:
+                                                            listViewSurveyRecord
+                                                                .reference,
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                text: '結果',
+                                                options: FFButtonOptions(
+                                                  width: 88,
+                                                  height: 32,
+                                                  color: FlutterFlowTheme
+                                                      .secondaryColor,
+                                                  textStyle: FlutterFlowTheme
+                                                      .subtitle2
+                                                      .override(
+                                                    fontFamily: 'Open Sans',
+                                                    color: Colors.white,
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius: 8,
+                                                ),
+                                              ),
+                                            )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
+                              ),
+                            );
+                          },
+                        );
+                      } else {
+                        return Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: SpinKitPulse(
+                              color: FlutterFlowTheme.primaryColor,
+                              size: 50,
                             ),
                           ),
-                        ),
-                      );
+                        );
+                      }
                     },
                   );
                 },
