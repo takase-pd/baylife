@@ -207,8 +207,15 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         8, 0, 0, 0),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
+                                      onPressed: () async {
+                                        await Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => NavBarPage(
+                                                initialPage: 'SurveyPage'),
+                                          ),
+                                          (r) => false,
+                                        );
                                       },
                                       text: '戻る',
                                       options: FFButtonOptions(
