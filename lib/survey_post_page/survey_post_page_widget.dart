@@ -15,6 +15,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../auth/firebase_user_provider.dart';
+
 class SurveyPostPageWidget extends StatefulWidget {
   const SurveyPostPageWidget({
     Key key,
@@ -28,28 +30,26 @@ class SurveyPostPageWidget extends StatefulWidget {
 }
 
 class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
-  ApiCallResponse answers;
+  List answers;
   ApiCallResponse apiCallOutput1;
   String dropDownValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  @override
-  void initState() {
-    super.initState();
-
-    Future(() async {
-      final output = await AnswersCall.call(
+  Future<List> getAnswers() async {
+    if (!currentUser.loggedIn) {
+      answers = [];
+    } else {
+      final apiCallOutput = await AnswersCall.call(
         uid: currentUserUid,
       );
-      if (mounted) {
-        print('mounted');
-        setState(() {
-          answers = output;
-        });
-      }
-      List test = getJsonField(answers.jsonBody, r'''$.result''');
-      print(test.length);
-    });
+      answers = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+    }
+    return answers;
+  }
+
+  bool existsAnswer() {
+    final exists = answers.contains(widget.surveyRef.id);
+    return exists;
   }
 
   @override
@@ -158,71 +158,118 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  FFButtonWidget(
-                                    onPressed: () async {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text('回答を送信'),
-                                            content: Text(
-                                                '回答を送信します。送信後は回答を変更できません。'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: Text('戻る'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () async {
-                                                  Navigator.pop(
-                                                      alertDialogContext);
-                                                  apiCallOutput1 =
-                                                      await AddSurveyAnswerCall
-                                                          .call(
-                                                    uid: currentUserUid,
-                                                    sid: columnSurveyRecord.sid,
-                                                    choice: dropDownValue,
-                                                    date: dateTimeFormat(
-                                                        'M/d h:mm a',
-                                                        getCurrentTimestamp),
-                                                  );
-                                                  ;
-                                                },
-                                                child: Text('送信'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                      await Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => NavBarPage(
-                                              initialPage: 'SurveyPage'),
-                                        ),
-                                        (r) => false,
-                                      );
+                                  FutureBuilder(
+                                      future: getAnswers(),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.connectionState ==
+                                            ConnectionState.done) {
+                                          if (!existsAnswer()) {
+                                            return FFButtonWidget(
+                                              onPressed: () async {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text('回答を送信'),
+                                                      content: Text(
+                                                          '回答を送信します。送信後は回答を変更できません。'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('戻る'),
+                                                        ),
+                                                        TextButton(
+                                                          onPressed: () async {
+                                                            Navigator.pop(
+                                                                alertDialogContext);
+                                                            apiCallOutput1 =
+                                                                await AddSurveyAnswerCall
+                                                                    .call(
+                                                              uid:
+                                                                  currentUserUid,
+                                                              sid:
+                                                                  columnSurveyRecord
+                                                                      .sid,
+                                                              choice:
+                                                                  dropDownValue,
+                                                              date: dateTimeFormat(
+                                                                  'M/d h:mm a',
+                                                                  getCurrentTimestamp),
+                                                            );
+                                                          },
+                                                          child: Text('送信'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                                await Navigator
+                                                    .pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        NavBarPage(
+                                                            initialPage:
+                                                                'SurveyPage'),
+                                                  ),
+                                                  (r) => false,
+                                                );
 
-                                      setState(() {});
-                                    },
-                                    text: '送信',
-                                    options: FFButtonOptions(
-                                      width: 88,
-                                      height: 32,
-                                      color: FlutterFlowTheme.pDark,
-                                      textStyle:
-                                          FlutterFlowTheme.subtitle2.override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textLight,
-                                      ),
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1,
-                                      ),
-                                      borderRadius: 8,
-                                    ),
-                                  ),
+                                                setState(() {});
+                                              },
+                                              text: '送信',
+                                              options: FFButtonOptions(
+                                                width: 88,
+                                                height: 32,
+                                                color: FlutterFlowTheme.pDark,
+                                                textStyle: FlutterFlowTheme
+                                                    .subtitle2
+                                                    .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: FlutterFlowTheme
+                                                      .textLight,
+                                                ),
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1,
+                                                ),
+                                                borderRadius: 8,
+                                              ),
+                                            );
+                                          } else {
+                                            return Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  '回答済み',
+                                                  style: FlutterFlowTheme
+                                                      .subtitle2,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(4, 0, 0, 0),
+                                                  child: Icon(
+                                                    Icons.check_circle_rounded,
+                                                    color: FlutterFlowTheme
+                                                        .primaryColor,
+                                                    size: 24,
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          }
+                                        } else {
+                                          return CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.pDark,
+                                            ),
+                                          );
+                                        }
+                                      }),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         8, 0, 0, 0),
