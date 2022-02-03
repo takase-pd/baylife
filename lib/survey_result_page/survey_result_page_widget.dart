@@ -1,3 +1,5 @@
+import 'package:bay_life/custom_code/widgets/survey_result.dart';
+
 import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
@@ -6,6 +8,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
+import '../custom_code/widgets/index.dart' as custom_widgets;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -26,6 +29,18 @@ class SurveyResultPageWidget extends StatefulWidget {
 
 class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  List<MapEntry<String, double>> _getResultData(List choices, List results) {
+    if (choices.isEmpty || results.isEmpty) return [];
+    if (choices.length != results.length) return [];
+
+    final List<MapEntry<String, double>> resultData = [];
+    choices.asMap().forEach((index, value) {
+      resultData.add(MapEntry(choices[index], results[index]));
+    });
+
+    return resultData;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,54 +130,27 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                             .toList()
                                             ?.toList() ??
                                         [];
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: List.generate(choices.length,
-                                          (choicesIndex) {
-                                        final choicesItem =
-                                            choices[choicesIndex];
-                                        final resultsItem =
-                                            results[choicesIndex];
-                                        return Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 8),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                choicesItem,
-                                                style:
-                                                    FlutterFlowTheme.subtitle2,
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 4, 0),
-                                                    child: Text(
-                                                      '$resultsItem',
-                                                      style: FlutterFlowTheme
-                                                          .subtitle2,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    '%',
-                                                    style: FlutterFlowTheme
-                                                        .subtitle2,
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      }),
-                                    );
+                                    List<MapEntry<String, double>> resultData =
+                                        _getResultData(choices, results);
+                                    if (resultData.length == 0) {
+                                      return Text(
+                                        'アンケート結果が集計されていません。\n集計が完了するまでお待ちください。',
+                                        style:
+                                            FlutterFlowTheme.bodyText1.override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.textDark,
+                                        ),
+                                      );
+                                    } else {
+                                      return Container(
+                                        width: double.infinity,
+                                        height: 240,
+                                        child: custom_widgets.SurveyResult(
+                                          resultData: resultData,
+                                          animate: false,
+                                        ),
+                                      );
+                                    }
                                   },
                                 ),
                               ),
