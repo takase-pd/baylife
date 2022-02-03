@@ -52,7 +52,17 @@ class _SurveyResultState extends State<SurveyResult> {
           id: 'Survey Reslut',
           domainFn: (SurveyResultData resultData, _) => resultData.choice,
           measureFn: (SurveyResultData resultData, _) => resultData.result,
+          colorFn: (_, __) =>
+              charts.ColorUtil.fromDartColor(FlutterFlowTheme.pDark),
           data: data,
+          insideLabelStyleAccessorFn: (SurveyResultData resultData, _) =>
+              charts.TextStyleSpec(
+                  color: charts.ColorUtil.fromDartColor(
+                      FlutterFlowTheme.textLight)),
+          outsideLabelStyleAccessorFn: (SurveyResultData resultData, _) =>
+              charts.TextStyleSpec(
+                  color: charts.ColorUtil.fromDartColor(
+                      FlutterFlowTheme.textDark)),
           // Set a label accessor to control the text of the bar label.
           labelAccessorFn: (SurveyResultData resultData, _) =>
               '${resultData.choice}: ${resultData.result.toString()} %')
