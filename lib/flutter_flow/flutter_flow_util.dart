@@ -8,6 +8,8 @@ import 'package:json_path/json_path.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
 
+import '../main.dart';
+
 import 'lat_lng.dart';
 
 export 'dart:math' show min, max;
@@ -154,6 +156,9 @@ bool responsiveVisibility({
 extension StringDocRef on String {
   DocumentReference get ref => FirebaseFirestore.instance.doc(this);
 }
+
+void setAppLanguage(BuildContext context, String language) =>
+    MyApp.of(context).setLocale(Locale(language, ''));
 
 void showSnackbar(
   BuildContext context,

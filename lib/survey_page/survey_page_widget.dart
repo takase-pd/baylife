@@ -83,65 +83,69 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                     itemBuilder: (context, listViewIndex) {
                       final listViewSurveyRecord =
                           listViewSurveyRecordList[listViewIndex];
-                      return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                        child: Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: FlutterFlowTheme.background,
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 10),
-                                  child: Text(
-                                    listViewSurveyRecord.question,
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.textDark,
+                      return Visibility(
+                        visible: listViewSurveyRecord.display ?? true,
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: FlutterFlowTheme.background,
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10, 10, 10, 10),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 10),
+                                    child: Text(
+                                      listViewSurveyRecord.question,
+                                      style:
+                                          FlutterFlowTheme.bodyText1.override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.textDark,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    if (listViewSurveyRecord.status ?? true)
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SurveyLoginPageWidget(
-                                                surveyRef: listViewSurveyRecord
-                                                    .reference,
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      if (listViewSurveyRecord.open ?? true)
+                                        FFButtonWidget(
+                                          onPressed: () async {
+                                            await Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SurveyLoginPageWidget(
+                                                  surveyRef:
+                                                      listViewSurveyRecord
+                                                          .reference,
+                                                ),
                                               ),
+                                            );
+                                          },
+                                          text: '回答',
+                                          options: FFButtonOptions(
+                                            width: 88,
+                                            height: 32,
+                                            color: FlutterFlowTheme.pDark,
+                                            textStyle: FlutterFlowTheme
+                                                .subtitle2
+                                                .override(
+                                              fontFamily: 'Open Sans',
+                                              color: Colors.white,
                                             ),
-                                          );
-                                        },
-                                        text: '回答',
-                                        options: FFButtonOptions(
-                                          width: 88,
-                                          height: 32,
-                                          color: FlutterFlowTheme.pDark,
-                                          textStyle: FlutterFlowTheme.subtitle2
-                                              .override(
-                                            fontFamily: 'Open Sans',
-                                            color: Colors.white,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1,
+                                            ),
+                                            borderRadius: 8,
                                           ),
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1,
-                                          ),
-                                          borderRadius: 8,
                                         ),
-                                      ),
-                                    if (!(listViewSurveyRecord.status) ?? true)
                                       FFButtonWidget(
                                         onPressed: () async {
                                           await Navigator.push(
@@ -173,9 +177,10 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                           borderRadius: 8,
                                         ),
                                       ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

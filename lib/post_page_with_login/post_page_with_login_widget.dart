@@ -214,12 +214,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'タイトル  ＊必須',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -370,19 +364,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'その他の希望カテゴリー',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           hintText: '＊必ずしも反映されるわけではありません。',
-                                          hintStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -444,19 +426,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: '概要 ＊必須',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           hintText: '投稿一覧ページに表示されます。',
-                                          hintStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -527,12 +497,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: '投稿詳細 ＊必須',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -653,9 +617,11 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                   validateFileFormat(
                                                       selectedMedia.storagePath,
                                                       context)) {
-                                                showUploadMessage(context,
-                                                    'Uploading file...',
-                                                    showLoading: true);
+                                                showUploadMessage(
+                                                  context,
+                                                  'Uploading file...',
+                                                  showLoading: true,
+                                                );
                                                 final downloadUrl =
                                                     await uploadData(
                                                         selectedMedia
@@ -668,10 +634,14 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                       uploadedFileUrl =
                                                           downloadUrl);
                                                   showUploadMessage(
-                                                      context, 'Success!');
+                                                    context,
+                                                    'Success!',
+                                                  );
                                                 } else {
-                                                  showUploadMessage(context,
-                                                      'Failed to upload media');
+                                                  showUploadMessage(
+                                                    context,
+                                                    'Failed to upload media',
+                                                  );
                                                   return;
                                                 }
                                               }
@@ -925,19 +895,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: '開催場所 ＊必須',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           hintText: '店舗、イベント会場等の住所等',
-                                          hintStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -1008,12 +966,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'ホームページ',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -1076,12 +1028,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: '主催 ＊必須',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -1150,12 +1096,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: '問い合わせ先（担当者名・部署など） ＊必須',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -1324,12 +1264,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: '電話番号',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -1392,12 +1326,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: '所属',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -1459,12 +1387,6 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: '備考',
-                                          labelStyle: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Montserrat',
-                                            color: FlutterFlowTheme.textDark,
-                                            fontWeight: FontWeight.w500,
-                                          ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),

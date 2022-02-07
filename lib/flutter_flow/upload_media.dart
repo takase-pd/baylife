@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mime_type/mime_type.dart';
 
 import '../auth/auth_util.dart';
+import 'flutter_flow_util.dart';
 
 const allowedFormats = {'image/png', 'image/jpeg', 'video/mp4', 'image/gif'};
 

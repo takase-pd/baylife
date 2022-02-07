@@ -3,8 +3,9 @@ import '../../backend/backend.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-
 // Begin custom widget code
+import 'package:charts_flutter/flutter.dart' as charts;
+
 class SurveyResult extends StatefulWidget {
   const SurveyResult({
     Key key,
@@ -22,8 +23,7 @@ class SurveyResult extends StatefulWidget {
 class _SurveyResultState extends State<SurveyResult> {
   @override
   Widget build(BuildContext context) {
-    return // Generated code for this Row Widget...
-        Padding(
+    return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
       child: Row(
         mainAxisSize: MainAxisSize.max,

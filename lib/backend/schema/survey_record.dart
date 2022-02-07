@@ -20,9 +20,6 @@ abstract class SurveyRecord
   BuiltList<String> get choices;
 
   @nullable
-  bool get status;
-
-  @nullable
   DateTime get startDate;
 
   @nullable
@@ -38,6 +35,12 @@ abstract class SurveyRecord
   String get comment;
 
   @nullable
+  bool get display;
+
+  @nullable
+  bool get open;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -45,10 +48,11 @@ abstract class SurveyRecord
     ..id = 0
     ..question = ''
     ..choices = ListBuilder()
-    ..status = false
     ..results = ListBuilder()
     ..sid = ''
-    ..comment = '';
+    ..comment = ''
+    ..display = false
+    ..open = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('survey');
@@ -74,11 +78,12 @@ abstract class SurveyRecord
 Map<String, dynamic> createSurveyRecordData({
   int id,
   String question,
-  bool status,
   DateTime startDate,
   DateTime endDate,
   String sid,
   String comment,
+  bool display,
+  bool open,
 }) =>
     serializers.toFirestore(
         SurveyRecord.serializer,
@@ -86,9 +91,10 @@ Map<String, dynamic> createSurveyRecordData({
           ..id = id
           ..question = question
           ..choices = null
-          ..status = status
           ..startDate = startDate
           ..endDate = endDate
           ..results = null
           ..sid = sid
-          ..comment = comment));
+          ..comment = comment
+          ..display = display
+          ..open = open));
