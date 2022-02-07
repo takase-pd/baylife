@@ -30,7 +30,14 @@ class SurveyPostPageWidget extends StatefulWidget {
 class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
   ApiCallResponse apiCallOutput1;
   String dropDownValue;
+  TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    textController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,13 +93,10 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                 final columnSurveyRecord = snapshot.data;
                 return Column(
                   mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '回答すると利用規約に同意したことなります。',
-                      style: FlutterFlowTheme.bodyText1,
-                    ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         color: FlutterFlowTheme.background,
@@ -113,7 +117,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FlutterFlowDropDown(
                                   options: [].toList(),
                                   onChanged: (val) =>
@@ -130,6 +134,47 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                   margin: EdgeInsetsDirectional.fromSTEB(
                                       12, 4, 12, 4),
                                   hidesUnderline: true,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                                child: Text(
+                                  '選択肢以外の回答などがあれば、ご記入ください。',
+                                  style: FlutterFlowTheme.bodyText2,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    4, 0, 16, 32),
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 48,
+                                  decoration: BoxDecoration(),
+                                  child: TextFormField(
+                                    controller: textController,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              FlutterFlowTheme.secondaryColor,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              FlutterFlowTheme.secondaryColor,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                    ),
+                                    style: FlutterFlowTheme.bodyText1,
+                                    textAlign: TextAlign.start,
+                                  ),
                                 ),
                               ),
                               Row(
@@ -164,6 +209,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                                     date: dateTimeFormat(
                                                         'M/d h:mm a',
                                                         getCurrentTimestamp),
+                                                    freeAnswer:
+                                                        textController.text,
                                                   );
                                                   ;
                                                 },
@@ -239,6 +286,41 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                           ),
                         ),
                       ),
+                    ),
+                    StreamBuilder<List<InfoInappRecord>>(
+                      stream: queryInfoInappRecord(
+                        singleRecord: true,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SpinKitPulse(
+                                color: FlutterFlowTheme.primaryColor,
+                                size: 50,
+                              ),
+                            ),
+                          );
+                        }
+                        List<InfoInappRecord> textInfoInappRecordList =
+                            snapshot.data;
+                        // Return an empty Container when the document does not exist.
+                        if (snapshot.data.isEmpty) {
+                          return Container();
+                        }
+                        final textInfoInappRecord =
+                            textInfoInappRecordList.isNotEmpty
+                                ? textInfoInappRecordList.first
+                                : null;
+                        return Text(
+                          textInfoInappRecord.surveyAgree,
+                          textAlign: TextAlign.start,
+                          style: FlutterFlowTheme.bodyText1,
+                        );
+                      },
                     ),
                   ],
                 );

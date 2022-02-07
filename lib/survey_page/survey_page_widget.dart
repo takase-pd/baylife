@@ -146,35 +146,41 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                             borderRadius: 8,
                                           ),
                                         ),
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SurveyResultPageWidget(
-                                                surveyRef: listViewSurveyRecord
-                                                    .reference,
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 0, 0, 0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            await Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SurveyResultPageWidget(
+                                                  surveyRef:
+                                                      listViewSurveyRecord
+                                                          .reference,
+                                                ),
                                               ),
+                                            );
+                                          },
+                                          text: '結果',
+                                          options: FFButtonOptions(
+                                            width: 88,
+                                            height: 32,
+                                            color:
+                                                FlutterFlowTheme.secondaryColor,
+                                            textStyle: FlutterFlowTheme
+                                                .subtitle2
+                                                .override(
+                                              fontFamily: 'Open Sans',
+                                              color: Colors.white,
                                             ),
-                                          );
-                                        },
-                                        text: '結果',
-                                        options: FFButtonOptions(
-                                          width: 88,
-                                          height: 32,
-                                          color:
-                                              FlutterFlowTheme.secondaryColor,
-                                          textStyle: FlutterFlowTheme.subtitle2
-                                              .override(
-                                            fontFamily: 'Open Sans',
-                                            color: Colors.white,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1,
+                                            ),
+                                            borderRadius: 8,
                                           ),
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1,
-                                          ),
-                                          borderRadius: 8,
                                         ),
                                       ),
                                     ],

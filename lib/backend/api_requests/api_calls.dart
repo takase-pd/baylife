@@ -93,6 +93,7 @@ class AddSurveyAnswerCall {
     String sid = '',
     String choice = '',
     String date = '',
+    String freeAnswer = '',
   }) {
     final body = '''
 {
@@ -100,6 +101,7 @@ class AddSurveyAnswerCall {
     "sid": "${sid}",
     "uid": "${uid}",
     "choice": "${choice}",
+    "freeAnswer": "${freeAnswer}",
     "date": "${date}"
   }
 }''';
@@ -116,6 +118,7 @@ class AddSurveyAnswerCall {
         'sid': sid,
         'choice': choice,
         'date': date,
+        'freeAnswer': freeAnswer,
       },
       body: body,
       bodyType: BodyType.JSON,
