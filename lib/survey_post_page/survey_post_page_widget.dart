@@ -135,9 +135,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: FlutterFlowDropDown(
-                                  options: columnSurveyRecord.choices
-                                      .toList()
-                                      .toList(),
+                                  options: [].toList(),
                                   onChanged: (val) =>
                                       setState(() => dropDownValue = val),
                                   width: double.infinity,

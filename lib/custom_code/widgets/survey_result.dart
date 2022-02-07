@@ -3,10 +3,9 @@ import '../../backend/backend.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-
+// Begin custom widget code
 import 'package:charts_flutter/flutter.dart' as charts;
 
-// Begin custom widget code
 class SurveyResult extends StatefulWidget {
   const SurveyResult(
       {Key key, this.width, this.height, this.resultData, this.animate})

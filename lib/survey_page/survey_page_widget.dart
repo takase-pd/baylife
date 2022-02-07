@@ -165,7 +165,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                             ),
                                           if (!existsAnswer(listViewSurveyRecord
                                                       .sid) &&
-                                                  listViewSurveyRecord.status ??
+                                                  listViewSurveyRecord.open ??
                                               true)
                                             FFButtonWidget(
                                               onPressed: () async {
@@ -213,7 +213,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                 borderRadius: 8,
                                               ),
                                             ),
-                                          if (!(listViewSurveyRecord.status) ??
+                                          if (!(listViewSurveyRecord.open) ??
                                               true)
                                             Padding(
                                               padding: EdgeInsetsDirectional
