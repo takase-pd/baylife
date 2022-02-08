@@ -140,45 +140,29 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                   ),
                                 ),
                               ),
-                              FlutterFlowRadioButton(
-                                options: ['Option 1'],
-                                onChanged: (value) {
-                                  setState(() => radioButtonValue = value);
-                                },
-                                optionHeight: 25,
-                                textStyle: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Open Sans',
-                                  color: Colors.black,
-                                ),
-                                buttonPosition: RadioButtonPosition.left,
-                                direction: Axis.vertical,
-                                radioButtonColor: FlutterFlowTheme.primaryColor,
-                                inactiveRadioButtonColor: Color(0x8A000000),
-                                toggleable: false,
-                                horizontalAlignment: WrapAlignment.start,
-                                verticalAlignment: WrapCrossAlignment.start,
-                              ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
-                                child: FlutterFlowDropDown(
-                                  options: columnSurveyRecord.choices
-                                      .toList()
-                                      .toList(),
-                                  onChanged: (val) =>
-                                      setState(() => dropDownValue = val),
-                                  width: double.infinity,
-                                  height: 50,
-                                  textStyle: FlutterFlowTheme.subtitle2,
-                                  hintText: '回答を選択',
-                                  fillColor: Colors.white,
-                                  elevation: 2,
-                                  borderColor: Colors.transparent,
-                                  borderWidth: 0,
-                                  borderRadius: 0,
-                                  margin: EdgeInsetsDirectional.fromSTEB(
-                                      12, 4, 12, 4),
-                                  hidesUnderline: true,
+                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 40),
+                                child: FlutterFlowRadioButton(
+                                  options: columnSurveyRecord.choices.toList(),
+                                  onChanged: (value) {
+                                    setState(() => radioButtonValue = value);
+                                  },
+                                  optionHeight: 40,
+                                  textStyle:
+                                      FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Open Sans',
+                                    color: Colors.black,
+                                  ),
+                                  buttonPosition: RadioButtonPosition.left,
+                                  direction: Axis.vertical,
+                                  radioButtonColor:
+                                      FlutterFlowTheme.primaryColor,
+                                  inactiveRadioButtonColor:
+                                      FlutterFlowTheme.sLight,
+                                  toggleable: false,
+                                  horizontalAlignment: WrapAlignment.start,
+                                  verticalAlignment: WrapCrossAlignment.start,
                                 ),
                               ),
                               Padding(
