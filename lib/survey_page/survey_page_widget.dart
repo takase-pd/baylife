@@ -118,7 +118,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                 color: FlutterFlowTheme.background,
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      10, 10, 10, 10),
+                                      16, 16, 16, 16),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
@@ -126,13 +126,13 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 10),
+                                            0, 0, 0, 24),
                                         child: Text(
                                           listViewSurveyRecord.question,
-                                          style: FlutterFlowTheme.bodyText1
+                                          style: FlutterFlowTheme.subtitle1
                                               .override(
                                             fontFamily: 'Open Sans',
-                                            color: FlutterFlowTheme.textDark,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                       ),
