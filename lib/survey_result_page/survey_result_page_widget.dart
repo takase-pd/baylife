@@ -174,13 +174,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                         8, 0, 0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => NavBarPage(
-                                                initialPage: 'SurveyPage'),
-                                          ),
-                                        );
+                                        Navigator.pop(context);
                                       },
                                       text: '戻る',
                                       options: FFButtonOptions(
