@@ -99,13 +99,13 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 10),
+                                        0, 0, 0, 24),
                                     child: Text(
                                       listViewSurveyRecord.question,
                                       style:
-                                          FlutterFlowTheme.bodyText1.override(
+                                          FlutterFlowTheme.subtitle1.override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textDark,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ),
@@ -167,8 +167,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                           options: FFButtonOptions(
                                             width: 88,
                                             height: 32,
-                                            color:
-                                                FlutterFlowTheme.secondaryColor,
+                                            color: FlutterFlowTheme.sLight,
                                             textStyle: FlutterFlowTheme
                                                 .subtitle2
                                                 .override(

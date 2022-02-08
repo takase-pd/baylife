@@ -5,6 +5,7 @@ import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
 import '../flutter_flow/flutter_flow_ad_banner.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
+import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -30,6 +31,7 @@ class SurveyPostPageWidget extends StatefulWidget {
 class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
   ApiCallResponse apiCallOutput1;
   String dropDownValue;
+  String radioButtonValue;
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -102,24 +104,47 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                         color: FlutterFlowTheme.background,
                         child: Padding(
                           padding:
-                              EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                              EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: Text(
                                   columnSurveyRecord.question,
-                                  style: FlutterFlowTheme.subtitle1,
+                                  style: FlutterFlowTheme.subtitle1.override(
+                                    fontFamily: 'Open Sans',
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
+                              ),
+                              FlutterFlowRadioButton(
+                                options: ['Option 1'],
+                                onChanged: (value) {
+                                  setState(() => radioButtonValue = value);
+                                },
+                                optionHeight: 25,
+                                textStyle: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Open Sans',
+                                  color: Colors.black,
+                                ),
+                                buttonPosition: RadioButtonPosition.left,
+                                direction: Axis.vertical,
+                                radioButtonColor: FlutterFlowTheme.primaryColor,
+                                inactiveRadioButtonColor: Color(0x8A000000),
+                                toggleable: false,
+                                horizontalAlignment: WrapAlignment.start,
+                                verticalAlignment: WrapCrossAlignment.start,
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
                                 child: FlutterFlowDropDown(
-                                  options: [].toList(),
+                                  options: columnSurveyRecord.choices
+                                      .toList()
+                                      .toList(),
                                   onChanged: (val) =>
                                       setState(() => dropDownValue = val),
                                   width: double.infinity,
@@ -140,13 +165,13 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
-                                  '選択肢以外の回答などがあれば、ご記入ください。',
+                                  '選択肢以外の回答があれば、ご記入ください。',
                                   style: FlutterFlowTheme.bodyText2,
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    4, 0, 16, 32),
+                                    0, 0, 16, 32),
                                 child: Container(
                                   width: double.infinity,
                                   height: 48,
@@ -253,14 +278,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                         8, 0, 0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        await Navigator.pushAndRemoveUntil(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => NavBarPage(
-                                                initialPage: 'SurveyPage'),
-                                          ),
-                                          (r) => false,
-                                        );
+                                        Navigator.pop(context);
                                       },
                                       text: '戻る',
                                       options: FFButtonOptions(
