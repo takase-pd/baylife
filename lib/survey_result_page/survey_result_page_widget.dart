@@ -164,37 +164,6 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                   color: FlutterFlowTheme.textDark,
                                 ),
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8, 0, 0, 0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        Navigator.pop(context);
-                                      },
-                                      text: '戻る',
-                                      options: FFButtonOptions(
-                                        width: 88,
-                                        height: 32,
-                                        color: FlutterFlowTheme.sLight,
-                                        textStyle:
-                                            FlutterFlowTheme.subtitle2.override(
-                                          fontFamily: 'Open Sans',
-                                          color: Colors.white,
-                                        ),
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
-                                        ),
-                                        borderRadius: 8,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ],
                           ),
                         ),
