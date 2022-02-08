@@ -157,29 +157,65 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                   width: double.infinity,
                                   height: 48,
                                   decoration: BoxDecoration(),
-                                  child: TextFormField(
-                                    controller: textController,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color:
-                                              FlutterFlowTheme.secondaryColor,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(4),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color:
-                                              FlutterFlowTheme.secondaryColor,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(4),
-                                      ),
+                                  child: StreamBuilder<List<InfoInappRecord>>(
+                                    stream: queryInfoInappRecord(
+                                      singleRecord: true,
                                     ),
-                                    style: FlutterFlowTheme.bodyText1,
-                                    textAlign: TextAlign.start,
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: SpinKitPulse(
+                                              color:
+                                                  FlutterFlowTheme.primaryColor,
+                                              size: 50,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<InfoInappRecord>
+                                          textFieldInfoInappRecordList =
+                                          snapshot.data;
+                                      // Return an empty Container when the document does not exist.
+                                      if (snapshot.data.isEmpty) {
+                                        return Container();
+                                      }
+                                      final textFieldInfoInappRecord =
+                                          textFieldInfoInappRecordList
+                                                  .isNotEmpty
+                                              ? textFieldInfoInappRecordList
+                                                  .first
+                                              : null;
+                                      return TextFormField(
+                                        controller: textController,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: FlutterFlowTheme
+                                                  .secondaryColor,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: FlutterFlowTheme
+                                                  .secondaryColor,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                        ),
+                                        style: FlutterFlowTheme.bodyText1,
+                                        textAlign: TextAlign.start,
+                                      );
+                                    },
                                   ),
                                 ),
                               ),
