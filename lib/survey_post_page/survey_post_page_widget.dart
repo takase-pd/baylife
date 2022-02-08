@@ -173,7 +173,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0, 0, 16, 32),
+                                    0, 0, 16, 40),
                                 child: Container(
                                   width: double.infinity,
                                   height: 48,

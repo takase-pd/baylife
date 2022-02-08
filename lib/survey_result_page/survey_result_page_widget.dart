@@ -104,22 +104,25 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                         color: FlutterFlowTheme.background,
                         child: Padding(
                           padding:
-                              EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                              EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: Text(
                                   columnSurveyRecord.question,
-                                  style: FlutterFlowTheme.subtitle1,
+                                  style: FlutterFlowTheme.subtitle1.override(
+                                    fontFamily: 'Open Sans',
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
                                 child: Builder(
                                   builder: (context) {
                                     final choices = columnSurveyRecord.choices
@@ -156,7 +159,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
                                 child: Text(
                                   columnSurveyRecord.comment,
                                   style: FlutterFlowTheme.bodyText1.override(
