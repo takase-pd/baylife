@@ -194,7 +194,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
                                             title: Text('回答送信'),
-                                            content: Text('ご回答ありがとうございました。'),
+                                            content: Text('ご回答ありがとうございます。'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
@@ -211,7 +211,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                         choice: radioButtonValue,
                                         freeAnswer: textController.text,
                                         date: dateTimeFormat(
-                                            'M/d h:mm a', getCurrentTimestamp),
+                                            'yMMMd', getCurrentTimestamp),
                                       );
                                       await Navigator.pushAndRemoveUntil(
                                         context,

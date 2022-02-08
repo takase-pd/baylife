@@ -4,7 +4,6 @@ import '../components/header_logo_widget.dart';
 import '../flutter_flow/flutter_flow_ad_banner.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -168,37 +167,6 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                   fontFamily: 'Open Sans',
                                   color: FlutterFlowTheme.textDark,
                                 ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8, 0, 0, 0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        Navigator.pop(context);
-                                      },
-                                      text: '戻る',
-                                      options: FFButtonOptions(
-                                        width: 88,
-                                        height: 32,
-                                        color: FlutterFlowTheme.sLight,
-                                        textStyle:
-                                            FlutterFlowTheme.subtitle2.override(
-                                          fontFamily: 'Open Sans',
-                                          color: Colors.white,
-                                        ),
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
-                                        ),
-                                        borderRadius: 8,
-                                      ),
-                                    ),
-                                  ),
-                                ],
                               ),
                             ],
                           ),
