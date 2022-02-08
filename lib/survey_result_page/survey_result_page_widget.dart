@@ -106,7 +106,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 2),
                                 child: Builder(
                                   builder: (context) {
                                     final choices = columnSurveyRecord.choices

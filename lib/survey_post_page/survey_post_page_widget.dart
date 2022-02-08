@@ -1,5 +1,3 @@
-import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
@@ -28,7 +26,6 @@ class SurveyPostPageWidget extends StatefulWidget {
 }
 
 class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
-  ApiCallResponse apiCallOutput1;
   String radioButtonValue;
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -194,34 +191,14 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: Text('回答を送信'),
+                                            title: Text('回答送信'),
                                             content: Text(
-                                                '回答を送信します。送信後は回答を変更できません。'),
+                                                'ご回答ありがとうございます。回答を送信しました。'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext),
-                                                child: Text('戻る'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () async {
-                                                  Navigator.pop(
-                                                      alertDialogContext);
-                                                  apiCallOutput1 =
-                                                      await AddSurveyAnswerCall
-                                                          .call(
-                                                    uid: currentUserUid,
-                                                    sid: columnSurveyRecord.sid,
-                                                    choice: radioButtonValue,
-                                                    date: dateTimeFormat(
-                                                        'M/d h:mm a',
-                                                        getCurrentTimestamp),
-                                                    freeAnswer:
-                                                        textController.text,
-                                                  );
-                                                  ;
-                                                },
-                                                child: Text('送信'),
+                                                child: Text('Ok'),
                                               ),
                                             ],
                                           );
@@ -235,8 +212,6 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                         ),
                                         (r) => false,
                                       );
-
-                                      setState(() {});
                                     },
                                     text: '送信',
                                     options: FFButtonOptions(
