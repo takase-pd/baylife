@@ -1,3 +1,5 @@
+import '../auth/auth_util.dart';
+import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
@@ -192,8 +194,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
                                             title: Text('回答送信'),
-                                            content: Text(
-                                                'ご回答ありがとうございます。回答を送信しました。'),
+                                            content: Text('ご回答ありがとうございました。'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
@@ -203,6 +204,14 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                             ],
                                           );
                                         },
+                                      );
+                                      await AddSurveyAnswerCall.call(
+                                        uid: currentUserUid,
+                                        sid: columnSurveyRecord.sid,
+                                        choice: radioButtonValue,
+                                        freeAnswer: textController.text,
+                                        date: dateTimeFormat(
+                                            'M/d h:mm a', getCurrentTimestamp),
                                       );
                                       await Navigator.pushAndRemoveUntil(
                                         context,
