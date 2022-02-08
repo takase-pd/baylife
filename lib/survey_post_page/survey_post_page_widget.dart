@@ -214,50 +214,37 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                         if (snapshot.connectionState ==
                                             ConnectionState.done) {
                                           if (!existsAnswer()) {
-                                            return FFButtonWidget(
+                                            return // Generated code for this Button Widget...
+                                                FFButtonWidget(
                                               onPressed: () async {
                                                 await showDialog(
                                                   context: context,
                                                   builder:
                                                       (alertDialogContext) {
                                                     return AlertDialog(
-                                                      title: Text('回答を送信'),
+                                                      title: Text('回答送信'),
                                                       content: Text(
-                                                          '回答を送信します。送信後は回答を変更できません。'),
+                                                          'ご回答ありがとうございます。'),
                                                       actions: [
                                                         TextButton(
                                                           onPressed: () =>
                                                               Navigator.pop(
                                                                   alertDialogContext),
-                                                          child: Text('戻る'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () async {
-                                                            Navigator.pop(
-                                                                alertDialogContext);
-                                                            apiCallOutput1 =
-                                                                await AddSurveyAnswerCall
-                                                                    .call(
-                                                              uid:
-                                                                  currentUserUid,
-                                                              sid:
-                                                                  columnSurveyRecord
-                                                                      .sid,
-                                                              choice:
-                                                                  radioButtonValue,
-                                                              date: dateTimeFormat(
-                                                                  'M/d h:mm a',
-                                                                  getCurrentTimestamp),
-                                                              freeAnswer:
-                                                                  textController
-                                                                      .text,
-                                                            );
-                                                          },
-                                                          child: Text('送信'),
+                                                          child: Text('Ok'),
                                                         ),
                                                       ],
                                                     );
                                                   },
+                                                );
+                                                await AddSurveyAnswerCall.call(
+                                                  uid: currentUserUid,
+                                                  sid: columnSurveyRecord.sid,
+                                                  choice: radioButtonValue,
+                                                  freeAnswer:
+                                                      textController.text,
+                                                  date: dateTimeFormat(
+                                                      'yMMMd h:mm a',
+                                                      getCurrentTimestamp),
                                                 );
                                                 await Navigator
                                                     .pushAndRemoveUntil(
@@ -270,8 +257,6 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                                   ),
                                                   (r) => false,
                                                 );
-
-                                                setState(() {});
                                               },
                                               text: '送信',
                                               options: FFButtonOptions(
