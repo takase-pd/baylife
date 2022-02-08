@@ -4,7 +4,6 @@ import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
 import '../flutter_flow/flutter_flow_ad_banner.dart';
-import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -33,7 +32,6 @@ class SurveyPostPageWidget extends StatefulWidget {
 class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
   List answers;
   ApiCallResponse apiCallOutput1;
-  String dropDownValue;
   String radioButtonValue;
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -246,7 +244,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                                                   columnSurveyRecord
                                                                       .sid,
                                                               choice:
-                                                                  dropDownValue,
+                                                                  radioButtonValue,
                                                               date: dateTimeFormat(
                                                                   'M/d h:mm a',
                                                                   getCurrentTimestamp),
