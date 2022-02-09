@@ -65,6 +65,7 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
                       style: FlutterFlowTheme.title2.override(
                         fontFamily: 'Open Sans',
                         color: FlutterFlowTheme.textLight,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),

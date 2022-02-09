@@ -136,8 +136,21 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                     ),
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
                                       children: [
+                                        Text(
+                                          dateTimeFormat('yMMMd',
+                                              listViewSurveyRecord.startDate),
+                                          style: FlutterFlowTheme.bodyText2
+                                              .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.sLight,
+                                            fontSize: 12,
+                                          ),
+                                        ),
                                         if (listViewSurveyRecord.open ?? true)
                                           FFButtonWidget(
                                             onPressed: () async {
