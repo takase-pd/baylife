@@ -120,6 +120,27 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 8),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            dateTimeFormat('yMMMd',
+                                                listViewSurveyRecord.startDate),
+                                            style: FlutterFlowTheme.bodyText2
+                                                .override(
+                                              fontFamily: 'Open Sans',
+                                              color: FlutterFlowTheme.sLight,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 16),
                                       child: Text(
                                         listViewSurveyRecord.explanation
@@ -136,21 +157,10 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                     ),
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
-                                        Text(
-                                          dateTimeFormat('yMMMd',
-                                              listViewSurveyRecord.startDate),
-                                          style: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Open Sans',
-                                            color: FlutterFlowTheme.sLight,
-                                            fontSize: 12,
-                                          ),
-                                        ),
                                         if (listViewSurveyRecord.open ?? true)
                                           FFButtonWidget(
                                             onPressed: () async {
