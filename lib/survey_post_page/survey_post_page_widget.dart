@@ -150,7 +150,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
                                 child: FlutterFlowRadioButton(
                                   options: ['Option 1', 'Option 2'],
                                   onChanged: (value) {
