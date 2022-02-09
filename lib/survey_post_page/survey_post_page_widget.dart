@@ -33,6 +33,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
   List answers;
   ApiCallResponse apiCallOutput1;
   String radioButtonValue;
+  String radioButtonAlert = '';
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -145,7 +146,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: FlutterFlowRadioButton(
                                   options: columnSurveyRecord.choices.toList(),
                                   onChanged: (value) {
@@ -166,6 +167,17 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                   toggleable: false,
                                   horizontalAlignment: WrapAlignment.start,
                                   verticalAlignment: WrapCrossAlignment.start,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16, 0, 0, 40),
+                                child: Text(
+                                  radioButtonAlert,
+                                  style: FlutterFlowTheme.bodyText2.override(
+                                    fontFamily: 'Open Sans',
+                                    color: FlutterFlowTheme.primaryColor,
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -258,46 +270,53 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                             return // Generated code for this Button Widget...
                                                 FFButtonWidget(
                                               onPressed: () async {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text('回答送信'),
-                                                      content: Text(
-                                                          'ご回答ありがとうございます。'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('Ok'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                                await AddSurveyAnswerCall.call(
-                                                  uid: currentUserUid,
-                                                  sid: columnSurveyRecord.sid,
-                                                  choice: radioButtonValue,
-                                                  freeAnswer:
-                                                      textController.text,
-                                                  date: dateTimeFormat(
-                                                      'yMMMd h:mm a',
-                                                      getCurrentTimestamp),
-                                                );
-                                                await Navigator
-                                                    .pushAndRemoveUntil(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        NavBarPage(
-                                                            initialPage:
-                                                                'SurveyPage'),
-                                                  ),
-                                                  (r) => false,
-                                                );
+                                                if (radioButtonValue == null) {
+                                                  setState(() =>
+                                                      radioButtonAlert =
+                                                          '＊必ず1つ選択してください。');
+                                                } else {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: Text('回答送信'),
+                                                        content: Text(
+                                                            'ご回答ありがとうございます。'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                  await AddSurveyAnswerCall
+                                                      .call(
+                                                    uid: currentUserUid,
+                                                    sid: columnSurveyRecord.sid,
+                                                    choice: radioButtonValue,
+                                                    freeAnswer:
+                                                        textController.text,
+                                                    date: dateTimeFormat(
+                                                        'yMMMd h:mm a',
+                                                        getCurrentTimestamp),
+                                                  );
+                                                  await Navigator
+                                                      .pushAndRemoveUntil(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          NavBarPage(
+                                                              initialPage:
+                                                                  'SurveyPage'),
+                                                    ),
+                                                    (r) => false,
+                                                  );
+                                                }
                                               },
                                               text: '送信',
                                               options: FFButtonOptions(
