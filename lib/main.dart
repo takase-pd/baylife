@@ -133,7 +133,7 @@ class _NavBarPageState extends State<NavBarPage> {
               FontAwesomeIcons.infoCircle,
               size: 24,
             ),
-            label: 'Home',
+            label: '地域情報',
             tooltip: '',
           ),
           BottomNavigationBarItem(

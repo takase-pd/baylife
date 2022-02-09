@@ -54,15 +54,6 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Text(
-                columnLogonameRecord.first,
-                style: FlutterFlowTheme.title2.override(
-                  fontFamily: 'Open Sans',
-                  color: FlutterFlowTheme.textLight,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -71,20 +62,11 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
                     child: Text(
                       columnLogonameRecord.second,
-                      style: FlutterFlowTheme.title3.override(
+                      style: FlutterFlowTheme.title2.override(
                         fontFamily: 'Open Sans',
                         color: FlutterFlowTheme.textLight,
-                        fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
-                    ),
-                  ),
-                  Text(
-                    columnLogonameRecord.version,
-                    style: FlutterFlowTheme.title3.override(
-                      fontFamily: 'Open Sans',
-                      color: FlutterFlowTheme.textLight,
-                      fontSize: 10,
                     ),
                   ),
                 ],
