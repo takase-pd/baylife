@@ -30,6 +30,7 @@ class SurveyPostPageWidget extends StatefulWidget {
 }
 
 class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
+  String sid;
   List answers;
   ApiCallResponse apiCallOutput1;
   String radioButtonValue;
@@ -52,6 +53,42 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
   bool existsAnswer() {
     final exists = answers.contains(widget.surveyRef.id);
     return exists;
+  }
+
+  void sendAnswer() async {
+    if (radioButtonValue == null) {
+      setState(() => radioButtonAlert = '＊必ず1つ選択してください。');
+    } else {
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            title: Text('回答送信'),
+            content: Text('ご回答ありがとうございます。'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
+      await AddSurveyAnswerCall.call(
+        uid: currentUserUid,
+        sid: sid,
+        choice: radioButtonValue,
+        freeAnswer: textController.text,
+        date: dateTimeFormat('yMMMd h:mm a', getCurrentTimestamp),
+      );
+      await Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => NavBarPage(initialPage: 'SurveyPage'),
+        ),
+        (r) => false,
+      );
+    }
   }
 
   @override
@@ -112,6 +149,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                   );
                 }
                 final columnSurveyRecord = snapshot.data;
+                sid = columnSurveyRecord.sid;
                 return Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -269,55 +307,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                           if (!existsAnswer()) {
                                             return // Generated code for this Button Widget...
                                                 FFButtonWidget(
-                                              onPressed: () async {
-                                                if (radioButtonValue == null) {
-                                                  setState(() =>
-                                                      radioButtonAlert =
-                                                          '＊必ず1つ選択してください。');
-                                                } else {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        title: Text('回答送信'),
-                                                        content: Text(
-                                                            'ご回答ありがとうございます。'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                  await AddSurveyAnswerCall
-                                                      .call(
-                                                    uid: currentUserUid,
-                                                    sid: columnSurveyRecord.sid,
-                                                    choice: radioButtonValue,
-                                                    freeAnswer:
-                                                        textController.text,
-                                                    date: dateTimeFormat(
-                                                        'yMMMd h:mm a',
-                                                        getCurrentTimestamp),
-                                                  );
-                                                  await Navigator
-                                                      .pushAndRemoveUntil(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          NavBarPage(
-                                                              initialPage:
-                                                                  'SurveyPage'),
-                                                    ),
-                                                    (r) => false,
-                                                  );
-                                                }
-                                              },
+                                              onPressed: () => {sendAnswer()},
                                               text: '送信',
                                               options: FFButtonOptions(
                                                 width: 88,
