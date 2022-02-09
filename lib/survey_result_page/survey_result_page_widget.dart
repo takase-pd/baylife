@@ -30,9 +30,11 @@ class SurveyResultPageWidget extends StatefulWidget {
 class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  List<MapEntry<String, double>> _getResultData(List choices, List results) {
+  List<MapEntry<String, double>> _getResultData(
+      List choices, List results, int count) {
     if (choices.isEmpty || results.isEmpty) return [];
     if (choices.length != results.length) return [];
+    if (count <= 0) return [];
 
     final List<MapEntry<String, double>> resultData = [];
     choices.asMap().forEach((index, value) {
@@ -114,7 +116,10 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
                                   columnSurveyRecord.question,
-                                  style: FlutterFlowTheme.subtitle1,
+                                  style: FlutterFlowTheme.subtitle1.override(
+                                    fontFamily: 'Open Sans',
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -161,15 +166,16 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                             .toList()
                                             ?.toList() ??
                                         [];
+                                    final count = columnSurveyRecord.count;
                                     List<MapEntry<String, double>> resultData =
-                                        _getResultData(choices, results);
+                                        _getResultData(choices, results, count);
                                     if (resultData.length == 0) {
                                       return Text(
                                         'アンケート結果が集計されていません。\n集計が完了するまでお待ちください。',
                                         style:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.textDark,
+                                          color: FlutterFlowTheme.primaryColor,
                                         ),
                                       );
                                     } else {

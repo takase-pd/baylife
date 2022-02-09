@@ -171,17 +171,9 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
                                   columnSurveyRecord.question,
-                                  style: FlutterFlowTheme.subtitle1,
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: Text(
-                                  columnSurveyRecord.explanation,
-                                  style: FlutterFlowTheme.bodyText1.override(
+                                  style: FlutterFlowTheme.subtitle1.override(
                                     fontFamily: 'Open Sans',
-                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
@@ -256,7 +248,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
-                                  '選択肢以外の回答があれば、ご記入ください。',
+                                  'その他の回答があれば、ご記入ください。',
                                   style: FlutterFlowTheme.bodyText2,
                                 ),
                               ),
