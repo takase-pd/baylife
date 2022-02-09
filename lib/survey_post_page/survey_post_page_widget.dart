@@ -108,7 +108,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                             children: [
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
                                   columnSurveyRecord.question,
                                   style: FlutterFlowTheme.subtitle1.override(
@@ -119,15 +119,18 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
                                   columnSurveyRecord.explanation,
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Open Sans',
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 40),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
                                 child: FlutterFlowRadioButton(
                                   options: ['Option 1', 'Option 2'],
                                   onChanged: (value) {
@@ -289,6 +292,38 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         Navigator.pop(context);
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: Text('回答を選択'),
+                                              content: Text('選択してください。'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Cancel'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () async {
+                                                    Navigator.pop(
+                                                        alertDialogContext);
+                                                    await Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            SurveyPostPageWidget(),
+                                                      ),
+                                                    );
+                                                    ;
+                                                  },
+                                                  child: Text('Confirm'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
                                       },
                                       text: '戻る',
                                       options: FFButtonOptions(

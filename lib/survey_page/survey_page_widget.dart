@@ -1,7 +1,6 @@
 import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
-import '../flutter_flow/flutter_flow_ad_banner.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -125,7 +124,11 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                           maxChars: 50,
                                           replacement: '…',
                                         ),
-                                        style: FlutterFlowTheme.bodyText1,
+                                        style:
+                                            FlutterFlowTheme.bodyText1.override(
+                                          fontFamily: 'Open Sans',
+                                          fontSize: 12,
+                                        ),
                                       ),
                                     ),
                                     Row(
@@ -178,16 +181,6 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                   );
                 },
               ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 8),
-            child: FlutterFlowAdBanner(
-              width: MediaQuery.of(context).size.width,
-              height: 50,
-              showsTestAd: false,
-              iOSAdUnitID: 'ca-app-pub-8134368906531041/4883719188',
-              androidAdUnitID: 'ca-app-pub-8134368906531041/3047893333',
             ),
           ),
         ],
