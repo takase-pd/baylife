@@ -137,6 +137,14 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                               ),
                               Padding(
                                 padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                                child: Text(
+                                  columnSurveyRecord.explanation,
+                                  style: FlutterFlowTheme.bodyText1,
+                                ),
+                              ),
+                              Padding(
+                                padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 40),
                                 child: FlutterFlowRadioButton(
                                   options: columnSurveyRecord.choices.toList(),
@@ -351,7 +359,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                       text: '戻る',
                                       options: FFButtonOptions(
                                         width: 88,
-                                        height: 32,
+                                        height: 40,
                                         color: FlutterFlowTheme.sLight,
                                         textStyle:
                                             FlutterFlowTheme.subtitle2.override(
