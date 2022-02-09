@@ -155,7 +155,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                           child: Text(
                                             listViewSurveyRecord.explanation
                                                 .maybeHandleOverflow(
-                                              maxChars: 50,
+                                              maxChars: 56,
                                               replacement: '…',
                                             ),
                                             style: FlutterFlowTheme.bodyText1
