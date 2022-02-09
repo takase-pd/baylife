@@ -44,6 +44,9 @@ abstract class SurveyRecord
   String get explanation;
 
   @nullable
+  int get count;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -56,7 +59,8 @@ abstract class SurveyRecord
     ..comment = ''
     ..display = false
     ..open = false
-    ..explanation = '';
+    ..explanation = ''
+    ..count = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('survey');
@@ -89,6 +93,7 @@ Map<String, dynamic> createSurveyRecordData({
   bool display,
   bool open,
   String explanation,
+  int count,
 }) =>
     serializers.toFirestore(
         SurveyRecord.serializer,
@@ -103,4 +108,5 @@ Map<String, dynamic> createSurveyRecordData({
           ..comment = comment
           ..display = display
           ..open = open
-          ..explanation = explanation));
+          ..explanation = explanation
+          ..count = count));
