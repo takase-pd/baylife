@@ -132,10 +132,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: Text(
                                   columnSurveyRecord.question,
-                                  style: FlutterFlowTheme.subtitle1.override(
-                                    fontFamily: 'Open Sans',
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                  style: FlutterFlowTheme.subtitle1,
                                 ),
                               ),
                               Padding(
