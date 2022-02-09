@@ -243,7 +243,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16, 0, 0, 40),
+                                    16, 0, 0, 24),
                                 child: Text(
                                   radioButtonAlert,
                                   style: FlutterFlowTheme.bodyText2.override(
