@@ -140,10 +140,23 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 24),
+                                                  0, 0, 0, 16),
                                           child: Text(
                                             listViewSurveyRecord.question,
                                             style: FlutterFlowTheme.subtitle1,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 16),
+                                          child: Text(
+                                            listViewSurveyRecord.explanation
+                                                .maybeHandleOverflow(
+                                              maxChars: 50,
+                                              replacement: '…',
+                                            ),
+                                            style: FlutterFlowTheme.bodyText1,
                                           ),
                                         ),
                                         Row(
@@ -212,7 +225,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                 text: '回答',
                                                 options: FFButtonOptions(
                                                   width: 88,
-                                                  height: 32,
+                                                  height: 40,
                                                   color: FlutterFlowTheme.pDark,
                                                   textStyle: FlutterFlowTheme
                                                       .subtitle2
