@@ -152,10 +152,27 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 0, 8),
+                                          child: Text(
+                                            listViewSurveyRecord.explanation
+                                                .maybeHandleOverflow(
+                                              maxChars: 50,
+                                              replacement: '…',
+                                            ),
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Open Sans',
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 16),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.end,
+                                                MainAxisAlignment.start,
                                             children: [
                                               Text(
                                                 dateTimeFormat(
@@ -172,23 +189,6 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                 ),
                                               ),
                                             ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 16),
-                                          child: Text(
-                                            listViewSurveyRecord.explanation
-                                                .maybeHandleOverflow(
-                                              maxChars: 50,
-                                              replacement: '…',
-                                            ),
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Open Sans',
-                                              fontSize: 12,
-                                            ),
                                           ),
                                         ),
                                         Row(
