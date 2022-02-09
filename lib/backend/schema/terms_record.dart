@@ -34,6 +34,10 @@ abstract class TermsRecord implements Built<TermsRecord, TermsRecordBuilder> {
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
+  static Future<TermsRecord> getDocumentOnce(DocumentReference ref) => ref
+      .get()
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+
   TermsRecord._();
   factory TermsRecord([void Function(TermsRecordBuilder) updates]) =
       _$TermsRecord;

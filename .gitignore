@@ -122,3 +122,5 @@ ios/Runner/GeneratedPluginRegistrant.h
 ios/Runner/GeneratedPluginRegistrant.m
 android/release.keystore
 android/service-account-key.json
+
+.fvm/flutter_sdk

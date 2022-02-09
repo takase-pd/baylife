@@ -31,6 +31,10 @@ abstract class TermsHistoriesRecord
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
+  static Future<TermsHistoriesRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then(
+          (s) => serializers.deserializeWith(serializer, serializedData(s)));
+
   TermsHistoriesRecord._();
   factory TermsHistoriesRecord(
           [void Function(TermsHistoriesRecordBuilder) updates]) =
