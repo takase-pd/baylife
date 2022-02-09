@@ -292,38 +292,6 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         Navigator.pop(context);
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: Text('回答を選択'),
-                                              content: Text('選択してください。'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: Text('Cancel'),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () async {
-                                                    Navigator.pop(
-                                                        alertDialogContext);
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            SurveyPostPageWidget(),
-                                                      ),
-                                                    );
-                                                    ;
-                                                  },
-                                                  child: Text('Confirm'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
                                       },
                                       text: '戻る',
                                       options: FFButtonOptions(
