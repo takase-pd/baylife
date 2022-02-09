@@ -142,10 +142,36 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 16),
+                                                  0, 0, 0, 8),
                                           child: Text(
                                             listViewSurveyRecord.question,
                                             style: FlutterFlowTheme.subtitle1,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 8),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                dateTimeFormat(
+                                                    'yMMMd',
+                                                    listViewSurveyRecord
+                                                        .startDate),
+                                                style: FlutterFlowTheme
+                                                    .bodyText2
+                                                    .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color:
+                                                      FlutterFlowTheme.sLight,
+                                                  fontSize: 12,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         Padding(
