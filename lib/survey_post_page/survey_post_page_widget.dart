@@ -129,7 +129,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                             children: [
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
                                   columnSurveyRecord.question,
                                   style: FlutterFlowTheme.subtitle1,
@@ -137,7 +137,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
                                   columnSurveyRecord.explanation,
                                   style: FlutterFlowTheme.bodyText1,
@@ -145,7 +145,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 40),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
                                 child: FlutterFlowRadioButton(
                                   options: columnSurveyRecord.choices.toList(),
                                   onChanged: (value) {
@@ -302,7 +302,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                               text: '送信',
                                               options: FFButtonOptions(
                                                 width: 88,
-                                                height: 32,
+                                                height: 40,
                                                 color: FlutterFlowTheme.pDark,
                                                 textStyle: FlutterFlowTheme
                                                     .subtitle2
