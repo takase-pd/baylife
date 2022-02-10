@@ -45,7 +45,7 @@ jobs:
           appId: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: Admin
-          file: app-release.aab
+          file: ./build/app/outputs/bundle/release/app-release.aab
 
       - name: Slack Notification on Success
         if: success()
