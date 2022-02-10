@@ -29,16 +29,6 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
         backgroundColor: FlutterFlowTheme.primaryColor,
         iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
         automaticallyImplyLeading: true,
-        leading: InkWell(
-          onTap: () async {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.textLight,
-            size: 24,
-          ),
-        ),
         title: HeaderLogoWidget(),
         actions: [],
         centerTitle: true,
