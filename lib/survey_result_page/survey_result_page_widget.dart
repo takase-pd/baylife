@@ -99,7 +99,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                   columnSurveyRecord.question,
                                   style: FlutterFlowTheme.subtitle1.override(
                                     fontFamily: 'Open Sans',
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ),
