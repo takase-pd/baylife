@@ -22,7 +22,7 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v1
         with:
-          flutter-version:  '2.2.3'
+          flutter-version:  '2.8.1'
 
       - name: Download Flutter packages
         run: flutter pub get
@@ -46,10 +46,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ios
-          path: ./build/ios/ipa/bay_life.ipa
+          path: ./build/ios/ipa/BayLife.ipa
 
       - name: Upload to AppStoreConnect
-        run: xcrun altool --upload-app -f "./build/ios/ipa/bay_life.ipa" -u "${{ secrets.APPLE_ID }}" -p "${{ secrets.APPLE_APP_PASS }}"
+        run: xcrun altool --upload-app -f "./build/ios/ipa/BayLife.ipa" -u "${{ secrets.APPLE_ID }}" -p "${{ secrets.APPLE_APP_PASS }}"
 
   build_Android:
     name: Build for Android
@@ -64,7 +64,7 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v1
         with:
-          flutter-version:  '2.2.3'
+          flutter-version:  '2.8.1'
 
       - name: Download Flutter packages
         run: flutter pub get
