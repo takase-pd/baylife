@@ -36,6 +36,10 @@ abstract class LogonameRecord
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
+  static Future<LogonameRecord> getDocumentOnce(DocumentReference ref) => ref
+      .get()
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+
   LogonameRecord._();
   factory LogonameRecord([void Function(LogonameRecordBuilder) updates]) =
       _$LogonameRecord;

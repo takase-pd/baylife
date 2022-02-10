@@ -63,13 +63,14 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
               ),
             ),
           ),
-          FlutterFlowWebView(
-            url: 'https://baylife-ff782.web.app/terms.html',
-            bypass: false,
-            height: MediaQuery.of(context).size.height * 0.9,
-            verticalScroll: false,
-            horizontalScroll: false,
-          )
+          Expanded(
+            child: FlutterFlowWebView(
+              url: 'https://baylife-ff782.web.app/terms.html',
+              bypass: false,
+              verticalScroll: false,
+              horizontalScroll: false,
+            ),
+          ),
         ],
       ),
     );

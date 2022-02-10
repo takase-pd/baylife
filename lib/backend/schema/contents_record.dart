@@ -122,6 +122,10 @@ abstract class ContentsRecord
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
+  static Future<ContentsRecord> getDocumentOnce(DocumentReference ref) => ref
+      .get()
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+
   ContentsRecord._();
   factory ContentsRecord([void Function(ContentsRecordBuilder) updates]) =
       _$ContentsRecord;

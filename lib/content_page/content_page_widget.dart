@@ -175,15 +175,13 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Visibility(
-                            visible: columnContentsRecord.showImage ?? true,
-                            child: Image.network(
+                          if (columnContentsRecord.showImage ?? true)
+                            Image.network(
                               columnContentsRecord.filePath,
                               width: 300,
                               height: 300,
-                              fit: BoxFit.scaleDown,
+                              fit: BoxFit.contain,
                             ),
-                          )
                         ],
                       ),
                       Padding(
@@ -238,7 +236,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                 fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.textDark,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -265,7 +263,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   color: FlutterFlowTheme.textDark,
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -298,7 +296,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -325,7 +323,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   color: FlutterFlowTheme.textDark,
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -352,24 +350,25 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   color: FlutterFlowTheme.textDark,
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   );
                 },
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 16),
               child: FlutterFlowAdBanner(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
                 showsTestAd: false,
                 iOSAdUnitID: 'ca-app-pub-8134368906531041/4883719188',
+                androidAdUnitID: 'ca-app-pub-8134368906531041/3047893333',
               ),
-            )
+            ),
           ],
         ),
       ),

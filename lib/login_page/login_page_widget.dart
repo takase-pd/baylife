@@ -89,7 +89,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 ),
                 Tab(
                   text: 'ユーザー登録',
-                )
+                ),
               ],
             ),
             Expanded(
@@ -126,17 +126,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'メールアドレス',
-                                        labelStyle:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.textDark,
-                                        ),
                                         hintText: 'メールアドレスを入力',
-                                        hintStyle:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.textDark,
-                                        ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
@@ -189,17 +179,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       obscureText: !passwordVisibility,
                                       decoration: InputDecoration(
                                         labelText: 'パスワード',
-                                        labelStyle:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.textDark,
-                                        ),
                                         hintText: 'パスワードを入力',
-                                        hintStyle:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.textDark,
-                                        ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
@@ -285,7 +265,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   borderRadius: 12,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -354,7 +334,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         fit: BoxFit.contain,
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -444,10 +424,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -482,17 +462,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'メールアドレス',
-                                        labelStyle:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.textDark,
-                                        ),
                                         hintText: 'メールアドレスを入力',
-                                        hintStyle:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.textDark,
-                                        ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
@@ -545,17 +515,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       obscureText: !createPasswordVisibility,
                                       decoration: InputDecoration(
                                         labelText: 'パスワード',
-                                        labelStyle:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.textDark,
-                                        ),
                                         hintText: 'パスワードを入力',
-                                        hintStyle:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.textDark,
-                                        ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
@@ -622,17 +582,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       obscureText: !confirmPasswordVisibility,
                                       decoration: InputDecoration(
                                         labelText: 'パスワード',
-                                        labelStyle:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.textDark,
-                                        ),
                                         hintText: 'パスワードを再入力',
-                                        hintStyle:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.textDark,
-                                        ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
@@ -685,7 +635,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                          "Passwords don't match!",
+                                          'Passwords don\'t match!',
                                         ),
                                       ),
                                     );
@@ -737,7 +687,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   borderRadius: 12,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -806,7 +756,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         fit: BoxFit.contain,
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -903,13 +853,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
