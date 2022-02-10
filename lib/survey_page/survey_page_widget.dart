@@ -105,7 +105,11 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                           0, 0, 0, 8),
                                       child: Text(
                                         listViewSurveyRecord.question,
-                                        style: FlutterFlowTheme.subtitle1,
+                                        style:
+                                            FlutterFlowTheme.subtitle1.override(
+                                          fontFamily: 'Open Sans',
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
                                     ),
                                     Padding(
