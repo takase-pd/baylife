@@ -13,9 +13,9 @@
 		6426BE1225AC0EBD0080CC2A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6426BE1125AC0EBD0080CC2A /* GoogleService-Info.plist */; };
 		6430E63C270005EF009BEAC7 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430E63B270005EF009BEAC7 /* NotificationService.swift */; };
 		6430E640270005EF009BEAC7 /* ImageNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6430E639270005EF009BEAC7 /* ImageNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6436409A27A31CD800820AF7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6436409C27A31CD800820AF7 /* InfoPlist.strings */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
-		6436409A27A31CD800820AF7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6436409C27A31CD800820AF7 /* InfoPlist.strings */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -151,7 +151,6 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
-				64E3CA8B26FC10FF0070C5E0 /* Runner.entitlements */,
 				6426BE1125AC0EBD0080CC2A /* GoogleService-Info.plist */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
@@ -206,7 +205,6 @@
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				2838A0ADC44730F0A2303575 /* [CP] Embed Pods Frameworks */,
-				55067970987309DE09E9DE72 /* [CP] Copy Pods Resources */,
 				6430E641270005EF009BEAC7 /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -280,23 +278,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		22F6078F87241CF52F89E9CC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2838A0ADC44730F0A2303575 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -398,7 +379,6 @@
 		6436409C27A31CD800820AF7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -520,6 +500,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MVD8N86696;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ImageNotification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -550,6 +531,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MVD8N86696;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ImageNotification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -577,6 +559,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MVD8N86696;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ImageNotification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
