@@ -13,7 +13,7 @@
 			<key>com.particledrawing.baylife</key>
 			<string>com.particledrawing.baylifedev</string>
 			<key>com.particledrawing.baylife.ImageNotification</key>
-			<string>com.particledrawing.baylifedev.ImageNotification</string>
+			<string>com.particledrawing.baylife.ImageNotification</string>
 		</dict>
 		<key>signingCertificate</key>
 		<string>Apple Distribution</string>
