@@ -31,8 +31,8 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).textLight),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -40,7 +40,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.textLight,
+            color: FlutterFlowTheme.of(context).textLight,
             size: 24,
           ),
         ),
@@ -49,7 +49,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(
@@ -59,11 +59,11 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
             ),
           );
         },
-        backgroundColor: FlutterFlowTheme.secondaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
         elevation: 8,
         child: Icon(
           Icons.post_add_sharp,
-          color: FlutterFlowTheme.textLight,
+          color: FlutterFlowTheme.of(context).textLight,
           size: 24,
         ),
       ),
@@ -95,7 +95,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                         width: 50,
                         height: 50,
                         child: SpinKitPulse(
-                          color: FlutterFlowTheme.primaryColor,
+                          color: FlutterFlowTheme.of(context).primaryColor,
                           size: 50,
                         ),
                       ),
@@ -126,7 +126,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                           },
                           child: Card(
                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: FlutterFlowTheme.background,
+                            color: FlutterFlowTheme.of(context).background,
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10, 10, 10, 10),
@@ -139,11 +139,14 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                         0, 0, 0, 10),
                                     child: Text(
                                       listViewContentsRecord.title,
-                                      style: FlutterFlowTheme.title3.override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textDark,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .title3
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .textDark,
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                     ),
                                   ),
                                   Padding(
@@ -151,11 +154,13 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                         0, 0, 0, 10),
                                     child: Text(
                                       listViewContentsRecord.overview,
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textDark,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .textDark,
+                                          ),
                                     ),
                                   ),
                                   StreamBuilder<CategoriesRecord>(
@@ -170,7 +175,8 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                             height: 50,
                                             child: SpinKitPulse(
                                               color:
-                                                  FlutterFlowTheme.primaryColor,
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
                                               size: 50,
                                             ),
                                           ),
@@ -195,13 +201,16 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                   child: Text(
                                                     listViewContentsRecord
                                                         .organizer,
-                                                    style: FlutterFlowTheme
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyText2
                                                         .override(
-                                                      fontFamily: 'Open Sans',
-                                                      color: FlutterFlowTheme
-                                                          .textDark,
-                                                    ),
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .textDark,
+                                                        ),
                                                   ),
                                                 ),
                                                 Padding(
@@ -225,8 +234,10 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                       width: 70,
                                                       height: 30,
                                                       decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                            .secondaryColor,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryColor,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(5),
@@ -241,16 +252,16 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                               .catName,
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .bodyText2
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Open Sans',
-                                                            color:
-                                                                FlutterFlowTheme
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
                                                                     .textLight,
-                                                          ),
+                                                              ),
                                                         ),
                                                       ),
                                                     ),

@@ -22,8 +22,8 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).textLight),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -31,7 +31,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.textLight,
+            color: FlutterFlowTheme.of(context).textLight,
             size: 24,
           ),
         ),
@@ -40,7 +40,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
@@ -56,10 +56,10 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
               },
               child: Text(
                 '表示されない場合はこちらをクリック',
-                style: FlutterFlowTheme.bodyText2.override(
-                  fontFamily: 'Open Sans',
-                  color: FlutterFlowTheme.textDark,
-                ),
+                style: FlutterFlowTheme.of(context).bodyText2.override(
+                      fontFamily: 'Open Sans',
+                      color: FlutterFlowTheme.of(context).textDark,
+                    ),
               ),
             ),
           ),

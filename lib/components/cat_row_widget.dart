@@ -31,7 +31,7 @@ class _CatRowWidgetState extends State<CatRowWidget> {
                 width: 50,
                 height: 50,
                 child: SpinKitPulse(
-                  color: FlutterFlowTheme.primaryColor,
+                  color: FlutterFlowTheme.of(context).primaryColor,
                   size: 50,
                 ),
               ),
@@ -60,12 +60,12 @@ class _CatRowWidgetState extends State<CatRowWidget> {
                     },
                     child: Text(
                       rowCategoriesRecord.catName,
-                      style: FlutterFlowTheme.title3.override(
-                        fontFamily: 'Open Sans',
-                        color: FlutterFlowTheme.textDark,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: FlutterFlowTheme.of(context).title3.override(
+                            fontFamily: 'Open Sans',
+                            color: FlutterFlowTheme.of(context).textDark,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
                     ),
                   ),
                 );

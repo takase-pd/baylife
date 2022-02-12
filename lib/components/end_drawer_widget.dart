@@ -21,7 +21,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.tertiaryColor,
+        color: FlutterFlowTheme.of(context).tertiaryColor,
       ),
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(10, 200, 10, 0),
@@ -48,14 +48,16 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           'トップ',
-                          style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textDark,
-                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .subtitle2
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textDark,
+                              ),
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.textDark,
+                          color: FlutterFlowTheme.of(context).textDark,
                           size: 20,
                         ),
                         dense: false,
@@ -76,14 +78,16 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           '投稿',
-                          style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textDark,
-                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .subtitle2
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textDark,
+                              ),
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.textDark,
+                          color: FlutterFlowTheme.of(context).textDark,
                           size: 20,
                         ),
                         dense: false,
@@ -100,14 +104,16 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           '要望送信',
-                          style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textDark,
-                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .subtitle2
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textDark,
+                              ),
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.textDark,
+                          color: FlutterFlowTheme.of(context).textDark,
                           size: 20,
                         ),
                         dense: false,
@@ -128,14 +134,16 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           '利用規約',
-                          style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textDark,
-                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .subtitle2
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textDark,
+                              ),
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.textDark,
+                          color: FlutterFlowTheme.of(context).textDark,
                           size: 20,
                         ),
                         dense: false,
@@ -152,14 +160,16 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           'プライバシーポリシー',
-                          style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textDark,
-                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .subtitle2
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textDark,
+                              ),
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.textDark,
+                          color: FlutterFlowTheme.of(context).textDark,
                           size: 20,
                         ),
                         dense: false,
@@ -207,14 +217,16 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       child: ListTile(
                         title: Text(
                           '退会',
-                          style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textDark,
-                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .subtitle2
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textDark,
+                              ),
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.textDark,
+                          color: FlutterFlowTheme.of(context).textDark,
                           size: 20,
                         ),
                         dense: false,
@@ -240,14 +252,14 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                 child: ListTile(
                   title: Text(
                     'ログアウト',
-                    style: FlutterFlowTheme.subtitle2.override(
-                      fontFamily: 'Open Sans',
-                      color: FlutterFlowTheme.textDark,
-                    ),
+                    style: FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Open Sans',
+                          color: FlutterFlowTheme.of(context).textDark,
+                        ),
                   ),
                   trailing: Icon(
                     Icons.logout,
-                    color: FlutterFlowTheme.textDark,
+                    color: FlutterFlowTheme.of(context).textDark,
                     size: 20,
                   ),
                   dense: false,

@@ -43,8 +43,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).textLight),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -52,7 +52,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.textLight,
+            color: FlutterFlowTheme.of(context).textLight,
             size: 24,
           ),
         ),
@@ -61,7 +61,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
@@ -83,7 +83,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                       width: 50,
                       height: 50,
                       child: SpinKitPulse(
-                        color: FlutterFlowTheme.primaryColor,
+                        color: FlutterFlowTheme.of(context).primaryColor,
                         size: 50,
                       ),
                     ),
@@ -98,7 +98,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: FlutterFlowTheme.background,
+                        color: FlutterFlowTheme.of(context).background,
                         child: Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
@@ -111,10 +111,12 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
                                   columnSurveyRecord.question,
-                                  style: FlutterFlowTheme.subtitle1.override(
-                                    fontFamily: 'Open Sans',
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                 ),
                               ),
                               Padding(
@@ -122,10 +124,12 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
                                   columnSurveyRecord.explanation,
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Open Sans',
-                                    fontSize: 12,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 12,
+                                      ),
                                 ),
                               ),
                               Padding(
@@ -138,12 +142,14 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     Text(
                                       dateTimeFormat('yMMMd',
                                           columnSurveyRecord.startDate),
-                                      style:
-                                          FlutterFlowTheme.bodyText2.override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.sLight,
-                                        fontSize: 12,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText2
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .sLight,
+                                            fontSize: 12,
+                                          ),
                                     ),
                                   ],
                                 ),
@@ -157,17 +163,18 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     setState(() => radioButtonValue = value);
                                   },
                                   optionHeight: 40,
-                                  textStyle:
-                                      FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Open Sans',
-                                    color: Colors.black,
-                                  ),
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: Colors.black,
+                                      ),
                                   buttonPosition: RadioButtonPosition.left,
                                   direction: Axis.vertical,
                                   radioButtonColor:
-                                      FlutterFlowTheme.primaryColor,
+                                      FlutterFlowTheme.of(context).primaryColor,
                                   inactiveRadioButtonColor:
-                                      FlutterFlowTheme.sLight,
+                                      FlutterFlowTheme.of(context).sLight,
                                   toggleable: false,
                                   horizontalAlignment: WrapAlignment.start,
                                   verticalAlignment: WrapCrossAlignment.start,
@@ -178,10 +185,13 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     16, 0, 0, 24),
                                 child: Text(
                                   '',
-                                  style: FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Open Sans',
-                                    color: FlutterFlowTheme.primaryColor,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText2
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                      ),
                                 ),
                               ),
                               Padding(
@@ -189,7 +199,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
                                   '選択肢以外の回答があれば、ご記入ください。',
-                                  style: FlutterFlowTheme.bodyText2,
+                                  style: FlutterFlowTheme.of(context).bodyText2,
                                 ),
                               ),
                               Padding(
@@ -212,7 +222,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                             height: 50,
                                             child: SpinKitPulse(
                                               color:
-                                                  FlutterFlowTheme.primaryColor,
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
                                               size: 50,
                                             ),
                                           ),
@@ -237,8 +248,9 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme
-                                                  .secondaryColor,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryColor,
                                               width: 1,
                                             ),
                                             borderRadius:
@@ -246,15 +258,17 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme
-                                                  .secondaryColor,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryColor,
                                               width: 1,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
                                         ),
-                                        style: FlutterFlowTheme.bodyText1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1,
                                         textAlign: TextAlign.start,
                                       );
                                     },
@@ -304,12 +318,14 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     options: FFButtonOptions(
                                       width: 88,
                                       height: 40,
-                                      color: FlutterFlowTheme.pDark,
-                                      textStyle:
-                                          FlutterFlowTheme.subtitle2.override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textLight,
-                                      ),
+                                      color: FlutterFlowTheme.of(context).pDark,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .subtitle2
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .textLight,
+                                          ),
                                       borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1,
@@ -328,12 +344,14 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                       options: FFButtonOptions(
                                         width: 88,
                                         height: 40,
-                                        color: FlutterFlowTheme.sLight,
-                                        textStyle:
-                                            FlutterFlowTheme.subtitle2.override(
-                                          fontFamily: 'Open Sans',
-                                          color: Colors.white,
-                                        ),
+                                        color:
+                                            FlutterFlowTheme.of(context).sLight,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .subtitle2
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color: Colors.white,
+                                            ),
                                         borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1,
@@ -361,7 +379,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                               width: 50,
                               height: 50,
                               child: SpinKitPulse(
-                                color: FlutterFlowTheme.primaryColor,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
                                 size: 50,
                               ),
                             ),
@@ -380,7 +399,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                         return Text(
                           textInfoInappRecord.surveyAgree,
                           textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.bodyText1,
+                          style: FlutterFlowTheme.of(context).bodyText1,
                         );
                       },
                     ),
