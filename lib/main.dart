@@ -33,6 +33,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale _locale;
+  ThemeMode _themeMode = ThemeMode.system;
   Stream<BayLifeFirebaseUser> userStream;
   BayLifeFirebaseUser initialUser;
   bool displaySplashImage = true;
@@ -40,6 +41,9 @@ class _MyAppState extends State<MyApp> {
   final fcmTokenSub = fcmTokenUserStream.listen((_) {});
 
   void setLocale(Locale value) => setState(() => _locale = value);
+  void setThemeMode(ThemeMode mode) => setState(() {
+        _themeMode = mode;
+      });
 
   @override
   void initState() {
@@ -71,10 +75,12 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: const [
         Locale('ja', ''),
       ],
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(brightness: Brightness.light),
+      darkTheme: ThemeData(brightness: Brightness.dark),
+      themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
           ? Container(
-              color: FlutterFlowTheme.tertiaryColor,
+              color: FlutterFlowTheme.of(context).tertiaryColor,
               child: Center(
                 child: Builder(
                   builder: (context) => Image.asset(
@@ -124,13 +130,13 @@ class _NavBarPageState extends State<NavBarPage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        selectedItemColor: FlutterFlowTheme.primaryColor,
-        unselectedItemColor: FlutterFlowTheme.tDark,
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        selectedItemColor: FlutterFlowTheme.of(context).primaryColor,
+        unselectedItemColor: FlutterFlowTheme.of(context).tDark,
         showSelectedLabels: true,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.infoCircle,

@@ -13,15 +13,6 @@
         }
       },
       "oauth_client": [
-          {
-            "client_id": "201447539334-u7bg08jh5jd3q4chbibpisckkmsuadlj.apps.googleusercontent.com",
-            "client_type": 1,
-            "android_info": {
-              "package_name": "com.particledrawing.baylife",
-              "certificate_hash": "96f253909b861c4d5982e3616ffc74e708be188c"
-            }
-          },
-
         {
           "client_id": "201447539334-u7bg08jh5jd3q4chbibpisckkmsuadlj.apps.googleusercontent.com",
           "client_type": 3

@@ -54,6 +54,7 @@ dependencies:
   mime_type: 1.0.0
   page_transition: 2.0.4
   rxdart: 0.26.0
+  shared_preferences: 2.0.11
   sign_in_with_apple:
     git:
       url: https://github.com/asmengistu/dart_packages
@@ -67,10 +68,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
-
-dependency_overrides:
-  pointer_interceptor: 0.9.1
-  url_launcher_web: 2.0.6
 
 dev_dependencies:
   build_runner: 2.1.7

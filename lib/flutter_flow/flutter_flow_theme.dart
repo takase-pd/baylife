@@ -1,66 +1,93 @@
+// ignore_for_file: overridden_fields, annotate_overrides
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// ignore: avoid_classes_with_only_static_members
-class FlutterFlowTheme {
-  static const Color primaryColor = Color(0xFF2979FF);
-  static const Color secondaryColor = Color(0xFF212121);
-  static const Color tertiaryColor = Color(0xFFEEEEEE);
+abstract class FlutterFlowTheme {
+  static FlutterFlowTheme of(BuildContext context) => LightModeTheme();
 
-  static const Color pLight = Color(0xFF75A7FF);
-  static const Color sLight = Color(0xFF484848);
-  static const Color tLight = Color(0xFFFAFAFA);
-  static const Color pDark = Color(0xFF004ECB);
-  static const Color sDark = Color(0xFF000000);
-  static const Color tDark = Color(0xFFE0E0E0);
-  static const Color textDark = Color(0xFF000000);
-  static const Color textLight = Color(0xFFFFFFFF);
-  static const Color background = Color(0xFFFFFFFF);
+  Color primaryColor;
+  Color secondaryColor;
+  Color tertiaryColor;
+  Color alternate;
+  Color primaryBackground;
+  Color secondaryBackground;
+  Color primaryText;
+  Color secondaryText;
 
-  String primaryFontFamily = 'Poppins';
-  String secondaryFontFamily = 'Roboto';
-  static TextStyle get title1 => GoogleFonts.getFont(
+  Color pLight;
+  Color sLight;
+  Color tLight;
+  Color pDark;
+  Color sDark;
+  Color tDark;
+  Color textDark;
+  Color textLight;
+  Color background;
+
+  TextStyle get title1 => GoogleFonts.getFont(
         'Open Sans',
         color: textDark,
         fontWeight: FontWeight.w600,
         fontSize: 24,
       );
-  static TextStyle get title2 => GoogleFonts.getFont(
+  TextStyle get title2 => GoogleFonts.getFont(
         'Open Sans',
         color: textDark,
         fontWeight: FontWeight.w500,
         fontSize: 22,
       );
-  static TextStyle get title3 => GoogleFonts.getFont(
+  TextStyle get title3 => GoogleFonts.getFont(
         'Open Sans',
         color: textDark,
         fontWeight: FontWeight.w500,
         fontSize: 20,
       );
-  static TextStyle get subtitle1 => GoogleFonts.getFont(
+  TextStyle get subtitle1 => GoogleFonts.getFont(
         'Open Sans',
         color: textDark,
         fontWeight: FontWeight.w500,
         fontSize: 18,
       );
-  static TextStyle get subtitle2 => GoogleFonts.getFont(
+  TextStyle get subtitle2 => GoogleFonts.getFont(
         'Open Sans',
         color: textDark,
         fontWeight: FontWeight.normal,
         fontSize: 16,
       );
-  static TextStyle get bodyText1 => GoogleFonts.getFont(
+  TextStyle get bodyText1 => GoogleFonts.getFont(
         'Open Sans',
         color: textDark,
         fontWeight: FontWeight.normal,
         fontSize: 14,
       );
-  static TextStyle get bodyText2 => GoogleFonts.getFont(
+  TextStyle get bodyText2 => GoogleFonts.getFont(
         'Open Sans',
         color: textDark,
         fontWeight: FontWeight.normal,
         fontSize: 14,
       );
+}
+
+class LightModeTheme extends FlutterFlowTheme {
+  Color primaryColor = const Color(0xFF2979FF);
+  Color secondaryColor = const Color(0xFF212121);
+  Color tertiaryColor = const Color(0xFFEEEEEE);
+  Color alternate = const Color(0x00000000);
+  Color primaryBackground = const Color(0x00000000);
+  Color secondaryBackground = const Color(0x00000000);
+  Color primaryText = const Color(0x00000000);
+  Color secondaryText = const Color(0x00000000);
+
+  Color pLight = Color(0xFF75A7FF);
+  Color sLight = Color(0xFF484848);
+  Color tLight = Color(0xFFFAFAFA);
+  Color pDark = Color(0xFF004ECB);
+  Color sDark = Color(0xFF000000);
+  Color tDark = Color(0xFFE0E0E0);
+  Color textDark = Color(0xFF000000);
+  Color textLight = Color(0xFFFFFFFF);
+  Color background = Color(0xFFFFFFFF);
 }
 
 extension TextStyleHelper on TextStyle {
