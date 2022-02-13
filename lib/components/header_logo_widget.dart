@@ -28,7 +28,7 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
               width: 50,
               height: 50,
               child: SpinKitPulse(
-                color: FlutterFlowTheme.primaryColor,
+                color: FlutterFlowTheme.of(context).primaryColor,
                 size: 50,
               ),
             ),
@@ -62,11 +62,11 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
                     child: Text(
                       columnLogonameRecord.second,
-                      style: FlutterFlowTheme.title2.override(
-                        fontFamily: 'Open Sans',
-                        color: FlutterFlowTheme.textLight,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: FlutterFlowTheme.of(context).title2.override(
+                            fontFamily: 'Open Sans',
+                            color: FlutterFlowTheme.of(context).textLight,
+                            fontWeight: FontWeight.w600,
+                          ),
                     ),
                   ),
                 ],

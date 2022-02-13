@@ -31,8 +31,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).textLight),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -40,7 +40,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.textLight,
+            color: FlutterFlowTheme.of(context).textLight,
             size: 24,
           ),
         ),
@@ -49,7 +49,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.background,
+      backgroundColor: FlutterFlowTheme.of(context).background,
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
@@ -70,7 +70,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                         width: 50,
                         height: 50,
                         child: SpinKitPulse(
-                          color: FlutterFlowTheme.primaryColor,
+                          color: FlutterFlowTheme.of(context).primaryColor,
                           size: 50,
                         ),
                       ),
@@ -85,20 +85,22 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                         child: Text(
                           columnContentsRecord.title,
-                          style: FlutterFlowTheme.title1.override(
-                            fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textDark,
-                          ),
+                          style: FlutterFlowTheme.of(context).title1.override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textDark,
+                              ),
                         ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                         child: Text(
                           columnContentsRecord.organizer,
-                          style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textDark,
-                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .subtitle2
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textDark,
+                              ),
                         ),
                       ),
                       Padding(
@@ -114,7 +116,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   width: 50,
                                   height: 50,
                                   child: SpinKitPulse(
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     size: 50,
                                   ),
                                 ),
@@ -137,7 +140,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                 width: 70,
                                 height: 30,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.secondaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryColor,
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Padding(
@@ -146,10 +150,13 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   child: Text(
                                     containerCategoriesRecord.catName,
                                     textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.bodyText2.override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.textLight,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText2
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textLight,
+                                        ),
                                   ),
                                 ),
                               ),
@@ -161,15 +168,17 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                         child: Text(
                           columnContentsRecord.overview,
-                          style: FlutterFlowTheme.subtitle1.override(
-                            fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textDark,
-                            fontSize: 14,
-                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .subtitle1
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textDark,
+                                fontSize: 14,
+                              ),
                         ),
                       ),
                       Divider(
-                        color: FlutterFlowTheme.secondaryColor,
+                        color: FlutterFlowTheme.of(context).secondaryColor,
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -188,14 +197,16 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                         child: Text(
                           columnContentsRecord.detail,
-                          style: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.textDark,
-                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textDark,
+                              ),
                         ),
                       ),
                       Divider(
-                        color: FlutterFlowTheme.secondaryColor,
+                        color: FlutterFlowTheme.of(context).secondaryColor,
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
@@ -208,34 +219,40 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: Icon(
                                 Icons.today_sharp,
-                                color: FlutterFlowTheme.textDark,
+                                color: FlutterFlowTheme.of(context).textDark,
                                 size: 16,
                               ),
                             ),
                             Text(
                               dateTimeFormat(
                                   'yMMMd', columnContentsRecord.startDay),
-                              style: FlutterFlowTheme.bodyText2.override(
-                                fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.textDark,
-                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText2
+                                  .override(
+                                    fontFamily: 'Open Sans',
+                                    color:
+                                        FlutterFlowTheme.of(context).textDark,
+                                  ),
                             ),
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(7, 3, 7, 0),
                               child: Icon(
                                 Icons.double_arrow_sharp,
-                                color: FlutterFlowTheme.textDark,
+                                color: FlutterFlowTheme.of(context).textDark,
                                 size: 16,
                               ),
                             ),
                             Text(
                               dateTimeFormat(
                                   'yMMMd', columnContentsRecord.finalDay),
-                              style: FlutterFlowTheme.bodyText2.override(
-                                fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.textDark,
-                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText2
+                                  .override(
+                                    fontFamily: 'Open Sans',
+                                    color:
+                                        FlutterFlowTheme.of(context).textDark,
+                                  ),
                             ),
                           ],
                         ),
@@ -251,17 +268,20 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: Icon(
                                 Icons.place_outlined,
-                                color: FlutterFlowTheme.textDark,
+                                color: FlutterFlowTheme.of(context).textDark,
                                 size: 16,
                               ),
                             ),
                             Expanded(
                               child: Text(
                                 columnContentsRecord.address,
-                                style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Open Sans',
-                                  color: FlutterFlowTheme.textDark,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText2
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color:
+                                          FlutterFlowTheme.of(context).textDark,
+                                    ),
                               ),
                             ),
                           ],
@@ -278,7 +298,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: Icon(
                                 Icons.open_in_new_rounded,
-                                color: FlutterFlowTheme.textDark,
+                                color: FlutterFlowTheme.of(context).textDark,
                                 size: 16,
                               ),
                             ),
@@ -290,10 +310,13 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                 },
                                 child: Text(
                                   columnContentsRecord.homepage,
-                                  style: FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Open Sans',
-                                    color: FlutterFlowTheme.textDark,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText2
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .textDark,
+                                      ),
                                 ),
                               ),
                             ),
@@ -311,17 +334,20 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: FaIcon(
                                 FontAwesomeIcons.smile,
-                                color: FlutterFlowTheme.textDark,
+                                color: FlutterFlowTheme.of(context).textDark,
                                 size: 16,
                               ),
                             ),
                             Expanded(
                               child: Text(
                                 columnContentsRecord.organizer,
-                                style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Open Sans',
-                                  color: FlutterFlowTheme.textDark,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText2
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color:
+                                          FlutterFlowTheme.of(context).textDark,
+                                    ),
                               ),
                             ),
                           ],
@@ -338,17 +364,20 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 3, 7, 0),
                               child: Icon(
                                 Icons.add_to_home_screen_outlined,
-                                color: FlutterFlowTheme.textDark,
+                                color: FlutterFlowTheme.of(context).textDark,
                                 size: 16,
                               ),
                             ),
                             Expanded(
                               child: Text(
                                 columnContentsRecord.contact,
-                                style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Open Sans',
-                                  color: FlutterFlowTheme.textDark,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText2
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color:
+                                          FlutterFlowTheme.of(context).textDark,
+                                    ),
                               ),
                             ),
                           ],

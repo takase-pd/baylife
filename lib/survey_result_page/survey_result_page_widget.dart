@@ -49,8 +49,8 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).textLight),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -58,7 +58,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.textLight,
+            color: FlutterFlowTheme.of(context).textLight,
             size: 24,
           ),
         ),
@@ -67,7 +67,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
@@ -89,7 +89,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                       width: 50,
                       height: 50,
                       child: SpinKitPulse(
-                        color: FlutterFlowTheme.primaryColor,
+                        color: FlutterFlowTheme.of(context).primaryColor,
                         size: 50,
                       ),
                     ),
@@ -103,7 +103,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                       child: Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: FlutterFlowTheme.background,
+                        color: FlutterFlowTheme.of(context).background,
                         child: Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
@@ -116,10 +116,12 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
                                   columnSurveyRecord.question,
-                                  style: FlutterFlowTheme.subtitle1.override(
-                                    fontFamily: 'Open Sans',
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                 ),
                               ),
                               Padding(
@@ -127,10 +129,12 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
                                   columnSurveyRecord.explanation,
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Open Sans',
-                                    fontSize: 12,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 12,
+                                      ),
                                 ),
                               ),
                               Padding(
@@ -143,12 +147,14 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                     Text(
                                       dateTimeFormat('yMMMd',
                                           columnSurveyRecord.startDate),
-                                      style:
-                                          FlutterFlowTheme.bodyText2.override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.sLight,
-                                        fontSize: 12,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText2
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .sLight,
+                                            fontSize: 12,
+                                          ),
                                     ),
                                   ],
                                 ),
@@ -172,11 +178,14 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                     if (resultData.length == 0) {
                                       return Text(
                                         'アンケート結果が集計されていません。\n集計が完了するまでお待ちください。',
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.primaryColor,
-                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                            ),
                                       );
                                     } else {
                                       return Container(
@@ -193,10 +202,13 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                               ),
                               Text(
                                 columnSurveyRecord.comment,
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Open Sans',
-                                  color: FlutterFlowTheme.textDark,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color:
+                                          FlutterFlowTheme.of(context).textDark,
+                                    ),
                               ),
                             ],
                           ),
