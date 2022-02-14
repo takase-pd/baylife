@@ -31,11 +31,11 @@ class _SurveyResultState extends State<SurveyResult> {
         children: [
           Text(
             'test',
-            style: FlutterFlowTheme.subtitle2,
+            style: FlutterFlowTheme.of(context).subtitle2,
           ),
           Text(
             '32.1 %',
-            style: FlutterFlowTheme.subtitle2,
+            style: FlutterFlowTheme.of(context).subtitle2,
           ),
         ],
       ),
