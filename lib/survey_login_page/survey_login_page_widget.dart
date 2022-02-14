@@ -54,8 +54,8 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.textLight),
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).textLight),
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
@@ -63,7 +63,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: FlutterFlowTheme.textLight,
+            color: FlutterFlowTheme.of(context).textLight,
             size: 24,
           ),
         ),
@@ -72,7 +72,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
@@ -83,12 +83,12 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
         child: Column(
           children: [
             TabBar(
-              labelColor: FlutterFlowTheme.textDark,
-              unselectedLabelColor: FlutterFlowTheme.textDark,
+              labelColor: FlutterFlowTheme.of(context).textDark,
+              unselectedLabelColor: FlutterFlowTheme.of(context).textDark,
               labelStyle: GoogleFonts.getFont(
                 'Roboto',
               ),
-              indicatorColor: FlutterFlowTheme.secondaryColor,
+              indicatorColor: FlutterFlowTheme.of(context).secondaryColor,
               tabs: [
                 Tab(
                   text: 'ログイン',
@@ -118,10 +118,12 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                   width: 230,
                                   height: 56,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.background,
+                                    color:
+                                        FlutterFlowTheme.of(context).background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.secondaryColor,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryColor,
                                     ),
                                   ),
                                   child: Padding(
@@ -154,11 +156,13 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                           ),
                                         ),
                                       ),
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textDark,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .textDark,
+                                          ),
                                       keyboardType: TextInputType.emailAddress,
                                     ),
                                   ),
@@ -171,10 +175,12 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                   width: 230,
                                   height: 56,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.background,
+                                    color:
+                                        FlutterFlowTheme.of(context).background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.secondaryColor,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryColor,
                                     ),
                                   ),
                                   child: Padding(
@@ -220,11 +226,13 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                           ),
                                         ),
                                       ),
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textDark,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .textDark,
+                                          ),
                                       keyboardType:
                                           TextInputType.visiblePassword,
                                     ),
@@ -260,10 +268,12 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                 options: FFButtonOptions(
                                   width: 230,
                                   height: 44,
-                                  color: FlutterFlowTheme.secondaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryColor,
                                   textStyle: GoogleFonts.getFont(
                                     'Roboto',
-                                    color: FlutterFlowTheme.textLight,
+                                    color:
+                                        FlutterFlowTheme.of(context).textLight,
                                     fontSize: 17,
                                   ),
                                   elevation: 4,
@@ -413,10 +423,13 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                   },
                                   child: Text(
                                     '利用規約',
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.textDark,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textDark,
+                                        ),
                                   ),
                                 ),
                               ),
@@ -430,10 +443,13 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                   },
                                   child: Text(
                                     'プライバシーポリシー',
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.textDark,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textDark,
+                                        ),
                                   ),
                                 ),
                               ),
@@ -460,10 +476,12 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                   width: 230,
                                   height: 56,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.background,
+                                    color:
+                                        FlutterFlowTheme.of(context).background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.secondaryColor,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryColor,
                                     ),
                                   ),
                                   child: Padding(
@@ -496,11 +514,13 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                           ),
                                         ),
                                       ),
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textDark,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .textDark,
+                                          ),
                                       keyboardType: TextInputType.emailAddress,
                                     ),
                                   ),
@@ -513,10 +533,12 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                   width: 230,
                                   height: 56,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.background,
+                                    color:
+                                        FlutterFlowTheme.of(context).background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.secondaryColor,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryColor,
                                     ),
                                   ),
                                   child: Padding(
@@ -562,11 +584,13 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                           ),
                                         ),
                                       ),
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textDark,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .textDark,
+                                          ),
                                       keyboardType:
                                           TextInputType.visiblePassword,
                                     ),
@@ -580,10 +604,12 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                   width: 230,
                                   height: 56,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.background,
+                                    color:
+                                        FlutterFlowTheme.of(context).background,
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.secondaryColor,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryColor,
                                     ),
                                   ),
                                   child: Padding(
@@ -629,11 +655,13 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                           ),
                                         ),
                                       ),
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.textDark,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .textDark,
+                                          ),
                                       keyboardType:
                                           TextInputType.visiblePassword,
                                     ),
@@ -688,10 +716,12 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                 options: FFButtonOptions(
                                   width: 230,
                                   height: 44,
-                                  color: FlutterFlowTheme.secondaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryColor,
                                   textStyle: GoogleFonts.getFont(
                                     'Roboto',
-                                    color: FlutterFlowTheme.textLight,
+                                    color:
+                                        FlutterFlowTheme.of(context).textLight,
                                     fontSize: 17,
                                   ),
                                   elevation: 4,
@@ -829,10 +859,13 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                             children: [
                               Text(
                                 '以下の利用規約、プライバシーポリシーに同意の上、ご登録ください。',
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Open Sans',
-                                  color: FlutterFlowTheme.textDark,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color:
+                                          FlutterFlowTheme.of(context).textDark,
+                                    ),
                               ),
                               Padding(
                                 padding:
@@ -848,10 +881,13 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                   },
                                   child: Text(
                                     '利用規約',
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.textDark,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textDark,
+                                        ),
                                   ),
                                 ),
                               ),
@@ -865,10 +901,13 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                   },
                                   child: Text(
                                     'プライバシーポリシー',
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.textDark,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textDark,
+                                        ),
                                   ),
                                 ),
                               ),
