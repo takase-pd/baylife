@@ -33,6 +33,11 @@
 			</dict>
 		</array>
 
+		<key>CFBundleVersion</key>
+		<string>$(FLUTTER_BUILD_NUMBER)</string>
+		<key>LSRequiresIPhoneOS</key>
+		<true/>
+
 		<key>NSCameraUsageDescription</key>
 		<string>投稿に掲載する写真を選択するためにカメラにアクセスします。</string>
 		<key>NSPhotoLibraryUsageDescription</key>
