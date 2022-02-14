@@ -32,6 +32,7 @@ jobs:
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/main.mobileprovision
+          echo -n ${{ secrets.IMAGENOTIFICATION_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/imagenotification.mobileprovision
 
       - name: Import Code-Signing Certificates
         uses: apple-actions/import-codesign-certs@v1
