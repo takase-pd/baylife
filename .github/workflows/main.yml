@@ -46,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ios
+          name: iOS
           path: ./build/ios/ipa/BayLife.ipa
 
       - name: Upload to AppStoreConnect
@@ -87,6 +87,12 @@ jobs:
 
       - name: Building Android AppBundle
         run: flutter build appbundle --build-number=${GITHUB_RUN_NUMBER}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Android
+          path: ./build/app/outputs/bundle/release/app-release.aab
 
       - name: Upload to Google Play Console
         run: ./gradlew publishReleaseBundle
