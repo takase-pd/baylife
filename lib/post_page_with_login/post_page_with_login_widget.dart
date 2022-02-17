@@ -1574,7 +1574,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => TermsPageWidget(),
+                                  builder: (context) => TermsPageWidget(
+                                    termsUrl:
+                                        'https://baylife.particledrawing.com/terms.html',
+                                  ),
                                 ),
                               );
                             },

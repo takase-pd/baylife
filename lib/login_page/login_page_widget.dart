@@ -405,7 +405,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => TermsPageWidget(),
+                                        builder: (context) => TermsPageWidget(
+                                          termsUrl:
+                                              'https://baylife.particledrawing.com/terms.html',
+                                        ),
                                       ),
                                     );
                                   },
@@ -857,7 +860,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => TermsPageWidget(),
+                                        builder: (context) => TermsPageWidget(
+                                          termsUrl:
+                                              'https://baylife.particledrawing.com/terms.html',
+                                        ),
                                       ),
                                     );
                                   },

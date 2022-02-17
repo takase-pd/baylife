@@ -9,6 +9,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
+import '../terms_page/terms_page_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -71,292 +72,303 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
-            child: StreamBuilder<SurveyRecord>(
-              stream: SurveyRecord.getDocument(widget.surveyRef),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: SpinKitPulse(
-                        color: FlutterFlowTheme.of(context).primaryColor,
-                        size: 50,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+              child: StreamBuilder<SurveyRecord>(
+                stream: SurveyRecord.getDocument(widget.surveyRef),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: SpinKitPulse(
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          size: 50,
+                        ),
                       ),
-                    ),
-                  );
-                }
-                final columnSurveyRecord = snapshot.data;
-                return Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                      child: Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: FlutterFlowTheme.of(context).background,
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: Text(
-                                  columnSurveyRecord.question,
-                                  style: FlutterFlowTheme.of(context)
-                                      .subtitle1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        fontWeight: FontWeight.w600,
+                    );
+                  }
+                  final columnSurveyRecord = snapshot.data;
+                  return Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: InkWell(
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => TermsPageWidget(
+                                        termsUrl:
+                                            'https://baylife.particledrawing.com/terms_survey.html',
                                       ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                                    ),
+                                  );
+                                },
                                 child: Text(
-                                  columnSurveyRecord.explanation,
+                                  'アンケート利用規約に同意の上、回答を送信ください。',
+                                  textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Open Sans',
-                                        fontSize: 12,
+                                        color:
+                                            FlutterFlowTheme.of(context).pDark,
                                       ),
                                 ),
                               ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      dateTimeFormat('yMMMd',
-                                          columnSurveyRecord.startDate),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText2
-                                          .override(
-                                            fontFamily: 'Open Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .sLight,
-                                            fontSize: 12,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: FlutterFlowRadioButton(
-                                  options: ['Option 1', 'Option 2'],
-                                  onChanged: (value) {
-                                    setState(() => radioButtonValue = value);
-                                  },
-                                  optionHeight: 40,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: Colors.black,
-                                      ),
-                                  buttonPosition: RadioButtonPosition.left,
-                                  direction: Axis.vertical,
-                                  radioButtonColor:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  inactiveRadioButtonColor:
-                                      FlutterFlowTheme.of(context).sLight,
-                                  toggleable: false,
-                                  horizontalAlignment: WrapAlignment.start,
-                                  verticalAlignment: WrapCrossAlignment.start,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16, 0, 0, 24),
-                                child: Text(
-                                  '',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: Text(
-                                  '選択肢以外の回答があれば、ご記入ください。',
-                                  style: FlutterFlowTheme.of(context).bodyText2,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0, 0, 16, 40),
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 48,
-                                  decoration: BoxDecoration(),
-                                  child: StreamBuilder<List<InfoInappRecord>>(
-                                    stream: queryInfoInappRecord(
-                                      singleRecord: true,
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50,
-                                            height: 50,
-                                            child: SpinKitPulse(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
-                                              size: 50,
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<InfoInappRecord>
-                                          textFieldInfoInappRecordList =
-                                          snapshot.data;
-                                      // Return an empty Container when the document does not exist.
-                                      if (snapshot.data.isEmpty) {
-                                        return Container();
-                                      }
-                                      final textFieldInfoInappRecord =
-                                          textFieldInfoInappRecordList
-                                                  .isNotEmpty
-                                              ? textFieldInfoInappRecordList
-                                                  .first
-                                              : null;
-                                      return TextFormField(
-                                        controller: textController,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryColor,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryColor,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: FlutterFlowTheme.of(context).background,
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: Text(
+                                    columnSurveyRecord.question,
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontWeight: FontWeight.w600,
                                         ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: Text(
+                                    columnSurveyRecord.explanation,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontSize: 12,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 16),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        dateTimeFormat('yMMMd',
+                                            columnSurveyRecord.startDate),
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                        textAlign: TextAlign.start,
-                                      );
-                                    },
+                                            .bodyText2
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .sLight,
+                                              fontSize: 12,
+                                            ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  FFButtonWidget(
-                                    onPressed: () async {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text('回答送信'),
-                                            content: Text('ご回答ありがとうございます。'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: Text('Ok'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                      await AddSurveyAnswerCall.call(
-                                        uid: currentUserUid,
-                                        sid: columnSurveyRecord.sid,
-                                        choice: radioButtonValue,
-                                        freeAnswer: textController.text,
-                                        date: dateTimeFormat(
-                                            'yMMMd', getCurrentTimestamp),
-                                      );
-                                      await Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => NavBarPage(
-                                              initialPage: 'SurveyPage'),
-                                        ),
-                                        (r) => false,
-                                      );
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: FlutterFlowRadioButton(
+                                    options: ['Option 1', 'Option 2'],
+                                    onChanged: (value) {
+                                      setState(() => radioButtonValue = value);
                                     },
-                                    text: '送信',
-                                    options: FFButtonOptions(
-                                      width: 88,
-                                      height: 40,
-                                      color: FlutterFlowTheme.of(context).pDark,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Open Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .textLight,
-                                          ),
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1,
+                                    optionHeight: 40,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: Colors.black,
+                                        ),
+                                    buttonPosition: RadioButtonPosition.left,
+                                    direction: Axis.vertical,
+                                    radioButtonColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                    inactiveRadioButtonColor:
+                                        FlutterFlowTheme.of(context).sLight,
+                                    toggleable: false,
+                                    horizontalAlignment: WrapAlignment.start,
+                                    verticalAlignment: WrapCrossAlignment.start,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16, 0, 0, 24),
+                                  child: Text(
+                                    '',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText2
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: Text(
+                                    '選択肢以外の回答があれば、ご記入ください。',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText2,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 16, 40),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 48,
+                                    decoration: BoxDecoration(),
+                                    child: StreamBuilder<List<InfoInappRecord>>(
+                                      stream: queryInfoInappRecord(
+                                        singleRecord: true,
                                       ),
-                                      borderRadius: 8,
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: SpinKitPulse(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                size: 50,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<InfoInappRecord>
+                                            textFieldInfoInappRecordList =
+                                            snapshot.data;
+                                        // Return an empty Container when the document does not exist.
+                                        if (snapshot.data.isEmpty) {
+                                          return Container();
+                                        }
+                                        final textFieldInfoInappRecord =
+                                            textFieldInfoInappRecordList
+                                                    .isNotEmpty
+                                                ? textFieldInfoInappRecordList
+                                                    .first
+                                                : null;
+                                        return TextFormField(
+                                          controller: textController,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryColor,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryColor,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
+                                          textAlign: TextAlign.start,
+                                        );
+                                      },
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8, 0, 0, 0),
-                                    child: FFButtonWidget(
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    FFButtonWidget(
                                       onPressed: () async {
-                                        await Navigator.push(
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: Text('回答送信'),
+                                              content: Text('ご回答ありがとうございます。'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                        await AddSurveyAnswerCall.call(
+                                          uid: currentUserUid,
+                                          sid: columnSurveyRecord.sid,
+                                          choice: radioButtonValue,
+                                          freeAnswer: textController.text,
+                                          date: dateTimeFormat(
+                                              'yMMMd', getCurrentTimestamp),
+                                        );
+                                        await Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => NavBarPage(
                                                 initialPage: 'SurveyPage'),
                                           ),
+                                          (r) => false,
                                         );
                                       },
-                                      text: '戻る',
+                                      text: '送信',
                                       options: FFButtonOptions(
                                         width: 88,
                                         height: 40,
                                         color:
-                                            FlutterFlowTheme.of(context).sLight,
+                                            FlutterFlowTheme.of(context).pDark,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .subtitle2
                                             .override(
                                               fontFamily: 'Open Sans',
-                                              color: Colors.white,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .textLight,
                                             ),
                                         borderSide: BorderSide(
                                           color: Colors.transparent,
@@ -365,53 +377,51 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                         borderRadius: 8,
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8, 0, 0, 0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => NavBarPage(
+                                                  initialPage: 'SurveyPage'),
+                                            ),
+                                          );
+                                        },
+                                        text: '戻る',
+                                        options: FFButtonOptions(
+                                          width: 88,
+                                          height: 40,
+                                          color: FlutterFlowTheme.of(context)
+                                              .sLight,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .subtitle2
+                                                  .override(
+                                                    fontFamily: 'Open Sans',
+                                                    color: Colors.white,
+                                                  ),
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1,
+                                          ),
+                                          borderRadius: 8,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    StreamBuilder<List<InfoInappRecord>>(
-                      stream: queryInfoInappRecord(
-                        singleRecord: true,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: SpinKitPulse(
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                size: 50,
-                              ),
-                            ),
-                          );
-                        }
-                        List<InfoInappRecord> textInfoInappRecordList =
-                            snapshot.data;
-                        // Return an empty Container when the document does not exist.
-                        if (snapshot.data.isEmpty) {
-                          return Container();
-                        }
-                        final textInfoInappRecord =
-                            textInfoInappRecordList.isNotEmpty
-                                ? textInfoInappRecordList.first
-                                : null;
-                        return Text(
-                          textInfoInappRecord.surveyAgree,
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context).bodyText1,
-                        );
-                      },
-                    ),
-                  ],
-                );
-              },
+                    ],
+                  );
+                },
+              ),
             ),
           ),
           Padding(
