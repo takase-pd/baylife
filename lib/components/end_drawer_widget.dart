@@ -127,7 +127,10 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => TermsPageWidget(),
+                            builder: (context) => TermsPageWidget(
+                              termsUrl:
+                                  'https://baylife.particledrawing.com/terms.html',
+                            ),
                           ),
                         );
                       },
@@ -244,7 +247,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                   await Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginPageWidget(),
+                      builder: (context) => NavBarPage(initialPage: 'HomePage'),
                     ),
                     (r) => false,
                   );

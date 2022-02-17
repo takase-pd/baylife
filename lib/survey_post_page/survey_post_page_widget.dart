@@ -9,6 +9,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
+import '../terms_page/terms_page_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -154,6 +155,41 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: InkWell(
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => TermsPageWidget(
+                                      termsUrl:
+                                          'https://baylife.particledrawing.com/terms_survey.html',
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                'アンケート利用規約に同意の上、回答を送信ください。',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context).pDark,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Card(
