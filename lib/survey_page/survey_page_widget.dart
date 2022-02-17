@@ -122,6 +122,9 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
                                   color:
                                       FlutterFlowTheme.of(context).background,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         16, 16, 16, 16),
