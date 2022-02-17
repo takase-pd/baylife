@@ -74,7 +74,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(10, 16, 10, 0),
               child: StreamBuilder<SurveyRecord>(
                 stream: SurveyRecord.getDocument(widget.surveyRef),
                 builder: (context, snapshot) {
@@ -97,13 +97,39 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 8),
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 8),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Expanded(
+                            InkWell(
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => TermsPageWidget(
+                                      termsUrl:
+                                          'https://baylife.particledrawing.com/terms_survey.html',
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                '利用規約',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context).pDark,
+                                      fontSize: 12,
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                               child: InkWell(
                                 onTap: () async {
                                   await Navigator.push(
@@ -116,17 +142,25 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                     ),
                                   );
                                 },
-                                child: Text(
-                                  'アンケート利用規約に同意の上、回答を送信ください。',
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color:
-                                            FlutterFlowTheme.of(context).pDark,
-                                      ),
+                                child: FaIcon(
+                                  FontAwesomeIcons.externalLinkAlt,
+                                  color: FlutterFlowTheme.of(context).pDark,
+                                  size: 12,
                                 ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                              child: Text(
+                                'に同意の上、回答を送信ください。',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      fontSize: 12,
+                                    ),
                               ),
                             ),
                           ],
@@ -361,12 +395,12 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                       },
                                       text: '送信',
                                       options: FFButtonOptions(
-                                        width: 88,
+                                        width: 120,
                                         height: 40,
                                         color:
                                             FlutterFlowTheme.of(context).pDark,
                                         textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
+                                            .subtitle1
                                             .override(
                                               fontFamily: 'Open Sans',
                                               color:
@@ -377,41 +411,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                           color: Colors.transparent,
                                           width: 1,
                                         ),
-                                        borderRadius: 8,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 0, 0, 0),
-                                      child: FFButtonWidget(
-                                        onPressed: () async {
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => NavBarPage(
-                                                  initialPage: 'SurveyPage'),
-                                            ),
-                                          );
-                                        },
-                                        text: '戻る',
-                                        options: FFButtonOptions(
-                                          width: 88,
-                                          height: 40,
-                                          color: FlutterFlowTheme.of(context)
-                                              .sLight,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .subtitle2
-                                                  .override(
-                                                    fontFamily: 'Open Sans',
-                                                    color: Colors.white,
-                                                  ),
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1,
-                                          ),
-                                          borderRadius: 8,
-                                        ),
+                                        borderRadius: 16,
                                       ),
                                     ),
                                   ],
