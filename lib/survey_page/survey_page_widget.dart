@@ -175,9 +175,9 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                 ),
                                               );
                                             },
-                                            text: '回答',
+                                            text: 'ログインして回答',
                                             options: FFButtonOptions(
-                                              width: 88,
+                                              width: 160,
                                               height: 40,
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -193,7 +193,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 8,
+                                              borderRadius: 16,
                                             ),
                                           ),
                                       ],
