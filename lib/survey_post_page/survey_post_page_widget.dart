@@ -60,21 +60,6 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
     if (radioButtonValue == null) {
       setState(() => radioButtonAlert = '＊必ず1つ選択してください。');
     } else {
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('回答送信'),
-            content: Text('ご回答ありがとうございます。'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        },
-      );
       await AddSurveyAnswerCall.call(
         uid: currentUserUid,
         sid: sid,
@@ -159,7 +144,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           InkWell(
@@ -175,7 +160,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                               );
                             },
                             child: Text(
-                              '利用規約',
+                              'アンケート利用規約',
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
