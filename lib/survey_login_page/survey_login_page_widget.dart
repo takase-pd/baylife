@@ -417,7 +417,10 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => TermsPageWidget(),
+                                        builder: (context) => TermsPageWidget(
+                                          termsUrl:
+                                              'https://baylife.particledrawing.com/terms.html',
+                                        ),
                                       ),
                                     );
                                   },
@@ -875,7 +878,10 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => TermsPageWidget(),
+                                        builder: (context) => TermsPageWidget(
+                                          termsUrl:
+                                              'https://baylife.particledrawing.com/terms.html',
+                                        ),
                                       ),
                                     );
                                   },

@@ -117,7 +117,9 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         filePath: getParameter(data, 'filePath'),
         postRemarks: getParameter(data, 'postRemarks'),
       ),
-  'TermsPage': (data) async => TermsPageWidget(),
+  'TermsPage': (data) async => TermsPageWidget(
+        termsUrl: getParameter(data, 'termsUrl'),
+      ),
   'SurveyPage': (data) async => NavBarPage(initialPage: 'SurveyPageWidget'),
   'SurveyPostPage': (data) async => SurveyPostPageWidget(
         surveyRef: getParameter(data, 'surveyRef'),

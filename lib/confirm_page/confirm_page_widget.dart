@@ -885,7 +885,10 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => TermsPageWidget(),
+                                builder: (context) => TermsPageWidget(
+                                  termsUrl:
+                                      'https://baylife.particledrawing.com/terms.html',
+                                ),
                               ),
                             );
                           },
