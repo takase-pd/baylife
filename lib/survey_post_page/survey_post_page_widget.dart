@@ -156,7 +156,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -294,7 +294,10 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
-                                  'その他の回答があれば、ご記入ください。',
+                                  valueOrDefault<String>(
+                                    columnSurveyRecord.textFa,
+                                    'その他の回答があれば、ご記入ください。',
+                                  ),
                                   style: FlutterFlowTheme.of(context).bodyText2,
                                 ),
                               ),
