@@ -93,6 +93,12 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                   return FutureBuilder(
                     future: getAnswers(),
                     builder: (context, snapshot) {
+                      String buttonText = 'ログインして回答';
+                      double buttonWidth = 160;
+                      if (currentUser.loggedIn) {
+                        buttonText = '回答';
+                        buttonWidth = 120;
+                      }
                       if (snapshot.connectionState == ConnectionState.done) {
                         return ListView.builder(
                           padding: EdgeInsets.zero,
@@ -260,13 +266,13 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                     );
                                                   }
                                                 },
-                                                text: '回答',
+                                                text: buttonText,
                                                 options: FFButtonOptions(
-                                                  width: 88,
+                                                  width: buttonWidth,
                                                   height: 40,
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .pDark,
+                                                      .primaryColor,
                                                   textStyle: FlutterFlowTheme
                                                           .of(context)
                                                       .subtitle2
@@ -278,7 +284,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                     color: Colors.transparent,
                                                     width: 1,
                                                   ),
-                                                  borderRadius: 8,
+                                                  borderRadius: 16,
                                                 ),
                                               ),
                                           ],

@@ -8,7 +8,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TermsPageWidget extends StatefulWidget {
-  const TermsPageWidget({Key key}) : super(key: key);
+  const TermsPageWidget({
+    Key key,
+    this.termsUrl,
+  }) : super(key: key);
+
+  final String termsUrl;
 
   @override
   _TermsPageWidgetState createState() => _TermsPageWidgetState();
@@ -52,7 +57,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
             child: InkWell(
               onTap: () async {
-                await launchURL('https://baylife-ff782.web.app/terms.html');
+                await launchURL(widget.termsUrl);
               },
               child: Text(
                 '表示されない場合はこちらをクリック',
@@ -65,7 +70,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
           ),
           Expanded(
             child: FlutterFlowWebView(
-              url: 'https://baylife-ff782.web.app/terms.html',
+              url: widget.termsUrl,
               bypass: false,
               verticalScroll: false,
               horizontalScroll: false,
