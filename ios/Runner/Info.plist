@@ -48,7 +48,8 @@
         <string>fetch</string>
         <string>remote-notification</string>
     </array>
-
+	<key>NSUserTrackingUsageDescription</key>
+	<string>適切な広告を表示するために使用します。</string>
 
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
