@@ -57,12 +57,11 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) => initPlugin());
     userStream = bayLifeFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
         Duration(seconds: 1), () => setState(() => displaySplashImage = false));
-    // Can't show a dialog in initState, delaying initialization
-    WidgetsBinding.instance?.addPostFrameCallback((_) => initPlugin());
   }
 
   @override
