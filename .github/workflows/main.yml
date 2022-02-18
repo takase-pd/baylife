@@ -94,9 +94,9 @@ jobs:
           name: Android
           path: ./build/app/outputs/bundle/release/app-release.aab
 
-      # - name: Upload to Google Play Console
-      #   run: ./gradlew publishReleaseBundle
-      #   working-directory: ./android
+      - name: Upload to Google Play Console
+        run: ./gradlew publishReleaseBundle
+        working-directory: ./android
 
       - name: Slack Notification on Success
         if: success()
