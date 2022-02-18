@@ -16,41 +16,36 @@
 	<string>BayLife</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
-
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>com.googleusercontent.apps.201447539334-i16evqs9n00mphpkjam2tp82suvbd1v8</string>
-
-            </array>
-        </dict>
-    </array>
-
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.201447539334-i16evqs9n00mphpkjam2tp82suvbd1v8</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-
 	<key>NSCameraUsageDescription</key>
 	<string>投稿に掲載する写真を選択するためにカメラにアクセスします。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>投稿に掲載する写真を選択するために写真にアクセスします。</string>
-    <key>UIBackgroundModes</key>
-    <array>
-        <string>fetch</string>
-        <string>remote-notification</string>
-    </array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>適切な広告を表示するために使用します。</string>
-
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -73,15 +68,15 @@
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-8134368906531041~3538368999</string>
 	<key>SKAdNetworkItems</key>
-		<array>
-			<dict>
-				<key>SKAdNetworkIdentifier</key>
-				<string>cstr6suwn9.skadnetwork</string>
-			</dict>
-		</array>
-		<key>io.flutter.embedded_views_preview</key>
-		<true/>
-		<key>UIStatusBarHidden</key>
-		<false/>
-	</dict>
+	<array>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>cstr6suwn9.skadnetwork</string>
+		</dict>
+	</array>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
+	<key>UIStatusBarHidden</key>
+	<false/>
+</dict>
 </plist>

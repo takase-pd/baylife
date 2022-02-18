@@ -14,6 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'survey_page/survey_page_widget.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,6 +46,14 @@ class _MyAppState extends State<MyApp> {
         _themeMode = mode;
       });
 
+  Future<void> initPlugin() async {
+    final status = await AppTrackingTransparency.trackingAuthorizationStatus;
+    if (status == TrackingStatus.notDetermined) {
+      await Future.delayed(const Duration(milliseconds: 200));
+      await AppTrackingTransparency.requestTrackingAuthorization();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -52,6 +61,8 @@ class _MyAppState extends State<MyApp> {
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
         Duration(seconds: 1), () => setState(() => displaySplashImage = false));
+    // Can't show a dialog in initState, delaying initialization
+    WidgetsBinding.instance?.addPostFrameCallback((_) => initPlugin());
   }
 
   @override
