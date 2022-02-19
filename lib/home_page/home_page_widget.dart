@@ -20,12 +20,10 @@ class HomePageWidget extends StatefulWidget {
   const HomePageWidget({
     Key key,
     this.title,
-    this.analytics,
     this.observer,
   }) : super(key: key);
 
   final String title;
-  final FirebaseAnalytics analytics;
   final FirebaseAnalyticsObserver observer;
 
   @override
@@ -54,6 +52,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           await Navigator.push(
             context,
             MaterialPageRoute(
+              settings: const RouteSettings(name: 'Login Page'),
               builder: (context) => LoginPageWidget(),
             ),
           );
@@ -115,6 +114,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
+                                settings:
+                                    const RouteSettings(name: 'Content Page'),
                                 builder: (context) => ContentPageWidget(
                                   contentRef: listViewContentsRecord.reference,
                                 ),
@@ -218,6 +219,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       await Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
+                                                          settings:
+                                                              const RouteSettings(
+                                                                  name:
+                                                                      'Category Page'),
                                                           builder: (context) =>
                                                               CategoryPageWidget(
                                                             catRef:

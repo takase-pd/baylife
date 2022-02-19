@@ -183,12 +183,10 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(
         title: 'Firebase Analytics Demo',
-        analytics: widget.analytics,
         observer: widget.observer,
       ),
       'SurveyPage': SurveyPageWidget(
         title: 'Firebase Analytics Demo2',
-        analytics: widget.analytics,
         observer: widget.observer,
       ),
     };
