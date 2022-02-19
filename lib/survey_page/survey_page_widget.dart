@@ -15,9 +15,20 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../auth/firebase_user_provider.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 
 class SurveyPageWidget extends StatefulWidget {
-  const SurveyPageWidget({Key key}) : super(key: key);
+  const SurveyPageWidget({
+    Key key,
+    this.title,
+    this.analytics,
+    this.observer,
+  }) : super(key: key);
+
+  final String title;
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
 
   @override
   _SurveyPageWidgetState createState() => _SurveyPageWidgetState();

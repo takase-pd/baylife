@@ -45,35 +45,13 @@ class _MyAppState extends State<MyApp> {
   final fcmTokenSub = fcmTokenUserStream.listen((_) {});
 
   static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  String _message = 'init build';
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
 
   void setLocale(Locale value) => setState(() => _locale = value);
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
       });
-
-  void setMessage(String message) {
-    setState(() {
-      _message = message;
-    });
-  }
-
-  Future<void> _sendAnalyticsEvent() async {
-    await analytics.logEvent(
-      name: 'test_event',
-      parameters: <String, dynamic>{
-        'string': 'string',
-        'int': 42,
-        'long': 12345678910,
-        'double': 42.0,
-        // Only strings and numbers (ints & doubles) are supported for GA custom event parameters:
-        // https://developers.google.com/analytics/devguides/collection/analyticsjs/custom-dims-mets#overview
-        'bool': true.toString(),
-        'items': []
-      },
-    );
-    setMessage('logEvent succeeded');
-  }
 
   Future<void> initPlugin() async {
     final status = await AppTrackingTransparency.trackingAuthorizationStatus;
@@ -87,7 +65,6 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) => initPlugin());
-    _sendAnalyticsEvent();
     userStream = bayLifeFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
@@ -103,7 +80,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    print(_message);
     return MaterialApp(
       title: 'BayLife',
       localizationsDelegates: [
@@ -134,20 +110,35 @@ class _MyAppState extends State<MyApp> {
               ),
             )
           : currentUser.loggedIn
-              ? PushNotificationsHandler(child: NavBarPage())
-              : NavBarPage(),
+              ? PushNotificationsHandler(
+                  child: NavBarPage(
+                  analytics: analytics,
+                  observer: observer,
+                ))
+              : NavBarPage(
+                  analytics: analytics,
+                  observer: observer,
+                ),
       debugShowCheckedModeBanner: false,
       navigatorObservers: [
-        FirebaseAnalyticsObserver(analytics: analytics),
+        observer,
       ],
     );
   }
 }
 
 class NavBarPage extends StatefulWidget {
-  NavBarPage({Key key, this.initialPage}) : super(key: key);
+  NavBarPage({
+    Key key,
+    this.initialPage,
+    this.analytics,
+    this.observer,
+  }) : super(key: key);
 
   final String initialPage;
+
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
 
   @override
   _NavBarPageState createState() => _NavBarPageState();
@@ -156,6 +147,30 @@ class NavBarPage extends StatefulWidget {
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
   String _currentPage = 'HomePage';
+  String _message = 'init build';
+
+  void setMessage(String message) {
+    setState(() {
+      _message = message;
+    });
+  }
+
+  Future<void> _sendAnalyticsEvent() async {
+    await widget.analytics.logEvent(
+      name: 'test_analytics_event',
+      parameters: <String, dynamic>{
+        'string': 'string',
+        'int': 42,
+        'long': 12345678910,
+        'double': 42.0,
+        // Only strings and numbers (ints & doubles) are supported for GA custom event parameters:
+        // https://developers.google.com/analytics/devguides/collection/analyticsjs/custom-dims-mets#overview
+        'bool': true.toString(),
+        'items': []
+      },
+    );
+    setMessage('logEvent succeeded');
+  }
 
   @override
   void initState() {
@@ -166,15 +181,26 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'HomePage': HomePageWidget(),
-      'SurveyPage': SurveyPageWidget(),
+      'HomePage': HomePageWidget(
+        title: 'Firebase Analytics Demo',
+        analytics: widget.analytics,
+        observer: widget.observer,
+      ),
+      'SurveyPage': SurveyPageWidget(
+        title: 'Firebase Analytics Demo2',
+        analytics: widget.analytics,
+        observer: widget.observer,
+      ),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
       body: tabs[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
+        onTap: (i) => {
+          _sendAnalyticsEvent(),
+          setState(() => _currentPage = tabs.keys.toList()[i])
+        },
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         selectedItemColor: FlutterFlowTheme.of(context).primaryColor,
         unselectedItemColor: FlutterFlowTheme.of(context).tDark,
