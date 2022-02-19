@@ -16,6 +16,9 @@ import 'home_page/home_page_widget.dart';
 import 'survey_page/survey_page_widget.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -41,10 +44,36 @@ class _MyAppState extends State<MyApp> {
   final authUserSub = authenticatedUserStream.listen((_) {});
   final fcmTokenSub = fcmTokenUserStream.listen((_) {});
 
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  String _message = 'init build';
+
   void setLocale(Locale value) => setState(() => _locale = value);
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
       });
+
+  void setMessage(String message) {
+    setState(() {
+      _message = message;
+    });
+  }
+
+  Future<void> _sendAnalyticsEvent() async {
+    await analytics.logEvent(
+      name: 'test_event',
+      parameters: <String, dynamic>{
+        'string': 'string',
+        'int': 42,
+        'long': 12345678910,
+        'double': 42.0,
+        // Only strings and numbers (ints & doubles) are supported for GA custom event parameters:
+        // https://developers.google.com/analytics/devguides/collection/analyticsjs/custom-dims-mets#overview
+        'bool': true.toString(),
+        'items': []
+      },
+    );
+    setMessage('logEvent succeeded');
+  }
 
   Future<void> initPlugin() async {
     final status = await AppTrackingTransparency.trackingAuthorizationStatus;
@@ -58,6 +87,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) => initPlugin());
+    _sendAnalyticsEvent();
     userStream = bayLifeFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
@@ -73,6 +103,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(_message);
     return MaterialApp(
       title: 'BayLife',
       localizationsDelegates: [
@@ -105,6 +136,10 @@ class _MyAppState extends State<MyApp> {
           : currentUser.loggedIn
               ? PushNotificationsHandler(child: NavBarPage())
               : NavBarPage(),
+      debugShowCheckedModeBanner: false,
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
     );
   }
 }
