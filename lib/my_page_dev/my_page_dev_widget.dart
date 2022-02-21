@@ -242,9 +242,7 @@ class _MyPageDevWidgetState extends State<MyPageDevWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(8, 16, 8, 8),
                         child: StreamBuilder<List<SurveyRecord>>(
-                          stream: querySurveyRecord(
-                            limit: 5,
-                          ),
+                          stream: querySurveyRecord(),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
