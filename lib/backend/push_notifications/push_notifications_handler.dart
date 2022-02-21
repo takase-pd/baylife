@@ -19,6 +19,9 @@ import '../../terms_page/terms_page_widget.dart';
 import '../../survey_post_page/survey_post_page_widget.dart';
 import '../../survey_result_page/survey_result_page_widget.dart';
 import '../../survey_login_page/survey_login_page_widget.dart';
+import '../../my_page/my_page_widget.dart';
+import '../../my_page_dev/my_page_dev_widget.dart';
+import '../../my_page_edit/my_page_edit_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -128,6 +131,15 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         surveyRef: getParameter(data, 'surveyRef'),
       ),
   'SurveyLoginPage': (data) async => SurveyLoginPageWidget(
+        surveyRef: getParameter(data, 'surveyRef'),
+      ),
+  'MyPage': (data) async => MyPageWidget(
+        surveyRef: getParameter(data, 'surveyRef'),
+      ),
+  'MyPageDev': (data) async => MyPageDevWidget(
+        surveyRef: getParameter(data, 'surveyRef'),
+      ),
+  'MyPageEdit': (data) async => MyPageEditWidget(
         surveyRef: getParameter(data, 'surveyRef'),
       ),
 };

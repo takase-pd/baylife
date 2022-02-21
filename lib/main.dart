@@ -93,7 +93,6 @@ class _MyAppState extends State<MyApp> {
         Locale('ja', ''),
       ],
       theme: ThemeData(brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
           ? Container(
