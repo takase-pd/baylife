@@ -100,7 +100,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 8),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             InkWell(
@@ -324,6 +324,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                           controller: textController,
                                           obscureText: false,
                                           decoration: InputDecoration(
+                                            hintText:
+                                                textFieldInfoInappRecord.faHint,
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color:
@@ -397,8 +399,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                       options: FFButtonOptions(
                                         width: 120,
                                         height: 40,
-                                        color:
-                                            FlutterFlowTheme.of(context).pDark,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .subtitle1
                                             .override(

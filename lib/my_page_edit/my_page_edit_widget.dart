@@ -1,0 +1,302 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
+import '../flutter_flow/flutter_flow_drop_down.dart';
+import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
+import '../my_page/my_page_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class MyPageEditWidget extends StatefulWidget {
+  const MyPageEditWidget({
+    Key key,
+    this.surveyRef,
+  }) : super(key: key);
+
+  final DocumentReference surveyRef;
+
+  @override
+  _MyPageEditWidgetState createState() => _MyPageEditWidgetState();
+}
+
+class _MyPageEditWidgetState extends State<MyPageEditWidget> {
+  String areaValue;
+  String sexValue;
+  final formKey = GlobalKey<FormState>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: scaffoldKey,
+      appBar: AppBar(
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).textLight),
+        automaticallyImplyLeading: false,
+        leading: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+          child: AuthUserStreamWidget(
+            child: Container(
+              width: 40,
+              height: 40,
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+              ),
+              child: Image.network(
+                currentUserPhoto,
+              ),
+            ),
+          ),
+        ),
+        title: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AuthUserStreamWidget(
+              child: Text(
+                currentUserDisplayName,
+                style: FlutterFlowTheme.of(context).subtitle2.override(
+                      fontFamily: 'Open Sans',
+                      color: FlutterFlowTheme.of(context).textLight,
+                    ),
+              ),
+            ),
+            Text(
+              currentUserEmail,
+              style: FlutterFlowTheme.of(context).bodyText1.override(
+                    fontFamily: 'Open Sans',
+                    color: FlutterFlowTheme.of(context).textLight,
+                  ),
+            ),
+          ],
+        ),
+        actions: [],
+        centerTitle: false,
+        elevation: 0,
+      ),
+      backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+      body: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Form(
+              key: formKey,
+              autovalidateMode: AutovalidateMode.always,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                    child: Text(
+                      '登録情報',
+                      style: FlutterFlowTheme.of(context).title1.override(
+                            fontFamily: 'Open Sans',
+                            color: FlutterFlowTheme.of(context).textLight,
+                          ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        color: FlutterFlowTheme.of(context).background,
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Container(
+                          width: 288,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '性別',
+                                  style: FlutterFlowTheme.of(context).title2,
+                                ),
+                                AuthUserStreamWidget(
+                                  child: FlutterFlowDropDown(
+                                    initialOption: sexValue ??=
+                                        currentUserDocument?.sex,
+                                    options:
+                                        ['男性', '女性', 'その他', '未回答'].toList(),
+                                    onChanged: (val) =>
+                                        setState(() => sexValue = val),
+                                    width: 96,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: Colors.black,
+                                        ),
+                                    fillColor: Colors.white,
+                                    elevation: 2,
+                                    borderColor: Colors.transparent,
+                                    borderWidth: 0,
+                                    borderRadius: 0,
+                                    margin: EdgeInsetsDirectional.fromSTEB(
+                                        12, 4, 12, 4),
+                                    hidesUnderline: true,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        color: FlutterFlowTheme.of(context).background,
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Container(
+                          width: 288,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'エリア',
+                                  style: FlutterFlowTheme.of(context).title2,
+                                ),
+                                AuthUserStreamWidget(
+                                  child: FlutterFlowDropDown(
+                                    initialOption: areaValue ??=
+                                        currentUserDocument?.area,
+                                    options: ['ベイタウン', 'ベイパーク', 'それ以外', '未回答']
+                                        .toList(),
+                                    onChanged: (val) =>
+                                        setState(() => areaValue = val),
+                                    width: 96,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: Colors.black,
+                                        ),
+                                    fillColor: Colors.white,
+                                    elevation: 2,
+                                    borderColor: Colors.transparent,
+                                    borderWidth: 0,
+                                    borderRadius: 0,
+                                    margin: EdgeInsetsDirectional.fromSTEB(
+                                        12, 4, 12, 4),
+                                    hidesUnderline: true,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                    child: StreamBuilder<List<SurveyRecord>>(
+                      stream: querySurveyRecord(
+                        singleRecord: true,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SpinKitPulse(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                size: 50,
+                              ),
+                            ),
+                          );
+                        }
+                        List<SurveyRecord> buttonSurveyRecordList =
+                            snapshot.data;
+                        // Return an empty Container when the document does not exist.
+                        if (snapshot.data.isEmpty) {
+                          return Container();
+                        }
+                        final buttonSurveyRecord =
+                            buttonSurveyRecordList.isNotEmpty
+                                ? buttonSurveyRecordList.first
+                                : null;
+                        return FFButtonWidget(
+                          onPressed: () async {
+                            final usersUpdateData = createUsersRecordData(
+                              sex: sexValue,
+                              area: areaValue,
+                            );
+                            await currentUserReference.update(usersUpdateData);
+                            await Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyPageWidget(),
+                              ),
+                              (r) => false,
+                            );
+                          },
+                          text: '変更',
+                          options: FFButtonOptions(
+                            width: 240,
+                            height: 48,
+                            color: FlutterFlowTheme.of(context).pDark,
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Open Sans',
+                                      color: Colors.white,
+                                    ),
+                            elevation: 4,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 12,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

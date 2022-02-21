@@ -93,6 +93,9 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                             child: Card(
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               color: FlutterFlowTheme.of(context).background,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16, 16, 16, 16),
@@ -181,7 +184,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                               height: 40,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .pDark,
+                                                      .primaryColor,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2

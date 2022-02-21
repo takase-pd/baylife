@@ -1,8 +1,8 @@
 import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../login_page/login_page_widget.dart';
 import '../main.dart';
+import '../my_page/my_page_widget.dart';
 import '../terms_page/terms_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -40,70 +40,13 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                NavBarPage(initialPage: 'HomePage'),
+                            builder: (context) => MyPageWidget(),
                           ),
                         );
                       },
                       child: ListTile(
                         title: Text(
-                          'トップ',
-                          style: FlutterFlowTheme.of(context)
-                              .subtitle2
-                              .override(
-                                fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textDark,
-                              ),
-                        ),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.of(context).textDark,
-                          size: 20,
-                        ),
-                        dense: false,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
-                    child: InkWell(
-                      onTap: () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginPageWidget(),
-                          ),
-                        );
-                      },
-                      child: ListTile(
-                        title: Text(
-                          '投稿',
-                          style: FlutterFlowTheme.of(context)
-                              .subtitle2
-                              .override(
-                                fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textDark,
-                              ),
-                        ),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.of(context).textDark,
-                          size: 20,
-                        ),
-                        dense: false,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
-                    child: InkWell(
-                      onTap: () async {
-                        await launchURL(
-                            'https://www.particledrawing.com/contact');
-                      },
-                      child: ListTile(
-                        title: Text(
-                          '要望送信',
+                          'マイページ',
                           style: FlutterFlowTheme.of(context)
                               .subtitle2
                               .override(
