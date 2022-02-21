@@ -122,12 +122,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
               color: FlutterFlowTheme.of(context).tertiaryColor,
               elevation: 4,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(0),
-                  bottomRight: Radius.circular(0),
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
+                borderRadius: BorderRadius.circular(16),
               ),
               child: Form(
                 key: formKey,
@@ -164,7 +159,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                               ),
                               child: Container(
                                 width: 288,
-                                height: 80,
+                                height: 72,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -179,7 +174,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                       Text(
                                         '性別',
                                         style: FlutterFlowTheme.of(context)
-                                            .title3
+                                            .subtitle1
                                             .override(
                                               fontFamily: 'Open Sans',
                                               color:
@@ -239,7 +234,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                               ),
                               child: Container(
                                 width: 288,
-                                height: 80,
+                                height: 72,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -254,7 +249,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                       Text(
                                         'エリア',
                                         style: FlutterFlowTheme.of(context)
-                                            .title3
+                                            .subtitle1
                                             .override(
                                               fontFamily: 'Open Sans',
                                               color:
@@ -359,7 +354,8 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                     .subtitle2
                                     .override(
                                       fontFamily: 'Open Sans',
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.of(context)
+                                          .textLight,
                                     ),
                                 elevation: 4,
                                 borderSide: BorderSide(

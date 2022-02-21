@@ -34,7 +34,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                 scrollDirection: Axis.vertical,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
                         await Navigator.push(
@@ -51,7 +51,9 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                               .subtitle2
                               .override(
                                 fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textDark,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                fontWeight: FontWeight.w600,
                               ),
                         ),
                         trailing: Icon(
@@ -64,7 +66,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
                         await Navigator.push(
@@ -84,7 +86,9 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                               .subtitle2
                               .override(
                                 fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textDark,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                fontWeight: FontWeight.w600,
                               ),
                         ),
                         trailing: Icon(
@@ -97,7 +101,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
                         await launchURL(
@@ -110,7 +114,9 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                               .subtitle2
                               .override(
                                 fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textDark,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                fontWeight: FontWeight.w600,
                               ),
                         ),
                         trailing: Icon(
@@ -123,7 +129,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
                         await showDialog(
@@ -167,7 +173,9 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                               .subtitle2
                               .override(
                                 fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textDark,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                fontWeight: FontWeight.w600,
                               ),
                         ),
                         trailing: Icon(
@@ -200,12 +208,13 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     'ログアウト',
                     style: FlutterFlowTheme.of(context).subtitle2.override(
                           fontFamily: 'Open Sans',
-                          color: FlutterFlowTheme.of(context).textDark,
+                          color: FlutterFlowTheme.of(context).secondaryColor,
+                          fontWeight: FontWeight.w600,
                         ),
                   ),
                   trailing: Icon(
                     Icons.logout,
-                    color: FlutterFlowTheme.of(context).textDark,
+                    color: FlutterFlowTheme.of(context).secondaryColor,
                     size: 20,
                   ),
                   dense: false,

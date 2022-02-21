@@ -27,43 +27,43 @@ abstract class FlutterFlowTheme {
 
   TextStyle get title1 => GoogleFonts.getFont(
         'Open Sans',
-        color: textDark,
+        color: secondaryColor,
         fontWeight: FontWeight.w600,
         fontSize: 24,
       );
   TextStyle get title2 => GoogleFonts.getFont(
         'Open Sans',
-        color: textDark,
+        color: secondaryColor,
         fontWeight: FontWeight.w500,
         fontSize: 22,
       );
   TextStyle get title3 => GoogleFonts.getFont(
         'Open Sans',
-        color: textDark,
+        color: secondaryColor,
         fontWeight: FontWeight.w500,
         fontSize: 20,
       );
   TextStyle get subtitle1 => GoogleFonts.getFont(
         'Open Sans',
-        color: textDark,
+        color: secondaryColor,
         fontWeight: FontWeight.w500,
         fontSize: 18,
       );
   TextStyle get subtitle2 => GoogleFonts.getFont(
         'Open Sans',
-        color: textDark,
+        color: secondaryColor,
         fontWeight: FontWeight.normal,
         fontSize: 16,
       );
   TextStyle get bodyText1 => GoogleFonts.getFont(
         'Open Sans',
-        color: textDark,
+        color: secondaryColor,
         fontWeight: FontWeight.normal,
         fontSize: 14,
       );
   TextStyle get bodyText2 => GoogleFonts.getFont(
         'Open Sans',
-        color: textDark,
+        color: secondaryColor,
         fontWeight: FontWeight.normal,
         fontSize: 14,
       );
