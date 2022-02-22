@@ -14,7 +14,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({Key key}) : super(key: key);
+  const HomePageWidget({
+    Key key,
+  }) : super(key: key);
 
   @override
   _HomePageWidgetState createState() => _HomePageWidgetState();
@@ -42,6 +44,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           await Navigator.push(
             context,
             MaterialPageRoute(
+              settings: const RouteSettings(name: 'LoginPage'),
               builder: (context) => LoginPageWidget(),
             ),
           );
@@ -103,6 +106,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
+                                settings:
+                                    const RouteSettings(name: 'ContentPage'),
                                 builder: (context) => ContentPageWidget(
                                   contentRef: listViewContentsRecord.reference,
                                 ),
@@ -206,6 +211,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       await Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
+                                                          settings:
+                                                              const RouteSettings(
+                                                                  name:
+                                                                      'CategoryPage'),
                                                           builder: (context) =>
                                                               CategoryPageWidget(
                                                             catRef:

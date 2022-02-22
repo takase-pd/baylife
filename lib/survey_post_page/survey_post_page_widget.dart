@@ -17,6 +17,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../auth/firebase_user_provider.dart';
+import '../backend/firebase_analytics/analytics.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
 
 class SurveyPostPageWidget extends StatefulWidget {
   const SurveyPostPageWidget({
@@ -67,6 +69,9 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         freeAnswer: textController.text,
         date: dateTimeFormat('yMMMd h:mm a', getCurrentTimestamp),
       );
+      var _analyticsParam = {'sid': sid};
+      Analytics.analyticsLogEvent(
+          AnalyticsEventType.answer_survey, _analyticsParam);
       await Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
@@ -93,7 +98,12 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            Navigator.pop(context);
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NavBarPage(initialPage: 'SurveyPage'),
+              ),
+            );
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,

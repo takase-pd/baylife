@@ -16,6 +16,9 @@ import 'home_page/home_page_widget.dart';
 import 'survey_page/survey_page_widget.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -40,6 +43,10 @@ class _MyAppState extends State<MyApp> {
   bool displaySplashImage = true;
   final authUserSub = authenticatedUserStream.listen((_) {});
   final fcmTokenSub = fcmTokenUserStream.listen((_) {});
+
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
 
   void setLocale(Locale value) => setState(() => _locale = value);
   void setThemeMode(ThemeMode mode) => setState(() {
@@ -86,7 +93,6 @@ class _MyAppState extends State<MyApp> {
         Locale('ja', ''),
       ],
       theme: ThemeData(brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
           ? Container(
@@ -105,12 +111,19 @@ class _MyAppState extends State<MyApp> {
           : currentUser.loggedIn
               ? PushNotificationsHandler(child: NavBarPage())
               : NavBarPage(),
+      debugShowCheckedModeBanner: false,
+      navigatorObservers: [
+        observer,
+      ],
     );
   }
 }
 
 class NavBarPage extends StatefulWidget {
-  NavBarPage({Key key, this.initialPage}) : super(key: key);
+  NavBarPage({
+    Key key,
+    this.initialPage,
+  }) : super(key: key);
 
   final String initialPage;
 
@@ -139,7 +152,7 @@ class _NavBarPageState extends State<NavBarPage> {
       body: tabs[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
+        onTap: (i) => {setState(() => _currentPage = tabs.keys.toList()[i])},
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         selectedItemColor: FlutterFlowTheme.of(context).primaryColor,
         unselectedItemColor: FlutterFlowTheme.of(context).tDark,

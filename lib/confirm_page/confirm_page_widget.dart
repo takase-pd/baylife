@@ -13,6 +13,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../backend/firebase_analytics/analytics.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
+
 class ConfirmPageWidget extends StatefulWidget {
   const ConfirmPageWidget({
     Key key,
@@ -1064,6 +1067,13 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                 postRemarks: widget.postRemarks,
                                                 uid: currentUserUid,
                                               );
+                                              var _analyticsParam = {
+                                                'uid': currentUserUid
+                                              };
+                                              Analytics.analyticsLogEvent(
+                                                  AnalyticsEventType
+                                                      .post_article,
+                                                  _analyticsParam);
                                               await showDialog(
                                                 context: context,
                                                 builder: (alertDialogContext) {

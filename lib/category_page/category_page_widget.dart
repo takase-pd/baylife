@@ -55,6 +55,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
           await Navigator.push(
             context,
             MaterialPageRoute(
+              settings: const RouteSettings(name: 'LoginPage'),
               builder: (context) => LoginPageWidget(),
             ),
           );
