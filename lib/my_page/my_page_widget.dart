@@ -32,12 +32,51 @@ class _MyPageWidgetState extends State<MyPageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).textLight),
         automaticallyImplyLeading: false,
-        leading: Icon(
-          Icons.arrow_back_ios_outlined,
-          color: FlutterFlowTheme.of(context).textLight,
-          size: 24,
+        leading: InkWell(
+          onTap: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NavBarPage(initialPage: 'HomePage'),
+              ),
+            );
+          },
+          child: Icon(
+            Icons.arrow_back_ios_outlined,
+            color: FlutterFlowTheme.of(context).textLight,
+            size: 24,
+          ),
         ),
-        actions: [],
+        actions: [
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                child: InkWell(
+                  onTap: () async {
+                    await signOut();
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NavBarPage(initialPage: 'HomePage'),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'ログアウト',
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Open Sans',
+                          color: FlutterFlowTheme.of(context).textLight,
+                        ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
         centerTitle: false,
         elevation: 0,
       ),
@@ -66,7 +105,10 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
-                          currentUserPhoto,
+                          valueOrDefault<String>(
+                            currentUserPhoto,
+                            'https://firebasestorage.googleapis.com/v0/b/baylifedev.appspot.com/o/assets%2Fuser-circle.png?alt=media&token=f4feafa1-f433-486d-a24a-be2ec1a6b5a4',
+                          ),
                         ),
                       ),
                     ),
@@ -103,25 +145,6 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                     ),
                   ],
                 ),
-                InkWell(
-                  onTap: () async {
-                    await signOut();
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NavBarPage(initialPage: 'HomePage'),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'ログアウト',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Open Sans',
-                          color: FlutterFlowTheme.of(context).textLight,
-                        ),
-                  ),
-                ),
               ],
             ),
           ),
@@ -131,7 +154,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
               color: FlutterFlowTheme.of(context).tertiaryColor,
               elevation: 4,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(32),
               ),
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
@@ -185,6 +208,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                             fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryColor,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                     ),
                                     AuthUserStreamWidget(
@@ -201,6 +225,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryColor,
                                               fontSize: 16,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                       ),
                                     ),
@@ -247,6 +272,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                             fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryColor,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                     ),
                                     AuthUserStreamWidget(
@@ -263,6 +289,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryColor,
                                               fontSize: 16,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                       ),
                                     ),
@@ -275,7 +302,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                       child: InkWell(
                         onTap: () async {
                           await Navigator.push(
