@@ -13,6 +13,9 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../backend/firebase_analytics/analytics.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
+
 class SurveyLoginPageWidget extends StatefulWidget {
   const SurveyLoginPageWidget({
     Key key,
@@ -260,7 +263,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     ),
                                   );
                                 },
-                                text: 'Sign in with  Email',
+                                text: 'メールアドレスでログイン',
                                 icon: Icon(
                                   Icons.mail,
                                   size: 20,
@@ -274,7 +277,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     'Roboto',
                                     color:
                                         FlutterFlowTheme.of(context).textLight,
-                                    fontSize: 17,
+                                    fontSize: 12,
                                   ),
                                   elevation: 4,
                                   borderSide: BorderSide(
@@ -316,7 +319,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                           ),
                                         );
                                       },
-                                      text: 'Sign in with Google',
+                                      text: 'Googleアカウントでログイン',
                                       icon: Icon(
                                         Icons.add,
                                         color: Colors.transparent,
@@ -329,7 +332,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                         textStyle: GoogleFonts.getFont(
                                           'Roboto',
                                           color: Color(0xFF606060),
-                                          fontSize: 17,
+                                          fontSize: 12,
                                         ),
                                         elevation: 4,
                                         borderSide: BorderSide(
@@ -381,7 +384,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                       ),
                                     );
                                   },
-                                  text: 'Sign in with Apple',
+                                  text: 'Appleでサインイン',
                                   icon: FaIcon(
                                     FontAwesomeIcons.apple,
                                     size: 20,
@@ -393,7 +396,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     textStyle: GoogleFonts.getFont(
                                       'Roboto',
                                       color: Colors.black,
-                                      fontSize: 17,
+                                      fontSize: 14,
                                     ),
                                     elevation: 4,
                                     borderSide: BorderSide(
@@ -678,7 +681,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                          'Passwords don\'t match!',
+                                          'パスワードが異なります。',
                                         ),
                                       ),
                                     );
@@ -700,7 +703,12 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                   await UsersRecord.collection
                                       .doc(user.uid)
                                       .update(usersCreateData);
-
+                                  var _analyticsParam = {
+                                    'account_type': 'email'
+                                  };
+                                  Analytics.analyticsLogEvent(
+                                      AnalyticsEventType.create_account,
+                                      _analyticsParam);
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -711,7 +719,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     ),
                                   );
                                 },
-                                text: 'Sign up with  Email',
+                                text: 'メールアドレスで登録',
                                 icon: Icon(
                                   Icons.mail,
                                   size: 20,
@@ -725,14 +733,14 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     'Roboto',
                                     color:
                                         FlutterFlowTheme.of(context).textLight,
-                                    fontSize: 17,
+                                    fontSize: 12,
                                   ),
                                   elevation: 4,
                                   borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 0,
                                   ),
-                                  borderRadius: 12,
+                                  borderRadius: 14,
                                 ),
                               ),
                             ],
@@ -757,6 +765,12 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                         if (user == null) {
                                           return;
                                         }
+                                        var _analyticsParam = {
+                                          'account_type': 'google'
+                                        };
+                                        Analytics.analyticsLogEvent(
+                                            AnalyticsEventType.create_account,
+                                            _analyticsParam);
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -767,7 +781,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                           ),
                                         );
                                       },
-                                      text: 'Sign up with Google',
+                                      text: 'Googleアカウントで登録',
                                       icon: Icon(
                                         Icons.add,
                                         color: Colors.transparent,
@@ -780,14 +794,14 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                         textStyle: GoogleFonts.getFont(
                                           'Roboto',
                                           color: Color(0xFF606060),
-                                          fontSize: 17,
+                                          fontSize: 12,
                                         ),
                                         elevation: 4,
                                         borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 0,
                                         ),
-                                        borderRadius: 12,
+                                        borderRadius: 14,
                                       ),
                                     ),
                                   ),
@@ -822,6 +836,12 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     if (user == null) {
                                       return;
                                     }
+                                    var _analyticsParam = {
+                                      'account_type': 'apple'
+                                    };
+                                    Analytics.analyticsLogEvent(
+                                        AnalyticsEventType.create_account,
+                                        _analyticsParam);
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -832,7 +852,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                       ),
                                     );
                                   },
-                                  text: 'Sign up with Apple',
+                                  text: 'Appleでサインアップ',
                                   icon: FaIcon(
                                     FontAwesomeIcons.apple,
                                     size: 20,
@@ -844,7 +864,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     textStyle: GoogleFonts.getFont(
                                       'Roboto',
                                       color: Colors.black,
-                                      fontSize: 17,
+                                      fontSize: 14,
                                     ),
                                     elevation: 4,
                                     borderSide: BorderSide(

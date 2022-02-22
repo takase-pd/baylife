@@ -11,6 +11,9 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../backend/firebase_analytics/analytics.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
+
 class MyPageEditWidget extends StatefulWidget {
   const MyPageEditWidget({
     Key key,
@@ -349,6 +352,13 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                 );
                                 await currentUserReference
                                     .update(usersUpdateData);
+                                var _analyticsParam = {
+                                  'sex': sexValue,
+                                  'area': areaValue,
+                                };
+                                Analytics.analyticsLogEvent(
+                                    AnalyticsEventType.update_userdata,
+                                    _analyticsParam);
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(

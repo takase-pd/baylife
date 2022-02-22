@@ -13,18 +13,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
-
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({
     Key key,
-    this.title,
-    this.observer,
   }) : super(key: key);
-
-  final String title;
-  final FirebaseAnalyticsObserver observer;
 
   @override
   _HomePageWidgetState createState() => _HomePageWidgetState();
@@ -52,7 +44,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           await Navigator.push(
             context,
             MaterialPageRoute(
-              settings: const RouteSettings(name: 'Login Page'),
+              settings: const RouteSettings(name: 'LoginPage'),
               builder: (context) => LoginPageWidget(),
             ),
           );
@@ -115,7 +107,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               context,
                               MaterialPageRoute(
                                 settings:
-                                    const RouteSettings(name: 'Content Page'),
+                                    const RouteSettings(name: 'ContentPage'),
                                 builder: (context) => ContentPageWidget(
                                   contentRef: listViewContentsRecord.reference,
                                 ),
@@ -222,7 +214,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           settings:
                                                               const RouteSettings(
                                                                   name:
-                                                                      'Category Page'),
+                                                                      'CategoryPage'),
                                                           builder: (context) =>
                                                               CategoryPageWidget(
                                                             catRef:

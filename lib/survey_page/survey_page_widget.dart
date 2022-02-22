@@ -15,18 +15,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../auth/firebase_user_provider.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 
 class SurveyPageWidget extends StatefulWidget {
   const SurveyPageWidget({
     Key key,
-    this.title,
-    this.observer,
   }) : super(key: key);
-
-  final String title;
-  final FirebaseAnalyticsObserver observer;
 
   @override
   _SurveyPageWidgetState createState() => _SurveyPageWidgetState();
@@ -126,7 +119,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                     context,
                                     MaterialPageRoute(
                                       settings: const RouteSettings(
-                                          name: 'Survey Result Page'),
+                                          name: 'SurveyResultPage'),
                                       builder: (context) =>
                                           SurveyResultPageWidget(
                                         surveyRef:
@@ -258,7 +251,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                         settings:
                                                             const RouteSettings(
                                                                 name:
-                                                                    'Survey Post Page'),
+                                                                    'SurveyPostPage'),
                                                         builder: (context) =>
                                                             SurveyPostPageWidget(
                                                           surveyRef:
@@ -274,7 +267,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                         settings:
                                                             const RouteSettings(
                                                                 name:
-                                                                    'Survey Login Page'),
+                                                                    'SurveyLoginPage'),
                                                         builder: (context) =>
                                                             SurveyLoginPageWidget(
                                                           surveyRef:

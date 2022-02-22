@@ -9,6 +9,9 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../backend/firebase_analytics/analytics.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
+
 class MyPageWidget extends StatefulWidget {
   const MyPageWidget({
     Key key,
@@ -57,6 +60,9 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                 child: InkWell(
                   onTap: () async {
                     await signOut();
+                    var _analyticsParam = {'uid': currentUserUid};
+                    Analytics.analyticsLogEvent(
+                        AnalyticsEventType.logout_user, _analyticsParam);
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -313,6 +319,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
+                              settings: const RouteSettings(name: 'MyPageEdit'),
                               builder: (context) => MyPageEditWidget(),
                             ),
                           );
