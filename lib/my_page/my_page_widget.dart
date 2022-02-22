@@ -47,7 +47,36 @@ class _MyPageWidgetState extends State<MyPageWidget> {
             size: 24,
           ),
         ),
-        actions: [],
+        actions: [
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                child: InkWell(
+                  onTap: () async {
+                    await signOut();
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NavBarPage(initialPage: 'HomePage'),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'ログアウト',
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Open Sans',
+                          color: FlutterFlowTheme.of(context).textLight,
+                        ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
         centerTitle: false,
         elevation: 0,
       ),
@@ -76,7 +105,10 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
-                          currentUserPhoto,
+                          valueOrDefault<String>(
+                            currentUserPhoto,
+                            'https://firebasestorage.googleapis.com/v0/b/baylifedev.appspot.com/o/assets%2Fuser-circle.png?alt=media&token=f4feafa1-f433-486d-a24a-be2ec1a6b5a4',
+                          ),
                         ),
                       ),
                     ),
@@ -112,25 +144,6 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                       ),
                     ),
                   ],
-                ),
-                InkWell(
-                  onTap: () async {
-                    await signOut();
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NavBarPage(initialPage: 'HomePage'),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'ログアウト',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Open Sans',
-                          color: FlutterFlowTheme.of(context).textLight,
-                        ),
-                  ),
                 ),
               ],
             ),
