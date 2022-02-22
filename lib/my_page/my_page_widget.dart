@@ -154,7 +154,12 @@ class _MyPageWidgetState extends State<MyPageWidget> {
               color: FlutterFlowTheme.of(context).tertiaryColor,
               elevation: 4,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(32),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(48),
+                  bottomRight: Radius.circular(48),
+                  topLeft: Radius.circular(32),
+                  topRight: Radius.circular(32),
+                ),
               ),
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),

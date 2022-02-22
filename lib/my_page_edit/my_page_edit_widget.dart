@@ -76,7 +76,10 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
-                          currentUserPhoto,
+                          valueOrDefault<String>(
+                            currentUserPhoto,
+                            'https://firebasestorage.googleapis.com/v0/b/baylifedev.appspot.com/o/assets%2Fuser-circle.png?alt=media&token=f4feafa1-f433-486d-a24a-be2ec1a6b5a4',
+                          ),
                         ),
                       ),
                     ),
@@ -122,7 +125,12 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
               color: FlutterFlowTheme.of(context).tertiaryColor,
               elevation: 4,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(32),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(48),
+                  bottomRight: Radius.circular(48),
+                  topLeft: Radius.circular(32),
+                  topRight: Radius.circular(32),
+                ),
               ),
               child: Form(
                 key: formKey,
