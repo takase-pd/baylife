@@ -32,10 +32,20 @@ class _MyPageWidgetState extends State<MyPageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).textLight),
         automaticallyImplyLeading: false,
-        leading: Icon(
-          Icons.arrow_back_ios_outlined,
-          color: FlutterFlowTheme.of(context).textLight,
-          size: 24,
+        leading: InkWell(
+          onTap: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NavBarPage(initialPage: 'HomePage'),
+              ),
+            );
+          },
+          child: Icon(
+            Icons.arrow_back_ios_outlined,
+            color: FlutterFlowTheme.of(context).textLight,
+            size: 24,
+          ),
         ),
         actions: [],
         centerTitle: false,
@@ -131,7 +141,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
               color: FlutterFlowTheme.of(context).tertiaryColor,
               elevation: 4,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(32),
               ),
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
@@ -185,6 +195,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                             fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryColor,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                     ),
                                     AuthUserStreamWidget(
@@ -201,6 +212,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryColor,
                                               fontSize: 16,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                       ),
                                     ),
@@ -247,6 +259,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                             fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryColor,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                     ),
                                     AuthUserStreamWidget(
@@ -263,6 +276,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryColor,
                                               fontSize: 16,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                       ),
                                     ),
@@ -275,7 +289,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                       child: InkWell(
                         onTap: () async {
                           await Navigator.push(

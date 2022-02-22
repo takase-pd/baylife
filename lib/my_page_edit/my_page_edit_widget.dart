@@ -122,7 +122,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
               color: FlutterFlowTheme.of(context).tertiaryColor,
               elevation: 4,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(32),
               ),
               child: Form(
                 key: formKey,
@@ -180,6 +180,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryColor,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                       ),
                                       AuthUserStreamWidget(
@@ -199,6 +200,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryColor,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                           fillColor: Colors.white,
                                           elevation: 2,
@@ -255,6 +257,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryColor,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                       ),
                                       AuthUserStreamWidget(
@@ -278,6 +281,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryColor,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                           fillColor: Colors.white,
                                           elevation: 2,
@@ -299,7 +303,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                         child: StreamBuilder<List<SurveyRecord>>(
                           stream: querySurveyRecord(
                             singleRecord: true,
@@ -345,7 +349,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                   (r) => false,
                                 );
                               },
-                              text: '変更',
+                              text: '保存',
                               options: FFButtonOptions(
                                 width: 240,
                                 height: 48,
