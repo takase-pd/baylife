@@ -864,7 +864,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     textStyle: GoogleFonts.getFont(
                                       'Roboto',
                                       color: Colors.black,
-                                      fontSize: 14,
+                                      fontSize: 12,
                                     ),
                                     elevation: 4,
                                     borderSide: BorderSide(
