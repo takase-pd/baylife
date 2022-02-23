@@ -1,8 +1,13 @@
+import 'package:bay_life/auth/firebase_user_provider.dart';
+
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import '../my_page_edit/my_page_edit_widget.dart';
+import '../login_page/login_page_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -11,6 +16,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../backend/firebase_analytics/analytics.dart';
 import '../backend/firebase_analytics/analytics_event_type.dart';
+
+import '../login_page/login_page_path.dart';
 
 class MyPageWidget extends StatefulWidget {
   const MyPageWidget({
@@ -55,31 +62,32 @@ class _MyPageWidgetState extends State<MyPageWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
-                child: InkWell(
-                  onTap: () async {
-                    await signOut();
-                    var _analyticsParam = {'uid': currentUserUid};
-                    Analytics.analyticsLogEvent(
-                        AnalyticsEventType.logout_user, _analyticsParam);
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NavBarPage(initialPage: 'HomePage'),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'ログアウト',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Open Sans',
-                          color: FlutterFlowTheme.of(context).textLight,
+              if (currentUser.loggedIn)
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                  child: InkWell(
+                    onTap: () async {
+                      await signOut();
+                      var _analyticsParam = {'uid': currentUserUid};
+                      Analytics.analyticsLogEvent(
+                          AnalyticsEventType.logout_user, _analyticsParam);
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              NavBarPage(initialPage: 'HomePage'),
                         ),
+                      );
+                    },
+                    child: Text(
+                      'ログアウト',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Open Sans',
+                            color: FlutterFlowTheme.of(context).textLight,
+                          ),
+                    ),
                   ),
                 ),
-              ),
             ],
           ),
         ],
@@ -125,27 +133,41 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          AuthUserStreamWidget(
-                            child: Text(
-                              currentUserDisplayName,
+                          if (!currentUser.loggedIn)
+                            Text(
+                              'ログインしていません',
                               style: FlutterFlowTheme.of(context)
-                                  .subtitle2
+                                  .bodyText1
                                   .override(
                                     fontFamily: 'Open Sans',
                                     color:
                                         FlutterFlowTheme.of(context).textLight,
                                   ),
                             ),
-                          ),
-                          Text(
-                            currentUserEmail,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color: FlutterFlowTheme.of(context).textLight,
-                                ),
-                          ),
+                          if (currentUser.loggedIn)
+                            AuthUserStreamWidget(
+                              child: Text(
+                                currentUserDisplayName,
+                                style: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .textLight,
+                                    ),
+                              ),
+                            ),
+                          if (currentUser.loggedIn)
+                            Text(
+                              currentUserEmail,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Open Sans',
+                                    color:
+                                        FlutterFlowTheme.of(context).textLight,
+                                  ),
+                            ),
                         ],
                       ),
                     ),
@@ -312,28 +334,97 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
-                      child: InkWell(
-                        onTap: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              settings: const RouteSettings(name: 'MyPageEdit'),
-                              builder: (context) => MyPageEditWidget(),
-                            ),
-                          );
-                        },
-                        child: Text(
-                          '変更',
-                          style:
-                              FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Open Sans',
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                    if (currentUser.loggedIn)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
+                        child: InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                settings:
+                                    const RouteSettings(name: 'MyPageEdit'),
+                                builder: (context) => MyPageEditWidget(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            '変更',
+                            style:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Open Sans',
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                          ),
                         ),
                       ),
-                    ),
+                    if (!currentUser.loggedIn)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
+                        child: StreamBuilder<List<SurveyRecord>>(
+                          stream: querySurveyRecord(
+                            singleRecord: true,
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: SpinKitPulse(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    size: 50,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<SurveyRecord> buttonSurveyRecordList =
+                                snapshot.data;
+                            // Return an empty Container when the document does not exist.
+                            if (snapshot.data.isEmpty) {
+                              return Container();
+                            }
+                            final buttonSurveyRecord =
+                                buttonSurveyRecordList.isNotEmpty
+                                    ? buttonSurveyRecordList.first
+                                    : null;
+                            return FFButtonWidget(
+                              onPressed: () async {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginPageWidget(
+                                      pagePath: LoginPagePath.my_page,
+                                    ),
+                                  ),
+                                );
+                              },
+                              text: 'ログイン',
+                              options: FFButtonOptions(
+                                width: 240,
+                                height: 48,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .textLight,
+                                    ),
+                                elevation: 4,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: 12,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                   ],
                 ),
               ),

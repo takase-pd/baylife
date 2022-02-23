@@ -5,15 +5,31 @@ import '../components/header_logo_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../home_page/home_page_widget.dart';
 import '../post_page_with_login/post_page_with_login_widget.dart';
 import '../terms_page/terms_page_widget.dart';
+import '../my_page/my_page_widget.dart';
+import '../survey_post_page/survey_post_page_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../login_page/login_page_path.dart';
+
+import '../backend/firebase_analytics/analytics.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
+
 class LoginPageWidget extends StatefulWidget {
-  const LoginPageWidget({Key key}) : super(key: key);
+  const LoginPageWidget({
+    Key key,
+    this.pagePath,
+    this.surveyRef,
+  }) : super(key: key);
+
+  final LoginPagePath pagePath;
+  final DocumentReference surveyRef;
 
   @override
   _LoginPageWidgetState createState() => _LoginPageWidgetState();
@@ -29,6 +45,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   TextEditingController passwordController;
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  Widget pageRoute() {
+    switch (widget.pagePath) {
+      case LoginPagePath.my_page:
+        return MyPageWidget();
+      case LoginPagePath.post_page_with_login:
+        return PostPageWithLoginWidget();
+      case LoginPagePath.survey_post_page:
+        return SurveyPostPageWidget(surveyRef: widget.surveyRef);
+      default:
+        return HomePageWidget();
+    }
+  }
 
   @override
   void initState() {
@@ -243,16 +272,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   if (user == null) {
                                     return;
                                   }
+                                  var _analyticsParam = {
+                                    'login_account_type': 'email'
+                                  };
+                                  Analytics.analyticsLogEvent(
+                                      AnalyticsEventType.login_user,
+                                      _analyticsParam);
 
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          PostPageWithLoginWidget(),
+                                      builder: (context) => pageRoute(),
                                     ),
                                   );
                                 },
-                                text: 'Sign in with  Email',
+                                text: 'メールアドレスでログイン',
                                 icon: Icon(
                                   Icons.mail,
                                   size: 20,
@@ -266,7 +300,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     'Roboto',
                                     color:
                                         FlutterFlowTheme.of(context).textLight,
-                                    fontSize: 17,
+                                    fontSize: 12,
                                   ),
                                   elevation: 4,
                                   borderSide: BorderSide(
@@ -298,15 +332,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         if (user == null) {
                                           return;
                                         }
+                                        var _analyticsParam = {
+                                          'login_account_type': 'google'
+                                        };
+                                        Analytics.analyticsLogEvent(
+                                            AnalyticsEventType.login_user,
+                                            _analyticsParam);
+
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                PostPageWithLoginWidget(),
+                                            builder: (context) => pageRoute(),
                                           ),
                                         );
                                       },
-                                      text: 'Sign in with Google',
+                                      text: 'Googleアカウントでログイン',
                                       icon: Icon(
                                         Icons.add,
                                         color: Colors.transparent,
@@ -319,7 +359,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         textStyle: GoogleFonts.getFont(
                                           'Roboto',
                                           color: Color(0xFF606060),
-                                          fontSize: 17,
+                                          fontSize: 12,
                                         ),
                                         elevation: 4,
                                         borderSide: BorderSide(
@@ -361,15 +401,20 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     if (user == null) {
                                       return;
                                     }
+                                    var _analyticsParam = {
+                                      'login_account_type': 'apple'
+                                    };
+                                    Analytics.analyticsLogEvent(
+                                        AnalyticsEventType.login_user,
+                                        _analyticsParam);
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            PostPageWithLoginWidget(),
+                                        builder: (context) => pageRoute(),
                                       ),
                                     );
                                   },
-                                  text: 'Sign in with Apple',
+                                  text: 'Appleでサインイン',
                                   icon: FaIcon(
                                     FontAwesomeIcons.apple,
                                     size: 20,
@@ -381,7 +426,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     textStyle: GoogleFonts.getFont(
                                       'Roboto',
                                       color: Colors.black,
-                                      fontSize: 17,
+                                      fontSize: 14,
                                     ),
                                     elevation: 4,
                                     borderSide: BorderSide(
@@ -666,7 +711,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                          'Passwords don\'t match!',
+                                          'パスワードが異なります!',
                                         ),
                                       ),
                                     );
@@ -688,16 +733,20 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   await UsersRecord.collection
                                       .doc(user.uid)
                                       .update(usersCreateData);
-
+                                  var _analyticsParam = {
+                                    'create_account_type': 'email'
+                                  };
+                                  Analytics.analyticsLogEvent(
+                                      AnalyticsEventType.create_account,
+                                      _analyticsParam);
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          PostPageWithLoginWidget(),
+                                      builder: (context) => pageRoute(),
                                     ),
                                   );
                                 },
-                                text: 'Sign up with  Email',
+                                text: 'メールアドレスで登録',
                                 icon: Icon(
                                   Icons.mail,
                                   size: 20,
@@ -711,14 +760,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     'Roboto',
                                     color:
                                         FlutterFlowTheme.of(context).textLight,
-                                    fontSize: 17,
+                                    fontSize: 12,
                                   ),
                                   elevation: 4,
                                   borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 0,
                                   ),
-                                  borderRadius: 12,
+                                  borderRadius: 14,
                                 ),
                               ),
                             ],
@@ -743,15 +792,20 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         if (user == null) {
                                           return;
                                         }
+                                        var _analyticsParam = {
+                                          'create_account_type': 'google'
+                                        };
+                                        Analytics.analyticsLogEvent(
+                                            AnalyticsEventType.create_account,
+                                            _analyticsParam);
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                PostPageWithLoginWidget(),
+                                            builder: (context) => pageRoute(),
                                           ),
                                         );
                                       },
-                                      text: 'Sign up with Google',
+                                      text: 'Googleアカウントで登録',
                                       icon: Icon(
                                         Icons.add,
                                         color: Colors.transparent,
@@ -764,14 +818,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         textStyle: GoogleFonts.getFont(
                                           'Roboto',
                                           color: Color(0xFF606060),
-                                          fontSize: 17,
+                                          fontSize: 12,
                                         ),
                                         elevation: 4,
                                         borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 0,
                                         ),
-                                        borderRadius: 12,
+                                        borderRadius: 14,
                                       ),
                                     ),
                                   ),
@@ -806,15 +860,20 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     if (user == null) {
                                       return;
                                     }
+                                    var _analyticsParam = {
+                                      'create_account_type': 'apple'
+                                    };
+                                    Analytics.analyticsLogEvent(
+                                        AnalyticsEventType.create_account,
+                                        _analyticsParam);
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            PostPageWithLoginWidget(),
+                                        builder: (context) => pageRoute(),
                                       ),
                                     );
                                   },
-                                  text: 'Sign up with Apple',
+                                  text: 'Appleでサインアップ',
                                   icon: FaIcon(
                                     FontAwesomeIcons.apple,
                                     size: 20,
@@ -826,7 +885,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     textStyle: GoogleFonts.getFont(
                                       'Roboto',
                                       color: Colors.black,
-                                      fontSize: 17,
+                                      fontSize: 14,
                                     ),
                                     elevation: 4,
                                     borderSide: BorderSide(
