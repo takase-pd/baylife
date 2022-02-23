@@ -4,7 +4,7 @@ import '../components/header_logo_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../survey_login_page/survey_login_page_widget.dart';
+import '../login_page/login_page_widget.dart';
 import '../survey_result_page/survey_result_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -170,11 +170,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      SurveyLoginPageWidget(
-                                                    surveyRef:
-                                                        listViewSurveyRecord
-                                                            .reference,
-                                                  ),
+                                                      LoginPageWidget(),
                                                 ),
                                               );
                                             },

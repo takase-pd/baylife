@@ -725,7 +725,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     'Roboto',
                                     color:
                                         FlutterFlowTheme.of(context).textLight,
-                                    fontSize: 14,
+                                    fontSize: 12,
                                   ),
                                   elevation: 4,
                                   borderSide: BorderSide(
@@ -780,7 +780,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                         textStyle: GoogleFonts.getFont(
                                           'Roboto',
                                           color: Color(0xFF606060),
-                                          fontSize: 14,
+                                          fontSize: 12,
                                         ),
                                         elevation: 4,
                                         borderSide: BorderSide(
@@ -844,7 +844,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     textStyle: GoogleFonts.getFont(
                                       'Roboto',
                                       color: Colors.black,
-                                      fontSize: 14,
+                                      fontSize: 12,
                                     ),
                                     elevation: 4,
                                     borderSide: BorderSide(
