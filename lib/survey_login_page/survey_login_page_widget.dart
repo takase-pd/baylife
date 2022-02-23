@@ -260,7 +260,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     ),
                                   );
                                 },
-                                text: 'Sign in with  Email',
+                                text: 'メールアドレスでログイン',
                                 icon: Icon(
                                   Icons.mail,
                                   size: 20,
@@ -274,7 +274,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     'Roboto',
                                     color:
                                         FlutterFlowTheme.of(context).textLight,
-                                    fontSize: 17,
+                                    fontSize: 12,
                                   ),
                                   elevation: 4,
                                   borderSide: BorderSide(
@@ -316,7 +316,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                           ),
                                         );
                                       },
-                                      text: 'Sign in with Google',
+                                      text: 'Googleアカウントでログイン',
                                       icon: Icon(
                                         Icons.add,
                                         color: Colors.transparent,
@@ -329,7 +329,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                         textStyle: GoogleFonts.getFont(
                                           'Roboto',
                                           color: Color(0xFF606060),
-                                          fontSize: 17,
+                                          fontSize: 12,
                                         ),
                                         elevation: 4,
                                         borderSide: BorderSide(
@@ -381,7 +381,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                       ),
                                     );
                                   },
-                                  text: 'Sign in with Apple',
+                                  text: 'Appleでサインイン',
                                   icon: FaIcon(
                                     FontAwesomeIcons.apple,
                                     size: 20,
@@ -393,7 +393,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     textStyle: GoogleFonts.getFont(
                                       'Roboto',
                                       color: Colors.black,
-                                      fontSize: 17,
+                                      fontSize: 14,
                                     ),
                                     elevation: 4,
                                     borderSide: BorderSide(
@@ -711,7 +711,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     ),
                                   );
                                 },
-                                text: 'Sign up with  Email',
+                                text: 'メールアドレスで登録',
                                 icon: Icon(
                                   Icons.mail,
                                   size: 20,
@@ -725,7 +725,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     'Roboto',
                                     color:
                                         FlutterFlowTheme.of(context).textLight,
-                                    fontSize: 17,
+                                    fontSize: 14,
                                   ),
                                   elevation: 4,
                                   borderSide: BorderSide(
@@ -767,7 +767,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                           ),
                                         );
                                       },
-                                      text: 'Sign up with Google',
+                                      text: 'Googleアカウントで登録',
                                       icon: Icon(
                                         Icons.add,
                                         color: Colors.transparent,
@@ -780,7 +780,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                         textStyle: GoogleFonts.getFont(
                                           'Roboto',
                                           color: Color(0xFF606060),
-                                          fontSize: 17,
+                                          fontSize: 14,
                                         ),
                                         elevation: 4,
                                         borderSide: BorderSide(
@@ -832,7 +832,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                       ),
                                     );
                                   },
-                                  text: 'Sign up with Apple',
+                                  text: 'Appleでサインアップ',
                                   icon: FaIcon(
                                     FontAwesomeIcons.apple,
                                     size: 20,
@@ -844,7 +844,7 @@ class _SurveyLoginPageWidgetState extends State<SurveyLoginPageWidget> {
                                     textStyle: GoogleFonts.getFont(
                                       'Roboto',
                                       color: Colors.black,
-                                      fontSize: 17,
+                                      fontSize: 14,
                                     ),
                                     elevation: 4,
                                     borderSide: BorderSide(

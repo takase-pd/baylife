@@ -49,7 +49,12 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            Navigator.pop(context);
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NavBarPage(initialPage: 'SurveyPage'),
+              ),
+            );
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
