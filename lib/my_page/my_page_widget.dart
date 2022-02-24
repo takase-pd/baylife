@@ -5,9 +5,9 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../login_page/login_page_widget.dart';
 import '../main.dart';
 import '../my_page_edit/my_page_edit_widget.dart';
-import '../login_page/login_page_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -247,6 +247,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                     AuthUserStreamWidget(
                                       child: Text(
                                         valueOrDefault<String>(
+                                          // TODO
                                           currentUserDocument?.sex,
                                           '未回答',
                                         ),
@@ -311,6 +312,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                     AuthUserStreamWidget(
                                       child: Text(
                                         valueOrDefault<String>(
+                                          // TODO
                                           currentUserDocument?.area,
                                           '未回答',
                                         ),
