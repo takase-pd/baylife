@@ -7,7 +7,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../survey_post_page/survey_post_page_widget.dart';
-import '../survey_login_page/survey_login_page_widget.dart';
+import '../login_page/login_page_widget.dart';
 import '../survey_result_page/survey_result_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -15,9 +15,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../auth/firebase_user_provider.dart';
+import '../login_page/login_page_path.dart';
 
 class SurveyPageWidget extends StatefulWidget {
-  const SurveyPageWidget({Key key}) : super(key: key);
+  const SurveyPageWidget({
+    Key key,
+  }) : super(key: key);
 
   @override
   _SurveyPageWidgetState createState() => _SurveyPageWidgetState();
@@ -116,6 +119,8 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
+                                      settings: const RouteSettings(
+                                          name: 'SurveyResultPage'),
                                       builder: (context) =>
                                           SurveyResultPageWidget(
                                         surveyRef:
@@ -244,6 +249,10 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                     await Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
+                                                        settings:
+                                                            const RouteSettings(
+                                                                name:
+                                                                    'SurveyPostPage'),
                                                         builder: (context) =>
                                                             SurveyPostPageWidget(
                                                           surveyRef:
@@ -256,8 +265,14 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                     await Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
+                                                        settings:
+                                                            const RouteSettings(
+                                                                name:
+                                                                    'SurveyPostPage'),
                                                         builder: (context) =>
-                                                            SurveyLoginPageWidget(
+                                                            LoginPageWidget(
+                                                          pagePath: LoginPagePath
+                                                              .survey_post_page,
                                                           surveyRef:
                                                               listViewSurveyRecord
                                                                   .reference,

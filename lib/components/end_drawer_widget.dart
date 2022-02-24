@@ -1,12 +1,15 @@
 import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../login_page/login_page_widget.dart';
 import '../main.dart';
+import '../my_page/my_page_widget.dart';
 import '../terms_page/terms_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../backend/firebase_analytics/analytics.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
 
 class EndDrawerWidget extends StatefulWidget {
   const EndDrawerWidget({Key key}) : super(key: key);
@@ -34,25 +37,27 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                 scrollDirection: Axis.vertical,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                NavBarPage(initialPage: 'HomePage'),
+                            settings: const RouteSettings(name: 'MyPage'),
+                            builder: (context) => MyPageWidget(),
                           ),
                         );
                       },
                       child: ListTile(
                         title: Text(
-                          'トップ',
+                          'マイページ',
                           style: FlutterFlowTheme.of(context)
                               .subtitle2
                               .override(
                                 fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textDark,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                fontWeight: FontWeight.w600,
                               ),
                         ),
                         trailing: Icon(
@@ -65,63 +70,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
-                    child: InkWell(
-                      onTap: () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginPageWidget(),
-                          ),
-                        );
-                      },
-                      child: ListTile(
-                        title: Text(
-                          '投稿',
-                          style: FlutterFlowTheme.of(context)
-                              .subtitle2
-                              .override(
-                                fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textDark,
-                              ),
-                        ),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.of(context).textDark,
-                          size: 20,
-                        ),
-                        dense: false,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
-                    child: InkWell(
-                      onTap: () async {
-                        await launchURL(
-                            'https://www.particledrawing.com/contact');
-                      },
-                      child: ListTile(
-                        title: Text(
-                          '要望送信',
-                          style: FlutterFlowTheme.of(context)
-                              .subtitle2
-                              .override(
-                                fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textDark,
-                              ),
-                        ),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: FlutterFlowTheme.of(context).textDark,
-                          size: 20,
-                        ),
-                        dense: false,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
                         await Navigator.push(
@@ -141,7 +90,9 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                               .subtitle2
                               .override(
                                 fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textDark,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                fontWeight: FontWeight.w600,
                               ),
                         ),
                         trailing: Icon(
@@ -154,7 +105,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
                         await launchURL(
@@ -167,7 +118,9 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                               .subtitle2
                               .override(
                                 fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textDark,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                fontWeight: FontWeight.w600,
                               ),
                         ),
                         trailing: Icon(
@@ -180,7 +133,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
                         await showDialog(
@@ -192,12 +145,26 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                                   '退会するとユーザー情報、投稿が削除されます。退会しますか？＊退会をクリックすると、すぐに退会となります。'),
                               actions: [
                                 TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext),
+                                  onPressed: () {
+                                    var _analyticsParam = {
+                                      'uid': currentUserUid
+                                    };
+                                    Analytics.analyticsLogEvent(
+                                        AnalyticsEventType
+                                            .cancel_delete_account,
+                                        _analyticsParam);
+                                    Navigator.pop(alertDialogContext);
+                                  },
                                   child: Text('キャンセル'),
                                 ),
                                 TextButton(
                                   onPressed: () async {
+                                    var _analyticsParam = {
+                                      'uid': currentUserUid
+                                    };
+                                    Analytics.analyticsLogEvent(
+                                        AnalyticsEventType.delete_account,
+                                        _analyticsParam);
                                     Navigator.pop(alertDialogContext);
                                     await currentUserReference.delete();
                                     ;
@@ -224,7 +191,9 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                               .subtitle2
                               .override(
                                 fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textDark,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                fontWeight: FontWeight.w600,
                               ),
                         ),
                         trailing: Icon(
@@ -244,6 +213,9 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
               child: InkWell(
                 onTap: () async {
                   await signOut();
+                  var _analyticsParam = {'uid': currentUserUid};
+                  Analytics.analyticsLogEvent(
+                      AnalyticsEventType.logout_user, _analyticsParam);
                   await Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
@@ -257,12 +229,13 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     'ログアウト',
                     style: FlutterFlowTheme.of(context).subtitle2.override(
                           fontFamily: 'Open Sans',
-                          color: FlutterFlowTheme.of(context).textDark,
+                          color: FlutterFlowTheme.of(context).secondaryColor,
+                          fontWeight: FontWeight.w600,
                         ),
                   ),
                   trailing: Icon(
                     Icons.logout,
-                    color: FlutterFlowTheme.of(context).textDark,
+                    color: FlutterFlowTheme.of(context).secondaryColor,
                     size: 20,
                   ),
                   dense: false,

@@ -6,10 +6,14 @@ import '../content_page/content_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../login_page/login_page_widget.dart';
+import '../post_page_with_login/post_page_with_login_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../auth/firebase_user_provider.dart';
+import '../login_page/login_page_path.dart';
 
 class CategoryPageWidget extends StatefulWidget {
   const CategoryPageWidget({
@@ -55,7 +59,12 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
           await Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => LoginPageWidget(),
+              settings: const RouteSettings(name: 'PostPageWithLogin'),
+              builder: (context) {
+                if (currentUser.loggedIn) return PostPageWithLoginWidget();
+                return LoginPageWidget(
+                    pagePath: LoginPagePath.post_page_with_login);
+              },
             ),
           );
         },
