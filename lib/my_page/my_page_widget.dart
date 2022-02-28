@@ -284,57 +284,21 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                           ),
                                     ),
                                     AuthUserStreamWidget(
-                                      child: StreamBuilder<
-                                          List<SecureUsersRecord>>(
-                                        stream: querySecureUsersRecord(
-                                          queryBuilder: (secureUsersRecord) =>
-                                              secureUsersRecord.where('user',
-                                                  isEqualTo:
-                                                      currentUserReference),
-                                          singleRecord: true,
+                                      child: Text(
+                                        valueOrDefault<String>(
+                                          currentUserDocument?.area,
+                                          '未回答',
                                         ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50,
-                                                height: 50,
-                                                child: SpinKitPulse(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryColor,
-                                                  size: 50,
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<SecureUsersRecord>
-                                              textSecureUsersRecordList =
-                                              snapshot.data;
-                                          final textSecureUsersRecord =
-                                              textSecureUsersRecordList
-                                                      .isNotEmpty
-                                                  ? textSecureUsersRecordList
-                                                      .first
-                                                  : null;
-                                          return Text(
-                                            valueOrDefault<String>(
-                                              currentUserDocument?.area,
-                                              '未回答',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Open Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
                                                       .secondaryColor,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                          );
-                                        },
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                       ),
                                     ),
                                   ],
