@@ -9,6 +9,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import '../main.dart';
 import '../terms_page/terms_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -69,7 +70,12 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            Navigator.pop(context);
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NavBarPage(initialPage: 'HomePage'),
+              ),
+            );
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
