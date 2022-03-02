@@ -13,7 +13,6 @@ import 'schema/info_inapp_record.dart';
 import 'schema/users_record.dart';
 import 'schema/logoname_record.dart';
 import 'schema/survey_record.dart';
-import 'schema/secure_users_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,7 +28,6 @@ export 'schema/info_inapp_record.dart';
 export 'schema/users_record.dart';
 export 'schema/logoname_record.dart';
 export 'schema/survey_record.dart';
-export 'schema/secure_users_record.dart';
 
 /// Functions to query ContentsRecords (as a Stream and as a Future).
 Stream<List<ContentsRecord>> queryContentsRecord(
@@ -167,22 +165,6 @@ Future<List<SurveyRecord>> querySurveyRecordOnce(
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollectionOnce(SurveyRecord.collection, SurveyRecord.serializer,
-        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
-
-/// Functions to query SecureUsersRecords (as a Stream and as a Future).
-Stream<List<SecureUsersRecord>> querySecureUsersRecord(
-        {Query Function(Query) queryBuilder,
-        int limit = -1,
-        bool singleRecord = false}) =>
-    queryCollection(SecureUsersRecord.collection, SecureUsersRecord.serializer,
-        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
-
-Future<List<SecureUsersRecord>> querySecureUsersRecordOnce(
-        {Query Function(Query) queryBuilder,
-        int limit = -1,
-        bool singleRecord = false}) =>
-    queryCollectionOnce(
-        SecureUsersRecord.collection, SecureUsersRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(
