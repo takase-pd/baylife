@@ -50,7 +50,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             MaterialPageRoute(
               settings: const RouteSettings(name: 'PostPageWithLogin'),
               builder: (context) {
-                if (currentUser.loggedIn) PostPageWithLoginWidget();
+                if (currentUser.loggedIn) return PostPageWithLoginWidget();
                 return LoginPageWidget(
                     pagePath: LoginPagePath.post_page_with_login);
               },
