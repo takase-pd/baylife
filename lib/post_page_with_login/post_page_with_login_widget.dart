@@ -70,7 +70,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            Navigator.push(
+            await Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => NavBarPage(initialPage: 'HomePage'),
