@@ -54,7 +54,7 @@ class RegistContentsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Regist Contents',
       apiUrl:
-          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/sendMailV1',
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/content-sendMailV1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ class AddSurveyAnswerCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Add Survey Answer',
       apiUrl:
-          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/addSurveyAnswerV0',
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/survey-addSurveyAnswerV0',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ class AnswersCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Answers',
       apiUrl:
-          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/answersV0',
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/survey-answersV0',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
