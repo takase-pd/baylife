@@ -5,52 +5,52 @@ on:
       - main
 
 jobs:
-  build_iOS:
-    name: Build for iOS
-    runs-on: macos-11
-    env:
-      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+  # build_iOS:
+  #   name: Build for iOS
+  #   runs-on: macos-11
+  #   env:
+  #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-    steps:
-      - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: '12.5.1'
+  #   steps:
+  #     - uses: maxim-lobanov/setup-xcode@v1
+  #       with:
+  #         xcode-version: '12.5.1'
 
-      - name: Checks-out my repository
-        uses: actions/checkout@v2
+  #     - name: Checks-out my repository
+  #       uses: actions/checkout@v2
 
-      - name: Install Flutter
-        uses: subosito/flutter-action@v1
-        with:
-          flutter-version:  '2.10.2'
+  #     - name: Install Flutter
+  #       uses: subosito/flutter-action@v1
+  #       with:
+  #         flutter-version:  '2.10.2'
 
-      - name: Download Flutter packages
-        run: flutter pub upgrade
-      - run: flutter packages pub run build_runner build --delete-conflicting-outputs
+  #     - name: Download Flutter packages
+  #       run: flutter pub upgrade
+  #     - run: flutter packages pub run build_runner build --delete-conflicting-outputs
 
-      - name: Import Provisioning Profile
-        run: |
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/main.mobileprovision
-          echo -n ${{ secrets.IMAGENOTIFICATION_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/imagenotification.mobileprovision
+  #     - name: Import Provisioning Profile
+  #       run: |
+  #         mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+  #         echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/main.mobileprovision
+  #         echo -n ${{ secrets.IMAGENOTIFICATION_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/imagenotification.mobileprovision
 
-      - name: Import Code-Signing Certificates
-        uses: apple-actions/import-codesign-certs@v1
-        with:
-          p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
-          p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+  #     - name: Import Code-Signing Certificates
+  #       uses: apple-actions/import-codesign-certs@v1
+  #       with:
+  #         p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
+  #         p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
 
-      - name: Create ipa file
-        run: flutter build ipa --export-options-plist=ExportOptions.plist --build-number ${GITHUB_RUN_NUMBER}
+  #     - name: Create ipa file
+  #       run: flutter build ipa --export-options-plist=ExportOptions.plist --build-number ${GITHUB_RUN_NUMBER}
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: iOS
-          path: ./build/ios/ipa/BayLife.ipa
+  #     - name: Upload artifact
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: iOS
+  #         path: ./build/ios/ipa/BayLife.ipa
 
-      - name: Upload to AppStoreConnect
-        run: xcrun altool --upload-app -f "./build/ios/ipa/BayLife.ipa" -u "${{ secrets.APPLE_ID }}" -p "${{ secrets.APPLE_APP_PASS }}"
+  #     - name: Upload to AppStoreConnect
+  #       run: xcrun altool --upload-app -f "./build/ios/ipa/BayLife.ipa" -u "${{ secrets.APPLE_ID }}" -p "${{ secrets.APPLE_APP_PASS }}"
 
   build_Android:
     name: Build for Android
@@ -65,10 +65,10 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v1
         with:
-          flutter-version:  '2.8.1'
+          flutter-version:  '2.10.2'
 
       - name: Download Flutter packages
-        run: flutter pub get
+        run: flutter pub upgrade
       - run: flutter packages pub run build_runner build --delete-conflicting-outputs
 
       - name: Create release.keystore
