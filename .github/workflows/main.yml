@@ -1,0 +1,115 @@
+name: CI Delivery
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # build_iOS:
+  #   name: Build for iOS
+  #   runs-on: macos-11
+  #   env:
+  #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+  #   steps:
+  #     - uses: maxim-lobanov/setup-xcode@v1
+  #       with:
+  #         xcode-version: '12.5.1'
+
+  #     - name: Checks-out my repository
+  #       uses: actions/checkout@v2
+
+  #     - name: Install Flutter
+  #       uses: subosito/flutter-action@v1
+  #       with:
+  #         flutter-version:  '2.8.1'
+
+  #     - name: Download Flutter packages
+  #       run: flutter pub get
+  #     - run: flutter packages pub run build_runner build --delete-conflicting-outputs
+
+  #     - name: Import Provisioning Profile
+  #       run: |
+  #         mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+  #         echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/main.mobileprovision
+  #         echo -n ${{ secrets.IMAGENOTIFICATION_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/imagenotification.mobileprovision
+
+  #     - name: Import Code-Signing Certificates
+  #       uses: apple-actions/import-codesign-certs@v1
+  #       with:
+  #         p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
+  #         p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+
+  #     - name: Create ipa file
+  #       run: flutter build ipa --export-options-plist=ExportOptions.plist --build-number ${GITHUB_RUN_NUMBER}
+
+  #     - name: Upload artifact
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: iOS
+  #         path: ./build/ios/ipa/BayLife.ipa
+
+  #     - name: Upload to AppStoreConnect
+  #       run: xcrun altool --upload-app -f "./build/ios/ipa/BayLife.ipa" -u "${{ secrets.APPLE_ID }}" -p "${{ secrets.APPLE_APP_PASS }}"
+
+  build_Android:
+    name: Build for Android
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+    steps:
+      - name: Checks-out my repository
+        uses: actions/checkout@v2
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version:  '2.8.1'
+
+      - name: Download Flutter packages
+        run: flutter pub get
+      - run: flutter packages pub run build_runner build --delete-conflicting-outputs
+
+      - name: Create release.keystore
+        run: echo -n ${{ secrets.ANDROID_KEY_STORE }} | base64 -d > android/release.keystore
+
+      - name: Create service-account-key.json
+        run: echo -n ${{ secrets.SERVICE_ACCOUNT_KEY_JSON }} | base64 -d > android/service-account-key.json
+
+      - name: Create key.properties
+        run: |
+          echo 'storeFile=release.keystore' > android/key.properties
+          echo 'serviceAccountFile=service-account-key.json' >> android/key.properties
+          echo 'storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}' >> android/key.properties
+          echo 'keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}' >> android/key.properties
+          echo 'keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}' >> android/key.properties
+
+      - name: Building Android AppBundle
+        run: flutter build appbundle --build-number=${GITHUB_RUN_NUMBER}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Android
+          path: ./build/app/outputs/bundle/release/app-release.aab
+
+      - name: Upload to Google Play Console
+        run: ./gradlew publishReleaseBundle
+        working-directory: ./android
+
+      - name: Slack Notification on Success
+        if: success()
+        uses: rtCamp/action-slack-notify@v2.0.2
+        env:
+          SLACK_CHANNEL: build_app
+          SLACK_TITLE: Success! MAKUHARI Bay Life
+          SLACK_COLOR: good
+
+      - name: Slack Notification on Failure
+        if: failure()
+        uses: rtCamp/action-slack-notify@v2.0.2
+        env:
+          SLACK_CHANNEL: build_app
+          SLACK_TITLE: Failure! MAKUHARI Bay Life
+          SLACK_COLOR: danger
