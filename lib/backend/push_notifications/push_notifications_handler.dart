@@ -18,7 +18,6 @@ import '../../confirm_page/confirm_page_widget.dart';
 import '../../terms_page/terms_page_widget.dart';
 import '../../survey_post_page/survey_post_page_widget.dart';
 import '../../survey_result_page/survey_result_page_widget.dart';
-import '../../survey_login_page/survey_login_page_widget.dart';
 import '../../my_page/my_page_widget.dart';
 import '../../my_page_dev/my_page_dev_widget.dart';
 import '../../my_page_edit/my_page_edit_widget.dart';
@@ -128,9 +127,6 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         surveyRef: getParameter(data, 'surveyRef'),
       ),
   'SurveyResultPage': (data) async => SurveyResultPageWidget(
-        surveyRef: getParameter(data, 'surveyRef'),
-      ),
-  'SurveyLoginPage': (data) async => SurveyLoginPageWidget(
         surveyRef: getParameter(data, 'surveyRef'),
       ),
   'MyPage': (data) async => MyPageWidget(
