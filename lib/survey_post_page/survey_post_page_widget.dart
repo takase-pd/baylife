@@ -62,6 +62,30 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
     if (radioButtonValue == null) {
       setState(() => radioButtonAlert = '＊必ず1つ選択してください。');
     } else {
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            title: Text(
+              '回答送信',
+              style: FlutterFlowTheme.of(context).subtitle2.override(
+                    fontFamily: 'Open Sans',
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+            content: Text(
+              '回答ありがとうございます。引き続きアンケートの回答、集計結果をお楽しみください!',
+              style: FlutterFlowTheme.of(context).bodyText2,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
       await AddSurveyAnswerCall.call(
         uid: currentUserUid,
         sid: sid,
@@ -417,7 +441,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                           if (!existsAnswer()) {
                                             return // Generated code for this Button Widget...
                                                 FFButtonWidget(
-                                              onPressed: () => {sendAnswer()},
+                                              onPressed: () => sendAnswer(),
                                               text: '送信',
                                               options: FFButtonOptions(
                                                 width: 120,
