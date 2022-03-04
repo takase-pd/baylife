@@ -14,6 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'survey_page/survey_page_widget.dart';
+import 'app_check_test_page/app_check_test_page_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -122,6 +123,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'SurveyPage': SurveyPageWidget(),
+      'AppCheckTestPage': AppCheckTestPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -150,6 +152,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'アンケート',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.security_sharp,
+              size: 24,
+            ),
+            label: ' AppCheck',
             tooltip: '',
           )
         ],

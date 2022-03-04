@@ -138,6 +138,8 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'MyPageEdit': (data) async => MyPageEditWidget(
         surveyRef: getParameter(data, 'surveyRef'),
       ),
+  'AppCheckTestPage': (data) async =>
+      NavBarPage(initialPage: 'AppCheckTestPageWidget'),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
