@@ -13,6 +13,7 @@ import 'schema/info_inapp_record.dart';
 import 'schema/users_record.dart';
 import 'schema/logoname_record.dart';
 import 'schema/survey_record.dart';
+import 'schema/alert_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,6 +29,7 @@ export 'schema/info_inapp_record.dart';
 export 'schema/users_record.dart';
 export 'schema/logoname_record.dart';
 export 'schema/survey_record.dart';
+export 'schema/alert_record.dart';
 
 /// Functions to query ContentsRecords (as a Stream and as a Future).
 Stream<List<ContentsRecord>> queryContentsRecord(
@@ -165,6 +167,21 @@ Future<List<SurveyRecord>> querySurveyRecordOnce(
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollectionOnce(SurveyRecord.collection, SurveyRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+/// Functions to query AlertRecords (as a Stream and as a Future).
+Stream<List<AlertRecord>> queryAlertRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(AlertRecord.collection, AlertRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<AlertRecord>> queryAlertRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(AlertRecord.collection, AlertRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(
