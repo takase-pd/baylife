@@ -1,9 +1,13 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
 import '../flutter_flow/flutter_flow_ad_banner.dart';
+import '../flutter_flow/flutter_flow_choice_chips.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +28,16 @@ class SurveyResultPageWidget extends StatefulWidget {
 }
 
 class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
+  String choiceChipsValue;
+  TextEditingController textController;
+  final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    textController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +65,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
         title: HeaderLogoWidget(),
         actions: [],
         centerTitle: true,
-        elevation: 4,
+        elevation: 0,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       endDrawer: Drawer(
@@ -62,7 +75,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
@@ -83,12 +96,12 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                   );
                 }
                 final columnSurveyRecord = snapshot.data;
-                return Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                      child: Card(
+                return SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         color: FlutterFlowTheme.of(context).background,
                         child: Padding(
@@ -222,8 +235,361 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).background,
+                                  ),
+                                  child: Form(
+                                    key: formKey,
+                                    autovalidateMode: AutovalidateMode.always,
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8, 8, 8, 8),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 4),
+                                            child: TextFormField(
+                                              controller: textController,
+                                              obscureText: false,
+                                              decoration: InputDecoration(
+                                                hintText: 'コメント',
+                                                enabledBorder:
+                                                    UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryColor,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(1),
+                                                ),
+                                                focusedBorder:
+                                                    UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryColor,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(1),
+                                                ),
+                                                contentPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(8, 0, 8, 0),
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                              validator: (val) {
+                                                if (val.isEmpty) {
+                                                  return 'コメントを入力してください。';
+                                                }
+                                                if (val.length < 1) {
+                                                  return 'Requires at least 1 characters.';
+                                                }
+                                                return null;
+                                              },
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 4),
+                                            child: FlutterFlowChoiceChips(
+                                              initiallySelected: [
+                                                choiceChipsValue
+                                              ],
+                                              options: [
+                                                ChipData('オススメ'),
+                                                ChipData('要望'),
+                                                ChipData('その他')
+                                              ],
+                                              onChanged: (val) => setState(() =>
+                                                  choiceChipsValue = val.first),
+                                              selectedChipStyle: ChipStyle(
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .pDark,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: Colors.white,
+                                                        ),
+                                                iconColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .textLight,
+                                                iconSize: 18,
+                                                labelPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(8, 0, 8, 0),
+                                                elevation: 4,
+                                              ),
+                                              unselectedChipStyle: ChipStyle(
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .pLight,
+                                                textStyle: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyText2
+                                                    .override(
+                                                      fontFamily: 'Open Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .textLight,
+                                                    ),
+                                                iconColor: Color(0x00000000),
+                                                iconSize: 18,
+                                                elevation: 4,
+                                              ),
+                                              chipSpacing: 8,
+                                              multiselect: false,
+                                            ),
+                                          ),
+                                          FFButtonWidget(
+                                            onPressed: () {
+                                              print('Button pressed ...');
+                                            },
+                                            text: '投稿',
+                                            icon: Icon(
+                                              Icons.rate_review_rounded,
+                                              size: 15,
+                                            ),
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 40,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color: Colors.white,
+                                                      ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius: 16,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              ListView(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .background,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8, 8, 8, 8),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 8),
+                                            child: Text(
+                                              'Hello World',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .pDark,
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(12, 4, 12, 4),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'オススメ',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .textLight,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 8, 0),
+                                                    child: Text(
+                                                      'username',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'date',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1,
+                                                  ),
+                                                ],
+                                              ),
+                                              FlutterFlowIconButton(
+                                                borderColor: Colors.transparent,
+                                                buttonSize: 32,
+                                                icon: FaIcon(
+                                                  FontAwesomeIcons.solidBell,
+                                                  color: Colors.black,
+                                                  size: 12,
+                                                ),
+                                                onPressed: () async {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        '問題のあるコメントを通知',
+                                                        style: TextStyle(),
+                                                      ),
+                                                      duration: Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          Color(0x00000000),
+                                                      action: SnackBarAction(
+                                                        label: '通知',
+                                                        textColor:
+                                                            Color(0x00000000),
+                                                        onPressed: () async {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title:
+                                                                    Text('通知'),
+                                                                content: Text(
+                                                                    '問題のあるコメントを管理者に通知します。'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: Text(
+                                                                        'キャンセル'),
+                                                                  ),
+                                                                  TextButton(
+                                                                    onPressed:
+                                                                        () async {
+                                                                      Navigator.pop(
+                                                                          alertDialogContext);
+
+                                                                      final alertCreateData =
+                                                                          createAlertRecordData(
+                                                                        sid: widget
+                                                                            .surveyRef,
+                                                                        alertUid:
+                                                                            currentUserUid,
+                                                                      );
+                                                                      await AlertRecord
+                                                                          .collection
+                                                                          .doc()
+                                                                          .set(
+                                                                              alertCreateData);
+                                                                      ;
+                                                                    },
+                                                                    child: Text(
+                                                                        '通知'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               },
             ),
