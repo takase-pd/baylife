@@ -154,3 +154,31 @@ class AnswersCall {
     );
   }
 }
+
+class ReviewsCall {
+  static Future<ApiCallResponse> call({
+    String sid = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "sid": "${sid}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Reviews',
+      apiUrl:
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-reviewsV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'sid': sid,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
