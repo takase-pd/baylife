@@ -52,11 +52,9 @@ abstract class AlertRecord implements Built<AlertRecord, AlertRecordBuilder> {
 Map<String, dynamic> createAlertRecordData({
   DocumentReference sid,
   String alertUid,
-  String postUid,
 }) =>
     serializers.toFirestore(
         AlertRecord.serializer,
         AlertRecord((a) => a
           ..sid = sid
-          ..alertUid = alertUid
-          ..postUid = postUid));
+          ..alertUid = alertUid));
