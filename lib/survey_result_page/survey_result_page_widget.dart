@@ -65,7 +65,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
         title: HeaderLogoWidget(),
         actions: [],
         centerTitle: true,
-        elevation: 0,
+        elevation: 4,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       endDrawer: Drawer(
