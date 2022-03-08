@@ -168,7 +168,8 @@ class ReviewsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Reviews',
       apiUrl:
-          'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-reviewsV0',
+          // 'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-reviewsV0',
+          'http://localhost:5001/baylifedev/asia-northeast1/survey-reviewsV0',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
