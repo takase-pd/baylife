@@ -72,175 +72,165 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
         elevation: 16,
         child: EndDrawerWidget(),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
-            child: StreamBuilder<SurveyRecord>(
-              stream: SurveyRecord.getDocument(widget.surveyRef),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: SpinKitPulse(
-                        color: FlutterFlowTheme.of(context).primaryColor,
-                        size: 50,
-                      ),
-                    ),
-                  );
-                }
-                final columnSurveyRecord = snapshot.data;
-                return SingleChildScrollView(
+      body: StreamBuilder<SurveyRecord>(
+        stream: SurveyRecord.getDocument(widget.surveyRef),
+        builder: (context, snapshot) {
+          // Customize what your widget looks like when it's loading.
+          if (!snapshot.hasData) {
+            return Center(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: SpinKitPulse(
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                  size: 50,
+                ),
+              ),
+            );
+          }
+          final columnSurveyRecord = snapshot.data;
+          return Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: FlutterFlowTheme.of(context).background,
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: Text(
-                                  columnSurveyRecord.question,
-                                  style: FlutterFlowTheme.of(context)
-                                      .subtitle1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        fontWeight: FontWeight.w600,
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 16),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: FlutterFlowTheme.of(context).background,
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: Text(
+                                    columnSurveyRecord.question,
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: Text(
+                                    columnSurveyRecord.explanation,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontSize: 12,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 16),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        dateTimeFormat('yMMMd',
+                                            columnSurveyRecord.startDate),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText2
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .sLight,
+                                              fontSize: 12,
+                                            ),
                                       ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: Text(
-                                  columnSurveyRecord.explanation,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        fontSize: 12,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      dateTimeFormat('yMMMd',
-                                          columnSurveyRecord.startDate),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText2
-                                          .override(
-                                            fontFamily: 'Open Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .sLight,
-                                            fontSize: 12,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: Builder(
-                                  builder: (context) {
-                                    final choices = columnSurveyRecord.choices
-                                            .toList()
-                                            ?.toList() ??
-                                        [];
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: List.generate(choices.length,
-                                          (choicesIndex) {
-                                        final choicesItem =
-                                            choices[choicesIndex];
-                                        return Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 8),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                choicesItem,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .subtitle2,
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 4, 0),
-                                                    child: Text(
-                                                      '32.1 ',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    '%',
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 8),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'アジアン',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2,
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 4, 0),
+                                                  child: Text(
+                                                    '32.1 ',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .subtitle2,
                                                   ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      }),
-                                    );
-                                  },
+                                                ),
+                                                Text(
+                                                  '%',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .subtitle2,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                columnSurveyRecord.comment,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color:
-                                          FlutterFlowTheme.of(context).textDark,
-                                    ),
-                              ),
-                            ],
+                                Text(
+                                  columnSurveyRecord.comment,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .textDark,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                      if (columnSurveyRecord.review ?? true)
-                        Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: FlutterFlowTheme.of(context).tertiaryColor,
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -248,12 +238,10 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 8),
-                                  child: Container(
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .background,
-                                    ),
+                                  child: Card(
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    color:
+                                        FlutterFlowTheme.of(context).background,
                                     child: Form(
                                       key: formKey,
                                       autovalidateMode: AutovalidateMode.always,
@@ -413,18 +401,28 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                     ),
                                   ),
                                 ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: FlutterFlowAdBanner(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 50,
+                                    showsTestAd: false,
+                                    iOSAdUnitID:
+                                        'ca-app-pub-8134368906531041/4883719188',
+                                    androidAdUnitID:
+                                        'ca-app-pub-8134368906531041/3047893333',
+                                  ),
+                                ),
                                 ListView(
                                   padding: EdgeInsets.zero,
                                   shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   children: [
-                                    Container(
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .background,
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
+                                    Card(
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      color: FlutterFlowTheme.of(context)
+                                          .background,
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             8, 8, 8, 8),
@@ -600,23 +598,25 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                             ),
                           ),
                         ),
+                      ),
                     ],
                   ),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 16),
-            child: FlutterFlowAdBanner(
-              width: MediaQuery.of(context).size.width,
-              height: 50,
-              showsTestAd: false,
-              iOSAdUnitID: 'ca-app-pub-8134368906531041/4883719188',
-              androidAdUnitID: 'ca-app-pub-8134368906531041/3047893333',
-            ),
-          ),
-        ],
+                ),
+              ),
+              if (!(columnSurveyRecord.review) ?? true)
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 16),
+                  child: FlutterFlowAdBanner(
+                    width: MediaQuery.of(context).size.width,
+                    height: 50,
+                    showsTestAd: false,
+                    iOSAdUnitID: 'ca-app-pub-8134368906531041/4883719188',
+                    androidAdUnitID: 'ca-app-pub-8134368906531041/3047893333',
+                  ),
+                ),
+            ],
+          );
+        },
       ),
     );
   }
