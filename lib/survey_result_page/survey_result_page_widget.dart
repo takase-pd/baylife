@@ -99,43 +99,40 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
         elevation: 16,
         child: EndDrawerWidget(),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-              child: StreamBuilder<SurveyRecord>(
-                stream: SurveyRecord.getDocument(widget.surveyRef),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: SpinKitPulse(
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          size: 50,
-                        ),
-                      ),
-                    );
-                  }
-                  final columnSurveyRecord = snapshot.data;
-                  return Column(
+      body: StreamBuilder<SurveyRecord>(
+        stream: SurveyRecord.getDocument(widget.surveyRef),
+        builder: (context, snapshot) {
+          // Customize what your widget looks like when it's loading.
+          if (!snapshot.hasData) {
+            return Center(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: SpinKitPulse(
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                  size: 50,
+                ),
+              ),
+            );
+          }
+          final columnSurveyRecord = snapshot.data;
+          return Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                child: SingleChildScrollView(
+                  child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 16),
                         child: Card(
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           color: FlutterFlowTheme.of(context).background,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
                           child: Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
@@ -249,25 +246,24 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                           ),
                         ),
                       ),
-                      if (columnSurveyRecord.review ?? true)
-                        Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: FlutterFlowTheme.of(context).tertiaryColor,
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 16),
-                                  child: Container(
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .background,
-                                    ),
+                                      0, 0, 0, 8),
+                                  child: Card(
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    color:
+                                        FlutterFlowTheme.of(context).background,
                                     child: Form(
                                       key: formKey,
                                       autovalidateMode: AutovalidateMode.always,
@@ -429,7 +425,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 16),
+                                      0, 0, 0, 8),
                                   child: FlutterFlowAdBanner(
                                     width: MediaQuery.of(context).size.width,
                                     height: 50,
@@ -454,196 +450,208 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                           itemCount: reviews.length,
                                           itemBuilder:
                                               (context, listViewIndex) {
-                                            return Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 0, 8),
-                                              child: Container(
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
+                                            return Card(
+                                              clipBehavior:
+                                                  Clip.antiAliasWithSaveLayer,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
                                                       .background,
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(8, 8, 8, 8),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0, 0, 0, 8),
-                                                        child: Text(
-                                                          reviews[
-                                                              listViewIndex],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1,
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .pDark,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(16),
-                                                        ),
-                                                        child: Padding(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(8, 8, 8, 8),
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .background,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                8, 8, 8, 8),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(12,
-                                                                      4, 12, 4),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                'オススメ',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Open Sans',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .textLight,
-                                                                    ),
-                                                              ),
-                                                            ],
+                                                                  .fromSTEB(0,
+                                                                      0, 0, 8),
+                                                          child: Text(
+                                                            reviews[
+                                                                listViewIndex],
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1,
                                                           ),
                                                         ),
-                                                      ),
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            8,
-                                                                            0),
-                                                                child: Text(
-                                                                  'username',
+                                                        Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .pDark,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        16),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        12,
+                                                                        4,
+                                                                        12,
+                                                                        4),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  'オススメ',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Open Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .textLight,
+                                                                      ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          0,
+                                                                          8,
+                                                                          0),
+                                                                  child: Text(
+                                                                    'username',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1,
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  'date',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyText1,
                                                                 ),
-                                                              ),
-                                                              Text(
-                                                                'date',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          FlutterFlowIconButton(
-                                                            borderColor: Colors
-                                                                .transparent,
-                                                            buttonSize: 32,
-                                                            icon: FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .solidBell,
-                                                              color:
-                                                                  Colors.black,
-                                                              size: 12,
+                                                              ],
                                                             ),
-                                                            onPressed:
-                                                                () async {
-                                                              ScaffoldMessenger
-                                                                      .of(context)
-                                                                  .showSnackBar(
-                                                                SnackBar(
-                                                                  content: Text(
-                                                                    '問題のあるコメントを通知',
-                                                                    style:
-                                                                        TextStyle(),
-                                                                  ),
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          4000),
-                                                                  backgroundColor:
-                                                                      Color(
-                                                                          0x00000000),
-                                                                  action:
-                                                                      SnackBarAction(
-                                                                    label: '通知',
-                                                                    textColor:
+                                                            FlutterFlowIconButton(
+                                                              borderColor: Colors
+                                                                  .transparent,
+                                                              buttonSize: 32,
+                                                              icon: FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .solidBell,
+                                                                color: Colors
+                                                                    .black,
+                                                                size: 12,
+                                                              ),
+                                                              onPressed:
+                                                                  () async {
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      '問題のあるコメントを通知',
+                                                                      style:
+                                                                          TextStyle(),
+                                                                    ),
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            4000),
+                                                                    backgroundColor:
                                                                         Color(
                                                                             0x00000000),
-                                                                    onPressed:
-                                                                        () async {
-                                                                      await showDialog(
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (alertDialogContext) {
-                                                                          return AlertDialog(
-                                                                            title:
-                                                                                Text('通知'),
-                                                                            content:
-                                                                                Text('問題のあるコメントを管理者に通知します。'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: Text('キャンセル'),
-                                                                              ),
-                                                                              TextButton(
-                                                                                onPressed: () async {
-                                                                                  Navigator.pop(alertDialogContext);
+                                                                    action:
+                                                                        SnackBarAction(
+                                                                      label:
+                                                                          '通知',
+                                                                      textColor:
+                                                                          Color(
+                                                                              0x00000000),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (alertDialogContext) {
+                                                                            return AlertDialog(
+                                                                              title: Text('通知'),
+                                                                              content: Text('問題のあるコメントを管理者に通知します。'),
+                                                                              actions: [
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                  child: Text('キャンセル'),
+                                                                                ),
+                                                                                TextButton(
+                                                                                  onPressed: () async {
+                                                                                    Navigator.pop(alertDialogContext);
 
-                                                                                  final alertCreateData = createAlertRecordData(
-                                                                                    sid: widget.surveyRef,
-                                                                                    alertUid: currentUserUid,
-                                                                                  );
-                                                                                  await AlertRecord.collection.doc().set(alertCreateData);
-                                                                                  ;
-                                                                                },
-                                                                                child: Text('通知'),
-                                                                              ),
-                                                                            ],
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    },
+                                                                                    final alertCreateData = createAlertRecordData(
+                                                                                      sid: widget.surveyRef,
+                                                                                      alertUid: currentUserUid,
+                                                                                    );
+                                                                                    await AlertRecord.collection.doc().set(alertCreateData);
+                                                                                    ;
+                                                                                  },
+                                                                                  child: Text('通知'),
+                                                                                ),
+                                                                              ],
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                    ),
                                                                   ),
-                                                                ),
-                                                              );
-                                                            },
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
+                                                                );
+                                                              },
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -657,13 +665,25 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                             ),
                           ),
                         ),
+                      ),
                     ],
-                  );
-                },
+                  ),
+                ),
               ),
-            ),
-          ],
-        ),
+              if (!(columnSurveyRecord.review) ?? true)
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 16),
+                  child: FlutterFlowAdBanner(
+                    width: MediaQuery.of(context).size.width,
+                    height: 50,
+                    showsTestAd: false,
+                    iOSAdUnitID: 'ca-app-pub-8134368906531041/4883719188',
+                    androidAdUnitID: 'ca-app-pub-8134368906531041/3047893333',
+                  ),
+                ),
+            ],
+          );
+        },
       ),
     );
   }
