@@ -183,3 +183,43 @@ class ReviewsCall {
     );
   }
 }
+
+class AddReviewCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String sid = '',
+    String date = '',
+    String comment = '',
+    String tag = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "sid": "${sid}",
+    "uid": "${uid}",
+    "comment": "${comment}",
+    "tag": "${tag}",
+    "date": "${date}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Add Review',
+      apiUrl:
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-addReviewV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+        'sid': sid,
+        'date': date,
+        'comment': comment,
+        'tag': tag,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
