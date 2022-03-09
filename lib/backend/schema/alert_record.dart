@@ -13,20 +13,20 @@ abstract class AlertRecord implements Built<AlertRecord, AlertRecordBuilder> {
   DocumentReference get sid;
 
   @nullable
-  @BuiltValueField(wireName: 'alert_uid')
-  String get alertUid;
+  @BuiltValueField(wireName: 'alerted_by')
+  String get alertedBy;
 
   @nullable
-  @BuiltValueField(wireName: 'post_uid')
-  String get postUid;
+  @BuiltValueField(wireName: 'posted_by')
+  String get postedBy;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(AlertRecordBuilder builder) => builder
-    ..alertUid = ''
-    ..postUid = '';
+    ..alertedBy = ''
+    ..postedBy = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('alert');
@@ -51,12 +51,12 @@ abstract class AlertRecord implements Built<AlertRecord, AlertRecordBuilder> {
 
 Map<String, dynamic> createAlertRecordData({
   DocumentReference sid,
-  String alertUid,
-  String postUid,
+  String alertedBy,
+  String postedBy,
 }) =>
     serializers.toFirestore(
         AlertRecord.serializer,
         AlertRecord((a) => a
           ..sid = sid
-          ..alertUid = alertUid
-          ..postUid = postUid));
+          ..alertedBy = alertedBy
+          ..postedBy = postedBy));

@@ -132,31 +132,32 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
-                        await showDialog(
-                          context: context,
-                          builder: (alertDialogContext) {
-                            return AlertDialog(
-                              title: Text('退会確認'),
-                              content: Text(
-                                  '退会するとユーザー情報、投稿が削除されます。退会しますか？＊退会をクリックすると、すぐに退会となります。'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext),
-                                  child: Text('キャンセル'),
-                                ),
-                                TextButton(
-                                  onPressed: () async {
-                                    Navigator.pop(alertDialogContext);
-                                    await currentUserReference.delete();
-                                    ;
-                                  },
-                                  child: Text('退会'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
+                        var confirmDialogResponse = await showDialog<bool>(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('退会確認'),
+                                  content: Text(
+                                      '退会するとユーザー情報、投稿が削除されます。退会しますか？＊退会をクリックすると、すぐに退会となります。'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: Text('キャンセル'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: Text('退会'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ) ??
+                            false;
+                        if (confirmDialogResponse) {
+                          await currentUserReference.delete();
+                        }
                         await Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
