@@ -658,6 +658,35 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                   comment: textController.text,
                                                   tag: choiceChipsValue,
                                                 );
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text('コメント投稿'),
+                                                      content: Text(
+                                                          'コメント投稿ありがとうございます。'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                                await Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        SurveyResultPageWidget(
+                                                      surveyRef:
+                                                          widget.surveyRef,
+                                                    ),
+                                                  ),
+                                                );
                                               },
                                               text: '投稿',
                                               icon: Icon(
