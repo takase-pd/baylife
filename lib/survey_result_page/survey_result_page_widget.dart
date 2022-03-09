@@ -671,7 +671,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                           onPressed: () =>
                                                               Navigator.pop(
                                                                   alertDialogContext),
-                                                          child: Text('Ok'),
+                                                          child: Text('OK'),
                                                         ),
                                                       ],
                                                     );
