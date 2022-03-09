@@ -21,6 +21,9 @@ abstract class AlertRecord implements Built<AlertRecord, AlertRecordBuilder> {
   String get postedBy;
 
   @nullable
+  DateTime get date;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -53,10 +56,12 @@ Map<String, dynamic> createAlertRecordData({
   DocumentReference sid,
   String alertedBy,
   String postedBy,
+  DateTime date,
 }) =>
     serializers.toFirestore(
         AlertRecord.serializer,
         AlertRecord((a) => a
           ..sid = sid
           ..alertedBy = alertedBy
-          ..postedBy = postedBy));
+          ..postedBy = postedBy
+          ..date = date));
