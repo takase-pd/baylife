@@ -474,8 +474,8 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
 
                                                                                       final alertCreateData = createAlertRecordData(
                                                                                         sid: columnSurveyRecord.sid,
-                                                                                        alerted_by: currentUserUid,
-                                                                                        posted_by: reviews[listViewIndex].uid,
+                                                                                        alertedBy: currentUserUid,
+                                                                                        postedBy: reviews[listViewIndex].uid,
                                                                                       );
                                                                                       await AlertRecord.collection.doc().set(alertCreateData);
                                                                                     },
