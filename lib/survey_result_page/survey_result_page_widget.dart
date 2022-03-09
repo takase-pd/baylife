@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
@@ -562,8 +563,17 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                 ),
                                               ),
                                               FFButtonWidget(
-                                                onPressed: () {
-                                                  print('Button pressed ...');
+                                                onPressed: () async {
+                                                  await AddReviewCall.call(
+                                                    uid: currentUserUid,
+                                                    sid: columnSurveyRecord.sid,
+                                                    date: dateTimeFormat(
+                                                        'yMMMd',
+                                                        getCurrentTimestamp),
+                                                    comment:
+                                                        textController.text,
+                                                    tag: choiceChipsValue,
+                                                  );
                                                 },
                                                 text: '投稿',
                                                 icon: Icon(
