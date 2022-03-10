@@ -453,6 +453,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                 final usersUpdateData = createUsersRecordData(
                                   sex: sexValue,
                                   area: areaValue,
+                                  displayName: textController.text,
                                 );
                                 await currentUserReference
                                     .update(usersUpdateData);
