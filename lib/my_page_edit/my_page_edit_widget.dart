@@ -239,7 +239,18 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                               ),
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyText1,
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  fontSize: 18,
+                                                ),
+                                            validator: (val) {
+                                              if (val.isEmpty) {
+                                                return 'ユーザー名を入力';
+                                              }
+
+                                              return null;
+                                            },
                                           ),
                                         ),
                                       ),
@@ -445,6 +456,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                 final usersUpdateData = createUsersRecordData(
                                   sex: sexValue,
                                   area: areaValue,
+                                  displayName: textController.text,
                                 );
                                 await currentUserReference
                                     .update(usersUpdateData);
