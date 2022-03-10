@@ -185,10 +185,12 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 8, 0),
+                                            0, 0, 16, 0),
                                         child: Text(
                                           'ユーザー名',
                                           style: FlutterFlowTheme.of(context)
@@ -241,6 +243,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                                   fontFamily: 'Open Sans',
                                                   fontSize: 18,
                                                 ),
+                                            textAlign: TextAlign.end,
                                             validator: (val) {
                                               if (val.isEmpty) {
                                                 return 'ユーザー名を入力';
