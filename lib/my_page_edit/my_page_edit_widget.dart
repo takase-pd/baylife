@@ -171,7 +171,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                           children: [
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 64, 0),
                               child: Text(
                                 'ユーザー名',
                                 style: FlutterFlowTheme.of(context)
@@ -192,24 +192,23 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                   decoration: InputDecoration(
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0x00000000),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryColor,
                                         width: 1,
                                       ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
+                                      borderRadius: BorderRadius.circular(1),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0x00000000),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryColor,
                                         width: 1,
                                       ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
+                                      borderRadius: BorderRadius.circular(1),
                                     ),
+                                    contentPadding:
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            8, 0, 8, 0),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1

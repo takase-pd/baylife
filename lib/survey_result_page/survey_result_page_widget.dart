@@ -413,7 +413,13 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                                   child: Text(
                                                                     _reviews[
                                                                             listViewIndex]
-                                                                        .displayName,
+                                                                        .displayName
+                                                                        .maybeHandleOverflow(
+                                                                          maxChars:
+                                                                              24,
+                                                                          replacement:
+                                                                              '…',
+                                                                        ),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyText1,
