@@ -154,3 +154,71 @@ class AnswersCall {
     );
   }
 }
+
+class ReviewsCall {
+  static Future<ApiCallResponse> call({
+    String sid = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "sid": "${sid}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Reviews',
+      apiUrl:
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/survey-reviewsV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'sid': sid,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
+
+class AddReviewCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String sid = '',
+    String date = '',
+    String comment = '',
+    String tag = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "sid": "${sid}",
+    "uid": "${uid}",
+    "comment": "${comment}",
+    "tag": "${tag}",
+    "date": "${date}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Add Review',
+      apiUrl:
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/survey-addReviewV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+        'sid': sid,
+        'date': date,
+        'comment': comment,
+        'tag': tag,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
