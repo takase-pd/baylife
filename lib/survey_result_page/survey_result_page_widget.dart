@@ -349,49 +349,80 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                                 .bodyText1,
                                                           ),
                                                         ),
-                                                        Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .pDark,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        16),
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        12,
-                                                                        4,
-                                                                        12,
-                                                                        4),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  _reviews[
-                                                                          listViewIndex]
-                                                                      .tag,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Open Sans',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .textLight,
-                                                                      ),
-                                                                ),
-                                                              ],
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 0, 8),
+                                                          child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .pDark,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          16),
                                                             ),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          12,
+                                                                          4,
+                                                                          12,
+                                                                          4),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    _reviews[
+                                                                            listViewIndex]
+                                                                        .tag,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Open Sans',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).textLight,
+                                                                        ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 0, 0),
+                                                          child: Text(
+                                                            _reviews[
+                                                                    listViewIndex]
+                                                                .displayName,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
                                                           ),
                                                         ),
                                                         Row(
@@ -401,48 +432,22 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                               MainAxisAlignment
                                                                   .spaceBetween,
                                                           children: [
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          8,
-                                                                          0),
-                                                                  child: Text(
-                                                                    _reviews[
-                                                                            listViewIndex]
-                                                                        .displayName
-                                                                    // .maybeHandleOverflow(
-                                                                    //   maxChars:
-                                                                    //       24,
-                                                                    //   replacement:
-                                                                    //       '…',
-                                                                    // ),
-                                                                    ,
-                                                                    style: FlutterFlowTheme.of(
+                                                            Text(
+                                                              dateTimeFormat(
+                                                                  'yMMMd',
+                                                                  _reviews[
+                                                                          listViewIndex]
+                                                                      .date),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyText1,
+                                                                        .sLight,
                                                                   ),
-                                                                ),
-                                                                Text(
-                                                                  dateTimeFormat(
-                                                                      'yMMMd',
-                                                                      _reviews[
-                                                                              listViewIndex]
-                                                                          .date),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1,
-                                                                ),
-                                                              ],
                                                             ),
                                                             FlutterFlowIconButton(
                                                               borderColor: Colors
@@ -451,8 +456,9 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                               icon: FaIcon(
                                                                 FontAwesomeIcons
                                                                     .solidBell,
-                                                                color: Colors
-                                                                    .black,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .sLight,
                                                                 size: 12,
                                                               ),
                                                               onPressed:
@@ -672,6 +678,14 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryColor)),
+                                                  focusedErrorBorder:
+                                                      UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor),
+                                                  ),
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)

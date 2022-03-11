@@ -206,9 +206,21 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(1),
                                     ),
+                                    errorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryColor)),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor),
+                                    ),
                                     contentPadding:
                                         EdgeInsetsDirectional.fromSTEB(
                                             8, 0, 8, 0),
+                                    errorStyle: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
@@ -217,6 +229,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                         fontSize: 18,
                                       ),
                                   textAlign: TextAlign.end,
+                                  maxLength: 20,
                                   validator: (val) {
                                     if (val.isEmpty) {
                                       return 'ユーザー名を入力';
