@@ -29,8 +29,15 @@ class MyPageEditWidget extends StatefulWidget {
 class _MyPageEditWidgetState extends State<MyPageEditWidget> {
   String areaValue;
   String sexValue;
+  TextEditingController textController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    textController = TextEditingController(text: currentUserDisplayName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,76 +163,80 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Card(
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              color: FlutterFlowTheme.of(context).background,
-                              elevation: 4,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 64, 0),
+                              child: Text(
+                                'ユーザー名',
+                                style: FlutterFlowTheme.of(context)
+                                    .subtitle1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryColor,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                               ),
-                              child: Container(
-                                width: 288,
-                                height: 72,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16, 16, 16, 16),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        '性別',
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle1
-                                            .override(
-                                              fontFamily: 'Open Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryColor,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                            ),
+                            Expanded(
+                              child: AuthUserStreamWidget(
+                                child: TextFormField(
+                                  controller: textController,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryColor,
+                                        width: 1,
                                       ),
-                                      AuthUserStreamWidget(
-                                        child: FlutterFlowDropDown(
-                                          initialOption: sexValue ??=
-                                              currentUserDocument?.sex,
-                                          options: ['男性', '女性', 'その他', '未回答']
-                                              .toList(),
-                                          onChanged: (val) =>
-                                              setState(() => sexValue = val),
-                                          width: 128,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Open Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryColor,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                          fillColor: Colors.white,
-                                          elevation: 2,
-                                          borderColor: Colors.transparent,
-                                          borderWidth: 0,
-                                          borderRadius: 0,
-                                          margin:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12, 4, 12, 4),
-                                          hidesUnderline: true,
-                                        ),
+                                      borderRadius: BorderRadius.circular(1),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryColor,
+                                        width: 1,
                                       ),
-                                    ],
+                                      borderRadius: BorderRadius.circular(1),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryColor)),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor),
+                                    ),
+                                    contentPadding:
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            8, 0, 8, 0),
+                                    errorStyle: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor),
                                   ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 18,
+                                      ),
+                                  textAlign: TextAlign.end,
+                                  maxLength: 20,
+                                  validator: (val) {
+                                    if (val.isEmpty) {
+                                      return 'ユーザー名を入力';
+                                    }
+
+                                    return null;
+                                  },
                                 ),
                               ),
                             ),
@@ -233,81 +244,95 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Card(
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              color: FlutterFlowTheme.of(context).background,
-                              elevation: 4,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Container(
-                                width: 288,
-                                height: 72,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16, 16, 16, 16),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'エリア',
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle1
-                                            .override(
-                                              fontFamily: 'Open Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryColor,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      AuthUserStreamWidget(
-                                        child: FlutterFlowDropDown(
-                                          initialOption: areaValue ??=
-                                              currentUserDocument?.area,
-                                          options: [
-                                            'ベイタウン',
-                                            'ベイパーク',
-                                            'それ以外',
-                                            '未回答'
-                                          ].toList(),
-                                          onChanged: (val) =>
-                                              setState(() => areaValue = val),
-                                          width: 128,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Open Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryColor,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                          fillColor: Colors.white,
-                                          elevation: 2,
-                                          borderColor: Colors.transparent,
-                                          borderWidth: 0,
-                                          borderRadius: 0,
-                                          margin:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12, 4, 12, 4),
-                                          hidesUnderline: true,
-                                        ),
-                                      ),
-                                    ],
+                            Text(
+                              '性別',
+                              style: FlutterFlowTheme.of(context)
+                                  .subtitle1
+                                  .override(
+                                    fontFamily: 'Open Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryColor,
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                ),
+                            ),
+                            AuthUserStreamWidget(
+                              child: FlutterFlowDropDown(
+                                initialOption: sexValue ??=
+                                    currentUserDocument?.sex,
+                                options: ['男性', '女性', 'その他', '未回答'].toList(),
+                                onChanged: (val) =>
+                                    setState(() => sexValue = val),
+                                width: 128,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryColor,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                fillColor:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
+                                elevation: 2,
+                                borderColor: Colors.transparent,
+                                borderWidth: 0,
+                                borderRadius: 0,
+                                margin: EdgeInsetsDirectional.fromSTEB(
+                                    12, 4, 12, 4),
+                                hidesUnderline: true,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'エリア',
+                              style: FlutterFlowTheme.of(context)
+                                  .subtitle1
+                                  .override(
+                                    fontFamily: 'Open Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                            AuthUserStreamWidget(
+                              child: FlutterFlowDropDown(
+                                initialOption: areaValue ??=
+                                    currentUserDocument?.area,
+                                options:
+                                    ['ベイタウン', 'ベイパーク', 'それ以外', '未回答'].toList(),
+                                onChanged: (val) =>
+                                    setState(() => areaValue = val),
+                                width: 128,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryColor,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                fillColor:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
+                                elevation: 2,
+                                borderColor: Colors.transparent,
+                                borderWidth: 0,
+                                borderRadius: 0,
+                                margin: EdgeInsetsDirectional.fromSTEB(
+                                    12, 4, 12, 4),
+                                hidesUnderline: true,
                               ),
                             ),
                           ],
@@ -349,6 +374,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                 final usersUpdateData = createUsersRecordData(
                                   sex: sexValue,
                                   area: areaValue,
+                                  displayName: textController.text,
                                 );
                                 await currentUserReference
                                     .update(usersUpdateData);

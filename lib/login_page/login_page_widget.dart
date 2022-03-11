@@ -10,6 +10,7 @@ import '../post_page_with_login/post_page_with_login_widget.dart';
 import '../terms_page/terms_page_widget.dart';
 import '../my_page/my_page_widget.dart';
 import '../survey_post_page/survey_post_page_widget.dart';
+import '../survey_result_page/survey_result_page_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -54,6 +55,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
         return PostPageWithLoginWidget();
       case LoginPagePath.survey_post_page:
         return SurveyPostPageWidget(surveyRef: widget.surveyRef);
+      case LoginPagePath.survey_result_page:
+        return SurveyResultPageWidget(surveyRef: widget.surveyRef);
       default:
         return HomePageWidget();
     }
