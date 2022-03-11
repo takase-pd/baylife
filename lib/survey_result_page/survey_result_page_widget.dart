@@ -14,12 +14,14 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import '../custom_code/widgets/index.dart' as custom_widgets;
 import '../my_page_edit/my_page_edit_widget.dart';
+import '../login_page/login_page_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../auth/firebase_user_provider.dart';
 import '../login_page/login_page_path.dart';
 
 class SurveyResultPageWidget extends StatefulWidget {
@@ -142,6 +144,10 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
             );
           }
           final columnSurveyRecord = snapshot.data;
+          String reviewButtonTitle;
+          (currentUser.loggedIn)
+              ? reviewButtonTitle = '投稿'
+              : reviewButtonTitle = 'ログインして投稿';
           return SingleChildScrollView(
               child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -414,12 +420,13 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                                     _reviews[
                                                                             listViewIndex]
                                                                         .displayName
-                                                                        .maybeHandleOverflow(
-                                                                          maxChars:
-                                                                              24,
-                                                                          replacement:
-                                                                              '…',
-                                                                        ),
+                                                                    // .maybeHandleOverflow(
+                                                                    //   maxChars:
+                                                                    //       24,
+                                                                    //   replacement:
+                                                                    //       '…',
+                                                                    // ),
+                                                                    ,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyText1,
@@ -537,16 +544,14 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                       );
                                     }
                                   }),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: Card(
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  color:
-                                      FlutterFlowTheme.of(context).background,
-                                  child: Form(
-                                    key: formKey,
-                                    autovalidateMode: AutovalidateMode.always,
+                              if (!currentUser.loggedIn)
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 8, 0, 8),
+                                  child: Card(
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    color:
+                                        FlutterFlowTheme.of(context).background,
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           8, 8, 8, 8),
@@ -555,258 +560,45 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.stretch,
                                         children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 0, 4),
-                                            child: TextFormField(
-                                              controller: textController,
-                                              obscureText: false,
-                                              decoration: InputDecoration(
-                                                hintText: 'コメント',
-                                                enabledBorder:
-                                                    UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryColor,
-                                                    width: 1,
+                                          FFButtonWidget(
+                                            onPressed: () async {
+                                              await Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  settings: const RouteSettings(
+                                                      name: 'SurveyResultPage'),
+                                                  builder: (context) =>
+                                                      LoginPageWidget(
+                                                    pagePath: LoginPagePath
+                                                        .survey_result_page,
+                                                    surveyRef: widget.surveyRef,
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(1),
                                                 ),
-                                                focusedBorder:
-                                                    UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryColor,
-                                                    width: 1,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(1),
-                                                ),
-                                                contentPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(8, 0, 8, 0),
-                                                errorStyle: TextStyle(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryColor),
-                                                errorBorder: UnderlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryColor)),
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1,
-                                              validator: (val) {
-                                                if (val.isEmpty) {
-                                                  return 'コメントを入力してください。';
-                                                }
-                                                if (val.length < 1) {
-                                                  return 'Requires at least 1 characters.';
-                                                }
-                                                return null;
-                                              },
+                                              );
+                                            },
+                                            text: 'ログインして投稿',
+                                            icon: Icon(
+                                              Icons.rate_review_rounded,
+                                              size: 15,
                                             ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 0, 0),
-                                            child: FlutterFlowChoiceChips(
-                                              initiallySelected: [
-                                                choiceChipsValue
-                                              ],
-                                              options: [
-                                                ChipData('オススメ'),
-                                                ChipData('要望'),
-                                                ChipData('その他')
-                                              ],
-                                              onChanged: (val) => setState(() {
-                                                choiceChipsValue = val.first;
-                                                alertTag = '';
-                                              }),
-                                              selectedChipStyle: ChipStyle(
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .pDark,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Open Sans',
-                                                          color: Colors.white,
-                                                        ),
-                                                iconColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .textLight,
-                                                iconSize: 18,
-                                                labelPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(8, 0, 8, 0),
-                                                elevation: 4,
-                                              ),
-                                              unselectedChipStyle: ChipStyle(
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .pLight,
-                                                textStyle: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyText2
-                                                    .override(
-                                                      fontFamily: 'Open Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .textLight,
-                                                    ),
-                                                iconColor: Color(0x00000000),
-                                                iconSize: 18,
-                                                elevation: 4,
-                                              ),
-                                              chipSpacing: 8,
-                                              multiselect: false,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    8, 0, 0, 4),
-                                            child: Text(
-                                              alertTag,
-                                              style:
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 40,
+                                              color:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyText2
+                                                      .primaryColor,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
                                                       .override(
                                                         fontFamily: 'Open Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryColor,
-                                                        fontSize: 14,
+                                                        color: Colors.white,
                                                       ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 0, 24),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                if (choiceChipsValue == null) {
-                                                  setState(() => alertTag =
-                                                      'タグを選択してください。');
-                                                }
-                                                if (textController
-                                                        .text.isEmpty ||
-                                                    choiceChipsValue == null) {
-                                                  return;
-                                                }
-                                                await AddReviewCall.call(
-                                                  uid: currentUserUid,
-                                                  sid: columnSurveyRecord.sid,
-                                                  date: dateTimeFormat('yMMMd',
-                                                      getCurrentTimestamp),
-                                                  comment: textController.text,
-                                                  tag: choiceChipsValue,
-                                                );
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text('コメント投稿'),
-                                                      content: Text(
-                                                          'コメント投稿ありがとうございます。'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('OK'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                                await Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        SurveyResultPageWidget(
-                                                      surveyRef:
-                                                          widget.surveyRef,
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                              text: '投稿',
-                                              icon: Icon(
-                                                Icons.rate_review_rounded,
-                                                size: 15,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
                                               ),
-                                              options: FFButtonOptions(
-                                                width: double.infinity,
-                                                height: 40,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryColor,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily:
-                                                              'Open Sans',
-                                                          color: Colors.white,
-                                                        ),
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1,
-                                                ),
-                                                borderRadius: 16,
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 0, 8),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                InkWell(
-                                                  onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            MyPageEditWidget(),
-                                                      ),
-                                                    );
-                                                  },
-                                                  child: Text(
-                                                    'コメントで表示されるユーザー名を変更する',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Open Sans',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryColor,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ],
+                                              borderRadius: 16,
                                             ),
                                           ),
                                         ],
@@ -814,7 +606,291 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                     ),
                                   ),
                                 ),
-                              ),
+                              if (currentUser.loggedIn)
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: Card(
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    color:
+                                        FlutterFlowTheme.of(context).background,
+                                    child: Form(
+                                      key: formKey,
+                                      autovalidateMode: AutovalidateMode.always,
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 8, 8, 8),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 4),
+                                              child: TextFormField(
+                                                controller: textController,
+                                                obscureText: false,
+                                                decoration: InputDecoration(
+                                                  hintText: 'コメント',
+                                                  enabledBorder:
+                                                      UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryColor,
+                                                      width: 1,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            1),
+                                                  ),
+                                                  focusedBorder:
+                                                      UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryColor,
+                                                      width: 1,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            1),
+                                                  ),
+                                                  contentPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(8, 0, 8, 0),
+                                                  errorStyle: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor),
+                                                  errorBorder: UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor)),
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
+                                                validator: (val) {
+                                                  if (val.isEmpty) {
+                                                    return 'コメントを入力してください。';
+                                                  }
+                                                  if (val.length < 1) {
+                                                    return 'Requires at least 1 characters.';
+                                                  }
+                                                  return null;
+                                                },
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 0),
+                                              child: FlutterFlowChoiceChips(
+                                                initiallySelected: [
+                                                  choiceChipsValue
+                                                ],
+                                                options: [
+                                                  ChipData('オススメ'),
+                                                  ChipData('要望'),
+                                                  ChipData('その他')
+                                                ],
+                                                onChanged: (val) =>
+                                                    setState(() {
+                                                  choiceChipsValue = val.first;
+                                                  alertTag = '';
+                                                }),
+                                                selectedChipStyle: ChipStyle(
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .pDark,
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color: Colors.white,
+                                                      ),
+                                                  iconColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .textLight,
+                                                  iconSize: 18,
+                                                  labelPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(8, 0, 8, 0),
+                                                  elevation: 4,
+                                                ),
+                                                unselectedChipStyle: ChipStyle(
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .pLight,
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .textLight,
+                                                      ),
+                                                  iconColor: Color(0x00000000),
+                                                  iconSize: 18,
+                                                  elevation: 4,
+                                                ),
+                                                chipSpacing: 8,
+                                                multiselect: false,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(8, 0, 0, 4),
+                                              child: Text(
+                                                alertTag,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyText2
+                                                    .override(
+                                                      fontFamily: 'Open Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor,
+                                                      fontSize: 14,
+                                                    ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 24),
+                                              child: FFButtonWidget(
+                                                onPressed: () async {
+                                                  if (choiceChipsValue ==
+                                                      null) {
+                                                    setState(() => alertTag =
+                                                        'タグを選択してください。');
+                                                  }
+                                                  if (textController
+                                                          .text.isEmpty ||
+                                                      choiceChipsValue ==
+                                                          null) {
+                                                    return;
+                                                  }
+                                                  await AddReviewCall.call(
+                                                    uid: currentUserUid,
+                                                    sid: columnSurveyRecord.sid,
+                                                    date: dateTimeFormat(
+                                                        'yMMMd',
+                                                        getCurrentTimestamp),
+                                                    comment:
+                                                        textController.text,
+                                                    tag: choiceChipsValue,
+                                                  );
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: Text('コメント投稿'),
+                                                        content: Text(
+                                                            'コメント投稿ありがとうございます。'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('OK'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                  await Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          SurveyResultPageWidget(
+                                                        surveyRef:
+                                                            widget.surveyRef,
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                text: reviewButtonTitle,
+                                                icon: Icon(
+                                                  Icons.rate_review_rounded,
+                                                  size: 15,
+                                                ),
+                                                options: FFButtonOptions(
+                                                  width: double.infinity,
+                                                  height: 40,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color: Colors.white,
+                                                      ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius: 16,
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 8),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  InkWell(
+                                                    onTap: () async {
+                                                      await Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              MyPageEditWidget(),
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: Text(
+                                                      'コメントで表示されるユーザー名を変更する',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                             ],
                           ),
                         ),
