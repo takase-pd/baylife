@@ -144,10 +144,6 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
             );
           }
           final columnSurveyRecord = snapshot.data;
-          String reviewButtonTitle;
-          (currentUser.loggedIn)
-              ? reviewButtonTitle = '投稿'
-              : reviewButtonTitle = 'ログインして投稿';
           return SingleChildScrollView(
               child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -165,6 +161,9 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                       child: Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         color: FlutterFlowTheme.of(context).background,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
                         child: Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
@@ -310,6 +309,10 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .background,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(8, 8, 8, 8),
@@ -558,6 +561,9 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
                                     color:
                                         FlutterFlowTheme.of(context).background,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           8, 8, 8, 8),
@@ -566,6 +572,25 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.stretch,
                                         children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 8),
+                                            child: Text(
+                                              '口コミ、コメントをお寄せください！',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryColor,
+                                                        fontSize: 14,
+                                                      ),
+                                            ),
+                                          ),
                                           FFButtonWidget(
                                             onPressed: () async {
                                               await Navigator.push(
@@ -620,6 +645,9 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
                                     color:
                                         FlutterFlowTheme.of(context).background,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
                                     child: Form(
                                       key: formKey,
                                       autovalidateMode: AutovalidateMode.always,
@@ -638,7 +666,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                 controller: textController,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
-                                                  hintText: 'コメント',
+                                                  hintText: '口コミ、コメントを入力',
                                                   enabledBorder:
                                                       UnderlineInputBorder(
                                                     borderSide: BorderSide(
@@ -692,7 +720,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                         .bodyText1,
                                                 validator: (val) {
                                                   if (val.isEmpty) {
-                                                    return 'コメントを入力してください。';
+                                                    return '口コミ、コメントを入力してください。';
                                                   }
                                                   if (val.length < 1) {
                                                     return 'Requires at least 1 characters.';
@@ -837,7 +865,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                     ),
                                                   );
                                                 },
-                                                text: reviewButtonTitle,
+                                                text: '投稿',
                                                 icon: Icon(
                                                   Icons.rate_review_rounded,
                                                   size: 15,
