@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - develop
-      - preview
+      # - preview
 
 jobs:
   build_iOS:
