@@ -14,27 +14,19 @@
       },
       "oauth_client": [
         {
+          "client_id": "317803933569-70qc4d667shd6h60csmeola3d1b9nc7r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.particledrawing.baylife",
+            "certificate_hash": "8ff498994e1864bfe4c73199050f94c1db70211e"
+          }
+        },
+        {
           "client_id": "317803933569-9md1c95t0nocfsl37hhph9bveclfmkje.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.particledrawing.baylife",
             "certificate_hash": "aee6c55657c20e94d8dbb57988d63e07aed71d64"
-          }
-        },
-        {
-          "client_id": "317803933569-9nglrk3585hhndcsdna8tm1rq1rfvog3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.particledrawing.baylife",
-            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
-          }
-        },
-        {
-          "client_id": "317803933569-d4t5666mp84dk8posp3bbvgvs7vutgrv.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.particledrawing.baylife",
-            "certificate_hash": "96f253909b861c4d5982e3616ffc74e708be188c"
           }
         },
         {
