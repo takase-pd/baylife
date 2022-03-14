@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "317803933569-9md1c95t0nocfsl37hhph9bveclfmkje.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.particledrawing.baylife",
+            "certificate_hash": "aee6c55657c20e94d8dbb57988d63e07aed71d64"
+          }
+        },
+        {
           "client_id": "317803933569-9nglrk3585hhndcsdna8tm1rq1rfvog3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -57,58 +65,6 @@
         }
       },
       "admob_app_id": "ca-app-pub-8134368906531041~4360975003"
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:317803933569:android:c0ae919221ed36f86e8280",
-        "android_client_info": {
-          "package_name": "com.particledrawing.baylifeweb"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "317803933569-bdl4bj1ben9fc39r66huvtgs8dv09ng6.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.particledrawing.baylifeweb",
-            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
-          }
-        },
-        {
-          "client_id": "317803933569-gfgevne4u66rlf8j7rgk0fta6jr75jle.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.particledrawing.baylifeweb",
-            "certificate_hash": "96f253909b861c4d5982e3616ffc74e708be188c"
-          }
-        },
-        {
-          "client_id": "317803933569-vmk8ms4eaaejdtmfkiq10efmgadcl43c.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAsDK9riMaM8KPmEoiYar3Be6yfIS6z7k4"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "317803933569-vmk8ms4eaaejdtmfkiq10efmgadcl43c.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "317803933569-0h30455u8tb4mbo3sbr4tbrbemksbm78.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.particledrawing.baylifeweb"
-              }
-            }
-          ]
-        }
-      }
     }
   ],
   "configuration_version": "1"
