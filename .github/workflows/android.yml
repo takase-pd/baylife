@@ -1,6 +1,5 @@
 name: CI for Android
 on:
-  # pull_request
   push:
     branches:
       - preview
