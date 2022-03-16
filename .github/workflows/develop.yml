@@ -1,9 +1,9 @@
 name: CI Develop
 on:
-  pull_request:
   push:
     branches:
       - develop
+      - preview
 
 jobs:
   build_iOS:
