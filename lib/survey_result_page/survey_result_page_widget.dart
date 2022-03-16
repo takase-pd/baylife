@@ -81,9 +81,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
     survey = SurveyRecord.getDocument(widget.surveyRef);
     survey.forEach((element) {
       sid = element.sid;
-      print(sid);
       reviews = _getReviews(sid);
-      print(reviews);
     });
   }
 
