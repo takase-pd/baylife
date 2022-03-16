@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
+import '../backend/backend.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
@@ -19,6 +22,9 @@ import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:badges/badges.dart';
+import '../backend/api_requests/api_calls.dart';
+import '../../flutter_flow/flutter_flow_util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -138,8 +144,41 @@ class NavBarPage extends StatefulWidget {
 class _NavBarPageState extends State<NavBarPage> {
   String _currentPage = 'HomePage';
 
+  int numSurveys = 0;
+
+  void countSurveys() async {
+    querySurveyRecord()
+      ..listen((surveys) async {
+        List _surveys = [];
+        List _answers = [];
+        int _numAnswered = 0;
+        int _numCounted = 0;
+
+        surveys.forEach((survey) {
+          bool display = survey.display;
+          bool open = survey.open;
+          String sid = survey.sid;
+          if (display && open) {
+            _surveys.add(sid);
+            _numCounted += 1;
+          }
+        });
+
+        if (currentUser.loggedIn) {
+          final apiCallOutput = await AnswersCall.call(
+            uid: currentUserUid,
+          );
+          _answers = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+          _answers.forEach(
+              (answer) => {(_surveys.contains(answer)): _numAnswered += 1});
+        }
+        setState(() => numSurveys = _numCounted - _numAnswered);
+      });
+  }
+
   @override
   void initState() {
+    countSurveys();
     super.initState();
     _currentPage = widget.initialPage ?? _currentPage;
   }
@@ -172,10 +211,26 @@ class _NavBarPageState extends State<NavBarPage> {
             tooltip: '',
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.solidComments,
-              size: 24,
-            ),
+            icon: numSurveys == 0
+                ? FaIcon(
+                    FontAwesomeIcons.solidComments,
+                    size: 24,
+                  )
+                : Badge(
+                    badgeContent: Text(
+                      numSurveys.toString(),
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Open Sans',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          color: FlutterFlowTheme.of(context).textLight),
+                    ),
+                    badgeColor: FlutterFlowTheme.of(context).pDark,
+                    child: FaIcon(
+                      FontAwesomeIcons.solidComments,
+                      size: 24,
+                    ),
+                  ),
             label: 'アンケート',
             tooltip: '',
           )
