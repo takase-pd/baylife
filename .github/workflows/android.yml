@@ -1,6 +1,6 @@
 name: CI for Android
 on:
-  pull_request:
+  pull_request
 
 jobs:
   build_Android:
