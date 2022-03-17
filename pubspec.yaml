@@ -77,6 +77,7 @@ dependencies:
   firebase_analytics: ^9.1.0
   firebase_app_check: ^0.0.6+5
   badges: ^2.0.2
+  flutter_native_splash: ^2.1.1
 
 dev_dependencies:
   build_runner: 2.1.7
@@ -90,13 +91,13 @@ flutter_icons:
   android: true
   ios: true
   image_path_ios: "assets/images/BayLifeIcon_v2.png"
-  image_path_android: "assets/images/BayLifeIcon_v2_512.png"
+  image_path_android: "assets/images/BayLifeIcon_v2_1080.png"
   remove_alpha_ios: true
-  adaptive_icon_foreground: "assets/images/BayLifeIcon_v2_432.png"
+  adaptive_icon_foreground: "assets/images/BayLifeIcon_v2_1080.png"
   adaptive_icon_background: "#EEEEEE"
 
 flutter_native_splash:
-  image: "assets/images/BayLifeIcon_v1.png"
+  image: "assets/images/BayLifeIcon_v2_splash.png"
   color: "EEEEEE"
 
 # For information on the generic Dart part of this file, see the
