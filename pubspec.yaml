@@ -90,6 +90,7 @@ flutter_icons:
   android: true
   ios: true
   image_path_ios: "assets/images/BayLifeIcon_v2.png"
+  image_path_android: "assets/images/BayLifeIcon_v2_512.png"
   remove_alpha_ios: true
   adaptive_icon_foreground: "assets/images/BayLifeIcon_v2_432.png"
   adaptive_icon_background: "#EEEEEE"
