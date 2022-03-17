@@ -82,7 +82,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
                 'assets/images/BayLifeIcon_v1.png',
                 width: 256,
                 height: 256,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
               ),
             ),
           ),

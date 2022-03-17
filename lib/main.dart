@@ -5,11 +5,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:bay_life/login_page/login_page_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
@@ -86,7 +86,7 @@ class _MyAppState extends State<MyApp> {
                     'assets/images/BayLifeIcon_v1.png',
                     width: 256,
                     height: 256,
-                    fit: BoxFit.contain,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
