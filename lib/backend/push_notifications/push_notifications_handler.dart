@@ -74,13 +74,16 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 
   @override
   Widget build(BuildContext context) => _loading
-      ? Center(
-          child: SizedBox(
-            width: 50,
-            height: 50,
-            child: SpinKitPulse(
-              color: FlutterFlowTheme.of(context).primaryColor,
-              size: 50,
+      ? Container(
+          color: FlutterFlowTheme.of(context).tertiaryColor,
+          child: Center(
+            child: Builder(
+              builder: (context) => Image.asset(
+                'assets/images/BayLifeIcon_v2_splash.png',
+                width: 256,
+                height: 256,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
         )
