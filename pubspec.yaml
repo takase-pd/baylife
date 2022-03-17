@@ -96,10 +96,6 @@ flutter_icons:
   adaptive_icon_foreground: "assets/images/BayLifeIcon_v2_1080.png"
   adaptive_icon_background: "#EEEEEE"
 
-flutter_native_splash:
-  image: "assets/images/BayLifeIcon_v2_splash.png"
-  color: "EEEEEE"
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
