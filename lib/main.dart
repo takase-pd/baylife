@@ -144,6 +144,10 @@ class _NavBarPageState extends State<NavBarPage> {
 
   int numSurveys = 0;
 
+  final appCheck = FirebaseAppCheck.instance;
+  String _message = '';
+  String _eventToken = 'not yet';
+
   void countSurveys() async {
     querySurveyRecord()
       ..listen((surveys) async {
@@ -162,9 +166,14 @@ class _NavBarPageState extends State<NavBarPage> {
           }
         });
 
+        // String appCheckToken = await appCheck.getToken();
+        // print(appCheckToken);
+
         if (currentUser.loggedIn) {
           final apiCallOutput = await AnswersCall.call(
             uid: currentUserUid,
+            accessToken: currentJwtToken,
+            // appCheckToken: appCheckToken,
           );
           _answers = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
           _answers.forEach(
@@ -174,8 +183,16 @@ class _NavBarPageState extends State<NavBarPage> {
       });
   }
 
+  void setEventToken(String token) {
+    setState(() {
+      _eventToken = token ?? 'not yet';
+    });
+  }
+
   @override
   void initState() {
+    // await appCheck.activate();
+    // appCheck.onTokenChange.listen(setEventToken);
     countSurveys();
     super.initState();
     _currentPage = widget.initialPage ?? _currentPage;

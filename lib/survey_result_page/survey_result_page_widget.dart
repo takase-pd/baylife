@@ -832,6 +832,8 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                     comment:
                                                         textController.text,
                                                     tag: choiceChipsValue,
+                                                    accessToken:
+                                                        currentJwtToken,
                                                   );
                                                   await showDialog(
                                                     context: context,

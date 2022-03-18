@@ -1066,6 +1066,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                 filePath: widget.filePath,
                                                 postRemarks: widget.postRemarks,
                                                 uid: currentUserUid,
+                                                accessToken: currentJwtToken,
                                               );
                                               var _analyticsParam = {
                                                 'uid': currentUserUid

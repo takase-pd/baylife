@@ -26,6 +26,7 @@ class RegistContentsCall {
         'https://firebasestorage.googleapis.com/v0/b/baylife-ff782.appspot.com/o/assets%2FNoImage.png?alt=media&token=cfb3d70b-69d2-4f7f-be63-f429cc9872da',
     String postRemarks = '',
     String uid = '',
+    String accessToken = '',
   }) {
     final body = '''
 {
@@ -83,6 +84,7 @@ class RegistContentsCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
     );
   }
 }
@@ -94,6 +96,7 @@ class AddSurveyAnswerCall {
     String choice = '',
     String date = '',
     String freeAnswer = '',
+    String accessToken = '',
   }) {
     final body = '''
 {
@@ -123,6 +126,7 @@ class AddSurveyAnswerCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
     );
   }
 }
@@ -130,6 +134,8 @@ class AddSurveyAnswerCall {
 class AnswersCall {
   static Future<ApiCallResponse> call({
     String uid = '',
+    String accessToken = '',
+    // String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -140,7 +146,8 @@ class AnswersCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Answers',
       apiUrl:
-          'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-answersV0',
+          // 'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-answersV0',
+          'http://localhost:5001/baylifedev/asia-northeast1/survey-answersV0',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -151,6 +158,8 @@ class AnswersCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      // appCheckToken: appCheckToken,
     );
   }
 }
@@ -180,6 +189,7 @@ class ReviewsCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: '',
     );
   }
 }
@@ -191,6 +201,7 @@ class AddReviewCall {
     String date = '',
     String comment = '',
     String tag = '',
+    String accessToken = '',
   }) {
     final body = '''
 {
@@ -221,6 +232,7 @@ class AddReviewCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
     );
   }
 }

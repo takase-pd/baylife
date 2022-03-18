@@ -92,6 +92,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         choice: radioButtonValue,
         freeAnswer: textController.text,
         date: dateTimeFormat('yMMMd h:mm a', getCurrentTimestamp),
+        accessToken: currentJwtToken,
       );
       var _analyticsParam = {'sid': sid};
       Analytics.analyticsLogEvent(
