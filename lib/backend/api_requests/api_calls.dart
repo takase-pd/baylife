@@ -55,7 +55,7 @@ class RegistContentsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Regist Contents',
       apiUrl:
-          'https://asia-northeast1-baylifedev.cloudfunctions.net/content-sendMailV1',
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/content-sendMailV2',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -111,7 +111,8 @@ class AddSurveyAnswerCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Add Survey Answer',
       apiUrl:
-          'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-addSurveyAnswerV0',
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-addSurveyAnswerV1',
+      // 'http://localhost:5001/baylifedev/asia-northeast1/survey-addSurveyAnswerV1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -146,8 +147,8 @@ class AnswersCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Answers',
       apiUrl:
-          // 'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-answersV0',
-          'http://localhost:5001/baylifedev/asia-northeast1/survey-answersV0',
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-answersV1',
+      // 'http://localhost:5001/baylifedev/asia-northeast1/survey-answersV1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -216,8 +217,8 @@ class AddReviewCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Add Review',
       apiUrl:
-          'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-addReviewV0',
-      // 'http://localhost:5001/baylifedev/asia-northeast1/survey-addReviewV0',
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-addReviewV1',
+      // 'http://localhost:5001/baylifedev/asia-northeast1/survey-addReviewV1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',

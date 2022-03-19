@@ -47,6 +47,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
     } else {
       final apiCallOutput = await AnswersCall.call(
         uid: currentUserUid,
+        accessToken: currentJwtToken,
       );
       answers = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
     }
