@@ -10,31 +10,23 @@ class CustomDialog {
     await showDialog(
       context: context,
       builder: (BuildContext context) => new AlertDialog(
-        title: new Text(
+        title: Text(
           networkAlertTitle,
           style: FlutterFlowTheme.of(context).subtitle1.override(
               fontFamily: 'Open Sans',
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w600,
               color: FlutterFlowTheme.of(context).textDark),
         ),
-        content: new Text(
+        content: Text(
           networkAlertMessage + detailMessage + alert,
-          style: FlutterFlowTheme.of(context).subtitle2.override(
+          style: FlutterFlowTheme.of(context).bodyText1.override(
               fontFamily: 'Open Sans',
               color: FlutterFlowTheme.of(context).textDark),
         ),
-        actions: <Widget>[
-          new SimpleDialogOption(
-            child: new Text(
-              'OK',
-              style: FlutterFlowTheme.of(context).subtitle2.override(
-                  fontFamily: 'Open Sans',
-                  fontWeight: FontWeight.w600,
-                  color: FlutterFlowTheme.of(context).textDark),
-            ),
-            onPressed: () {
-              Navigator.pop(context, 'OK');
-            },
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('OK'),
           ),
         ],
       ),

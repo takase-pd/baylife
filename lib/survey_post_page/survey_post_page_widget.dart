@@ -82,19 +82,19 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
             return AlertDialog(
               title: Text(
                 '回答送信',
-                style: FlutterFlowTheme.of(context).subtitle2.override(
+                style: FlutterFlowTheme.of(context).subtitle1.override(
                       fontFamily: 'Open Sans',
                       fontWeight: FontWeight.w600,
                     ),
               ),
               content: Text(
                 '回答ありがとうございます。引き続きアンケートの回答、集計結果をお楽しみください!',
-                style: FlutterFlowTheme.of(context).bodyText2,
+                style: FlutterFlowTheme.of(context).bodyText1,
               ),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
+                  child: Text('OK'),
                 ),
               ],
             );

@@ -67,6 +67,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
     if (_appCheckToken != null) {
       final apiCallOutput = await ReviewsCall.call(
         sid: sid,
+        appCheckToken: _appCheckToken,
       );
       final _reviewsJson =
           getJsonField(apiCallOutput.jsonBody, r'''$.result''');
