@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:core';
 
+// import 'package:firebase_core_web/firebase_core_web_interop.dart';
 import 'package:http/http.dart' as http;
 import 'package:equatable/equatable.dart';
 
@@ -160,7 +161,7 @@ class ApiManager {
     bool returnBody,
     bool cache = false,
     String accessToken,
-    // String appCheckToken,
+    String appCheckToken,
   }) async {
     final callRecord =
         ApiCallRecord(callName, apiUrl, headers, params, body, bodyType);
@@ -168,6 +169,9 @@ class ApiManager {
     if (accessToken != null && accessToken != '') {
       _accessToken = accessToken;
       headers[HttpHeaders.authorizationHeader] = 'Bearer $_accessToken';
+    }
+    if (appCheckToken != null && appCheckToken != '') {
+      headers['X-Firebase-AppCheck'] = appCheckToken;
     }
     if (!apiUrl.startsWith('http')) {
       apiUrl = 'https://$apiUrl';

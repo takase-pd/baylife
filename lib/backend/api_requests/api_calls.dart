@@ -136,7 +136,7 @@ class AnswersCall {
   static Future<ApiCallResponse> call({
     String uid = '',
     String accessToken = '',
-    // String appCheckToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -160,7 +160,7 @@ class AnswersCall {
       bodyType: BodyType.JSON,
       returnBody: true,
       accessToken: accessToken,
-      // appCheckToken: appCheckToken,
+      appCheckToken: appCheckToken,
     );
   }
 }

@@ -23,6 +23,7 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:badges/badges.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
+import './custom_code/widgets/index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -145,8 +146,6 @@ class _NavBarPageState extends State<NavBarPage> {
   int numSurveys = 0;
 
   final appCheck = FirebaseAppCheck.instance;
-  String _message = '';
-  String _eventToken = 'not yet';
 
   void countSurveys() async {
     querySurveyRecord()
@@ -166,14 +165,12 @@ class _NavBarPageState extends State<NavBarPage> {
           }
         });
 
-        // String appCheckToken = await appCheck.getToken();
-        // print(appCheckToken);
-
-        if (currentUser.loggedIn) {
+        final _appCheckToken = await AppCheckAgent.getToken(context);
+        if (currentUser.loggedIn && _appCheckToken != null) {
           final apiCallOutput = await AnswersCall.call(
             uid: currentUserUid,
             accessToken: currentJwtToken,
-            // appCheckToken: appCheckToken,
+            appCheckToken: _appCheckToken,
           );
           _answers = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
           _answers.forEach(
@@ -183,16 +180,8 @@ class _NavBarPageState extends State<NavBarPage> {
       });
   }
 
-  void setEventToken(String token) {
-    setState(() {
-      _eventToken = token ?? 'not yet';
-    });
-  }
-
   @override
   void initState() {
-    // await appCheck.activate();
-    // appCheck.onTokenChange.listen(setEventToken);
     countSurveys();
     super.initState();
     _currentPage = widget.initialPage ?? _currentPage;
