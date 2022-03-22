@@ -16,6 +16,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../auth/firebase_user_provider.dart';
 import '../login_page/login_page_path.dart';
+import '../custom_code/widgets/index.dart';
 
 class SurveyPageWidget extends StatefulWidget {
   const SurveyPageWidget({
@@ -31,15 +32,15 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<List> getAnswers() async {
-    if (!currentUser.loggedIn) {
-      answers = [];
-    } else {
-      final apiCallOutput = await AnswersCall.call(
-        uid: currentUserUid,
-        accessToken: currentJwtToken,
-      );
-      answers = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
-    }
+    final _appCheckToken = await AppCheckAgent.getToken(context);
+    if (!currentUser.loggedIn || _appCheckToken == null) return answers = [];
+
+    final apiCallOutput = await AnswersCall.call(
+      uid: currentUserUid,
+      accessToken: currentJwtToken,
+      appCheckToken: _appCheckToken,
+    );
+    answers = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
     return answers;
   }
 

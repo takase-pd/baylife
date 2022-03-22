@@ -27,6 +27,7 @@ class RegistContentsCall {
     String postRemarks = '',
     String uid = '',
     String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -85,6 +86,7 @@ class RegistContentsCall {
       bodyType: BodyType.JSON,
       returnBody: true,
       accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }
@@ -97,6 +99,7 @@ class AddSurveyAnswerCall {
     String date = '',
     String freeAnswer = '',
     String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -128,6 +131,7 @@ class AddSurveyAnswerCall {
       bodyType: BodyType.JSON,
       returnBody: true,
       accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }
@@ -168,6 +172,7 @@ class AnswersCall {
 class ReviewsCall {
   static Future<ApiCallResponse> call({
     String sid = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -178,7 +183,7 @@ class ReviewsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Reviews',
       apiUrl:
-          'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-reviewsV0',
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-reviewsV1',
       // 'http://localhost:5001/baylifedev/asia-northeast1/survey-reviewsV0',
       callType: ApiCallType.POST,
       headers: {
@@ -191,6 +196,7 @@ class ReviewsCall {
       bodyType: BodyType.JSON,
       returnBody: true,
       accessToken: '',
+      appCheckToken: appCheckToken,
     );
   }
 }
@@ -203,6 +209,7 @@ class AddReviewCall {
     String comment = '',
     String tag = '',
     String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -234,6 +241,7 @@ class AddReviewCall {
       bodyType: BodyType.JSON,
       returnBody: true,
       accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }

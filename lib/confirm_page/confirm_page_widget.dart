@@ -15,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../backend/firebase_analytics/analytics.dart';
 import '../backend/firebase_analytics/analytics_event_type.dart';
+import '../custom_code/widgets/index.dart';
 
 class ConfirmPageWidget extends StatefulWidget {
   const ConfirmPageWidget({
@@ -1039,69 +1040,76 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                               AlignmentDirectional(0.95, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              await RegistContentsCall.call(
-                                                catName: widget.catName,
-                                                catNameAdd: widget.catNameAdd,
-                                                title: widget.title,
-                                                overview:
-                                                    functions.getMultilineText(
-                                                        widget.overview),
-                                                detail:
-                                                    functions.getMultilineText(
-                                                        widget.detail),
-                                                organizer: widget.organizer,
-                                                contact: widget.contact,
-                                                homepage: widget.homepage,
-                                                postName: widget.postName,
-                                                postEmail: widget.postEmail,
-                                                postPhone: widget.postPhone,
-                                                postOccupation:
-                                                    widget.postOccupation,
-                                                permission: widget.permission,
-                                                address: widget.address,
-                                                startDay: dateTimeFormat(
-                                                    'yMMMd', widget.startDay),
-                                                finalDay: dateTimeFormat(
-                                                    'yMMMd', widget.finalDay),
-                                                filePath: widget.filePath,
-                                                postRemarks: widget.postRemarks,
-                                                uid: currentUserUid,
-                                                accessToken: currentJwtToken,
-                                              );
-                                              var _analyticsParam = {
-                                                'uid': currentUserUid
-                                              };
-                                              Analytics.analyticsLogEvent(
-                                                  AnalyticsEventType
-                                                      .post_article,
-                                                  _analyticsParam);
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: Text('送信完了'),
-                                                    content: Text(
-                                                        '投稿ありがとうございます。投稿内容を審査しますので、お待ち下さい。'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('OK'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                              await Navigator
-                                                  .pushAndRemoveUntil(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PostPageWithLoginWidget(),
-                                                ),
-                                                (r) => false,
-                                              );
+                                              final _appCheckToken =
+                                                  await AppCheckAgent.getToken(
+                                                      context);
+                                              if (_appCheckToken != null) {
+                                                await RegistContentsCall.call(
+                                                  catName: widget.catName,
+                                                  catNameAdd: widget.catNameAdd,
+                                                  title: widget.title,
+                                                  overview: functions
+                                                      .getMultilineText(
+                                                          widget.overview),
+                                                  detail: functions
+                                                      .getMultilineText(
+                                                          widget.detail),
+                                                  organizer: widget.organizer,
+                                                  contact: widget.contact,
+                                                  homepage: widget.homepage,
+                                                  postName: widget.postName,
+                                                  postEmail: widget.postEmail,
+                                                  postPhone: widget.postPhone,
+                                                  postOccupation:
+                                                      widget.postOccupation,
+                                                  permission: widget.permission,
+                                                  address: widget.address,
+                                                  startDay: dateTimeFormat(
+                                                      'yMMMd', widget.startDay),
+                                                  finalDay: dateTimeFormat(
+                                                      'yMMMd', widget.finalDay),
+                                                  filePath: widget.filePath,
+                                                  postRemarks:
+                                                      widget.postRemarks,
+                                                  uid: currentUserUid,
+                                                  accessToken: currentJwtToken,
+                                                );
+                                                var _analyticsParam = {
+                                                  'uid': currentUserUid
+                                                };
+                                                Analytics.analyticsLogEvent(
+                                                    AnalyticsEventType
+                                                        .post_article,
+                                                    _analyticsParam);
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text('送信完了'),
+                                                      content: Text(
+                                                          '投稿ありがとうございます。投稿内容を審査しますので、お待ち下さい。'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('OK'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                                await Navigator
+                                                    .pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        PostPageWithLoginWidget(),
+                                                  ),
+                                                  (r) => false,
+                                                );
+                                              }
                                             },
                                             text: '送信',
                                             options: FFButtonOptions(
