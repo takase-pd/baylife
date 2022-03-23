@@ -21,7 +21,6 @@ import '../../survey_result_page/survey_result_page_widget.dart';
 import '../../my_page/my_page_widget.dart';
 import '../../my_page_dev/my_page_dev_widget.dart';
 import '../../my_page_edit/my_page_edit_widget.dart';
-import '../../test/test_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -139,7 +138,6 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'MyPageEdit': (data) async => MyPageEditWidget(
         surveyRef: getParameter(data, 'surveyRef'),
       ),
-  'Test': (data) async => TestWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

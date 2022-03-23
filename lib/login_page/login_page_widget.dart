@@ -969,7 +969,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           (r) => false,
                                         );
                                       },
-                                      text: 'Sign up with Facebook',
+                                      text: 'Sign u with Facebook',
                                       icon: Icon(
                                         Icons.add,
                                         color: Colors.transparent,
