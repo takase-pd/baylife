@@ -24,8 +24,16 @@ import 'package:badges/badges.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import './custom_code/widgets/index.dart';
+import 'package:get_it/get_it.dart';
+
+GetIt locator = GetIt.instance;
+
+void setupLocator() {
+  locator.registerLazySingleton<VersionCheck>(() => VersionCheck());
+}
 
 void main() async {
+  setupLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await FirebaseAppCheck.instance.activate(
@@ -182,6 +190,10 @@ class _NavBarPageState extends State<NavBarPage> {
 
   @override
   void initState() {
+    final checker = locator<VersionCheck>();
+    checker
+        .versionCheck()
+        .then((needUpdate) => CustomDialog.appUpdate(context, needUpdate));
     countSurveys();
     super.initState();
     _currentPage = widget.initialPage ?? _currentPage;

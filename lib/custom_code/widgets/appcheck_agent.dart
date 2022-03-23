@@ -8,7 +8,7 @@ class AppCheckAgent {
   static Future<String> getToken(BuildContext context) async {
     await appCheck.activate();
     String appCheckToken = await appCheck.getToken();
-    appCheckToken ?? CustomDialog.networkAlert(context, 'AppCheckTokenエラー');
+    appCheckToken ?? CustomDialog.networkAlert(context);
     return appCheckToken;
   }
 }
