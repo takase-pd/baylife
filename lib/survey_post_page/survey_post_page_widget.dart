@@ -369,6 +369,14 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                   children: [
                                     FFButtonWidget(
                                       onPressed: () async {
+                                        await AddSurveyAnswerCall.call(
+                                          uid: currentUserUid,
+                                          sid: columnSurveyRecord.sid,
+                                          choice: radioButtonValue,
+                                          freeAnswer: textController.text,
+                                          date: dateTimeFormat(
+                                              'yMMMd', getCurrentTimestamp),
+                                        );
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
@@ -385,14 +393,6 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                               ],
                                             );
                                           },
-                                        );
-                                        await AddSurveyAnswerCall.call(
-                                          uid: currentUserUid,
-                                          sid: columnSurveyRecord.sid,
-                                          choice: radioButtonValue,
-                                          freeAnswer: textController.text,
-                                          date: dateTimeFormat(
-                                              'yMMMd', getCurrentTimestamp),
                                         );
                                         await Navigator.pushAndRemoveUntil(
                                           context,
