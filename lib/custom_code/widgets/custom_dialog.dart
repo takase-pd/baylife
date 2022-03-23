@@ -25,7 +25,7 @@ class CustomDialog {
 
   static showCustomDialog(BuildContext context, bool barrierDismissible,
       String title, String message, String label, Function action) {
-    logFirebaseEvent('Button-Alert-Dialog');
+    logFirebaseEvent('ButtonAlertDialog');
     showDialog(
       context: context,
       barrierDismissible: barrierDismissible,
@@ -52,7 +52,7 @@ class CustomDialog {
   }
 
   static void _launchURL(String url) async {
-    logFirebaseEvent('Launch-URL');
+    logFirebaseEvent('LaunchURL');
     if (await canLaunch(url)) {
       await launch(url);
     } else {

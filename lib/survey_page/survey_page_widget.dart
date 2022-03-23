@@ -126,8 +126,8 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: InkWell(
                                   onTap: () async {
-                                    logFirebaseEvent('Card-ON_TAP');
-                                    logFirebaseEvent('Card-Navigate-To');
+                                    logFirebaseEvent('CardON_TAP');
+                                    logFirebaseEvent('CardNavigateTo');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -264,9 +264,9 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                 FFButtonWidget(
                                                   onPressed: () async {
                                                     logFirebaseEvent(
-                                                        'Button-ON_TAP');
+                                                        'ButtonON_TAP');
                                                     logFirebaseEvent(
-                                                        'Button-Navigate-To');
+                                                        'ButtonNavigateTo');
                                                     if (currentUser.loggedIn) {
                                                       await Navigator.push(
                                                         context,

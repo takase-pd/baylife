@@ -50,8 +50,8 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-Back');
+            logFirebaseEvent('IconON_TAP');
+            logFirebaseEvent('IconNavigateBack');
             Navigator.pop(context);
           },
           child: Icon(
@@ -374,8 +374,8 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                     : null;
                             return FFButtonWidget(
                               onPressed: () async {
-                                logFirebaseEvent('Button-ON_TAP');
-                                logFirebaseEvent('Button-Backend-Call');
+                                logFirebaseEvent('ButtonON_TAP');
+                                logFirebaseEvent('ButtonBackendCall');
 
                                 final usersUpdateData = createUsersRecordData(
                                   sex: sexValue,
@@ -391,7 +391,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                 Analytics.analyticsLogEvent(
                                     AnalyticsEventType.update_userdata,
                                     _analyticsParam);
-                                logFirebaseEvent('Button-Navigate-To');
+                                logFirebaseEvent('ButtonNavigateTo');
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(

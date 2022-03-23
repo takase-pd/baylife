@@ -47,8 +47,8 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-Back');
+            logFirebaseEvent('IconON_TAP');
+            logFirebaseEvent('IconNavigateBack');
             Navigator.pop(context);
           },
           child: Icon(
@@ -65,8 +65,8 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          logFirebaseEvent('FloatingActionButton-ON_TAP');
-          logFirebaseEvent('FloatingActionButton-Navigate-To');
+          logFirebaseEvent('FloatingActionButtonON_TAP');
+          logFirebaseEvent('FloatingActionButtonNavigateTo');
           await Navigator.push(
             context,
             MaterialPageRoute(
@@ -135,8 +135,8 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                         child: InkWell(
                           onTap: () async {
-                            logFirebaseEvent('Card-ON_TAP');
-                            logFirebaseEvent('Card-Navigate-To');
+                            logFirebaseEvent('CardON_TAP');
+                            logFirebaseEvent('CardNavigateTo');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -241,9 +241,9 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                   child: InkWell(
                                                     onTap: () async {
                                                       logFirebaseEvent(
-                                                          'Container-ON_TAP');
+                                                          'ContainerON_TAP');
                                                       logFirebaseEvent(
-                                                          'Container-Navigate-To');
+                                                          'ContainerNavigateTo');
                                                       await Navigator.push(
                                                         context,
                                                         MaterialPageRoute(

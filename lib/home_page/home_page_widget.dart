@@ -51,8 +51,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          logFirebaseEvent('FloatingActionButton-ON_TAP');
-          logFirebaseEvent('FloatingActionButton-Navigate-To');
+          logFirebaseEvent('FloatingActionButtonON_TAP');
+          logFirebaseEvent('FloatingActionButtonNavigateTo');
           await Navigator.push(
             context,
             MaterialPageRoute(
@@ -119,8 +119,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                         child: InkWell(
                           onTap: () async {
-                            logFirebaseEvent('Card-ON_TAP');
-                            logFirebaseEvent('Card-Navigate-To');
+                            logFirebaseEvent('CardON_TAP');
+                            logFirebaseEvent('CardNavigateTo');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -227,9 +227,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   child: InkWell(
                                                     onTap: () async {
                                                       logFirebaseEvent(
-                                                          'Container-ON_TAP');
+                                                          'ContainerON_TAP');
                                                       logFirebaseEvent(
-                                                          'Container-Navigate-To');
+                                                          'ContainerNavigateTo');
                                                       await Navigator.push(
                                                         context,
                                                         MaterialPageRoute(

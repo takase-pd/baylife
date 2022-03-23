@@ -72,8 +72,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-To');
+            logFirebaseEvent('IconON_TAP');
+            logFirebaseEvent('IconNavigateTo');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -667,9 +667,9 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
-                                                  'FileButton-ON_TAP');
+                                                  'FileButtonON_TAP');
                                               logFirebaseEvent(
-                                                  'FileButton-Upload-Photo-Video');
+                                                  'FileButtonUploadPhotoVideo');
                                               final selectedMedia =
                                                   await selectMedia(
                                                 maxWidth: 300.00,
@@ -813,9 +813,9 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
-                                                  'StartDayButton-ON_TAP');
+                                                  'StartDayButtonON_TAP');
                                               logFirebaseEvent(
-                                                  'StartDayButton-Date-Time-Picker');
+                                                  'StartDayButtonDateTimePicker');
                                               await DatePicker.showDatePicker(
                                                 context,
                                                 showTitleActions: true,
@@ -930,9 +930,9 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
-                                                  'FinalDayButton-ON_TAP');
+                                                  'FinalDayButtonON_TAP');
                                               logFirebaseEvent(
-                                                  'FinalDayButton-Date-Time-Picker');
+                                                  'FinalDayButtonDateTimePicker');
                                               await DatePicker.showDatePicker(
                                                 context,
                                                 showTitleActions: true,
@@ -1593,8 +1593,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                         children: [
                           InkWell(
                             onTap: () async {
-                              logFirebaseEvent('Text-ON_TAP');
-                              logFirebaseEvent('Text-Navigate-To');
+                              logFirebaseEvent('TextON_TAP');
+                              logFirebaseEvent('TextNavigateTo');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -1660,9 +1660,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          logFirebaseEvent('Button-ON_TAP');
-                                          logFirebaseEvent(
-                                              'Button-Navigate-To');
+                                          logFirebaseEvent('ButtonON_TAP');
+                                          logFirebaseEvent('ButtonNavigateTo');
                                           await Navigator.push(
                                             context,
                                             MaterialPageRoute(

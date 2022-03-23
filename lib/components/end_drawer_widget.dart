@@ -40,8 +40,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('ListTile-ON_TAP');
-                        logFirebaseEvent('ListTile-Navigate-To');
+                        logFirebaseEvent('ListTileON_TAP');
+                        logFirebaseEvent('ListTileNavigateTo');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -75,8 +75,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('ListTile-ON_TAP');
-                        logFirebaseEvent('ListTile-Navigate-To');
+                        logFirebaseEvent('ListTileON_TAP');
+                        logFirebaseEvent('ListTileNavigateTo');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -112,8 +112,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('ListTile-ON_TAP');
-                        logFirebaseEvent('ListTile-Launch-U-R-L');
+                        logFirebaseEvent('ListTileON_TAP');
+                        logFirebaseEvent('ListTileLaunchURL');
                         await launchURL(
                             'https://www.particledrawing.com/privacy');
                       },
@@ -142,8 +142,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('ListTile-ON_TAP');
-                        logFirebaseEvent('ListTile-Alert-Dialog');
+                        logFirebaseEvent('ListTileON_TAP');
+                        logFirebaseEvent('ListTileAlertDialog');
                         var confirmDialogResponse = await showDialog<bool>(
                               context: context,
                               builder: (alertDialogContext) {
@@ -168,10 +168,10 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                             ) ??
                             false;
                         if (confirmDialogResponse) {
-                          logFirebaseEvent('ListTile-Backend-Call');
+                          logFirebaseEvent('ListTileBackendCall');
                           await currentUserReference.delete();
                         }
-                        logFirebaseEvent('ListTile-Navigate-To');
+                        logFirebaseEvent('ListTileNavigateTo');
                         await Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
@@ -209,13 +209,13 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
               child: InkWell(
                 onTap: () async {
-                  logFirebaseEvent('ListTile-ON_TAP');
-                  logFirebaseEvent('ListTile-Auth');
+                  logFirebaseEvent('ListTileON_TAP');
+                  logFirebaseEvent('ListTileAuth');
                   await signOut();
                   var _analyticsParam = {'uid': currentUserUid};
                   Analytics.analyticsLogEvent(
                       AnalyticsEventType.logout_user, _analyticsParam);
-                  logFirebaseEvent('ListTile-Navigate-To');
+                  logFirebaseEvent('ListTileNavigateTo');
                   await Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
