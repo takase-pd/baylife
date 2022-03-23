@@ -1,6 +1,9 @@
 name: CI for Android
 on:
-  pull_request
+  push:
+    branches:
+      - develop
+      - preview
 
 jobs:
   build_Android:
