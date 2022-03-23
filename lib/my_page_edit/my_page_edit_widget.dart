@@ -36,6 +36,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'MyPageEdit'});
     textController = TextEditingController(text: currentUserDisplayName);
   }
 
@@ -49,6 +50,8 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('Icon-ON_TAP');
+            logFirebaseEvent('Icon-Navigate-Back');
             Navigator.pop(context);
           },
           child: Icon(
@@ -371,6 +374,9 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                     : null;
                             return FFButtonWidget(
                               onPressed: () async {
+                                logFirebaseEvent('Button-ON_TAP');
+                                logFirebaseEvent('Button-Backend-Call');
+
                                 final usersUpdateData = createUsersRecordData(
                                   sex: sexValue,
                                   area: areaValue,
@@ -385,6 +391,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                 Analytics.analyticsLogEvent(
                                     AnalyticsEventType.update_userdata,
                                     _analyticsParam);
+                                logFirebaseEvent('Button-Navigate-To');
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(

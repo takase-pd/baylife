@@ -62,11 +62,13 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
   }
 
   void sendAnswer() async {
+    logFirebaseEvent('Button-ON_TAP');
     if (radioButtonValue == null) {
       setState(() => radioButtonAlert = '＊必ず1つ選択してください。');
     } else {
       final _appCheckToken = await AppCheckAgent.getToken(context);
       if (_appCheckToken != null) {
+        logFirebaseEvent('Button-Backend-Call');
         await AddSurveyAnswerCall.call(
           uid: currentUserUid,
           sid: sid,
@@ -76,6 +78,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
           accessToken: currentJwtToken,
           appCheckToken: _appCheckToken,
         );
+        logFirebaseEvent('Button-Alert-Dialog');
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
@@ -103,6 +106,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         var _analyticsParam = {'sid': sid};
         Analytics.analyticsLogEvent(
             AnalyticsEventType.answer_survey, _analyticsParam);
+        logFirebaseEvent('Button-Navigate-To');
         await Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
@@ -117,6 +121,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'SurveyPostPage'});
     textController = TextEditingController();
   }
 
@@ -130,6 +136,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('Icon-ON_TAP');
+            logFirebaseEvent('Icon-Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -191,6 +199,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                         children: [
                           InkWell(
                             onTap: () async {
+                              logFirebaseEvent('Text-ON_TAP');
+                              logFirebaseEvent('Text-Navigate-To');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -217,6 +227,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                             child: InkWell(
                               onTap: () async {
+                                logFirebaseEvent('Text-ON_TAP');
+                                logFirebaseEvent('Text-Navigate-To');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(

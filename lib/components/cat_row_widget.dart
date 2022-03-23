@@ -49,6 +49,8 @@ class _CatRowWidgetState extends State<CatRowWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
                   child: InkWell(
                     onTap: () async {
+                      logFirebaseEvent('Text-ON_TAP');
+                      logFirebaseEvent('Text-Navigate-To');
                       await Navigator.push(
                         context,
                         MaterialPageRoute(

@@ -40,6 +40,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
+                        logFirebaseEvent('ListTile-ON_TAP');
+                        logFirebaseEvent('ListTile-Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -73,6 +75,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
+                        logFirebaseEvent('ListTile-ON_TAP');
+                        logFirebaseEvent('ListTile-Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -108,6 +112,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
+                        logFirebaseEvent('ListTile-ON_TAP');
+                        logFirebaseEvent('ListTile-Launch-U-R-L');
                         await launchURL(
                             'https://www.particledrawing.com/privacy');
                       },
@@ -136,6 +142,8 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
+                        logFirebaseEvent('ListTile-ON_TAP');
+                        logFirebaseEvent('ListTile-Alert-Dialog');
                         var confirmDialogResponse = await showDialog<bool>(
                               context: context,
                               builder: (alertDialogContext) {
@@ -160,8 +168,10 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                             ) ??
                             false;
                         if (confirmDialogResponse) {
+                          logFirebaseEvent('ListTile-Backend-Call');
                           await currentUserReference.delete();
                         }
+                        logFirebaseEvent('ListTile-Navigate-To');
                         await Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
@@ -199,10 +209,13 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
               child: InkWell(
                 onTap: () async {
+                  logFirebaseEvent('ListTile-ON_TAP');
+                  logFirebaseEvent('ListTile-Auth');
                   await signOut();
                   var _analyticsParam = {'uid': currentUserUid};
                   Analytics.analyticsLogEvent(
                       AnalyticsEventType.logout_user, _analyticsParam);
+                  logFirebaseEvent('ListTile-Navigate-To');
                   await Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(

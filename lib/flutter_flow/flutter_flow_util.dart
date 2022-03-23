@@ -17,6 +17,7 @@ export 'package:intl/intl.dart';
 export 'package:cloud_firestore/cloud_firestore.dart' show DocumentReference;
 export 'package:page_transition/page_transition.dart';
 export 'internationalization.dart' show FFLocalizations;
+export '../backend/firebase_analytics/analytics.dart';
 export 'lat_lng.dart';
 export 'place.dart';
 
