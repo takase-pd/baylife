@@ -475,6 +475,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         if (user == null) {
                                           return;
                                         }
+                                        var _analyticsParam = {
+                                          'login_account_type': 'facebook'
+                                        };
+                                        Analytics.analyticsLogEvent(
+                                            AnalyticsEventType.login_user,
+                                            _analyticsParam);
+                                        logFirebaseEvent('Button-Navigate-To');
                                         await Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
@@ -484,7 +491,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           (r) => false,
                                         );
                                       },
-                                      text: 'Login with Facebook',
+                                      text: 'Facebookアカウントでログイン',
                                       icon: Icon(
                                         Icons.add,
                                         color: Colors.transparent,
@@ -1023,6 +1030,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         if (user == null) {
                                           return;
                                         }
+                                        var _analyticsParam = {
+                                          'create_account_type': 'facebook'
+                                        };
+                                        Analytics.analyticsLogEvent(
+                                            AnalyticsEventType.create_account,
+                                            _analyticsParam);
+                                        logFirebaseEvent('Button-Navigate-To');
                                         await Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
@@ -1032,7 +1046,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           (r) => false,
                                         );
                                       },
-                                      text: 'Sign up with Facebook',
+                                      text: 'Facebookアカウントで登録',
                                       icon: Icon(
                                         Icons.add,
                                         color: Colors.transparent,
