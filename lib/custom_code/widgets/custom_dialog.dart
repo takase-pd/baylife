@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
+import '../../backend/firebase_analytics/analytics.dart';
 
 class CustomDialog {
   static TextStyle titleStyle(BuildContext context) =>
@@ -24,6 +25,7 @@ class CustomDialog {
 
   static showCustomDialog(BuildContext context, bool barrierDismissible,
       String title, String message, String label, Function action) {
+    logFirebaseEvent('Button-Alert-Dialog');
     showDialog(
       context: context,
       barrierDismissible: barrierDismissible,
@@ -50,6 +52,7 @@ class CustomDialog {
   }
 
   static void _launchURL(String url) async {
+    logFirebaseEvent('Launch-URL');
     if (await canLaunch(url)) {
       await launch(url);
     } else {
