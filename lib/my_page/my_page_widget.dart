@@ -28,6 +28,12 @@ class _MyPageWidgetState extends State<MyPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'MyPage'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -37,6 +43,8 @@ class _MyPageWidgetState extends State<MyPageWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('Icon-ON_TAP');
+            logFirebaseEvent('Icon-Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -59,7 +67,10 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
                 child: InkWell(
                   onTap: () async {
+                    logFirebaseEvent('Text-ON_TAP');
+                    logFirebaseEvent('Text-Auth');
                     await signOut();
+                    logFirebaseEvent('Text-Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -313,6 +324,8 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                       child: InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Text-ON_TAP');
+                          logFirebaseEvent('Text-Navigate-To');
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -363,6 +376,8 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                   : null;
                           return FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Navigate-To');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(

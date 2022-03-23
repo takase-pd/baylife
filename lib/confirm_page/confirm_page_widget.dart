@@ -64,6 +64,12 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'ConfirmPage'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -73,6 +79,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('Icon-ON_TAP');
+            logFirebaseEvent('Icon-Navigate-Back');
             Navigator.pop(context);
           },
           child: Icon(
@@ -882,6 +890,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                       children: [
                         InkWell(
                           onTap: () async {
+                            logFirebaseEvent('Text-ON_TAP');
+                            logFirebaseEvent('Text-Navigate-To');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -950,6 +960,9 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent('Button-ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button-Navigate-Back');
                                           Navigator.pop(context);
                                         },
                                         text: '戻る',
@@ -1036,6 +1049,9 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                               AlignmentDirectional(0.95, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent('Button-ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Button-Backend-Call');
                                               await RegistContentsCall.call(
                                                 catName: widget.catName,
                                                 catNameAdd: widget.catNameAdd,
@@ -1064,6 +1080,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                 postRemarks: widget.postRemarks,
                                                 uid: currentUserUid,
                                               );
+                                              logFirebaseEvent(
+                                                  'Button-Alert-Dialog');
                                               await showDialog(
                                                 context: context,
                                                 builder: (alertDialogContext) {
@@ -1082,6 +1100,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                   );
                                                 },
                                               );
+                                              logFirebaseEvent(
+                                                  'Button-Navigate-To');
                                               await Navigator
                                                   .pushAndRemoveUntil(
                                                 context,
