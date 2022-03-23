@@ -149,21 +149,28 @@ class ApiManager {
     return postBody;
   }
 
-  Future<ApiCallResponse> makeApiCall(
-      {String callName,
-      String apiUrl,
-      ApiCallType callType,
-      Map<String, dynamic> headers = const {},
-      Map<String, dynamic> params = const {},
-      String body,
-      BodyType bodyType,
-      bool returnBody,
-      bool cache = false}) async {
+  Future<ApiCallResponse> makeApiCall({
+    String callName,
+    String apiUrl,
+    ApiCallType callType,
+    Map<String, dynamic> headers = const {},
+    Map<String, dynamic> params = const {},
+    String body,
+    BodyType bodyType,
+    bool returnBody,
+    bool cache = false,
+    String accessToken,
+    String appCheckToken,
+  }) async {
     final callRecord =
         ApiCallRecord(callName, apiUrl, headers, params, body, bodyType);
     // Modify for your specific needs if this differs from your API.
-    if (_accessToken != null) {
-      headers[HttpHeaders.authorizationHeader] = 'Token $_accessToken';
+    if (accessToken != null && accessToken != '') {
+      _accessToken = accessToken;
+      headers[HttpHeaders.authorizationHeader] = 'Bearer $_accessToken';
+    }
+    if (appCheckToken != null && appCheckToken != '') {
+      headers['X-Firebase-AppCheck'] = appCheckToken;
     }
     if (!apiUrl.startsWith('http')) {
       apiUrl = 'https://$apiUrl';

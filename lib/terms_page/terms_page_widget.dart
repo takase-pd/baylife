@@ -23,6 +23,12 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'TermsPage'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -32,6 +38,8 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('IconON_TAP');
+            logFirebaseEvent('IconNavigateBack');
             Navigator.pop(context);
           },
           child: Icon(
@@ -57,6 +65,8 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
             child: InkWell(
               onTap: () async {
+                logFirebaseEvent('TextON_TAP');
+                logFirebaseEvent('TextLaunchURL');
                 await launchURL(widget.termsUrl);
               },
               child: Text(

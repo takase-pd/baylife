@@ -26,6 +26,8 @@ class RegistContentsCall {
         'https://firebasestorage.googleapis.com/v0/b/baylife-ff782.appspot.com/o/assets%2FNoImage.png?alt=media&token=cfb3d70b-69d2-4f7f-be63-f429cc9872da',
     String postRemarks = '',
     String uid = '',
+    String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -54,7 +56,7 @@ class RegistContentsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Regist Contents',
       apiUrl:
-          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/content-sendMailV1',
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/content-sendMailV2',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -83,6 +85,8 @@ class RegistContentsCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }
@@ -94,6 +98,8 @@ class AddSurveyAnswerCall {
     String choice = '',
     String date = '',
     String freeAnswer = '',
+    String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -108,7 +114,7 @@ class AddSurveyAnswerCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Add Survey Answer',
       apiUrl:
-          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/survey-addSurveyAnswerV0',
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/survey-addSurveyAnswerV1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -123,6 +129,8 @@ class AddSurveyAnswerCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }
@@ -130,6 +138,8 @@ class AddSurveyAnswerCall {
 class AnswersCall {
   static Future<ApiCallResponse> call({
     String uid = '',
+    String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -140,7 +150,7 @@ class AnswersCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Answers',
       apiUrl:
-          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/survey-answersV0',
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/survey-answersV1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -151,6 +161,8 @@ class AnswersCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }
@@ -158,6 +170,7 @@ class AnswersCall {
 class ReviewsCall {
   static Future<ApiCallResponse> call({
     String sid = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -168,7 +181,7 @@ class ReviewsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Reviews',
       apiUrl:
-          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/survey-reviewsV0',
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/survey-reviewsV1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -179,6 +192,8 @@ class ReviewsCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: '',
+      appCheckToken: appCheckToken,
     );
   }
 }
@@ -190,6 +205,8 @@ class AddReviewCall {
     String date = '',
     String comment = '',
     String tag = '',
+    String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -204,7 +221,7 @@ class AddReviewCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Add Review',
       apiUrl:
-          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/survey-addReviewV0',
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/survey-addReviewV1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -219,6 +236,8 @@ class AddReviewCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }

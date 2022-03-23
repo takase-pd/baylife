@@ -19,6 +19,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../auth/firebase_user_provider.dart';
 import '../backend/firebase_analytics/analytics.dart';
 import '../backend/firebase_analytics/analytics_event_type.dart';
+import '../custom_code/widgets/index.dart';
 
 class SurveyPostPageWidget extends StatefulWidget {
   const SurveyPostPageWidget({
@@ -42,14 +43,16 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<List> getAnswers() async {
-    if (!currentUser.loggedIn) {
-      answers = [];
-    } else {
-      final apiCallOutput = await AnswersCall.call(
-        uid: currentUserUid,
-      );
-      answers = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
-    }
+    final _appCheckToken = await AppCheckAgent.getToken(context);
+    if (!currentUser.loggedIn || _appCheckToken == null) answers = [];
+
+    final apiCallOutput = await AnswersCall.call(
+      uid: currentUserUid,
+      accessToken: currentJwtToken,
+      appCheckToken: _appCheckToken,
+    );
+    answers = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+
     return answers;
   }
 
@@ -59,56 +62,67 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
   }
 
   void sendAnswer() async {
+    logFirebaseEvent('ButtonON_TAP');
     if (radioButtonValue == null) {
       setState(() => radioButtonAlert = '＊必ず1つ選択してください。');
     } else {
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text(
-              '回答送信',
-              style: FlutterFlowTheme.of(context).subtitle2.override(
-                    fontFamily: 'Open Sans',
-                    fontWeight: FontWeight.w600,
-                  ),
-            ),
-            content: Text(
-              '回答ありがとうございます。引き続きアンケートの回答、集計結果をお楽しみください!',
-              style: FlutterFlowTheme.of(context).bodyText2,
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
+      final _appCheckToken = await AppCheckAgent.getToken(context);
+      if (_appCheckToken != null) {
+        logFirebaseEvent('ButtonBackendCall');
+        await AddSurveyAnswerCall.call(
+          uid: currentUserUid,
+          sid: sid,
+          choice: radioButtonValue,
+          freeAnswer: textController.text,
+          date: dateTimeFormat('yMMMd h:mm a', getCurrentTimestamp),
+          accessToken: currentJwtToken,
+          appCheckToken: _appCheckToken,
+        );
+        logFirebaseEvent('ButtonAlertDialog');
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: Text(
+                '回答送信',
+                style: FlutterFlowTheme.of(context).subtitle1.override(
+                      fontFamily: 'Open Sans',
+                      fontWeight: FontWeight.w600,
+                    ),
               ),
-            ],
-          );
-        },
-      );
-      await AddSurveyAnswerCall.call(
-        uid: currentUserUid,
-        sid: sid,
-        choice: radioButtonValue,
-        freeAnswer: textController.text,
-        date: dateTimeFormat('yMMMd h:mm a', getCurrentTimestamp),
-      );
-      var _analyticsParam = {'sid': sid};
-      Analytics.analyticsLogEvent(
-          AnalyticsEventType.answer_survey, _analyticsParam);
-      await Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) => NavBarPage(initialPage: 'SurveyPage'),
-        ),
-        (r) => false,
-      );
+              content: Text(
+                '回答ありがとうございます。引き続きアンケートの回答、集計結果をお楽しみください!',
+                style: FlutterFlowTheme.of(context).bodyText1,
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+        var _analyticsParam = {'sid': sid};
+        Analytics.analyticsLogEvent(
+            AnalyticsEventType.answer_survey, _analyticsParam);
+        logFirebaseEvent('ButtonNavigateTo');
+        await Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => NavBarPage(initialPage: 'SurveyPage'),
+          ),
+          (r) => false,
+        );
+      }
     }
   }
 
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'SurveyPostPage'});
     textController = TextEditingController();
   }
 
@@ -122,6 +136,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('IconON_TAP');
+            logFirebaseEvent('IconNavigateTo');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -183,6 +199,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                         children: [
                           InkWell(
                             onTap: () async {
+                              logFirebaseEvent('TextON_TAP');
+                              logFirebaseEvent('TextNavigateTo');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -209,6 +227,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                             child: InkWell(
                               onTap: () async {
+                                logFirebaseEvent('TextON_TAP');
+                                logFirebaseEvent('TextNavigateTo');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(

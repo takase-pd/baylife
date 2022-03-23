@@ -23,8 +23,17 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:badges/badges.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
+import './custom_code/widgets/index.dart';
+import 'package:get_it/get_it.dart';
+
+GetIt locator = GetIt.instance;
+
+void setupLocator() {
+  locator.registerLazySingleton<VersionCheck>(() => VersionCheck());
+}
 
 void main() async {
+  setupLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await FirebaseAppCheck.instance.activate(
@@ -144,6 +153,8 @@ class _NavBarPageState extends State<NavBarPage> {
 
   int numSurveys = 0;
 
+  final appCheck = FirebaseAppCheck.instance;
+
   void countSurveys() async {
     querySurveyRecord()
       ..listen((surveys) async {
@@ -162,9 +173,12 @@ class _NavBarPageState extends State<NavBarPage> {
           }
         });
 
-        if (currentUser.loggedIn) {
+        final _appCheckToken = await AppCheckAgent.getToken(context);
+        if (currentUser.loggedIn && _appCheckToken != null) {
           final apiCallOutput = await AnswersCall.call(
             uid: currentUserUid,
+            accessToken: currentJwtToken,
+            appCheckToken: _appCheckToken,
           );
           _answers = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
           _answers.forEach(
@@ -176,6 +190,10 @@ class _NavBarPageState extends State<NavBarPage> {
 
   @override
   void initState() {
+    final checker = locator<VersionCheck>();
+    checker
+        .versionCheck()
+        .then((needUpdate) => CustomDialog.appUpdate(context, needUpdate));
     countSurveys();
     super.initState();
     _currentPage = widget.initialPage ?? _currentPage;

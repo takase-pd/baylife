@@ -27,6 +27,12 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'ContentPage'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -36,6 +42,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('IconON_TAP');
+            logFirebaseEvent('IconNavigateBack');
             Navigator.pop(context);
           },
           child: Icon(
@@ -126,6 +134,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                             final containerCategoriesRecord = snapshot.data;
                             return InkWell(
                               onTap: () async {
+                                logFirebaseEvent('ContainerON_TAP');
+                                logFirebaseEvent('ContainerNavigateTo');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -305,6 +315,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                             Expanded(
                               child: InkWell(
                                 onTap: () async {
+                                  logFirebaseEvent('HomepageON_TAP');
+                                  logFirebaseEvent('HomepageLaunchURL');
                                   await launchURL(
                                       columnContentsRecord.homepage);
                                 },

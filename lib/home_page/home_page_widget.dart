@@ -30,6 +30,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'HomePage'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -45,6 +51,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
+          logFirebaseEvent('FloatingActionButtonON_TAP');
+          logFirebaseEvent('FloatingActionButtonNavigateTo');
           await Navigator.push(
             context,
             MaterialPageRoute(
@@ -111,6 +119,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                         child: InkWell(
                           onTap: () async {
+                            logFirebaseEvent('CardON_TAP');
+                            logFirebaseEvent('CardNavigateTo');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -216,6 +226,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       .fromSTEB(0, 0, 10, 0),
                                                   child: InkWell(
                                                     onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'ContainerON_TAP');
+                                                      logFirebaseEvent(
+                                                          'ContainerNavigateTo');
                                                       await Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
