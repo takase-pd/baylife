@@ -23,6 +23,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../auth/firebase_user_provider.dart';
 import '../login_page/login_page_path.dart';
+import '../custom_code/widgets/index.dart';
 
 class SurveyResultPageWidget extends StatefulWidget {
   const SurveyResultPageWidget({
@@ -62,18 +63,23 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
 
   Future<List> _getReviews(String sid) async {
     List<dynamic> _reviews = [];
-    final apiCallOutput = await ReviewsCall.call(
-      sid: sid,
-    );
-    final _reviewsJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
-    _reviewsJson.forEach((review) {
-      _reviews.add(new ReviewData(
-          comment: review['comment'],
-          tag: review['tag'],
-          uid: review['uid'],
-          displayName: review['displayName'],
-          date: DateTime.parse(review['date'])));
-    });
+    final _appCheckToken = await AppCheckAgent.getToken(context);
+    if (_appCheckToken != null) {
+      final apiCallOutput = await ReviewsCall.call(
+        sid: sid,
+        appCheckToken: _appCheckToken,
+      );
+      final _reviewsJson =
+          getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+      _reviewsJson.forEach((review) {
+        _reviews.add(new ReviewData(
+            comment: review['comment'],
+            tag: review['tag'],
+            uid: review['uid'],
+            displayName: review['displayName'],
+            date: DateTime.parse(review['date'])));
+      });
+    }
     return _reviews;
   }
 
@@ -88,6 +94,8 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'SurveyResultPage'});
     textController = TextEditingController();
     getDocument();
   }
@@ -102,6 +110,8 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('IconON_TAP');
+            logFirebaseEvent('IconNavigateTo');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -464,6 +474,10 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                               ),
                                                               onPressed:
                                                                   () async {
+                                                                logFirebaseEvent(
+                                                                    'IconButtonON_TAP');
+                                                                logFirebaseEvent(
+                                                                    'IconButtonShowSnackBar');
                                                                 ScaffoldMessenger.of(
                                                                         context)
                                                                     .showSnackBar(
@@ -823,45 +837,53 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                           null) {
                                                     return;
                                                   }
-                                                  await AddReviewCall.call(
-                                                    uid: currentUserUid,
-                                                    sid: columnSurveyRecord.sid,
-                                                    date: dateTimeFormat(
-                                                        'yMMMd',
-                                                        getCurrentTimestamp),
-                                                    comment:
-                                                        textController.text,
-                                                    tag: choiceChipsValue,
-                                                  );
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        title: Text('コメント投稿'),
-                                                        content: Text(
-                                                            'コメント投稿ありがとうございます。'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('OK'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                  await Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          SurveyResultPageWidget(
-                                                        surveyRef:
-                                                            widget.surveyRef,
+                                                  final _appCheckToken =
+                                                      await AppCheckAgent
+                                                          .getToken(context);
+                                                  if (_appCheckToken != null) {
+                                                    await AddReviewCall.call(
+                                                      uid: currentUserUid,
+                                                      sid: columnSurveyRecord
+                                                          .sid,
+                                                      date: dateTimeFormat(
+                                                          'yMMMd',
+                                                          getCurrentTimestamp),
+                                                      comment:
+                                                          textController.text,
+                                                      tag: choiceChipsValue,
+                                                      accessToken:
+                                                          currentJwtToken,
+                                                    );
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title: Text('コメント投稿'),
+                                                          content: Text(
+                                                              'コメント投稿ありがとうございます。'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('OK'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                    await Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            SurveyResultPageWidget(
+                                                          surveyRef:
+                                                              widget.surveyRef,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  );
+                                                    );
+                                                  }
                                                 },
                                                 text: '投稿',
                                                 icon: Icon(
@@ -899,6 +921,10 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                 children: [
                                                   InkWell(
                                                     onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'TextON_TAP');
+                                                      logFirebaseEvent(
+                                                          'TextNavigateTo');
                                                       await Navigator.push(
                                                         context,
                                                         MaterialPageRoute(

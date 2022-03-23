@@ -15,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../backend/firebase_analytics/analytics.dart';
 import '../backend/firebase_analytics/analytics_event_type.dart';
+import '../custom_code/widgets/index.dart';
 
 class ConfirmPageWidget extends StatefulWidget {
   const ConfirmPageWidget({
@@ -67,6 +68,12 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'ConfirmPage'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -76,6 +83,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('IconON_TAP');
+            logFirebaseEvent('IconNavigateBack');
             Navigator.pop(context);
           },
           child: Icon(
@@ -885,6 +894,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                       children: [
                         InkWell(
                           onTap: () async {
+                            logFirebaseEvent('TextON_TAP');
+                            logFirebaseEvent('TextNavigateTo');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -953,6 +964,9 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent('ButtonON_TAP');
+                                          logFirebaseEvent(
+                                              'ButtonNavigateBack');
                                           Navigator.pop(context);
                                         },
                                         text: '戻る',
@@ -1039,68 +1053,83 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                               AlignmentDirectional(0.95, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              await RegistContentsCall.call(
-                                                catName: widget.catName,
-                                                catNameAdd: widget.catNameAdd,
-                                                title: widget.title,
-                                                overview:
-                                                    functions.getMultilineText(
-                                                        widget.overview),
-                                                detail:
-                                                    functions.getMultilineText(
-                                                        widget.detail),
-                                                organizer: widget.organizer,
-                                                contact: widget.contact,
-                                                homepage: widget.homepage,
-                                                postName: widget.postName,
-                                                postEmail: widget.postEmail,
-                                                postPhone: widget.postPhone,
-                                                postOccupation:
-                                                    widget.postOccupation,
-                                                permission: widget.permission,
-                                                address: widget.address,
-                                                startDay: dateTimeFormat(
-                                                    'yMMMd', widget.startDay),
-                                                finalDay: dateTimeFormat(
-                                                    'yMMMd', widget.finalDay),
-                                                filePath: widget.filePath,
-                                                postRemarks: widget.postRemarks,
-                                                uid: currentUserUid,
-                                              );
-                                              var _analyticsParam = {
-                                                'uid': currentUserUid
-                                              };
-                                              Analytics.analyticsLogEvent(
-                                                  AnalyticsEventType
-                                                      .post_article,
-                                                  _analyticsParam);
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: Text('送信完了'),
-                                                    content: Text(
-                                                        '投稿ありがとうございます。投稿内容を審査しますので、お待ち下さい。'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('OK'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                              await Navigator
-                                                  .pushAndRemoveUntil(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PostPageWithLoginWidget(),
-                                                ),
-                                                (r) => false,
-                                              );
+                                              logFirebaseEvent('ButtonON_TAP');
+                                              final _appCheckToken =
+                                                  await AppCheckAgent.getToken(
+                                                      context);
+                                              if (_appCheckToken != null) {
+                                                logFirebaseEvent(
+                                                    'ButtonBackendCall');
+                                                await RegistContentsCall.call(
+                                                  catName: widget.catName,
+                                                  catNameAdd: widget.catNameAdd,
+                                                  title: widget.title,
+                                                  overview: functions
+                                                      .getMultilineText(
+                                                          widget.overview),
+                                                  detail: functions
+                                                      .getMultilineText(
+                                                          widget.detail),
+                                                  organizer: widget.organizer,
+                                                  contact: widget.contact,
+                                                  homepage: widget.homepage,
+                                                  postName: widget.postName,
+                                                  postEmail: widget.postEmail,
+                                                  postPhone: widget.postPhone,
+                                                  postOccupation:
+                                                      widget.postOccupation,
+                                                  permission: widget.permission,
+                                                  address: widget.address,
+                                                  startDay: dateTimeFormat(
+                                                      'yMMMd', widget.startDay),
+                                                  finalDay: dateTimeFormat(
+                                                      'yMMMd', widget.finalDay),
+                                                  filePath: widget.filePath,
+                                                  postRemarks:
+                                                      widget.postRemarks,
+                                                  uid: currentUserUid,
+                                                  accessToken: currentJwtToken,
+                                                );
+                                                var _analyticsParam = {
+                                                  'uid': currentUserUid
+                                                };
+                                                Analytics.analyticsLogEvent(
+                                                    AnalyticsEventType
+                                                        .post_article,
+                                                    _analyticsParam);
+                                                logFirebaseEvent(
+                                                    'ButtonAlertDialog');
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text('送信完了'),
+                                                      content: Text(
+                                                          '投稿ありがとうございます。投稿内容を審査しますので、お待ち下さい。'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('OK'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                                logFirebaseEvent(
+                                                    'ButtonNavigateTo');
+                                                await Navigator
+                                                    .pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        PostPageWithLoginWidget(),
+                                                  ),
+                                                  (r) => false,
+                                                );
+                                              }
                                             },
                                             text: '送信',
                                             options: FFButtonOptions(

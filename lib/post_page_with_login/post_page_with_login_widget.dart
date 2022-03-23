@@ -58,6 +58,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
     postOccupationController = TextEditingController();
     postPhoneController = TextEditingController();
     postRemarksController = TextEditingController();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'PostPageWithLogin'});
   }
 
   @override
@@ -70,6 +72,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('IconON_TAP');
+            logFirebaseEvent('IconNavigateTo');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -662,6 +666,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'FileButtonON_TAP');
+                                              logFirebaseEvent(
+                                                  'FileButtonUploadPhotoVideo');
                                               final selectedMedia =
                                                   await selectMedia(
                                                 maxWidth: 300.00,
@@ -804,6 +812,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'StartDayButtonON_TAP');
+                                              logFirebaseEvent(
+                                                  'StartDayButtonDateTimePicker');
                                               await DatePicker.showDatePicker(
                                                 context,
                                                 showTitleActions: true,
@@ -917,6 +929,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'FinalDayButtonON_TAP');
+                                              logFirebaseEvent(
+                                                  'FinalDayButtonDateTimePicker');
                                               await DatePicker.showDatePicker(
                                                 context,
                                                 showTitleActions: true,
@@ -1577,6 +1593,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                         children: [
                           InkWell(
                             onTap: () async {
+                              logFirebaseEvent('TextON_TAP');
+                              logFirebaseEvent('TextNavigateTo');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -1642,6 +1660,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent('ButtonON_TAP');
+                                          logFirebaseEvent('ButtonNavigateTo');
                                           await Navigator.push(
                                             context,
                                             MaterialPageRoute(

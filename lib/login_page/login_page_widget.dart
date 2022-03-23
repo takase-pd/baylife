@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../home_page/home_page_widget.dart';
+import '../main.dart';
 import '../post_page_with_login/post_page_with_login_widget.dart';
 import '../terms_page/terms_page_widget.dart';
 import '../my_page/my_page_widget.dart';
@@ -73,6 +74,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     emailController = TextEditingController();
     passwordController = TextEditingController();
     passwordVisibility = false;
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'LoginPage'});
   }
 
   @override
@@ -85,6 +87,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('IconON_TAP');
+            logFirebaseEvent('IconNavigateBack');
             Navigator.pop(context);
           },
           child: Icon(
@@ -267,6 +271,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
+                                  logFirebaseEvent('ButtonON_TAP');
+                                  logFirebaseEvent('ButtonAuth');
+
                                   final user = await signInWithEmail(
                                     context,
                                     emailController.text,
@@ -282,6 +289,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       AnalyticsEventType.login_user,
                                       _analyticsParam);
 
+                                  logFirebaseEvent('ButtonNavigateTo');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -330,6 +338,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent('ButtonON_TAP');
+                                        logFirebaseEvent('ButtonAuth');
                                         final user =
                                             await signInWithGoogle(context);
                                         if (user == null) {
@@ -342,6 +352,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             AnalyticsEventType.login_user,
                                             _analyticsParam);
 
+                                        logFirebaseEvent('ButtonNavigateTo');
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -400,6 +411,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
                                   onPressed: () async {
+                                    logFirebaseEvent('ButtonON_TAP');
+                                    logFirebaseEvent('ButtonAuth');
                                     final user = await signInWithApple(context);
                                     if (user == null) {
                                       return;
@@ -410,6 +423,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     Analytics.analyticsLogEvent(
                                         AnalyticsEventType.login_user,
                                         _analyticsParam);
+                                    logFirebaseEvent('ButtonNavigateTo');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -440,6 +454,88 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                 ),
                               ),
+                        Align(
+                          alignment: AlignmentDirectional(0, 0),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                            child: Container(
+                              width: 230,
+                              height: 44,
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(0, 0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        logFirebaseEvent('ButtonON_TAP');
+                                        logFirebaseEvent('ButtonAuth');
+                                        final user =
+                                            await signInWithFacebook(context);
+                                        if (user == null) {
+                                          return;
+                                        }
+                                        var _analyticsParam = {
+                                          'login_account_type': 'facebook'
+                                        };
+                                        Analytics.analyticsLogEvent(
+                                            AnalyticsEventType.login_user,
+                                            _analyticsParam);
+                                        logFirebaseEvent('ButtonNavigateTo');
+                                        await Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => NavBarPage(
+                                                initialPage: 'HomePage'),
+                                          ),
+                                          (r) => false,
+                                        );
+                                      },
+                                      text: 'Facebookアカウントでログイン',
+                                      icon: Icon(
+                                        Icons.add,
+                                        color: Colors.transparent,
+                                        size: 20,
+                                      ),
+                                      options: FFButtonOptions(
+                                        width: 230,
+                                        height: 44,
+                                        color: Colors.white,
+                                        textStyle: GoogleFonts.getFont(
+                                          'Roboto',
+                                          color: Color(0xFF1877F2),
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 17,
+                                        ),
+                                        elevation: 4,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 0,
+                                        ),
+                                        borderRadius: 12,
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.83, 0),
+                                    child: Container(
+                                      width: 22,
+                                      height: 22,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
+                                        'https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512',
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: Column(
@@ -450,6 +546,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
+                                    logFirebaseEvent('TextON_TAP');
+                                    logFirebaseEvent('TextNavigateTo');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -477,6 +575,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
+                                    logFirebaseEvent('TextON_TAP');
+                                    logFirebaseEvent('TextLaunchURL');
                                     await launchURL(
                                         'https://www.particledrawing.com/privacy');
                                   },
@@ -709,6 +809,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
+                                  logFirebaseEvent('ButtonON_TAP');
+                                  logFirebaseEvent('ButtonAuth');
                                   if (createPasswordController.text !=
                                       confirmPasswordController.text) {
                                     ScaffoldMessenger.of(context).showSnackBar(
@@ -742,6 +844,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   Analytics.analyticsLogEvent(
                                       AnalyticsEventType.create_account,
                                       _analyticsParam);
+
+                                  logFirebaseEvent('ButtonNavigateTo');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -790,6 +894,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent('ButtonON_TAP');
+                                        logFirebaseEvent('ButtonAuth');
                                         final user =
                                             await signInWithGoogle(context);
                                         if (user == null) {
@@ -801,6 +907,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         Analytics.analyticsLogEvent(
                                             AnalyticsEventType.create_account,
                                             _analyticsParam);
+                                        logFirebaseEvent('ButtonNavigateTo');
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -859,6 +966,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
                                   onPressed: () async {
+                                    logFirebaseEvent('ButtonON_TAP');
+                                    logFirebaseEvent('ButtonAuth');
                                     final user = await signInWithApple(context);
                                     if (user == null) {
                                       return;
@@ -869,6 +978,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     Analytics.analyticsLogEvent(
                                         AnalyticsEventType.create_account,
                                         _analyticsParam);
+                                    logFirebaseEvent('ButtonNavigateTo');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -899,6 +1009,88 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                 ),
                               ),
+                        Align(
+                          alignment: AlignmentDirectional(0, 0),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                            child: Container(
+                              width: 230,
+                              height: 44,
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(0, 0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        logFirebaseEvent('ButtonON_TAP');
+                                        logFirebaseEvent('ButtonAuth');
+                                        final user =
+                                            await signInWithFacebook(context);
+                                        if (user == null) {
+                                          return;
+                                        }
+                                        var _analyticsParam = {
+                                          'create_account_type': 'facebook'
+                                        };
+                                        Analytics.analyticsLogEvent(
+                                            AnalyticsEventType.create_account,
+                                            _analyticsParam);
+                                        logFirebaseEvent('ButtonNavigateTo');
+                                        await Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => NavBarPage(
+                                                initialPage: 'HomePage'),
+                                          ),
+                                          (r) => false,
+                                        );
+                                      },
+                                      text: 'Facebookアカウントで登録',
+                                      icon: Icon(
+                                        Icons.add,
+                                        color: Colors.transparent,
+                                        size: 20,
+                                      ),
+                                      options: FFButtonOptions(
+                                        width: 230,
+                                        height: 44,
+                                        color: Colors.white,
+                                        textStyle: GoogleFonts.getFont(
+                                          'Roboto',
+                                          color: Color(0xFF1877F2),
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 17,
+                                        ),
+                                        elevation: 4,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 0,
+                                        ),
+                                        borderRadius: 12,
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.83, 0),
+                                    child: Container(
+                                      width: 22,
+                                      height: 22,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
+                                        'https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512',
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: Column(
@@ -919,6 +1111,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
+                                    logFirebaseEvent('TextON_TAP');
+                                    logFirebaseEvent('TextNavigateTo');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -946,6 +1140,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
+                                    logFirebaseEvent('TextON_TAP');
+                                    logFirebaseEvent('TextLaunchURL');
                                     await launchURL(
                                         'https://www.particledrawing.com/privacy');
                                   },
