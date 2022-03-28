@@ -50,6 +50,7 @@ dependencies:
       ref: b65ffb049c9f1e2704adbeb1aa19c61693c946a5
       path: facebook_auth
   flutter_spinkit: 4.1.2+1
+  flutter_stripe: 2.1.0
   font_awesome_flutter: 8.11.0
   google_fonts: 2.1.0
   google_mobile_ads:
