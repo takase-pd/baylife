@@ -247,7 +247,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 8),
                                   child: FlutterFlowRadioButton(
-                                    options: ['Option 1', 'Option 2'],
+                                    options: ['Option 1', 'Option 2'].toList(),
                                     onChanged: (value) {
                                       setState(() => radioButtonValue = value);
                                     },

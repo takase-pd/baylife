@@ -222,3 +222,173 @@ class AddReviewCall {
     );
   }
 }
+
+class AddPlanCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String pid = '',
+    int quantity,
+    int unitAmount,
+    String date = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}",
+    "pid": "${pid}",
+    "quantity": "${quantity}",
+    "unit_amount": "${unitAmount}",
+    "date": "${date}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Add Plan',
+      apiUrl:
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/ec-addPlanV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+        'pid': pid,
+        'quantity': quantity,
+        'unit_amount': unitAmount,
+        'date': date,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
+
+class DeletePlanCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String pid = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}",
+    "pid": "${pid}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Delete Plan',
+      apiUrl:
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/ec-deletePlanV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+        'pid': pid,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
+
+class UpdatePlanCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String pid = '',
+    int quantity,
+    int unitAmount,
+    String date = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}",
+    "pid": "${pid}",
+    "quantity": "${quantity}",
+    "unit_amount": "${unitAmount}",
+    "date": "${date}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Update Plan',
+      apiUrl:
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/ec-updatePlanV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+        'pid': pid,
+        'quantity': quantity,
+        'unit_amount': unitAmount,
+        'date': date,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
+
+class GetCartCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Cart',
+      apiUrl:
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/ec-getCartV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
+
+class GetPlanCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String pid = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}",
+    "pid": "${pid}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Plan',
+      apiUrl:
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/ec-getCartV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+        'pid': pid,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}

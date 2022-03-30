@@ -10,6 +10,11 @@ import 'users_record.dart';
 import 'logoname_record.dart';
 import 'survey_record.dart';
 import 'alert_record.dart';
+import 'companies_record.dart';
+import 'shops_record.dart';
+import 'plans_record.dart';
+import 'cat_shop_record.dart';
+import 'customers_record.dart';
 
 import 'index.dart';
 
@@ -30,6 +35,11 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   LogonameRecord,
   SurveyRecord,
   AlertRecord,
+  CompaniesRecord,
+  ShopsRecord,
+  PlansRecord,
+  CatShopRecord,
+  CustomersRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

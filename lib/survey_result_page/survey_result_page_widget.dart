@@ -618,6 +618,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                               ),
                                               chipSpacing: 8,
                                               multiselect: false,
+                                              alignment: WrapAlignment.start,
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional

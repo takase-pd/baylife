@@ -14,6 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'survey_page/survey_page_widget.dart';
+import 'ecommerce_page/ecommerce_page_widget.dart';
 
 import 'backend/stripe/payment_manager.dart';
 
@@ -126,6 +127,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'SurveyPage': SurveyPageWidget(),
+      'EcommercePage': EcommercePageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -154,6 +156,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'アンケート',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.store_sharp,
+              size: 24,
+            ),
+            label: 'ショップ',
             tooltip: '',
           )
         ],
