@@ -16,6 +16,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'survey_page/survey_page_widget.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'ecommerce_page/ecommerce_page_widget.dart';
+import 'backend/stripe/payment_manager.dart';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
@@ -31,8 +33,6 @@ GetIt locator = GetIt.instance;
 void setupLocator() {
   locator.registerLazySingleton<VersionCheck>(() => VersionCheck());
 }
-
-import 'backend/stripe/payment_manager.dart';
 
 void main() async {
   setupLocator();
@@ -209,6 +209,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'SurveyPage': SurveyPageWidget(),
+      'EcommercePage': EcommercePageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -253,6 +254,14 @@ class _NavBarPageState extends State<NavBarPage> {
                     ),
                   ),
             label: 'アンケート',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.store_sharp,
+              size: 24,
+            ),
+            label: 'ショップ',
             tooltip: '',
           )
         ],

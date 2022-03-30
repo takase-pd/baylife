@@ -157,7 +157,10 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 0),
                     child: FlutterFlowChoiceChips(
                       initiallySelected: [amentitiesValue],
-                      options: [ChipData(''), ChipData('')],
+                      options: [
+                        ChipData('Hot Tub Access'),
+                        ChipData('No Access')
+                      ],
                       onChanged: (val) =>
                           setState(() => amentitiesValue = val.first),
                       selectedChipStyle: ChipStyle(
@@ -192,6 +195,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                       ),
                       chipSpacing: 12,
                       multiselect: false,
+                      alignment: WrapAlignment.start,
                     ),
                   ),
                   Padding(
@@ -202,7 +206,10 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                         Expanded(
                           child: FlutterFlowChoiceChips(
                             initiallySelected: [choiceChipsValue],
-                            options: [ChipData(''), ChipData('')],
+                            options: [
+                              ChipData('Breakfast'),
+                              ChipData('No Breakfast')
+                            ],
                             onChanged: (val) =>
                                 setState(() => choiceChipsValue = val.first),
                             selectedChipStyle: ChipStyle(
@@ -239,6 +246,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                             ),
                             chipSpacing: 12,
                             multiselect: false,
+                            alignment: WrapAlignment.start,
                           ),
                         ),
                       ],
