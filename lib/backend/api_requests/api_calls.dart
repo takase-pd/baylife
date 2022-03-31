@@ -253,6 +253,8 @@ class AddPlanCall {
     int quantity,
     int unitAmount,
     String date = '',
+    String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -282,6 +284,8 @@ class AddPlanCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }
@@ -290,6 +294,8 @@ class DeletePlanCall {
   static Future<ApiCallResponse> call({
     String uid = '',
     String pid = '',
+    String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -313,6 +319,8 @@ class DeletePlanCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }
@@ -324,6 +332,8 @@ class UpdatePlanCall {
     int quantity,
     int unitAmount,
     String date = '',
+    String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -353,6 +363,8 @@ class UpdatePlanCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }
@@ -360,6 +372,8 @@ class UpdatePlanCall {
 class GetCartCall {
   static Future<ApiCallResponse> call({
     String uid = '',
+    String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -381,6 +395,8 @@ class GetCartCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }
@@ -389,6 +405,8 @@ class GetPlanCall {
   static Future<ApiCallResponse> call({
     String uid = '',
     String pid = '',
+    String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -412,6 +430,8 @@ class GetPlanCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }
