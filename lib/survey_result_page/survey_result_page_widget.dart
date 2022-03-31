@@ -614,7 +614,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                       LoginPageWidget(
                                                     pagePath: LoginPagePath
                                                         .survey_result_page,
-                                                    surveyRef: widget.surveyRef,
+                                                    pageRef: widget.surveyRef,
                                                   ),
                                                 ),
                                               );

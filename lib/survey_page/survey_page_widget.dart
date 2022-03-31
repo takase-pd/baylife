@@ -295,7 +295,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                               LoginPageWidget(
                                                             pagePath: LoginPagePath
                                                                 .survey_post_page,
-                                                            surveyRef:
+                                                            pageRef:
                                                                 listViewSurveyRecord
                                                                     .reference,
                                                           ),
