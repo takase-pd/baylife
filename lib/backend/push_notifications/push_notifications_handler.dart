@@ -21,7 +21,6 @@ import '../../survey_result_page/survey_result_page_widget.dart';
 import '../../my_page/my_page_widget.dart';
 import '../../my_page_dev/my_page_dev_widget.dart';
 import '../../my_page_edit/my_page_edit_widget.dart';
-import '../../payment_page/payment_page_widget.dart';
 import '../../shop_page/shop_page_widget.dart';
 import '../../plan_page/plan_page_widget.dart';
 import '../../cart_page/cart_page_widget.dart';
@@ -142,7 +141,6 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'MyPageEdit': (data) async => MyPageEditWidget(
         surveyRef: getParameter(data, 'surveyRef'),
       ),
-  'PaymentPage': (data) async => PaymentPageWidget(),
   'EcommercePage': (data) async =>
       NavBarPage(initialPage: 'EcommercePageWidget'),
   'ShopPage': (data) async => ShopPageWidget(
