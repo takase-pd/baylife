@@ -12,6 +12,7 @@ import '../terms_page/terms_page_widget.dart';
 import '../my_page/my_page_widget.dart';
 import '../survey_post_page/survey_post_page_widget.dart';
 import '../survey_result_page/survey_result_page_widget.dart';
+import '../plan_page/plan_page_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -27,11 +28,13 @@ class LoginPageWidget extends StatefulWidget {
   const LoginPageWidget({
     Key key,
     this.pagePath,
-    this.surveyRef,
+    this.pageRef,
+    this.planQuantity,
   }) : super(key: key);
 
   final LoginPagePath pagePath;
-  final DocumentReference surveyRef;
+  final DocumentReference pageRef;
+  final int planQuantity;
 
   @override
   _LoginPageWidgetState createState() => _LoginPageWidgetState();
@@ -55,9 +58,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
       case LoginPagePath.post_page_with_login:
         return PostPageWithLoginWidget();
       case LoginPagePath.survey_post_page:
-        return SurveyPostPageWidget(surveyRef: widget.surveyRef);
+        return SurveyPostPageWidget(surveyRef: widget.pageRef);
       case LoginPagePath.survey_result_page:
-        return SurveyResultPageWidget(surveyRef: widget.surveyRef);
+        return SurveyResultPageWidget(surveyRef: widget.pageRef);
+      case LoginPagePath.plan_page:
+        return PlanPageWidget(
+            planRef: widget.pageRef, quantity: widget.planQuantity);
       default:
         return HomePageWidget();
     }
