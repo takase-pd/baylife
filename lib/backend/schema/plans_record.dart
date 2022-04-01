@@ -45,6 +45,9 @@ abstract class PlansRecord implements Built<PlansRecord, PlansRecordBuilder> {
   String get pid;
 
   @nullable
+  String get banner;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -56,7 +59,8 @@ abstract class PlansRecord implements Built<PlansRecord, PlansRecordBuilder> {
     ..activeQuick = false
     ..deliveryNormal = ''
     ..deliveryQuick = ''
-    ..pid = '';
+    ..pid = ''
+    ..banner = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('plans');
@@ -90,6 +94,7 @@ Map<String, dynamic> createPlansRecordData({
   String deliveryNormal,
   String deliveryQuick,
   String pid,
+  String banner,
 }) =>
     serializers.toFirestore(
         PlansRecord.serializer,
@@ -103,4 +108,5 @@ Map<String, dynamic> createPlansRecordData({
           ..activeQuick = activeQuick
           ..deliveryNormal = deliveryNormal
           ..deliveryQuick = deliveryQuick
-          ..pid = pid));
+          ..pid = pid
+          ..banner = banner));

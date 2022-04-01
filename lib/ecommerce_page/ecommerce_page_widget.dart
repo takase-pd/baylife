@@ -110,7 +110,9 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ShopPageWidget(),
+                                  builder: (context) => ShopPageWidget(
+                                    shopRef: listViewShopsRecord.reference,
+                                  ),
                                 ),
                               );
                             },

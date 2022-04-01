@@ -79,7 +79,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                             Align(
                               alignment: AlignmentDirectional(0, 0),
                               child: Image.network(
-                                'https://picsum.photos/seed/538/600',
+                                columnPlansRecord.banner,
                                 width: MediaQuery.of(context).size.width,
                                 fit: BoxFit.cover,
                               ),
@@ -208,7 +208,12 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               children: [
                                 Text(
                                   '配送について',
-                                  style: FlutterFlowTheme.of(context).subtitle1,
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                 ),
                               ],
                             ),
@@ -221,7 +226,12 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               children: [
                                 Text(
                                   '通常配送',
-                                  style: FlutterFlowTheme.of(context).subtitle2,
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                 ),
                               ],
                             ),
@@ -232,9 +242,12 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Text(
-                                  columnPlansRecord.deliveryNormal,
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                Expanded(
+                                  child: Text(
+                                    columnPlansRecord.deliveryNormal,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
+                                  ),
                                 ),
                               ],
                             ),
@@ -249,8 +262,12 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 children: [
                                   Text(
                                     'お急ぎ配送',
-                                    style:
-                                        FlutterFlowTheme.of(context).subtitle2,
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                   ),
                                 ],
                               ),
@@ -263,10 +280,12 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    columnPlansRecord.deliveryQuick,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
+                                  Expanded(
+                                    child: Text(
+                                      columnPlansRecord.deliveryQuick,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -295,28 +314,35 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               ),
                               child: FlutterFlowCountController(
                                 decrementIconBuilder: (enabled) => FaIcon(
-                                  FontAwesomeIcons.minus,
+                                  FontAwesomeIcons.minusCircle,
                                   color: enabled
                                       ? FlutterFlowTheme.of(context)
                                           .secondaryColor
-                                      : Color(0xFFEEEEEE),
-                                  size: 16,
+                                      : FlutterFlowTheme.of(context).tDark,
+                                  size: 32,
                                 ),
                                 incrementIconBuilder: (enabled) => FaIcon(
-                                  FontAwesomeIcons.plus,
+                                  FontAwesomeIcons.plusCircle,
                                   color: enabled
                                       ? FlutterFlowTheme.of(context).pDark
-                                      : Color(0xFFEEEEEE),
-                                  size: 16,
+                                      : FlutterFlowTheme.of(context).tDark,
+                                  size: 32,
                                 ),
                                 countBuilder: (count) => Text(
                                   count.toString(),
-                                  style: FlutterFlowTheme.of(context).subtitle2,
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                 ),
                                 count: countControllerValue ??= 0,
                                 updateCount: (count) => setState(
                                     () => countControllerValue = count),
                                 stepSize: 1,
+                                minimum: 0,
                                 maximum: 5,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     16, 0, 16, 0),
@@ -345,6 +371,13 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 FFButtonWidget(
                                   onPressed: () async {
                                     logFirebaseEvent('Button-ON_TAP');
+                                    logFirebaseEvent('Button-Navigate-To');
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => LoginPageWidget(),
+                                      ),
+                                    );
                                     logFirebaseEvent('Button-Backend-Call');
                                     await AddPlanCall.call(
                                       uid: currentUserUid,
@@ -353,13 +386,6 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                       unitAmount: columnPlansRecord.unitAmount,
                                       date: dateTimeFormat(
                                           'yMMMd', getCurrentTimestamp),
-                                    );
-                                    logFirebaseEvent('Button-Navigate-To');
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => LoginPageWidget(),
-                                      ),
                                     );
                                   },
                                   text: 'カートに追加',
@@ -372,7 +398,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                         .subtitle2
                                         .override(
                                           fontFamily: 'Open Sans',
-                                          color: Colors.white,
+                                          color: FlutterFlowTheme.of(context)
+                                              .textLight,
                                         ),
                                     borderSide: BorderSide(
                                       color: Colors.transparent,
@@ -409,11 +436,18 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                         content: Text(
                                           'お急ぎ配達で注文します。',
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyText1,
+                                              .subtitle2
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .textLight,
+                                              ),
                                         ),
                                         duration: Duration(milliseconds: 10000),
                                         backgroundColor:
-                                            FlutterFlowTheme.of(context).tLight,
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryColor,
                                         action: SnackBarAction(
                                           label: '注文を確定する',
                                           textColor: Color(0x00000000),
@@ -430,6 +464,9 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                                   '${columnPlansRecord.name}お急ぎ配達',
                                               allowGooglePay: true,
                                               allowApplePay: false,
+                                              buttonColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
                                             );
                                             if (paymentResponse.paymentId ==
                                                 null) {
@@ -462,7 +499,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                         .subtitle2
                                         .override(
                                           fontFamily: 'Open Sans',
-                                          color: Colors.white,
+                                          color: FlutterFlowTheme.of(context)
+                                              .textLight,
                                         ),
                                     borderSide: BorderSide(
                                       color: Colors.transparent,

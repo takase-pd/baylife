@@ -236,8 +236,8 @@ class AddPlanCall {
   "data": {
     "uid": "${uid}",
     "pid": "${pid}",
-    "quantity": "${quantity}",
-    "unit_amount": "${unitAmount}",
+    "quantity": ${quantity},
+    "unit_amount": ${unitAmount},
     "date": "${date}"
   }
 }''';
@@ -307,8 +307,8 @@ class UpdatePlanCall {
   "data": {
     "uid": "${uid}",
     "pid": "${pid}",
-    "quantity": "${quantity}",
-    "unit_amount": "${unitAmount}",
+    "quantity": ${quantity},
+    "unit_amount": ${unitAmount},
     "date": "${date}"
   }
 }''';
@@ -377,7 +377,7 @@ class GetPlanCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Plan',
       apiUrl:
-          'https://asia-northeast1-baylifedev.cloudfunctions.net/ec-getCartV0',
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/ec-getPlanV0',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
