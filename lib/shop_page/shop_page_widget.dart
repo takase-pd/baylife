@@ -80,8 +80,8 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                               alignment: AlignmentDirectional(-0.95, -0.55),
                               child: InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('Card-ON_TAP');
-                                  logFirebaseEvent('Card-Navigate-Back');
+                                  logFirebaseEvent('CardON_TAP');
+                                  logFirebaseEvent('CardNavigateBack');
                                   Navigator.pop(context);
                                 },
                                 child: Card(
@@ -108,8 +108,8 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                               alignment: AlignmentDirectional(0.95, -0.55),
                               child: InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('Card-ON_TAP');
-                                  logFirebaseEvent('Card-Navigate-To');
+                                  logFirebaseEvent('CardON_TAP');
+                                  logFirebaseEvent('CardNavigateTo');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -248,7 +248,9 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                           final wrapPlansRecord =
                               wrapPlansRecordList[wrapIndex];
                           return Container(
-                            width: MediaQuery.of(context).size.width * 0.44,
+                            width: wrapPlansRecordList.length == 1
+                                ? MediaQuery.of(context).size.width * 0.88
+                                : MediaQuery.of(context).size.width * 0.44,
                             height: MediaQuery.of(context).size.height * 0.24,
                             decoration: BoxDecoration(),
                             child: Visibility(
@@ -267,8 +269,8 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                     visible: wrapPlansRecord.active ?? true,
                                     child: InkWell(
                                       onTap: () async {
-                                        logFirebaseEvent('Column-ON_TAP');
-                                        logFirebaseEvent('Column-Navigate-To');
+                                        logFirebaseEvent('ColumnON_TAP');
+                                        logFirebaseEvent('ColumnNavigateTo');
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(

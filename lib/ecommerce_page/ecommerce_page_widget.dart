@@ -42,8 +42,8 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          logFirebaseEvent('FloatingActionButton-ON_TAP');
-          logFirebaseEvent('FloatingActionButton-Navigate-To');
+          logFirebaseEvent('FloatingActionButtonON_TAP');
+          logFirebaseEvent('FloatingActionButtonNavigateTo');
           await Navigator.push(
             context,
             MaterialPageRoute(
@@ -105,12 +105,14 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                           child: InkWell(
                             onTap: () async {
-                              logFirebaseEvent('Card-ON_TAP');
-                              logFirebaseEvent('Card-Navigate-To');
+                              logFirebaseEvent('CardON_TAP');
+                              logFirebaseEvent('CardNavigateTo');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ShopPageWidget(),
+                                  builder: (context) => ShopPageWidget(
+                                    shopRef: listViewShopsRecord.reference,
+                                  ),
                                 ),
                               );
                             },
