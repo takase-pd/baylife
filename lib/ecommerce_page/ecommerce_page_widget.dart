@@ -129,7 +129,7 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                                   Image.network(
                                     listViewShopsRecord.banner,
                                     width: double.infinity,
-                                    height: 100,
+                                    height: 160,
                                     fit: BoxFit.cover,
                                   ),
                                   Padding(
