@@ -127,7 +127,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 },
                                 child: Card(
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  color: Color(0xFFF5F5F5),
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
                                   elevation: 3,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(100),
@@ -151,12 +152,23 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent('CardON_TAP');
                                   logFirebaseEvent('CardNavigateTo');
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => CartPageWidget(),
-                                    ),
-                                  );
+                                  currentUser.loggedIn
+                                      ? await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                CartPageWidget(),
+                                          ),
+                                        )
+                                      : await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LoginPageWidget(
+                                                    pagePath:
+                                                        LoginPagePath.cart_page,
+                                                  )),
+                                        );
                                 },
                                 child: Card(
                                   clipBehavior: Clip.antiAliasWithSaveLayer,

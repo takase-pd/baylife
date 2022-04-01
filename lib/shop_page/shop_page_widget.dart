@@ -2,11 +2,15 @@ import '../backend/backend.dart';
 import '../cart_page/cart_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../login_page/login_page_widget.dart';
 import '../plan_page/plan_page_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../auth/firebase_user_provider.dart';
+import '../login_page/login_page_path.dart';
 
 class ShopPageWidget extends StatefulWidget {
   const ShopPageWidget({
@@ -111,12 +115,23 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent('CardON_TAP');
                                   logFirebaseEvent('CardNavigateTo');
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => CartPageWidget(),
-                                    ),
-                                  );
+                                  currentUser.loggedIn
+                                      ? await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                CartPageWidget(),
+                                          ),
+                                        )
+                                      : await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LoginPageWidget(
+                                                    pagePath:
+                                                        LoginPagePath.cart_page,
+                                                  )),
+                                        );
                                 },
                                 child: Card(
                                   clipBehavior: Clip.antiAliasWithSaveLayer,

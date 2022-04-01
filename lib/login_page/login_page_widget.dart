@@ -1,3 +1,5 @@
+import 'package:bay_life/cart_page/cart_page_widget.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
@@ -64,6 +66,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
       case LoginPagePath.plan_page:
         return PlanPageWidget(
             planRef: widget.pageRef, quantity: widget.planQuantity);
+      case LoginPagePath.cart_page:
+        return CartPageWidget();
       default:
         return HomePageWidget();
     }
