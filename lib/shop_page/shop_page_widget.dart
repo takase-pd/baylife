@@ -86,7 +86,8 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                 },
                                 child: Card(
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  color: Color(0xFFF5F5F5),
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
                                   elevation: 3,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(100),
