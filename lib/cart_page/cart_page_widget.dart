@@ -1,3 +1,5 @@
+import '../auth/auth_util.dart';
+import '../backend/stripe/payment_manager.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -15,6 +17,7 @@ class CartPageWidget extends StatefulWidget {
 }
 
 class _CartPageWidgetState extends State<CartPageWidget> {
+  String paymentId;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -181,8 +184,32 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        logFirebaseEvent('Button-ON_TAP');
+                        logFirebaseEvent('Button-Stripe-Payment');
+                        final paymentResponse = await processStripePayment(
+                          amount: 1000,
+                          currency: 'JPY',
+                          customerEmail: currentUserEmail,
+                          customerName: currentUserDisplayName,
+                          description: 'ご注文の品',
+                          allowGooglePay: true,
+                          allowApplePay: false,
+                          buttonColor:
+                              FlutterFlowTheme.of(context).primaryColor,
+                        );
+                        if (paymentResponse.paymentId == null) {
+                          if (paymentResponse.errorMessage != null) {
+                            showSnackbar(
+                              context,
+                              'Error: ${paymentResponse.errorMessage}',
+                            );
+                          }
+                          return;
+                        }
+                        paymentId = paymentResponse.paymentId;
+
+                        setState(() {});
                       },
                       text: '注文する',
                       options: FFButtonOptions(
