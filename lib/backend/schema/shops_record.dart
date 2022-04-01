@@ -42,6 +42,9 @@ abstract class ShopsRecord implements Built<ShopsRecord, ShopsRecordBuilder> {
   bool get display;
 
   @nullable
+  String get banner;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -53,7 +56,8 @@ abstract class ShopsRecord implements Built<ShopsRecord, ShopsRecordBuilder> {
     ..twitter = ''
     ..web = ''
     ..shopName = ''
-    ..display = false;
+    ..display = false
+    ..banner = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('shops');
@@ -87,6 +91,7 @@ Map<String, dynamic> createShopsRecordData({
   DocumentReference catMain,
   String shopName,
   bool display,
+  String banner,
 }) =>
     serializers.toFirestore(
         ShopsRecord.serializer,
@@ -100,4 +105,5 @@ Map<String, dynamic> createShopsRecordData({
           ..web = web
           ..catMain = catMain
           ..shopName = shopName
-          ..display = display));
+          ..display = display
+          ..banner = banner));

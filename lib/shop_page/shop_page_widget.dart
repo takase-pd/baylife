@@ -71,7 +71,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                             Align(
                               alignment: AlignmentDirectional(0, 0),
                               child: Image.network(
-                                'https://picsum.photos/seed/538/600',
+                                columnShopsRecord.banner,
                                 width: MediaQuery.of(context).size.width,
                                 fit: BoxFit.cover,
                               ),
@@ -288,7 +288,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Image.network(
-                                            'https://picsum.photos/seed/538/600',
+                                            wrapPlansRecord.banner,
                                             width: double.infinity,
                                             height: MediaQuery.of(context)
                                                     .size

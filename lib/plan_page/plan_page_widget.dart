@@ -112,7 +112,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                             Align(
                               alignment: AlignmentDirectional(0, 0),
                               child: Image.network(
-                                'https://i.picsum.photos/id/163/2000/1333.jpg?hmac=htdHeSJwlYOxS8b0TTpz2s8tD_QDlmsd3JHYa_HGrg8',
+                                columnPlansRecord.banner,
                                 width: MediaQuery.of(context).size.width,
                                 fit: BoxFit.cover,
                               ),
@@ -275,9 +275,12 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Text(
-                                  columnPlansRecord.deliveryNormal,
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                Expanded(
+                                  child: Text(
+                                    columnPlansRecord.deliveryNormal,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
+                                  ),
                                 ),
                               ],
                             ),
