@@ -127,7 +127,7 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Image.network(
-                                    'https://picsum.photos/seed/538/600',
+                                    listViewShopsRecord.banner,
                                     width: double.infinity,
                                     height: 100,
                                     fit: BoxFit.cover,
