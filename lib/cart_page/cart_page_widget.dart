@@ -1,6 +1,7 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../shop_page/shop_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -183,7 +184,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                       onPressed: () {
                         print('Button pressed ...');
                       },
-                      text: '注文を確定する',
+                      text: '注文する',
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 64,
@@ -202,8 +203,15 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                     ),
                   ),
                   FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      logFirebaseEvent('ButtonON_TAP');
+                      logFirebaseEvent('ButtonNavigateTo');
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ShopPageWidget(),
+                        ),
+                      );
                     },
                     text: '商品を追加する',
                     options: FFButtonOptions(
