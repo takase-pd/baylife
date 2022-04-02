@@ -94,7 +94,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 },
                                 child: Card(
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  color: Color(0xFFF5F5F5),
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
                                   elevation: 3,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(100),
@@ -387,6 +388,14 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                       date: dateTimeFormat(
                                           'yMMMd', getCurrentTimestamp),
                                     );
+                                    logFirebaseEvent('Button-Backend-Call');
+
+                                    final cartCreateData = createCartRecordData(
+                                      uid: currentUserUid,
+                                    );
+                                    await CartRecord.collection
+                                        .doc()
+                                        .set(cartCreateData);
                                   },
                                   text: 'カートに追加',
                                   options: FFButtonOptions(
