@@ -4,7 +4,8 @@ import 'package:bay_life/ecommerce_page/ecommerce_page_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/stripe/payment_manager.dart';
-import '../components/shipping_detail_widget.dart';
+import '../components/billing_details_widget.dart';
+import '../components/shipping_details_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -29,7 +30,6 @@ class CartPageWidget extends StatefulWidget {
 
 class _CartPageWidgetState extends State<CartPageWidget> {
   String paymentId;
-  bool checkboxListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   List cart;
   int subtoral = 0;
@@ -407,7 +407,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                         height:
                                             MediaQuery.of(context).size.height *
                                                 0.8,
-                                        child: ShippingDetailWidget(
+                                        child: ShippingDetailsWidget(
                                             shipping: shipping),
                                       ),
                                     );
@@ -434,30 +434,6 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                   width: 1,
                                 ),
                                 borderRadius: 12,
-                              ),
-                            ),
-                          ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Theme(
-                              data: ThemeData(
-                                unselectedWidgetColor: Color(0xFF95A1AC),
-                              ),
-                              child: CheckboxListTile(
-                                value: checkboxListTileValue ??= true,
-                                onChanged: (newValue) => setState(
-                                    () => checkboxListTileValue = newValue),
-                                title: Text(
-                                  '請求先は配送住所と同じにする',
-                                  style: FlutterFlowTheme.of(context).bodyText1,
-                                ),
-                                tileColor:
-                                    FlutterFlowTheme.of(context).tertiaryColor,
-                                activeColor:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                dense: true,
-                                controlAffinity:
-                                    ListTileControlAffinity.trailing,
                               ),
                             ),
                           ),
