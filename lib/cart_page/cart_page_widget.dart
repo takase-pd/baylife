@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/stripe/payment_manager.dart';
+import '../components/shipping_detail_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -19,6 +20,7 @@ class CartPageWidget extends StatefulWidget {
 
 class _CartPageWidgetState extends State<CartPageWidget> {
   String paymentId;
+  bool checkboxListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -39,7 +41,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
+              padding: EdgeInsetsDirectional.fromSTEB(24, 32, 24, 24),
               child: Text(
                 '注文の確認',
                 style: FlutterFlowTheme.of(context).title1,
@@ -94,164 +96,186 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).background,
                     ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '商品名',
-                                style: FlutterFlowTheme.of(context).title3,
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 16, 0),
-                                    child: Text(
-                                      '点数',
-                                      style: FlutterFlowTheme.of(context)
-                                          .subtitle2,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Image.network(
+                          'https://picsum.photos/seed/963/600',
+                          width: 64,
+                          height: 64,
+                          fit: BoxFit.cover,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '商品名',
+                                      style:
+                                          FlutterFlowTheme.of(context).title3,
                                     ),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 2, 0),
-                                        child: Text(
-                                          '￥',
-                                          style: FlutterFlowTheme.of(context)
-                                              .subtitle2,
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Text(
+                                            '点数',
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle2,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        '単価',
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle2,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
-                                child: Text(
-                                  '￥',
-                                  style: FlutterFlowTheme.of(context).subtitle1,
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 2, 0),
+                                              child: Text(
+                                                '￥',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2,
+                                              ),
+                                            ),
+                                            Text(
+                                              '単価',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Text(
-                                '金額',
-                                style: FlutterFlowTheme.of(context).subtitle1,
-                              ),
-                            ],
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 4, 0),
+                                      child: Text(
+                                        '￥',
+                                        style: FlutterFlowTheme.of(context)
+                                            .subtitle1,
+                                      ),
+                                    ),
+                                    Text(
+                                      '金額',
+                                      style: FlutterFlowTheme.of(context)
+                                          .subtitle1,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                          child: Text(
-                            'お支払い',
-                            style: FlutterFlowTheme.of(context).title2,
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            child: Text(
+                              'お支払い',
+                              style: FlutterFlowTheme.of(context).title2,
+                            ),
                           ),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                        child: Text(
+                          '合計金額',
+                          style: FlutterFlowTheme.of(context).title3,
                         ),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                      child: Text(
-                        '合計金額',
-                        style: FlutterFlowTheme.of(context).title3,
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '商品金額',
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                          ),
-                          Text(
-                            '1000',
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                          ),
-                        ],
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '商品金額',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                            Text(
+                              '1000',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '配送金額',
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                          ),
-                          Text(
-                            '1000',
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                          ),
-                        ],
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '配送金額',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                            Text(
+                              '1000',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '合計',
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                          ),
-                          Text(
-                            '1000',
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                          ),
-                        ],
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '合計',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                            Text(
+                              '1000',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Text(
-                      '＊お支払い方法は、Stripeによる決済をご利用ください。',
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                  ],
+                      Text(
+                        '＊お支払い方法は、Stripeによる決済をご利用ください。',
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -260,6 +284,99 @@ class _CartPageWidgetState extends State<CartPageWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent('Button-ON_TAP');
+                        logFirebaseEvent('Button-Bottom-Sheet');
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) {
+                            return Padding(
+                              padding: MediaQuery.of(context).viewInsets,
+                              child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.8,
+                                child: ShippingDetailWidget(),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      text: '配送先住所',
+                      options: FFButtonOptions(
+                        width: double.infinity,
+                        height: 48,
+                        color: FlutterFlowTheme.of(context).pDark,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.of(context).textLight,
+                                ),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 12,
+                      ),
+                    ),
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Theme(
+                      data: ThemeData(
+                        unselectedWidgetColor: Color(0xFF95A1AC),
+                      ),
+                      child: CheckboxListTile(
+                        value: checkboxListTileValue ??= true,
+                        onChanged: (newValue) =>
+                            setState(() => checkboxListTileValue = newValue),
+                        title: Text(
+                          '請求先は配送住所と同じにする',
+                          style: FlutterFlowTheme.of(context).bodyText1,
+                        ),
+                        tileColor: FlutterFlowTheme.of(context).tertiaryColor,
+                        activeColor: FlutterFlowTheme.of(context).primaryColor,
+                        dense: true,
+                        controlAffinity: ListTileControlAffinity.trailing,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent('Button-ON_TAP');
+                        logFirebaseEvent('Button-Navigate-To');
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                NavBarPage(initialPage: 'EcommercePage'),
+                          ),
+                        );
+                      },
+                      text: '請求先',
+                      options: FFButtonOptions(
+                        width: double.infinity,
+                        height: 48,
+                        color: FlutterFlowTheme.of(context).pDark,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.of(context).textLight,
+                                ),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 12,
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                     child: FFButtonWidget(
@@ -325,12 +442,11 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                       width: double.infinity,
                       height: 48,
                       color: FlutterFlowTheme.of(context).sLight,
-                      textStyle: FlutterFlowTheme.of(context)
-                          .subtitle2
-                          .override(
-                            fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.of(context).tertiaryColor,
-                          ),
+                      textStyle:
+                          FlutterFlowTheme.of(context).subtitle2.override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textLight,
+                              ),
                       borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1,

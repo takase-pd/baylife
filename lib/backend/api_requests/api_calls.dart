@@ -230,6 +230,7 @@ class AddPlanCall {
     int quantity,
     int unitAmount,
     String date = '',
+    String name = '',
   }) {
     final body = '''
 {
@@ -238,6 +239,7 @@ class AddPlanCall {
     "pid": "${pid}",
     "quantity": ${quantity},
     "unit_amount": ${unitAmount},
+    "name": "${name}",
     "date": "${date}"
   }
 }''';
@@ -255,6 +257,7 @@ class AddPlanCall {
         'quantity': quantity,
         'unit_amount': unitAmount,
         'date': date,
+        'name': name,
       },
       body: body,
       bodyType: BodyType.JSON,
