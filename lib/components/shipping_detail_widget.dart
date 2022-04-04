@@ -19,6 +19,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
   TextEditingController line1Controller;
   TextEditingController line2Controller;
   TextEditingController nameController;
+  TextEditingController phoneController;
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -30,6 +31,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
     line1Controller = TextEditingController(text: '打瀬');
     line2Controller = TextEditingController();
     nameController = TextEditingController();
+    phoneController = TextEditingController();
   }
 
   @override
@@ -541,6 +543,85 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       if (val.length < 1) {
                                         return 'Requires at least 1 characters.';
                                       }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '連絡先',
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiaryColor,
+                                      ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(),
+                                  child: TextFormField(
+                                    controller: phoneController,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: '配送先の電話番号',
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .stripeBox,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              4, 0, 0, 0),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
+                                        ),
+                                    keyboardType: TextInputType.phone,
+                                    validator: (val) {
+                                      if (val.isEmpty) {
+                                        return '電話番号を入力してください（ハイフンなし）。';
+                                      }
+
                                       return null;
                                     },
                                   ),
