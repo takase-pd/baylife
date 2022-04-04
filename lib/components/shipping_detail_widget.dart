@@ -95,7 +95,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(4),
                                     ),
                                     child: TextFormField(
                                       controller: postalCodeController,
@@ -114,7 +114,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
-                                                .stripeBorder,
+                                                .stripeSelected,
                                             width: 2,
                                           ),
                                           borderRadius:
@@ -173,7 +173,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(4),
                                   ),
                                   child: TextFormField(
                                     controller: stateController,
@@ -191,7 +191,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeBorder,
+                                              .stripeSelected,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(4),
@@ -257,7 +257,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(4),
                                   ),
                                   child: TextFormField(
                                     controller: cityController,
@@ -275,7 +275,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeBorder,
+                                              .stripeSelected,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(4),
@@ -341,7 +341,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(4),
                                   ),
                                   child: TextFormField(
                                     controller: line1Controller,
@@ -359,7 +359,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeBorder,
+                                              .stripeSelected,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(4),
@@ -437,7 +437,23 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
                                               .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(4),
@@ -516,6 +532,22 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
                                               .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(4),
