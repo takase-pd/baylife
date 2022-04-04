@@ -283,6 +283,7 @@ class AddPlanCall {
         'unit_amount': unitAmount,
         'name': name,
         'date': date,
+        'name': name,
       },
       body: body,
       bodyType: BodyType.JSON,

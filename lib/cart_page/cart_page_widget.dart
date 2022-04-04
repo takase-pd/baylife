@@ -3,11 +3,13 @@ import 'package:bay_life/ecommerce_page/ecommerce_page_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/stripe/payment_manager.dart';
+import '../components/shipping_detail_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login_page/login_page_widget.dart';
 import '../shop_page/shop_page_widget.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -26,6 +28,7 @@ class CartPageWidget extends StatefulWidget {
 
 class _CartPageWidgetState extends State<CartPageWidget> {
   String paymentId;
+  bool checkboxListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   List cart;
   int subtoral = 0;
