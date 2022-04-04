@@ -1,3 +1,5 @@
+import 'package:bay_life/custom_code/widgets/ecommerce.dart';
+
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -6,7 +8,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ShippingDetailWidget extends StatefulWidget {
-  const ShippingDetailWidget({Key key}) : super(key: key);
+  const ShippingDetailWidget({
+    Key key,
+    this.shipping,
+  }) : super(key: key);
+
+  final ShippingDetails shipping;
 
   @override
   _ShippingDetailWidgetState createState() => _ShippingDetailWidgetState();
@@ -22,9 +29,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
   TextEditingController phoneController;
   final formKey = GlobalKey<FormState>();
 
-  @override
-  void initState() {
-    super.initState();
+  void _resetShipping() {
     cityController = TextEditingController(text: '千葉市美浜区');
     postalCodeController = TextEditingController(text: '2610013');
     stateController = TextEditingController(text: '千葉県');
@@ -32,6 +37,24 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
     line2Controller = TextEditingController();
     nameController = TextEditingController();
     phoneController = TextEditingController();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    cityController =
+        TextEditingController(text: widget.shipping?.address?.city ?? '千葉市美浜区');
+    postalCodeController = TextEditingController(
+        text: widget.shipping?.address?.postalCode ?? '2610013');
+    stateController =
+        TextEditingController(text: widget.shipping?.address?.state ?? '千葉県');
+    line1Controller =
+        TextEditingController(text: widget.shipping?.address?.line1 ?? '打瀬');
+    line2Controller =
+        TextEditingController(text: widget.shipping?.address?.line2);
+    nameController = TextEditingController(text: widget.shipping?.name);
+    phoneController = TextEditingController(text: widget.shipping?.phone);
   }
 
   @override
@@ -127,7 +150,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                             .stripeBox,
                                         contentPadding:
                                             EdgeInsetsDirectional.fromSTEB(
-                                                4, 0, 0, 0),
+                                                8, 0, 0, 0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
@@ -203,7 +226,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                           .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              4, 0, 0, 0),
+                                              8, 0, 0, 0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
@@ -287,7 +310,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                           .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              4, 0, 0, 0),
+                                              8, 0, 0, 0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
@@ -371,7 +394,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                           .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              4, 0, 0, 0),
+                                              8, 0, 0, 0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
@@ -419,7 +442,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       .override(
                                         fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
-                                            .tertiaryColor,
+                                            .textLight,
                                       ),
                                 ),
                                 Container(
@@ -465,14 +488,14 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                           .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              4, 0, 0, 0),
+                                              8, 0, 0, 0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
+                                              .textLight,
                                         ),
                                     validator: (val) {
                                       if (val.isEmpty) {
@@ -512,7 +535,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       .override(
                                         fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
-                                            .tertiaryColor,
+                                            .textLight,
                                       ),
                                 ),
                                 Container(
@@ -521,7 +544,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                     controller: nameController,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      hintText: '配送先の名前',
+                                      hintText: '（配送先の名前）',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
@@ -554,19 +577,26 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                         ),
                                         borderRadius: BorderRadius.circular(4),
                                       ),
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .sLight,
+                                          ),
                                       filled: true,
                                       fillColor: FlutterFlowTheme.of(context)
                                           .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              4, 0, 0, 0),
+                                              8, 0, 0, 0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
+                                              .textLight,
                                         ),
                                     validator: (val) {
                                       if (val.isEmpty) {
@@ -617,7 +647,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                     controller: phoneController,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      hintText: '配送先の電話番号',
+                                      hintText: '（配送先の電話番号）',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
@@ -634,12 +664,35 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                         ),
                                         borderRadius: BorderRadius.circular(4),
                                       ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .sLight,
+                                          ),
                                       filled: true,
                                       fillColor: FlutterFlowTheme.of(context)
                                           .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              4, 0, 0, 0),
+                                              8, 0, 0, 0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
@@ -670,12 +723,24 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 18, 0, 16),
                   child: FFButtonWidget(
                     onPressed: () {
-                      print('Button pressed ...');
+                      ShippingDetails shipping = new ShippingDetails(
+                        address: new Address(
+                          line2: line2Controller.text,
+                          line1: line1Controller.text,
+                          city: cityController.text,
+                          state: stateController.text,
+                          country: 'Japan',
+                          postalCode: postalCodeController.text,
+                        ),
+                        name: nameController.text,
+                        phone: phoneController.text,
+                      );
+                      Navigator.of(context).pop(shipping);
                     },
-                    text: '確定',
+                    text: '配送先を確定する',
                     options: FFButtonOptions(
                       width: double.infinity,
-                      height: 40,
+                      height: 56,
                       color: FlutterFlowTheme.of(context).primaryColor,
                       textStyle:
                           FlutterFlowTheme.of(context).subtitle2.override(
@@ -694,9 +759,9 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                   child: FFButtonWidget(
                     onPressed: () {
-                      print('Button pressed ...');
+                      _resetShipping();
                     },
-                    text: 'キャンセル',
+                    text: 'リセットする',
                     options: FFButtonOptions(
                       width: double.infinity,
                       height: 40,
