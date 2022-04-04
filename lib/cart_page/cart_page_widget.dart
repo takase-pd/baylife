@@ -1,3 +1,4 @@
+import 'package:bay_life/custom_code/widgets/ecommerce.dart';
 import 'package:bay_life/ecommerce_page/ecommerce_page_widget.dart';
 
 import '../auth/auth_util.dart';
@@ -33,6 +34,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
   List cart;
   int subtoral = 0;
   int shippingAmount = 500;
+  ShippingDetails shipping;
 
   Future<List> _getCart() async {
     subtoral = 0;
@@ -159,82 +161,102 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                     },
                                   ),
                                 ],
-                                child: Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).background,
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8, 8, 8, 8),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              _name,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .title3,
-                                            ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 16, 0),
-                                                  child: Text(
-                                                    formatNumber(
-                                                      _unitAmount,
-                                                      formatType:
-                                                          FormatType.custom,
-                                                      currency: '￥',
-                                                      format: '#,##0',
-                                                      locale: 'ja_JP',
-                                                    ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Image.network(
+                                      'https://picsum.photos/seed/963/600',
+                                      width: 64,
+                                      height: 64,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .background,
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8, 8, 8, 8),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    _name,
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .subtitle2,
+                                                        .title3,
                                                   ),
-                                                ),
-                                                Text(
-                                                  formatNumber(
-                                                    _quantity,
-                                                    formatType:
-                                                        FormatType.custom,
-                                                    currency: '数量 ',
-                                                    format: '#,##0',
-                                                    locale: 'ja_JP',
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(0, 0,
+                                                                    16, 0),
+                                                        child: Text(
+                                                          formatNumber(
+                                                            _unitAmount,
+                                                            formatType:
+                                                                FormatType
+                                                                    .custom,
+                                                            currency: '￥',
+                                                            format: '#,##0',
+                                                            locale: 'ja_JP',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .subtitle2,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        formatNumber(
+                                                          _quantity,
+                                                          formatType:
+                                                              FormatType.custom,
+                                                          currency: '数量 ',
+                                                          format: '#,##0',
+                                                          locale: 'ja_JP',
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2,
+                                                      ),
+                                                    ],
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .subtitle2,
+                                                ],
+                                              ),
+                                              Text(
+                                                formatNumber(
+                                                  _sum,
+                                                  formatType: FormatType.custom,
+                                                  currency: '￥',
+                                                  format: '#,##0',
+                                                  locale: 'ja_JP',
                                                 ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          formatNumber(
-                                            _sum,
-                                            formatType: FormatType.custom,
-                                            currency: '￥',
-                                            format: '#,##0',
-                                            locale: 'ja_JP',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle1,
+                                              ),
+                                            ],
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .subtitle1,
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ),
                             );
@@ -365,6 +387,115 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent('ButtonON_TAP');
+                                logFirebaseEvent('ButtonBottomSheet');
+                                var _shipping =
+                                    await showModalBottomSheet<ShippingDetails>(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  context: context,
+                                  builder: (context) {
+                                    return Padding(
+                                      padding:
+                                          MediaQuery.of(context).viewInsets,
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.8,
+                                        child: ShippingDetailWidget(
+                                            shipping: shipping),
+                                      ),
+                                    );
+                                  },
+                                );
+                                setState(() {
+                                  shipping = _shipping;
+                                });
+                              },
+                              text: '配送先',
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 48,
+                                color: FlutterFlowTheme.of(context).pDark,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .textLight,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: 12,
+                              ),
+                            ),
+                          ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Theme(
+                              data: ThemeData(
+                                unselectedWidgetColor: Color(0xFF95A1AC),
+                              ),
+                              child: CheckboxListTile(
+                                value: checkboxListTileValue ??= true,
+                                onChanged: (newValue) => setState(
+                                    () => checkboxListTileValue = newValue),
+                                title: Text(
+                                  '請求先は配送住所と同じにする',
+                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                ),
+                                tileColor:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
+                                activeColor:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                dense: true,
+                                controlAffinity:
+                                    ListTileControlAffinity.trailing,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent('ButtonON_TAP');
+                                logFirebaseEvent('Butto-NavigateTo');
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => NavBarPage(
+                                        initialPage: 'EcommercePage'),
+                                  ),
+                                );
+                              },
+                              text: '請求先',
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 48,
+                                color: FlutterFlowTheme.of(context).pDark,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .textLight,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: 12,
+                              ),
+                            ),
+                          ),
                           if (!isEmpty())
                             Padding(
                               padding:
