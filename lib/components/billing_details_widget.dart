@@ -5,21 +5,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ShippingDetailWidget extends StatefulWidget {
-  const ShippingDetailWidget({Key key}) : super(key: key);
+class BillingDetailsWidget extends StatefulWidget {
+  const BillingDetailsWidget({Key key}) : super(key: key);
 
   @override
-  _ShippingDetailWidgetState createState() => _ShippingDetailWidgetState();
+  _BillingDetailsWidgetState createState() => _BillingDetailsWidgetState();
 }
 
-class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
+class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
   TextEditingController cityController;
   TextEditingController postalCodeController;
   TextEditingController stateController;
+  bool checkboxListTileValue;
   TextEditingController line1Controller;
   TextEditingController line2Controller;
   TextEditingController nameController;
-  TextEditingController phoneController;
+  TextEditingController phoneController1;
+  TextEditingController phoneController2;
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -31,7 +33,8 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
     line1Controller = TextEditingController(text: '打瀬');
     line2Controller = TextEditingController();
     nameController = TextEditingController();
-    phoneController = TextEditingController();
+    phoneController1 = TextEditingController();
+    phoneController2 = TextEditingController();
   }
 
   @override
@@ -58,13 +61,41 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                   child: Text(
-                    '配送先住所',
+                    '請求先',
                     style: FlutterFlowTheme.of(context).title3.override(
                           fontFamily: 'Open Sans',
                           color: FlutterFlowTheme.of(context).tLight,
                         ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Theme(
+                      data: ThemeData(
+                        unselectedWidgetColor: Color(0xFF95A1AC),
+                      ),
+                      child: CheckboxListTile(
+                        value: checkboxListTileValue ??= true,
+                        onChanged: (newValue) =>
+                            setState(() => checkboxListTileValue = newValue),
+                        title: Text(
+                          '請求先を配送先と同じにする',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textLight,
+                              ),
+                        ),
+                        activeColor: FlutterFlowTheme.of(context).primaryColor,
+                        dense: true,
+                        controlAffinity: ListTileControlAffinity.trailing,
+                      ),
+                    ),
                   ),
                 ),
                 Padding(
@@ -127,7 +158,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                             .stripeBox,
                                         contentPadding:
                                             EdgeInsetsDirectional.fromSTEB(
-                                                4, 0, 0, 0),
+                                                8, 0, 0, 0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
@@ -136,15 +167,6 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                             color: FlutterFlowTheme.of(context)
                                                 .textLight,
                                           ),
-                                      validator: (val) {
-                                        if (val.isEmpty) {
-                                          return '郵便番号を入力してください。';
-                                        }
-                                        if (val.length < 7) {
-                                          return 'Requires at least 7 characters.';
-                                        }
-                                        return null;
-                                      },
                                     ),
                                   ),
                                 ],
@@ -203,7 +225,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                           .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              4, 0, 0, 0),
+                                              8, 0, 0, 0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
@@ -212,15 +234,6 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .textLight,
                                         ),
-                                    validator: (val) {
-                                      if (val.isEmpty) {
-                                        return '都道府県を入力してください。';
-                                      }
-                                      if (val.length < 2) {
-                                        return 'Requires at least 2 characters.';
-                                      }
-                                      return null;
-                                    },
                                   ),
                                 ),
                               ],
@@ -287,7 +300,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                           .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              4, 0, 0, 0),
+                                              8, 0, 0, 0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
@@ -296,15 +309,6 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .textLight,
                                         ),
-                                    validator: (val) {
-                                      if (val.isEmpty) {
-                                        return '市区町村を入力してください。';
-                                      }
-                                      if (val.length < 2) {
-                                        return 'Requires at least 2 characters.';
-                                      }
-                                      return null;
-                                    },
                                   ),
                                 ),
                               ],
@@ -371,7 +375,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                           .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              4, 0, 0, 0),
+                                              8, 0, 0, 0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
@@ -381,13 +385,6 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                               .textLight,
                                         ),
                                     keyboardType: TextInputType.streetAddress,
-                                    validator: (val) {
-                                      if (val.isEmpty) {
-                                        return '番地を入力してください。';
-                                      }
-
-                                      return null;
-                                    },
                                   ),
                                 ),
                               ],
@@ -413,7 +410,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'マンション名 部屋番号',
+                                  'ビル・マンション名',
                                   style: FlutterFlowTheme.of(context)
                                       .subtitle2
                                       .override(
@@ -449,22 +446,15 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                           .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              4, 0, 0, 0),
+                                              8, 0, 0, 0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
+                                              .textLight,
                                         ),
-                                    validator: (val) {
-                                      if (val.isEmpty) {
-                                        return 'マンション名、部屋番号を入力してください。';
-                                      }
-
-                                      return null;
-                                    },
                                   ),
                                 ),
                               ],
@@ -505,7 +495,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                     controller: nameController,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      hintText: '配送先の名前',
+                                      hintText: '請求先の名前',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
@@ -527,24 +517,15 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                           .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              4, 0, 0, 0),
+                                              8, 0, 0, 0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
+                                              .textLight,
                                         ),
-                                    validator: (val) {
-                                      if (val.isEmpty) {
-                                        return '名前を入力してください。';
-                                      }
-                                      if (val.length < 1) {
-                                        return 'Requires at least 1 characters.';
-                                      }
-                                      return null;
-                                    },
                                   ),
                                 ),
                               ],
@@ -582,10 +563,10 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                 Container(
                                   decoration: BoxDecoration(),
                                   child: TextFormField(
-                                    controller: phoneController,
+                                    controller: phoneController1,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      hintText: '配送先の電話番号',
+                                      hintText: '請求先の電話番号',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
@@ -607,23 +588,88 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                           .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              4, 0, 0, 0),
+                                              8, 0, 0, 0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
+                                              .textLight,
                                         ),
                                     keyboardType: TextInputType.phone,
-                                    validator: (val) {
-                                      if (val.isEmpty) {
-                                        return '電話番号を入力してください（ハイフンなし）。';
-                                      }
-
-                                      return null;
-                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'メールアドレス',
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiaryColor,
+                                      ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(),
+                                  child: TextFormField(
+                                    controller: phoneController2,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: '請求先のメールアドレス',
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .stripeBox,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              8, 0, 0, 0),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textLight,
+                                        ),
+                                    keyboardType: TextInputType.phone,
                                   ),
                                 ),
                               ],
@@ -640,10 +686,10 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                     onPressed: () {
                       print('Button pressed ...');
                     },
-                    text: '確定',
+                    text: '配送先を確定する',
                     options: FFButtonOptions(
                       width: double.infinity,
-                      height: 40,
+                      height: 56,
                       color: FlutterFlowTheme.of(context).primaryColor,
                       textStyle:
                           FlutterFlowTheme.of(context).subtitle2.override(
@@ -664,7 +710,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                     onPressed: () {
                       print('Button pressed ...');
                     },
-                    text: 'キャンセル',
+                    text: 'リセットする',
                     options: FFButtonOptions(
                       width: double.infinity,
                       height: 40,

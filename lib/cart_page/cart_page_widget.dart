@@ -1,7 +1,8 @@
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/stripe/payment_manager.dart';
-import '../components/shipping_detail_widget.dart';
+import '../components/billing_details_widget.dart';
+import '../components/shipping_details_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -20,7 +21,6 @@ class CartPageWidget extends StatefulWidget {
 
 class _CartPageWidgetState extends State<CartPageWidget> {
   String paymentId;
-  bool checkboxListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -300,13 +300,13 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                               child: Container(
                                 height:
                                     MediaQuery.of(context).size.height * 0.8,
-                                child: ShippingDetailWidget(),
+                                child: ShippingDetailsWidget(),
                               ),
                             );
                           },
                         );
                       },
-                      text: '配送先住所',
+                      text: '配送先',
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 48,
@@ -324,39 +324,26 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                       ),
                     ),
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Theme(
-                      data: ThemeData(
-                        unselectedWidgetColor: Color(0xFF95A1AC),
-                      ),
-                      child: CheckboxListTile(
-                        value: checkboxListTileValue ??= true,
-                        onChanged: (newValue) =>
-                            setState(() => checkboxListTileValue = newValue),
-                        title: Text(
-                          '請求先は配送住所と同じにする',
-                          style: FlutterFlowTheme.of(context).bodyText1,
-                        ),
-                        tileColor: FlutterFlowTheme.of(context).tertiaryColor,
-                        activeColor: FlutterFlowTheme.of(context).primaryColor,
-                        dense: true,
-                        controlAffinity: ListTileControlAffinity.trailing,
-                      ),
-                    ),
-                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                     child: FFButtonWidget(
                       onPressed: () async {
                         logFirebaseEvent('Button-ON_TAP');
-                        logFirebaseEvent('Button-Navigate-To');
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                NavBarPage(initialPage: 'EcommercePage'),
-                          ),
+                        logFirebaseEvent('Button-Bottom-Sheet');
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) {
+                            return Padding(
+                              padding: MediaQuery.of(context).viewInsets,
+                              child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.8,
+                                child: BillingDetailsWidget(),
+                              ),
+                            );
+                          },
                         );
                       },
                       text: '請求先',
