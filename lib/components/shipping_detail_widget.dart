@@ -95,8 +95,6 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeBox,
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     child: TextFormField(
@@ -107,26 +105,24 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
-                                                .stripeSelected,
-                                            width: 1,
+                                                .stripeBorder,
+                                            width: 2,
                                           ),
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(4.0),
-                                            topRight: Radius.circular(4.0),
-                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
-                                                .stripeSelected,
-                                            width: 1,
+                                                .stripeBorder,
+                                            width: 2,
                                           ),
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(4.0),
-                                            topRight: Radius.circular(4.0),
-                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
                                         ),
                                         filled: true,
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .stripeBox,
                                         contentPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 4, 0, 0, 0),
@@ -177,13 +173,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).stripeBox,
                                     borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeBorder,
-                                    ),
                                   ),
                                   child: TextFormField(
                                     controller: stateController,
@@ -193,26 +183,22 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeSelected,
-                                          width: 1,
+                                              .stripeBorder,
+                                          width: 2,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeSelected,
-                                          width: 1,
+                                              .stripeBorder,
+                                          width: 2,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
                                       filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               4, 0, 0, 0),
@@ -271,13 +257,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).stripeBox,
                                     borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeBorder,
-                                    ),
                                   ),
                                   child: TextFormField(
                                     controller: cityController,
@@ -287,26 +267,22 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeSelected,
-                                          width: 1,
+                                              .stripeBorder,
+                                          width: 2,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeSelected,
-                                          width: 1,
+                                              .stripeBorder,
+                                          width: 2,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
                                       filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               4, 0, 0, 0),
@@ -365,13 +341,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).stripeBox,
                                     borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeBorder,
-                                    ),
                                   ),
                                   child: TextFormField(
                                     controller: line1Controller,
@@ -381,26 +351,22 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeSelected,
-                                          width: 1,
+                                              .stripeBorder,
+                                          width: 2,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeSelected,
-                                          width: 1,
+                                              .stripeBorder,
+                                          width: 2,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
                                       filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               4, 0, 0, 0),
@@ -455,14 +421,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       ),
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).stripeBox,
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeBorder,
-                                    ),
-                                  ),
+                                  decoration: BoxDecoration(),
                                   child: TextFormField(
                                     controller: line2Controller,
                                     obscureText: false,
@@ -470,26 +429,22 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeSelected,
-                                          width: 1,
+                                              .stripeBorder,
+                                          width: 2,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeSelected,
-                                          width: 1,
+                                              .stripeBorder,
+                                          width: 2,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
                                       filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               4, 0, 0, 0),
@@ -543,14 +498,7 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       ),
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).stripeBox,
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeBorder,
-                                    ),
-                                  ),
+                                  decoration: BoxDecoration(),
                                   child: TextFormField(
                                     controller: nameController,
                                     obscureText: false,
@@ -559,26 +507,22 @@ class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeSelected,
-                                          width: 1,
+                                              .stripeBorder,
+                                          width: 2,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .stripeSelected,
-                                          width: 1,
+                                              .stripeBorder,
+                                          width: 2,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
                                       filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .stripeBox,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               4, 0, 0, 0),
