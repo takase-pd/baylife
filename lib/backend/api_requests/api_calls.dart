@@ -252,6 +252,7 @@ class AddPlanCall {
     String pid = '',
     int quantity,
     int unitAmount,
+    String name = '',
     String date = '',
     String accessToken = '',
     String appCheckToken = '',
@@ -263,6 +264,7 @@ class AddPlanCall {
     "pid": "${pid}",
     "quantity": ${quantity},
     "unit_amount": ${unitAmount},
+    "name": "${name}",
     "date": "${date}"
   }
 }''';
@@ -279,6 +281,7 @@ class AddPlanCall {
         'pid': pid,
         'quantity': quantity,
         'unit_amount': unitAmount,
+        'name': name,
         'date': date,
       },
       body: body,

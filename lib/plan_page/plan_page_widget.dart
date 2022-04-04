@@ -558,6 +558,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                                       unitAmount:
                                                           columnPlansRecord
                                                               .unitAmount,
+                                                      name: columnPlansRecord
+                                                          .name,
                                                       date: dateTimeFormat(
                                                           'yMMMd h:mm a',
                                                           getCurrentTimestamp),
@@ -852,12 +854,4 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
       ),
     );
   }
-}
-
-class PlanData {
-  final String pid;
-  final int unitAmount;
-  final int quantity;
-
-  PlanData({this.pid, this.unitAmount, this.quantity});
 }
