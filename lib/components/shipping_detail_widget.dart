@@ -13,505 +13,653 @@ class ShippingDetailWidget extends StatefulWidget {
 }
 
 class _ShippingDetailWidgetState extends State<ShippingDetailWidget> {
-  TextEditingController textController1;
-  TextEditingController textController2;
-  TextEditingController textController3;
-  TextEditingController textController4;
-  TextEditingController textController5;
+  TextEditingController cityController;
+  TextEditingController postalCodeController;
+  TextEditingController stateController;
+  TextEditingController line1Controller;
+  TextEditingController line2Controller;
+  TextEditingController nameController;
+  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
-    textController3 = TextEditingController();
-    textController4 = TextEditingController();
-    textController5 = TextEditingController();
+    cityController = TextEditingController(text: '千葉市美浜区');
+    postalCodeController = TextEditingController(text: '2610013');
+    stateController = TextEditingController(text: '千葉県');
+    line1Controller = TextEditingController(text: '打瀬');
+    line2Controller = TextEditingController();
+    nameController = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).stripeBack,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(0),
-          bottomRight: Radius.circular(0),
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
+    return Form(
+      key: formKey,
+      autovalidateMode: AutovalidateMode.always,
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          color: FlutterFlowTheme.of(context).stripeBack,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(0),
+            bottomRight: Radius.circular(0),
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16),
+          ),
         ),
-      ),
-      child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
-              child: Text(
-                '配送先住所',
-                style: FlutterFlowTheme.of(context).title3.override(
-                      fontFamily: 'Open Sans',
-                      color: FlutterFlowTheme.of(context).tLight,
-                    ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    flex: 4,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                      child: Container(
-                        decoration: BoxDecoration(),
+        child: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
+                  child: Text(
+                    '配送先住所',
+                    style: FlutterFlowTheme.of(context).title3.override(
+                          fontFamily: 'Open Sans',
+                          color: FlutterFlowTheme.of(context).tLight,
+                        ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        flex: 5,
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '都道府県',
-                                style: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Open Sans',
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                          child: Container(
+                            decoration: BoxDecoration(),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '郵便番号',
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textLight,
+                                        ),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .textLight,
+                                          .stripeBox,
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
+                                    child: TextFormField(
+                                      controller: postalCodeController,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        hintText: '2610013',
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .stripeSelected,
+                                            width: 1,
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(4.0),
+                                            topRight: Radius.circular(4.0),
+                                          ),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .stripeSelected,
+                                            width: 1,
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(4.0),
+                                            topRight: Radius.circular(4.0),
+                                          ),
+                                        ),
+                                        filled: true,
+                                        contentPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                4, 0, 0, 0),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .textLight,
+                                          ),
+                                      validator: (val) {
+                                        if (val.isEmpty) {
+                                          return '郵便番号を入力してください。';
+                                        }
+                                        if (val.length < 7) {
+                                          return 'Requires at least 7 characters.';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).stripeBox,
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: FlutterFlowTheme.of(context)
-                                        .stripeBorder,
-                                  ),
-                                ),
-                                child: TextFormField(
-                                  controller: textController1,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    hintText: '[Some hint text...]',
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .stripeSelected,
-                                        width: 1,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .stripeSelected,
-                                        width: 1,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    filled: true,
-                                    contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
-                                            4, 0, 0, 0),
-                                  ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: Container(
+                          decoration: BoxDecoration(),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '都道府県',
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyText1
+                                      .subtitle2
                                       .override(
                                         fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .textLight,
                                       ),
                                 ),
-                              ),
-                            ],
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).stripeBox,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .stripeBorder,
+                                    ),
+                                  ),
+                                  child: TextFormField(
+                                    controller: stateController,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: '千葉県',
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      filled: true,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              4, 0, 0, 0),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textLight,
+                                        ),
+                                    validator: (val) {
+                                      if (val.isEmpty) {
+                                        return '都道府県を入力してください。';
+                                      }
+                                      if (val.length < 2) {
+                                        return 'Requires at least 2 characters.';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  Expanded(
-                    flex: 6,
-                    child: Container(
-                      decoration: BoxDecoration(),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '市区町村',
-                              style: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color:
-                                        FlutterFlowTheme.of(context).textLight,
-                                  ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).stripeBox,
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                  color:
-                                      FlutterFlowTheme.of(context).stripeBorder,
-                                ),
-                              ),
-                              child: TextFormField(
-                                controller: textController2,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  hintText: '[Some hint text...]',
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeSelected,
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeSelected,
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
-                                          4, 0, 0, 0),
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .textLight,
-                                    ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '番地',
-                              style: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color:
-                                        FlutterFlowTheme.of(context).textLight,
-                                  ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).stripeBox,
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                  color:
-                                      FlutterFlowTheme.of(context).stripeBorder,
-                                ),
-                              ),
-                              child: TextFormField(
-                                controller: textController3,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  hintText: '[Some hint text...]',
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeSelected,
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeSelected,
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
-                                          4, 0, 0, 0),
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .textLight,
-                                    ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'マンション名 部屋番号',
-                              style: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .tertiaryColor,
-                                  ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).stripeBox,
-                                border: Border.all(
-                                  color:
-                                      FlutterFlowTheme.of(context).stripeBorder,
-                                ),
-                              ),
-                              child: TextFormField(
-                                controller: textController4,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  hintText: '[Some hint text...]',
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeSelected,
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeSelected,
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
-                                          4, 0, 0, 0),
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .tertiaryColor,
-                                    ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '名前',
-                              style: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .tertiaryColor,
-                                  ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).stripeBox,
-                                border: Border.all(
-                                  color:
-                                      FlutterFlowTheme.of(context).stripeBorder,
-                                ),
-                              ),
-                              child: TextFormField(
-                                controller: textController5,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  hintText: '[Some hint text...]',
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeSelected,
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .stripeSelected,
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
-                                          4, 0, 0, 0),
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .tertiaryColor,
-                                    ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 18, 0, 16),
-              child: FFButtonWidget(
-                onPressed: () {
-                  print('Button pressed ...');
-                },
-                text: '確定',
-                options: FFButtonOptions(
-                  width: double.infinity,
-                  height: 40,
-                  color: FlutterFlowTheme.of(context).primaryColor,
-                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                        fontFamily: 'Open Sans',
-                        color: FlutterFlowTheme.of(context).textLight,
-                      ),
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1,
-                  ),
-                  borderRadius: 8,
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-              child: FFButtonWidget(
-                onPressed: () {
-                  print('Button pressed ...');
-                },
-                text: 'キャンセル',
-                options: FFButtonOptions(
-                  width: double.infinity,
-                  height: 40,
-                  color: FlutterFlowTheme.of(context).sLight,
-                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                        fontFamily: 'Open Sans',
-                        color: FlutterFlowTheme.of(context).textLight,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '市区町村',
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .textLight,
+                                      ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).stripeBox,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .stripeBorder,
+                                    ),
+                                  ),
+                                  child: TextFormField(
+                                    controller: cityController,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: '千葉市美浜区',
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      filled: true,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              4, 0, 0, 0),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textLight,
+                                        ),
+                                    validator: (val) {
+                                      if (val.isEmpty) {
+                                        return '市区町村を入力してください。';
+                                      }
+                                      if (val.length < 2) {
+                                        return 'Requires at least 2 characters.';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1,
+                    ],
                   ),
-                  borderRadius: 8,
                 ),
-              ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '番地',
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .textLight,
+                                      ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).stripeBox,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .stripeBorder,
+                                    ),
+                                  ),
+                                  child: TextFormField(
+                                    controller: line1Controller,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: '打瀬',
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      filled: true,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              4, 0, 0, 0),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textLight,
+                                        ),
+                                    keyboardType: TextInputType.streetAddress,
+                                    validator: (val) {
+                                      if (val.isEmpty) {
+                                        return '番地を入力してください。';
+                                      }
+
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'マンション名 部屋番号',
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiaryColor,
+                                      ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).stripeBox,
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .stripeBorder,
+                                    ),
+                                  ),
+                                  child: TextFormField(
+                                    controller: line2Controller,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      filled: true,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              4, 0, 0, 0),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
+                                        ),
+                                    validator: (val) {
+                                      if (val.isEmpty) {
+                                        return 'マンション名、部屋番号を入力してください。';
+                                      }
+
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '名前',
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiaryColor,
+                                      ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).stripeBox,
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .stripeBorder,
+                                    ),
+                                  ),
+                                  child: TextFormField(
+                                    controller: nameController,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: '配送先の名前',
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      filled: true,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              4, 0, 0, 0),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
+                                        ),
+                                    validator: (val) {
+                                      if (val.isEmpty) {
+                                        return '名前を入力してください。';
+                                      }
+                                      if (val.length < 1) {
+                                        return 'Requires at least 1 characters.';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 18, 0, 16),
+                  child: FFButtonWidget(
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
+                    text: '確定',
+                    options: FFButtonOptions(
+                      width: double.infinity,
+                      height: 40,
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                      textStyle:
+                          FlutterFlowTheme.of(context).subtitle2.override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textLight,
+                              ),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 1,
+                      ),
+                      borderRadius: 8,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                  child: FFButtonWidget(
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
+                    text: 'キャンセル',
+                    options: FFButtonOptions(
+                      width: double.infinity,
+                      height: 40,
+                      color: FlutterFlowTheme.of(context).sLight,
+                      textStyle:
+                          FlutterFlowTheme.of(context).subtitle2.override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).textLight,
+                              ),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 1,
+                      ),
+                      borderRadius: 8,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
