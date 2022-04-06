@@ -51,9 +51,12 @@ Future<StripePaymentResponse> processStripePayment({
     );
   }
   try {
-    final callName = _isProd ? 'initStripePayment' : 'initStripeTestPayment';
+    final callName = _isProd
+        ? 'stripe-initStripePaymentV0'
+        : 'stripe-initStripeTestPaymentV0';
     final response = await makeCloudCall(
       callName,
+      'asia-northeast1',
       {
         'amount': amount.round(),
         'currency': currency,
