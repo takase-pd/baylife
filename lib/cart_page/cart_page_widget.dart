@@ -406,7 +406,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                       child: Container(
                                         height:
                                             MediaQuery.of(context).size.height *
-                                                0.8,
+                                                0.9,
                                         child: ShippingDetailsWidget(
                                             shipping: shipping),
                                       ),
@@ -443,13 +443,23 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                             child: FFButtonWidget(
                               onPressed: () async {
                                 logFirebaseEvent('ButtonON_TAP');
-                                logFirebaseEvent('ButtonNavigateTo');
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => NavBarPage(
-                                        initialPage: 'EcommercePage'),
-                                  ),
+                                logFirebaseEvent('ButtonBottomSheet');
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  context: context,
+                                  builder: (context) {
+                                    return Padding(
+                                      padding:
+                                          MediaQuery.of(context).viewInsets,
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.9,
+                                        child: BillingDetailsWidget(),
+                                      ),
+                                    );
+                                  },
                                 );
                               },
                               text: '請求先',
