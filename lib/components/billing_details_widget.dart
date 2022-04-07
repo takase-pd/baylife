@@ -16,12 +16,12 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
   TextEditingController cityController;
   TextEditingController postalCodeController;
   TextEditingController stateController;
-  bool checkboxListTileValue;
+  bool switchListTileValue;
   TextEditingController line1Controller;
   TextEditingController line2Controller;
   TextEditingController nameController;
-  TextEditingController phoneController1;
-  TextEditingController phoneController2;
+  TextEditingController phoneController;
+  TextEditingController emailController;
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -33,8 +33,8 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
     line1Controller = TextEditingController(text: '打瀬');
     line2Controller = TextEditingController();
     nameController = TextEditingController();
-    phoneController1 = TextEditingController();
-    phoneController2 = TextEditingController();
+    phoneController = TextEditingController();
+    emailController = TextEditingController();
   }
 
   @override
@@ -70,33 +70,20 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                         ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Theme(
-                      data: ThemeData(
-                        unselectedWidgetColor: Color(0xFF95A1AC),
-                      ),
-                      child: CheckboxListTile(
-                        value: checkboxListTileValue ??= true,
-                        onChanged: (newValue) =>
-                            setState(() => checkboxListTileValue = newValue),
-                        title: Text(
-                          '請求先を配送先と同じにする',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textLight,
-                              ),
+                SwitchListTile(
+                  value: switchListTileValue ??= false,
+                  onChanged: (newValue) =>
+                      setState(() => switchListTileValue = newValue),
+                  title: Text(
+                    '請求先を配送先と同じ',
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Open Sans',
+                          color: FlutterFlowTheme.of(context).textLight,
                         ),
-                        activeColor: FlutterFlowTheme.of(context).primaryColor,
-                        dense: true,
-                        controlAffinity: ListTileControlAffinity.trailing,
-                      ),
-                    ),
                   ),
+                  tileColor: Color(0xFFF5F5F5),
+                  dense: false,
+                  controlAffinity: ListTileControlAffinity.trailing,
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
@@ -563,7 +550,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                 Container(
                                   decoration: BoxDecoration(),
                                   child: TextFormField(
-                                    controller: phoneController1,
+                                    controller: phoneController,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       hintText: '請求先の電話番号',
@@ -635,7 +622,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                 Container(
                                   decoration: BoxDecoration(),
                                   child: TextFormField(
-                                    controller: phoneController2,
+                                    controller: emailController,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       hintText: '請求先のメールアドレス',
@@ -686,7 +673,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                     onPressed: () {
                       print('Button pressed ...');
                     },
-                    text: '配送先を確定する',
+                    text: '請求先を確定する',
                     options: FFButtonOptions(
                       width: double.infinity,
                       height: 56,
