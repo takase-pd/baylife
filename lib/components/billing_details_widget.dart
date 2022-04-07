@@ -20,7 +20,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
   TextEditingController cityController;
   TextEditingController postalCodeController;
   TextEditingController stateController;
-  bool checkboxListTileValue;
+  bool switchListTileValue;
   TextEditingController line1Controller;
   TextEditingController line2Controller;
   TextEditingController nameController;
@@ -74,39 +74,20 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                         ),
                   ),
                 ),
-                if (widget.shipping != null)
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Theme(
-                        data: ThemeData(
-                          unselectedWidgetColor: Color(0xFF95A1AC),
+                SwitchListTile(
+                  value: switchListTileValue ??= false,
+                  onChanged: (newValue) =>
+                      setState(() => switchListTileValue = newValue),
+                  title: Text(
+                    '請求先を配送先と同じ',
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Open Sans',
+                          color: FlutterFlowTheme.of(context).textLight,
                         ),
-                        child: CheckboxListTile(
-                          value: checkboxListTileValue ??= false,
-                          onChanged: (newValue) => setState(() => {
-                                nameController = TextEditingController(
-                                    text: widget.shipping.name),
-                                checkboxListTileValue = newValue,
-                              }),
-                          title: Text(
-                            '請求先を配送先と同じにする',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color: FlutterFlowTheme.of(context).textLight,
-                                ),
-                          ),
-                          activeColor:
-                              FlutterFlowTheme.of(context).primaryColor,
-                          dense: true,
-                          controlAffinity: ListTileControlAffinity.trailing,
-                        ),
-                      ),
-                    ),
                   ),
+                  dense: false,
+                  controlAffinity: ListTileControlAffinity.trailing,
+                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                   child: Row(
