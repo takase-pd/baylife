@@ -19,7 +19,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../auth/firebase_user_provider.dart';
 import '../login_page/login_page_path.dart';
 import '../custom_code/widgets/index.dart';
-import 'package:flutter_stripe/flutter_stripe.dart' show ShippingDetails;
+import 'package:flutter_stripe/flutter_stripe.dart'
+    show ShippingDetails, BillingDetails;
 
 class CartPageWidget extends StatefulWidget {
   const CartPageWidget({Key key}) : super(key: key);
@@ -35,6 +36,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
   int subtoral = 0;
   int shippingAmount = 500;
   ShippingDetails shipping;
+  BillingDetails billing;
 
   Future<List> _getCart() async {
     subtoral = 0;
@@ -444,7 +446,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                               onPressed: () async {
                                 logFirebaseEvent('ButtonON_TAP');
                                 logFirebaseEvent('ButtonBottomSheet');
-                                await showModalBottomSheet(
+                                var _billing = await showModalBottomSheet(
                                   isScrollControlled: true,
                                   backgroundColor: Colors.transparent,
                                   context: context,
@@ -456,11 +458,16 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                         height:
                                             MediaQuery.of(context).size.height *
                                                 0.9,
-                                        child: BillingDetailsWidget(),
+                                        child: BillingDetailsWidget(
+                                          shipping: shipping,
+                                        ),
                                       ),
                                     );
                                   },
                                 );
+                                setState(() {
+                                  shipping = _billing;
+                                });
                               },
                               text: '請求先',
                               options: FFButtonOptions(

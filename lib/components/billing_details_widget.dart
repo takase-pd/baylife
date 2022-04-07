@@ -1,3 +1,5 @@
+import 'package:flutter_stripe/flutter_stripe.dart';
+
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -6,7 +8,9 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BillingDetailsWidget extends StatefulWidget {
-  const BillingDetailsWidget({Key key}) : super(key: key);
+  const BillingDetailsWidget({Key key, this.shipping}) : super(key: key);
+
+  final ShippingDetails shipping;
 
   @override
   _BillingDetailsWidgetState createState() => _BillingDetailsWidgetState();
@@ -20,8 +24,8 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
   TextEditingController line1Controller;
   TextEditingController line2Controller;
   TextEditingController nameController;
-  TextEditingController phoneController1;
-  TextEditingController phoneController2;
+  TextEditingController phoneController;
+  TextEditingController emailController;
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -33,8 +37,8 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
     line1Controller = TextEditingController(text: '打瀬');
     line2Controller = TextEditingController();
     nameController = TextEditingController();
-    phoneController1 = TextEditingController();
-    phoneController2 = TextEditingController();
+    phoneController = TextEditingController();
+    emailController = TextEditingController();
   }
 
   @override
@@ -70,34 +74,39 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                         ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Theme(
-                      data: ThemeData(
-                        unselectedWidgetColor: Color(0xFF95A1AC),
-                      ),
-                      child: CheckboxListTile(
-                        value: checkboxListTileValue ??= true,
-                        onChanged: (newValue) =>
-                            setState(() => checkboxListTileValue = newValue),
-                        title: Text(
-                          '請求先を配送先と同じにする',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).textLight,
-                              ),
+                if (widget.shipping != null)
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Theme(
+                        data: ThemeData(
+                          unselectedWidgetColor: Color(0xFF95A1AC),
                         ),
-                        activeColor: FlutterFlowTheme.of(context).primaryColor,
-                        dense: true,
-                        controlAffinity: ListTileControlAffinity.trailing,
+                        child: CheckboxListTile(
+                          value: checkboxListTileValue ??= false,
+                          onChanged: (newValue) => setState(() => {
+                                nameController = TextEditingController(
+                                    text: widget.shipping.name),
+                                checkboxListTileValue = newValue,
+                              }),
+                          title: Text(
+                            '請求先を配送先と同じにする',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.of(context).textLight,
+                                ),
+                          ),
+                          activeColor:
+                              FlutterFlowTheme.of(context).primaryColor,
+                          dense: true,
+                          controlAffinity: ListTileControlAffinity.trailing,
+                        ),
                       ),
                     ),
                   ),
-                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                   child: Row(
@@ -563,7 +572,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                 Container(
                                   decoration: BoxDecoration(),
                                   child: TextFormField(
-                                    controller: phoneController1,
+                                    controller: phoneController,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       hintText: '請求先の電話番号',
@@ -635,7 +644,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                 Container(
                                   decoration: BoxDecoration(),
                                   child: TextFormField(
-                                    controller: phoneController2,
+                                    controller: emailController,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       hintText: '請求先のメールアドレス',
@@ -686,7 +695,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                     onPressed: () {
                       print('Button pressed ...');
                     },
-                    text: '配送先を確定する',
+                    text: '請求先を確定する',
                     options: FFButtonOptions(
                       width: double.infinity,
                       height: 56,
