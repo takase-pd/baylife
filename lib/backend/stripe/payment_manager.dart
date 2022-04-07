@@ -44,6 +44,7 @@ Future<StripePaymentResponse> processStripePayment({
   bool allowApplePay = false,
   ThemeMode themeStyle = ThemeMode.system,
   Color buttonColor,
+  ShippingDetails shipping,
 }) async {
   if (kIsWeb) {
     return StripePaymentResponse(
@@ -63,6 +64,18 @@ Future<StripePaymentResponse> processStripePayment({
         'email': customerEmail,
         'name': customerName,
         'description': description,
+        'shipping': {
+          'name': shipping.name,
+          'phone': shipping.phone,
+          'address': {
+            'line2': shipping.address.line2,
+            'line1': shipping.address.line1,
+            'city': shipping.address.city,
+            'state': shipping.address.state,
+            'country': 'JP',
+            'postal_code': shipping.address.postalCode,
+          }
+        },
       },
     );
     final success = response['success'] ?? false;

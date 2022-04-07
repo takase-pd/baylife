@@ -1,4 +1,3 @@
-import 'package:bay_life/custom_code/widgets/ecommerce.dart';
 import 'package:bay_life/ecommerce_page/ecommerce_page_widget.dart';
 
 import '../auth/auth_util.dart';
@@ -20,6 +19,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../auth/firebase_user_provider.dart';
 import '../login_page/login_page_path.dart';
 import '../custom_code/widgets/index.dart';
+import 'package:flutter_stripe/flutter_stripe.dart' show ShippingDetails;
 
 class CartPageWidget extends StatefulWidget {
   const CartPageWidget({Key key}) : super(key: key);
@@ -443,7 +443,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                             child: FFButtonWidget(
                               onPressed: () async {
                                 logFirebaseEvent('ButtonON_TAP');
-                                logFirebaseEvent('Butto-NavigateTo');
+                                logFirebaseEvent('ButtonNavigateTo');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -491,6 +491,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                     allowApplePay: false,
                                     buttonColor: FlutterFlowTheme.of(context)
                                         .primaryColor,
+                                    shipping: shipping,
                                   );
                                   if (paymentResponse.paymentId == null) {
                                     if (paymentResponse.errorMessage != null) {
