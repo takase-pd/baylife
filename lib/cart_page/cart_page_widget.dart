@@ -299,7 +299,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                               padding: MediaQuery.of(context).viewInsets,
                               child: Container(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.8,
+                                    MediaQuery.of(context).size.height * 0.9,
                                 child: ShippingDetailsWidget(),
                               ),
                             );
@@ -339,7 +339,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                               padding: MediaQuery.of(context).viewInsets,
                               child: Container(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.8,
+                                    MediaQuery.of(context).size.height * 0.9,
                                 child: BillingDetailsWidget(),
                               ),
                             );
