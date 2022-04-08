@@ -3,6 +3,7 @@ import 'package:bay_life/ecommerce_page/ecommerce_page_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/stripe/payment_manager.dart';
+import '../backend/backend.dart';
 import '../components/billing_details_widget.dart';
 import '../components/shipping_details_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -166,11 +167,46 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Image.network(
-                                      'https://picsum.photos/seed/963/600',
-                                      width: 64,
-                                      height: 64,
-                                      fit: BoxFit.cover,
+                                    StreamBuilder<List<PlansRecord>>(
+                                      stream: queryPlansRecord(
+                                        queryBuilder: (plansRecord) =>
+                                            plansRecord.where('pid',
+                                                isEqualTo: _pid),
+                                        singleRecord: true,
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: SpinKitPulse(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                size: 50,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<PlansRecord> imagePlansRecordList =
+                                            snapshot.data;
+                                        // Return an empty Container when the document does not exist.
+                                        if (snapshot.data.isEmpty) {
+                                          return Container();
+                                        }
+                                        final imagePlansRecord =
+                                            imagePlansRecordList.isNotEmpty
+                                                ? imagePlansRecordList.first
+                                                : null;
+                                        return Image.network(
+                                          imagePlansRecord.banner,
+                                          width: 64,
+                                          height: 64,
+                                          fit: BoxFit.cover,
+                                        );
+                                      },
                                     ),
                                     Expanded(
                                       child: Container(
