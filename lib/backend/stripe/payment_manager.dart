@@ -8,7 +8,8 @@ import '../cloud_functions/cloud_functions.dart';
 final _isProd = false;
 
 // Stripe Credentials
-const _kProdStripePublishableKey = '';
+const _kProdStripePublishableKey =
+    'pk_live_51ITgUwGe7bJktEzTV9JKjfxalYAeUKUwp6TmSEjVeAq2C72Jfl4b8THbkFVCvzwXSoa9fM7DuhgbHeWf4mcFLc3300emg1a6e4';
 const _kTestStripePublishableKey =
     'pk_test_51ITgUwGe7bJktEzT6F1RcOf7aH2lrjK1jlIne0tpyoWXbdxAa0GpTBjyJp1CIn4EElYQFA7T39wLpRzdBlBCj1zg00TPUJYvsl';
 const _kAppleMerchantId = '';
@@ -45,6 +46,7 @@ Future<StripePaymentResponse> processStripePayment({
   ThemeMode themeStyle = ThemeMode.system,
   Color buttonColor,
   ShippingDetails shipping,
+  BillingDetails billing,
 }) async {
   if (kIsWeb) {
     return StripePaymentResponse(
@@ -52,6 +54,7 @@ Future<StripePaymentResponse> processStripePayment({
     );
   }
   try {
+    print(billing);
     final callName = _isProd
         ? 'stripe-initStripePaymentV0'
         : 'stripe-initStripeTestPaymentV0';
@@ -64,6 +67,7 @@ Future<StripePaymentResponse> processStripePayment({
         'email': customerEmail,
         'name': customerName,
         'description': description,
+        'receipt_email': billing.email,
         'shipping': {
           'name': shipping.name,
           'phone': shipping.phone,
@@ -72,7 +76,7 @@ Future<StripePaymentResponse> processStripePayment({
             'line1': shipping.address.line1,
             'city': shipping.address.city,
             'state': shipping.address.state,
-            'country': 'JP',
+            'country': shipping.address.country,
             'postal_code': shipping.address.postalCode,
           }
         },
@@ -89,13 +93,14 @@ Future<StripePaymentResponse> processStripePayment({
         paymentIntentClientSecret: response['paymentIntent'],
         customerEphemeralKeySecret: response['ephemeralKey'],
         customerId: response['customer'],
-        merchantDisplayName: 'Particle Drawing LLC',
+        merchantDisplayName: 'Bay Life（運営 Particle Drawing LLC）',
         merchantCountryCode: 'JPN',
         testEnv: !_isProd,
         googlePay: allowGooglePay,
         applePay: allowApplePay,
         style: themeStyle,
         primaryButtonColor: buttonColor,
+        billingDetails: billing,
       ),
     );
     // Show the payment sheet and confirm payment

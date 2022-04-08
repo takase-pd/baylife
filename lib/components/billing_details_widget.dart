@@ -1,3 +1,4 @@
+import 'package:bay_life/auth/auth_util.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -28,17 +29,36 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
   TextEditingController emailController;
   final formKey = GlobalKey<FormState>();
 
+  void _setBillingDetails(bool switchList) {
+    if (widget.shipping != null && switchList) {
+      cityController =
+          TextEditingController(text: widget.shipping.address.city);
+      postalCodeController =
+          TextEditingController(text: widget.shipping.address.postalCode);
+      stateController =
+          TextEditingController(text: widget.shipping.address.state);
+      line1Controller =
+          TextEditingController(text: widget.shipping.address.line1);
+      line2Controller =
+          TextEditingController(text: widget.shipping.address.line2);
+      nameController = TextEditingController(text: widget.shipping.name);
+      phoneController = TextEditingController(text: widget.shipping.phone);
+    } else {
+      cityController = TextEditingController(text: '千葉市美浜区');
+      postalCodeController = TextEditingController(text: '2610013');
+      stateController = TextEditingController(text: '千葉県');
+      line1Controller = TextEditingController(text: '打瀬');
+      line2Controller = TextEditingController();
+      nameController = TextEditingController();
+      phoneController = TextEditingController();
+      emailController = TextEditingController(text: currentUserEmail);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    cityController = TextEditingController(text: '千葉市美浜区');
-    postalCodeController = TextEditingController(text: '2610013');
-    stateController = TextEditingController(text: '千葉県');
-    line1Controller = TextEditingController(text: '打瀬');
-    line2Controller = TextEditingController();
-    nameController = TextEditingController();
-    phoneController = TextEditingController();
-    emailController = TextEditingController();
+    _setBillingDetails(switchListTileValue ??= false);
   }
 
   @override
@@ -74,20 +94,23 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                         ),
                   ),
                 ),
-                SwitchListTile(
-                  value: switchListTileValue ??= false,
-                  onChanged: (newValue) =>
+                if (widget.shipping != null)
+                  SwitchListTile(
+                    value: switchListTileValue ??= false,
+                    onChanged: (newValue) => {
+                      _setBillingDetails(newValue),
                       setState(() => switchListTileValue = newValue),
-                  title: Text(
-                    '請求先を配送先と同じ',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Open Sans',
-                          color: FlutterFlowTheme.of(context).textLight,
-                        ),
+                    },
+                    title: Text(
+                      '請求先は配送先と同じ',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Open Sans',
+                            color: FlutterFlowTheme.of(context).textLight,
+                          ),
+                    ),
+                    dense: false,
+                    controlAffinity: ListTileControlAffinity.trailing,
                   ),
-                  dense: false,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                   child: Row(
@@ -674,7 +697,20 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 18, 0, 16),
                   child: FFButtonWidget(
                     onPressed: () {
-                      print('Button pressed ...');
+                      BillingDetails _billing = new BillingDetails(
+                        address: new Address(
+                          line2: line2Controller.text,
+                          line1: line1Controller.text,
+                          city: cityController.text,
+                          state: stateController.text,
+                          country: 'JP',
+                          postalCode: postalCodeController.text,
+                        ),
+                        name: nameController.text,
+                        phone: phoneController.text,
+                        email: emailController.text,
+                      );
+                      Navigator.of(context).pop(_billing);
                     },
                     text: '請求先を確定する',
                     options: FFButtonOptions(
@@ -698,7 +734,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                   child: FFButtonWidget(
                     onPressed: () {
-                      print('Button pressed ...');
+                      _setBillingDetails(false);
                     },
                     text: 'リセットする',
                     options: FFButtonOptions(

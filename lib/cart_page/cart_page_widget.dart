@@ -64,7 +64,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
     return cart;
   }
 
-  bool isEmpty() {
+  bool _isEmpty() {
     if (cart == null) return true;
     if (cart.length == 0) return true;
     return false;
@@ -466,7 +466,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                   },
                                 );
                                 setState(() {
-                                  shipping = _billing;
+                                  billing = _billing;
                                 });
                               },
                               text: '請求先',
@@ -489,7 +489,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                               ),
                             ),
                           ),
-                          if (!isEmpty())
+                          if (!_isEmpty())
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
@@ -509,6 +509,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                     buttonColor: FlutterFlowTheme.of(context)
                                         .primaryColor,
                                     shipping: shipping,
+                                    billing: billing,
                                   );
                                   if (paymentResponse.paymentId == null) {
                                     if (paymentResponse.errorMessage != null) {

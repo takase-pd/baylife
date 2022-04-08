@@ -723,19 +723,19 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 18, 0, 16),
                   child: FFButtonWidget(
                     onPressed: () {
-                      ShippingDetails shipping = new ShippingDetails(
+                      ShippingDetails _shipping = new ShippingDetails(
                         address: new Address(
                           line2: line2Controller.text,
                           line1: line1Controller.text,
                           city: cityController.text,
                           state: stateController.text,
-                          country: 'Japan',
+                          country: 'JP',
                           postalCode: postalCodeController.text,
                         ),
                         name: nameController.text,
                         phone: phoneController.text,
                       );
-                      Navigator.of(context).pop(shipping);
+                      Navigator.of(context).pop(_shipping);
                     },
                     text: '配送先を確定する',
                     options: FFButtonOptions(
