@@ -97,10 +97,10 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                 if (widget.shipping != null)
                   SwitchListTile(
                     value: switchListTileValue ??= false,
-                    onChanged: (newValue) => {
-                      _setBillingDetails(newValue),
-                      setState(() => switchListTileValue = newValue),
-                    },
+                    onChanged: (newValue) => setState(() => {
+                          _setBillingDetails(newValue),
+                          switchListTileValue = newValue
+                        }),
                     title: Text(
                       '請求先は配送先と同じ',
                       style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -733,9 +733,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                   child: FFButtonWidget(
-                    onPressed: () {
-                      _setBillingDetails(false);
-                    },
+                    onPressed: () => setState(() => _setBillingDetails(false)),
                     text: 'リセットする',
                     options: FFButtonOptions(
                       width: double.infinity,
