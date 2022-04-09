@@ -388,14 +388,6 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                       date: dateTimeFormat(
                                           'yMMMd', getCurrentTimestamp),
                                     );
-                                    logFirebaseEvent('Button-Backend-Call');
-
-                                    final cartCreateData = createCartRecordData(
-                                      uid: currentUserUid,
-                                    );
-                                    await CartRecord.collection
-                                        .doc()
-                                        .set(cartCreateData);
                                   },
                                   text: 'カートに追加',
                                   options: FFButtonOptions(
