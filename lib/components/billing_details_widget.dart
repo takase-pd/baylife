@@ -75,13 +75,12 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                   onChanged: (newValue) =>
                       setState(() => switchListTileValue = newValue),
                   title: Text(
-                    '請求先を配送先と同じ',
+                    '請求先は配送先と同じ',
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Open Sans',
                           color: FlutterFlowTheme.of(context).textLight,
                         ),
                   ),
-                  tileColor: Color(0xFFF5F5F5),
                   dense: false,
                   controlAffinity: ListTileControlAffinity.trailing,
                 ),
