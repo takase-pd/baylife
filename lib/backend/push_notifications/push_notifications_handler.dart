@@ -24,7 +24,7 @@ import '../../my_page_edit/my_page_edit_widget.dart';
 import '../../shop_page/shop_page_widget.dart';
 import '../../plan_page/plan_page_widget.dart';
 import '../../cart_page/cart_page_widget.dart';
-import '../../purchased_page/purchased_page_widget.dart';
+import '../../purchases_page/purchases_page_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -151,7 +151,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         planRef: getParameter(data, 'planRef'),
       ),
   'CartPage': (data) async => CartPageWidget(),
-  'PurchasedPage': (data) async => PurchasedPageWidget(),
+  'PurchasesPage': (data) async => PurchasesPageWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

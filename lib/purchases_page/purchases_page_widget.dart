@@ -7,21 +7,21 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PurchasedPageWidget extends StatefulWidget {
-  const PurchasedPageWidget({Key key}) : super(key: key);
+class PurchasesPageWidget extends StatefulWidget {
+  const PurchasesPageWidget({Key key}) : super(key: key);
 
   @override
-  _PurchasedPageWidgetState createState() => _PurchasedPageWidgetState();
+  _PurchasesPageWidgetState createState() => _PurchasesPageWidgetState();
 }
 
-class _PurchasedPageWidgetState extends State<PurchasedPageWidget> {
+class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'PurchasedPage'});
+        parameters: {'screen_name': 'PurchasesPage'});
   }
 
   @override

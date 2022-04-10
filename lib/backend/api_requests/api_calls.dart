@@ -395,3 +395,31 @@ class GetPlanCall {
     );
   }
 }
+
+class GetPurchasesCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Purchases',
+      apiUrl:
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/ec-getPurchasesV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
