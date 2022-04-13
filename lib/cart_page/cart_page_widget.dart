@@ -56,7 +56,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
       _cartJson.forEach((plan) {
         subtoral += plan['unit_amount'] * plan['quantity'];
         cart.add(new PlanData(
-          pid: plan['pid'],
+          plan: plan['plan'],
           unitAmount: plan['unit_amount'],
           quantity: plan['quantity'],
           name: plan['name'],
@@ -119,7 +119,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: cart.length,
                                 itemBuilder: (context, listViewIndex) {
-                                  final _pid = cart[listViewIndex].pid;
+                                  final _plan = cart[listViewIndex].plan;
                                   final _unitAmount =
                                       cart[listViewIndex].unitAmount;
                                   final _quantity =
@@ -170,7 +170,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 'SlidableActionWidgetBackendCall');
                                             await DeletePlanCall.call(
                                               uid: currentUserUid,
-                                              pid: _pid,
+                                              plan: _plan,
                                               accessToken: currentJwtToken,
                                               appCheckToken: _appCheckToken,
                                             );
@@ -181,13 +181,9 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          StreamBuilder<List<PlansRecord>>(
-                                            stream: queryPlansRecord(
-                                              queryBuilder: (plansRecord) =>
-                                                  plansRecord.where('pid',
-                                                      isEqualTo: _pid),
-                                              singleRecord: true,
-                                            ),
+                                          StreamBuilder<PlansRecord>(
+                                            stream:
+                                                PlansRecord.getDocument(_plan),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
                                               if (!snapshot.hasData) {
@@ -205,19 +201,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                   ),
                                                 );
                                               }
-                                              List<PlansRecord>
-                                                  imagePlansRecordList =
+                                              PlansRecord imagePlansRecord =
                                                   snapshot.data;
-                                              // Return an empty Container when the document does not exist.
-                                              if (snapshot.data.isEmpty) {
-                                                return Container();
-                                              }
-                                              final imagePlansRecord =
-                                                  imagePlansRecordList
-                                                          .isNotEmpty
-                                                      ? imagePlansRecordList
-                                                          .first
-                                                      : null;
                                               return Image.network(
                                                 imagePlansRecord.banner,
                                                 width: 64,

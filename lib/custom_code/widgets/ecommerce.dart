@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class PlanData {
-  final String pid;
+  final DocumentReference plan;
   final int unitAmount;
   final int quantity;
   final String name;
 
-  PlanData({this.pid, this.unitAmount, this.quantity, this.name});
+  PlanData({this.plan, this.unitAmount, this.quantity, this.name});
 }

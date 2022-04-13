@@ -28,7 +28,7 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
 
     final _appCheckToken = await AppCheckAgent.getToken(context);
     if (_appCheckToken != null) {
-      final apiCallOutput = await GetCartCall.call(
+      final apiCallOutput = await GetPurchasesCall.call(
         uid: currentUserUid,
         accessToken: currentJwtToken,
         appCheckToken: _appCheckToken,
@@ -37,7 +37,7 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
           getJsonField(apiCallOutput.jsonBody, r'''$.result''');
       _purchasesJson.forEach((plan) {
         purchases.add(new PlanData(
-          pid: plan['pid'],
+          plan: plan['plan'],
           unitAmount: plan['unit_amount'],
           quantity: plan['quantity'],
           name: plan['name'],
@@ -95,7 +95,7 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: purchases.length,
                     itemBuilder: (context, listViewIndex) {
-                      final _pid = purchases[listViewIndex].pid;
+                      final _plan = purchases[listViewIndex].plan;
                       final _unitAmount = purchases[listViewIndex].unitAmount;
                       final _quantity = purchases[listViewIndex].quantity;
                       final _name = purchases[listViewIndex].name;
@@ -112,12 +112,8 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                StreamBuilder<List<PlansRecord>>(
-                                  stream: queryPlansRecord(
-                                    queryBuilder: (plansRecord) => plansRecord
-                                        .where('pid', isEqualTo: _pid),
-                                    singleRecord: true,
-                                  ),
+                                StreamBuilder<PlansRecord>(
+                                  stream: PlansRecord.getDocument(_plan),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
                                     if (!snapshot.hasData) {
@@ -133,16 +129,8 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                                         ),
                                       );
                                     }
-                                    List<PlansRecord> imagePlansRecordList =
+                                    PlansRecord imagePlansRecord =
                                         snapshot.data;
-                                    // Return an empty Container when the document does not exist.
-                                    if (snapshot.data.isEmpty) {
-                                      return Container();
-                                    }
-                                    final imagePlansRecord =
-                                        imagePlansRecordList.isNotEmpty
-                                            ? imagePlansRecordList.first
-                                            : null;
                                     return Image.network(
                                       imagePlansRecord.banner,
                                       width: 64,

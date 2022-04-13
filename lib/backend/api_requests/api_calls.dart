@@ -249,7 +249,7 @@ class AddReviewCall {
 class AddPlanCall {
   static Future<ApiCallResponse> call({
     String uid = '',
-    String pid = '',
+    String plan = '',
     int quantity,
     int unitAmount,
     String name = '',
@@ -261,7 +261,7 @@ class AddPlanCall {
 {
   "data": {
     "uid": "${uid}",
-    "pid": "${pid}",
+    "plan": "${plan}",
     "quantity": ${quantity},
     "unit_amount": ${unitAmount},
     "name": "${name}",
@@ -278,7 +278,7 @@ class AddPlanCall {
       },
       params: {
         'uid': uid,
-        'pid': pid,
+        'plan': plan,
         'quantity': quantity,
         'unit_amount': unitAmount,
         'name': name,
@@ -297,7 +297,7 @@ class AddPlanCall {
 class DeletePlanCall {
   static Future<ApiCallResponse> call({
     String uid = '',
-    String pid = '',
+    String plan = '',
     String accessToken = '',
     String appCheckToken = '',
   }) {
@@ -305,7 +305,7 @@ class DeletePlanCall {
 {
   "data": {
     "uid": "${uid}",
-    "pid": "${pid}"
+    "plan": "${plan}"
   }
 }''';
     return ApiManager.instance.makeApiCall(
@@ -318,7 +318,7 @@ class DeletePlanCall {
       },
       params: {
         'uid': uid,
-        'pid': pid,
+        'plan': plan,
       },
       body: body,
       bodyType: BodyType.JSON,
@@ -332,7 +332,7 @@ class DeletePlanCall {
 class UpdatePlanCall {
   static Future<ApiCallResponse> call({
     String uid = '',
-    String pid = '',
+    String plan = '',
     int quantity,
     int unitAmount,
     String date = '',
@@ -343,7 +343,7 @@ class UpdatePlanCall {
 {
   "data": {
     "uid": "${uid}",
-    "pid": "${pid}",
+    "plan": "${plan}",
     "quantity": ${quantity},
     "unit_amount": ${unitAmount},
     "date": "${date}"
@@ -359,7 +359,7 @@ class UpdatePlanCall {
       },
       params: {
         'uid': uid,
-        'pid': pid,
+        'plan': plan,
         'quantity': quantity,
         'unit_amount': unitAmount,
         'date': date,
@@ -408,7 +408,7 @@ class GetCartCall {
 class GetPlanCall {
   static Future<ApiCallResponse> call({
     String uid = '',
-    String pid = '',
+    String plan = '',
     String accessToken = '',
     String appCheckToken = '',
   }) {
@@ -416,7 +416,7 @@ class GetPlanCall {
 {
   "data": {
     "uid": "${uid}",
-    "pid": "${pid}"
+    "plan": "${plan}"
   }
 }''';
     return ApiManager.instance.makeApiCall(
@@ -429,7 +429,7 @@ class GetPlanCall {
       },
       params: {
         'uid': uid,
-        'pid': pid,
+        'plan': plan,
       },
       body: body,
       bodyType: BodyType.JSON,
@@ -443,6 +443,8 @@ class GetPlanCall {
 class GetPurchasesCall {
   static Future<ApiCallResponse> call({
     String uid = '',
+    String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -464,6 +466,8 @@ class GetPurchasesCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }
