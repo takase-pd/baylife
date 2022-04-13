@@ -69,7 +69,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                           logFirebaseEvent('SlidableActionWidget-Backend-Call');
                           await DeletePlanCall.call(
                             uid: currentUserUid,
-                            pid: 'aaa',
+                            plan: 'aaa',
                           );
                         },
                       ),
@@ -103,7 +103,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                         StreamBuilder<List<PlansRecord>>(
                           stream: queryPlansRecord(
                             queryBuilder: (plansRecord) =>
-                                plansRecord.where('pid', isEqualTo: 'aaa'),
+                                plansRecord.where('name', isEqualTo: 'aaa'),
                             singleRecord: true,
                           ),
                           builder: (context, snapshot) {

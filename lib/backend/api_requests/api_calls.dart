@@ -226,7 +226,7 @@ class AddReviewCall {
 class AddPlanCall {
   static Future<ApiCallResponse> call({
     String uid = '',
-    String pid = '',
+    String plan = '',
     int quantity,
     int unitAmount,
     String date = '',
@@ -236,7 +236,7 @@ class AddPlanCall {
 {
   "data": {
     "uid": "${uid}",
-    "pid": "${pid}",
+    "pid": "${plan}",
     "quantity": ${quantity},
     "unit_amount": ${unitAmount},
     "name": "${name}",
@@ -253,7 +253,7 @@ class AddPlanCall {
       },
       params: {
         'uid': uid,
-        'pid': pid,
+        'plan': plan,
         'quantity': quantity,
         'unit_amount': unitAmount,
         'date': date,
@@ -269,13 +269,13 @@ class AddPlanCall {
 class DeletePlanCall {
   static Future<ApiCallResponse> call({
     String uid = '',
-    String pid = '',
+    String plan = '',
   }) {
     final body = '''
 {
   "data": {
     "uid": "${uid}",
-    "pid": "${pid}"
+    "pid": "${plan}"
   }
 }''';
     return ApiManager.instance.makeApiCall(
@@ -288,7 +288,7 @@ class DeletePlanCall {
       },
       params: {
         'uid': uid,
-        'pid': pid,
+        'plan': plan,
       },
       body: body,
       bodyType: BodyType.JSON,
@@ -300,7 +300,7 @@ class DeletePlanCall {
 class UpdatePlanCall {
   static Future<ApiCallResponse> call({
     String uid = '',
-    String pid = '',
+    String plan = '',
     int quantity,
     int unitAmount,
     String date = '',
@@ -309,7 +309,7 @@ class UpdatePlanCall {
 {
   "data": {
     "uid": "${uid}",
-    "pid": "${pid}",
+    "pid": "${plan}",
     "quantity": ${quantity},
     "unit_amount": ${unitAmount},
     "date": "${date}"
@@ -325,7 +325,7 @@ class UpdatePlanCall {
       },
       params: {
         'uid': uid,
-        'pid': pid,
+        'plan': plan,
         'quantity': quantity,
         'unit_amount': unitAmount,
         'date': date,
@@ -368,13 +368,13 @@ class GetCartCall {
 class GetPlanCall {
   static Future<ApiCallResponse> call({
     String uid = '',
-    String pid = '',
+    String plan = '',
   }) {
     final body = '''
 {
   "data": {
     "uid": "${uid}",
-    "pid": "${pid}"
+    "pid": "${plan}"
   }
 }''';
     return ApiManager.instance.makeApiCall(
@@ -387,7 +387,7 @@ class GetPlanCall {
       },
       params: {
         'uid': uid,
-        'pid': pid,
+        'plan': plan,
       },
       body: body,
       bodyType: BodyType.JSON,

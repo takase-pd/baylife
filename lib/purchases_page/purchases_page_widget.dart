@@ -78,7 +78,7 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                               StreamBuilder<List<PlansRecord>>(
                                 stream: queryPlansRecord(
                                   queryBuilder: (plansRecord) => plansRecord
-                                      .where('pid', isEqualTo: 'aaa'),
+                                      .where('name', isEqualTo: 'aaa'),
                                   singleRecord: true,
                                 ),
                                 builder: (context, snapshot) {

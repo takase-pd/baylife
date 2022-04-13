@@ -382,7 +382,6 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                     logFirebaseEvent('Button-Backend-Call');
                                     await AddPlanCall.call(
                                       uid: currentUserUid,
-                                      pid: columnPlansRecord.pid,
                                       quantity: countControllerValue,
                                       unitAmount: columnPlansRecord.unitAmount,
                                       date: dateTimeFormat(
