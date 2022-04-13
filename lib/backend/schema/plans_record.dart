@@ -42,9 +42,6 @@ abstract class PlansRecord implements Built<PlansRecord, PlansRecordBuilder> {
   String get deliveryQuick;
 
   @nullable
-  String get pid;
-
-  @nullable
   String get banner;
 
   @nullable
@@ -59,7 +56,6 @@ abstract class PlansRecord implements Built<PlansRecord, PlansRecordBuilder> {
     ..activeQuick = false
     ..deliveryNormal = ''
     ..deliveryQuick = ''
-    ..pid = ''
     ..banner = '';
 
   static CollectionReference get collection =>
@@ -93,7 +89,6 @@ Map<String, dynamic> createPlansRecordData({
   bool activeQuick,
   String deliveryNormal,
   String deliveryQuick,
-  String pid,
   String banner,
 }) =>
     serializers.toFirestore(
@@ -108,5 +103,4 @@ Map<String, dynamic> createPlansRecordData({
           ..activeQuick = activeQuick
           ..deliveryNormal = deliveryNormal
           ..deliveryQuick = deliveryQuick
-          ..pid = pid
           ..banner = banner));

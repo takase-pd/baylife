@@ -676,27 +676,30 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 maxHeight: 300.00,
                                                 mediaSource:
                                                     MediaSource.photoGallery,
+                                                multiImage: false,
                                               );
                                               if (selectedMedia != null &&
-                                                  validateFileFormat(
-                                                      selectedMedia.storagePath,
-                                                      context)) {
+                                                  selectedMedia.every((m) =>
+                                                      validateFileFormat(
+                                                          m.storagePath,
+                                                          context))) {
                                                 showUploadMessage(
                                                   context,
                                                   'Uploading file...',
                                                   showLoading: true,
                                                 );
-                                                final downloadUrl =
-                                                    await uploadData(
-                                                        selectedMedia
-                                                            .storagePath,
-                                                        selectedMedia.bytes);
+                                                final downloadUrls = await Future
+                                                    .wait(selectedMedia.map(
+                                                        (m) async =>
+                                                            await uploadData(
+                                                                m.storagePath,
+                                                                m.bytes)));
                                                 ScaffoldMessenger.of(context)
                                                     .hideCurrentSnackBar();
-                                                if (downloadUrl != null) {
+                                                if (downloadUrls != null) {
                                                   setState(() =>
                                                       uploadedFileUrl =
-                                                          downloadUrl);
+                                                          downloadUrls.first);
                                                   showUploadMessage(
                                                     context,
                                                     'Success!',
