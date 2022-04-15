@@ -227,7 +227,7 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .subtitle2,
+                                                              .subtitle1,
                                                     ),
                                                   ),
                                                   Text(
