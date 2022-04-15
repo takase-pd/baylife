@@ -19,9 +19,9 @@ import '../../terms_page/terms_page_widget.dart';
 import '../../survey_post_page/survey_post_page_widget.dart';
 import '../../survey_result_page/survey_result_page_widget.dart';
 import '../../my_page/my_page_widget.dart';
-import '../../my_page_dev/my_page_dev_widget.dart';
 import '../../my_page_edit/my_page_edit_widget.dart';
 import '../../shop_page/shop_page_widget.dart';
+import '../../my_page_dev/my_page_dev_widget.dart';
 import '../../plan_page/plan_page_widget.dart';
 import '../../cart_page/cart_page_widget.dart';
 import '../../purchases_page/purchases_page_widget.dart';
@@ -136,22 +136,22 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'MyPage': (data) async => MyPageWidget(
         surveyRef: getParameter(data, 'surveyRef'),
       ),
-  'MyPageDev': (data) async => MyPageDevWidget(
-        surveyRef: getParameter(data, 'surveyRef'),
-      ),
   'MyPageEdit': (data) async => MyPageEditWidget(
         surveyRef: getParameter(data, 'surveyRef'),
       ),
-  'EcommercePage': (data) async =>
-      NavBarPage(initialPage: 'EcommercePageWidget'),
   'ShopPage': (data) async => ShopPageWidget(
         shopRef: getParameter(data, 'shopRef'),
+      ),
+  'MyPageDev': (data) async => MyPageDevWidget(
+        surveyRef: getParameter(data, 'surveyRef'),
       ),
   'PlanPage': (data) async => PlanPageWidget(
         planRef: getParameter(data, 'planRef'),
       ),
   'CartPage': (data) async => CartPageWidget(),
   'PurchasesPage': (data) async => PurchasesPageWidget(),
+  'EcommercePage': (data) async =>
+      NavBarPage(initialPage: 'EcommercePageWidget'),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
