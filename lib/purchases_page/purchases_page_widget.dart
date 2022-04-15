@@ -128,26 +128,83 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 8, 0),
-                                                child: Text(
-                                                  '商品名',
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 4),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 8, 0),
+                                                  child: Text(
+                                                    '商品名',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .title3,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '金額',
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .title3,
+                                                      .subtitle1,
                                                 ),
-                                              ),
-                                              Text(
-                                                '金額',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .subtitle1,
-                                              ),
-                                            ],
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 4),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 16, 0),
+                                                  child: Text(
+                                                    '点数',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .subtitle2,
+                                                  ),
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 2, 0),
+                                                      child: Text(
+                                                        '￥',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 16, 0),
+                                                      child: Text(
+                                                        '単価',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -156,35 +213,31 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 16, 0),
                                                 child: Text(
-                                                  '点数',
+                                                  '注文日',
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .subtitle2,
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryColor,
+                                                      ),
                                                 ),
                                               ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 2, 0),
-                                                    child: Text(
-                                                      '￥',
-                                                      style:
+                                              Text(
+                                                'Payment ID',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyText1
+                                                    .override(
+                                                      fontFamily: 'Open Sans',
+                                                      color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .subtitle2,
+                                                              .tDark,
                                                     ),
-                                                  ),
-                                                  Text(
-                                                    '単価',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .subtitle2,
-                                                  ),
-                                                ],
                                               ),
                                             ],
                                           ),

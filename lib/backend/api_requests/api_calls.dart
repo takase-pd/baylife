@@ -236,7 +236,7 @@ class AddPlanCall {
 {
   "data": {
     "uid": "${uid}",
-    "pid": "${plan}",
+    "plan": "${plan}",
     "quantity": ${quantity},
     "unit_amount": ${unitAmount},
     "name": "${name}",
@@ -275,7 +275,7 @@ class DeletePlanCall {
 {
   "data": {
     "uid": "${uid}",
-    "pid": "${plan}"
+    "plan": "${plan}"
   }
 }''';
     return ApiManager.instance.makeApiCall(
@@ -309,7 +309,7 @@ class UpdatePlanCall {
 {
   "data": {
     "uid": "${uid}",
-    "pid": "${plan}",
+    "plan": "${plan}",
     "quantity": ${quantity},
     "unit_amount": ${unitAmount},
     "date": "${date}"
@@ -374,7 +374,7 @@ class GetPlanCall {
 {
   "data": {
     "uid": "${uid}",
-    "pid": "${plan}"
+    "plan": "${plan}"
   }
 }''';
     return ApiManager.instance.makeApiCall(
