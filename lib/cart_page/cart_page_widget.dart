@@ -182,8 +182,9 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           StreamBuilder<PlansRecord>(
-                                            stream:
-                                                PlansRecord.getDocument(_plan),
+                                            stream: PlansRecord.getDocument(
+                                                FirebaseFirestore.instance
+                                                    .doc(_plan)),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
                                               if (!snapshot.hasData) {

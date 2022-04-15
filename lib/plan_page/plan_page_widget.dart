@@ -44,7 +44,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
     if (_appCheckToken != null) {
       final apiCallOutput = await GetPlanCall.call(
         uid: currentUserUid,
-        plan: widget.planRef.id,
+        plan: '/' + widget.planRef.path,
         accessToken: currentJwtToken,
         appCheckToken: _appCheckToken,
       );
@@ -529,9 +529,10 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                                                   .call(
                                                                 uid:
                                                                     currentUserUid,
-                                                                plan: columnPlansRecord
-                                                                    .reference
-                                                                    .toString(),
+                                                                plan: '/' +
+                                                                    columnPlansRecord
+                                                                        .reference
+                                                                        .path,
                                                                 accessToken:
                                                                     currentJwtToken,
                                                                 appCheckToken:
@@ -550,9 +551,9 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                               _plan == null
                                                   ? await AddPlanCall.call(
                                                       uid: currentUserUid,
-                                                      plan: columnPlansRecord
-                                                          .reference
-                                                          .toString(),
+                                                      plan: '/' +
+                                                          columnPlansRecord
+                                                              .reference.path,
                                                       quantity:
                                                           countControllerValue,
                                                       unitAmount:
@@ -570,9 +571,9 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                                     )
                                                   : await UpdatePlanCall.call(
                                                       uid: currentUserUid,
-                                                      plan: columnPlansRecord
-                                                          .reference
-                                                          .toString(),
+                                                      plan: '/' +
+                                                          columnPlansRecord
+                                                              .reference.path,
                                                       quantity:
                                                           countControllerValue,
                                                       unitAmount:

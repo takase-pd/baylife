@@ -35,16 +35,51 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
       );
       final _purchasesJson =
           getJsonField(apiCallOutput.jsonBody, r'''$.result''');
-      _purchasesJson.forEach((plan) {
-        purchases.add(new PlanData(
-          plan: plan['plan'],
-          unitAmount: plan['unit_amount'],
-          quantity: plan['quantity'],
-          name: plan['name'],
+      _purchasesJson.forEach((_purchase) {
+        purchases.add(new Purchase(
+          plan: new PlanData(
+            plan: _purchase['plan'],
+            unitAmount: _purchase['unit_amount'],
+            quantity: _purchase['quantity'],
+            name: _purchase['name'],
+            status: getShippingStatus(_purchase['status']),
+          ),
+          paymentId: _purchase['paymentId'],
+          purchased: new Timestamp(_purchase['purchased']['_seconds'],
+                  _purchase['purchased']['_nanoseconds'])
+              .toDate(),
         ));
       });
     }
     return purchases;
+  }
+
+  FaIcon shippingStatusIcon(ShippingStatus _status) {
+    IconData _icon;
+    double _size;
+    switch (_status) {
+      case ShippingStatus.contacted:
+        _icon = Icons.send_rounded;
+        _size = 32;
+        break;
+      case ShippingStatus.shipping:
+        _icon = FontAwesomeIcons.shippingFast;
+        _size = 24;
+        break;
+      case ShippingStatus.shipped:
+        _icon = FontAwesomeIcons.box;
+        _size = 24;
+        break;
+      default:
+        _icon = Icons.search_rounded;
+        _size = 32;
+        break;
+    }
+    return FaIcon(
+      _icon,
+      color: FlutterFlowTheme.of(context).secondaryColor,
+      size: _size,
+    );
   }
 
   @override
@@ -95,11 +130,15 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: purchases.length,
                     itemBuilder: (context, listViewIndex) {
-                      final _plan = purchases[listViewIndex].plan;
-                      final _unitAmount = purchases[listViewIndex].unitAmount;
-                      final _quantity = purchases[listViewIndex].quantity;
-                      final _name = purchases[listViewIndex].name;
+                      final _plan = purchases[listViewIndex].plan.plan;
+                      final _unitAmount =
+                          purchases[listViewIndex].plan.unitAmount;
+                      final _quantity = purchases[listViewIndex].plan.quantity;
+                      final _name = purchases[listViewIndex].plan.name;
                       final _sum = _unitAmount * _quantity;
+                      final _status = purchases[listViewIndex].plan.status;
+                      final _paymentId = purchases[listViewIndex].paymentId;
+                      final _purchased = purchases[listViewIndex].purchased;
                       return Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
                         child: Container(
@@ -108,12 +147,14 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                             color: FlutterFlowTheme.of(context).background,
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(8, 8, 12, 8),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 StreamBuilder<PlansRecord>(
-                                  stream: PlansRecord.getDocument(_plan),
+                                  stream: PlansRecord.getDocument(
+                                      FirebaseFirestore.instance.doc(_plan)),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
                                     if (!snapshot.hasData) {
@@ -163,6 +204,48 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                                                         .title3,
                                               ),
                                             ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 4),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 16, 0),
+                                                    child: Text(
+                                                      formatNumber(
+                                                        _quantity,
+                                                        formatType:
+                                                            FormatType.custom,
+                                                        currency: '数量 ',
+                                                        format: '#,##0',
+                                                        locale: 'ja_JP',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    formatNumber(
+                                                      _sum,
+                                                      formatType:
+                                                          FormatType.custom,
+                                                      currency: '￥',
+                                                      format: '#,##0',
+                                                      locale: 'ja_JP',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .subtitle1,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -170,42 +253,31 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(0, 0, 16, 0),
                                                   child: Text(
-                                                    formatNumber(
-                                                      _quantity,
-                                                      formatType:
-                                                          FormatType.custom,
-                                                      currency: '数量 ',
-                                                      format: '#,##0',
-                                                      locale: 'ja_JP',
-                                                    ),
+                                                    dateTimeFormat(
+                                                        'MMM d, y', _purchased),
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .subtitle2,
+                                                        .bodyText1,
                                                   ),
                                                 ),
                                                 Text(
-                                                  formatNumber(
-                                                    _sum,
-                                                    formatType:
-                                                        FormatType.custom,
-                                                    currency: '￥',
-                                                    format: '#,##0',
-                                                    locale: 'ja_JP',
-                                                  ),
+                                                  _paymentId,
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .subtitle1,
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tDark,
+                                                      ),
                                                 ),
                                               ],
                                             ),
                                           ],
                                         ),
-                                        FaIcon(
-                                          FontAwesomeIcons.box,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryColor,
-                                          size: 24,
-                                        ),
+                                        shippingStatusIcon(_status),
                                       ],
                                     ),
                                   ),
