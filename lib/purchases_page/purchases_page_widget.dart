@@ -3,6 +3,7 @@ import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../payment_info_page/payment_info_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -141,86 +142,114 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                       final _purchased = purchases[listViewIndex].purchased;
                       return Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).background,
-                          ),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(8, 8, 12, 8),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                StreamBuilder<PlansRecord>(
-                                  stream: PlansRecord.getDocument(
-                                      FirebaseFirestore.instance.doc(_plan)),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50,
-                                          height: 50,
-                                          child: SpinKitPulse(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
-                                            size: 50,
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    PlansRecord imagePlansRecord =
-                                        snapshot.data;
-                                    return Image.network(
-                                      imagePlansRecord.banner,
-                                      width: 64,
-                                      height: 64,
-                                      fit: BoxFit.cover,
-                                    );
-                                  },
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8, 8, 8, 8),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 8, 0),
-                                              child: Text(
-                                                _name,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .title3,
-                                              ),
+                        child: InkWell(
+                          onTap: () async {
+                            logFirebaseEvent('ContainerON_TAP');
+                            logFirebaseEvent('ContainerNavigateTo');
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PaymentInfoPageWidget(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).background,
+                            ),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(8, 8, 12, 8),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  StreamBuilder<PlansRecord>(
+                                    stream: PlansRecord.getDocument(
+                                        FirebaseFirestore.instance.doc(_plan)),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: SpinKitPulse(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              size: 50,
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 0, 4),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 16, 0),
-                                                    child: Text(
+                                          ),
+                                        );
+                                      }
+                                      PlansRecord imagePlansRecord =
+                                          snapshot.data;
+                                      return Image.network(
+                                        imagePlansRecord.banner,
+                                        width: 64,
+                                        height: 64,
+                                        fit: BoxFit.cover,
+                                      );
+                                    },
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8, 8, 8, 8),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 8, 0),
+                                                child: Text(
+                                                  _name,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .title3,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 0, 4),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 16, 0),
+                                                      child: Text(
+                                                        formatNumber(
+                                                          _quantity,
+                                                          formatType:
+                                                              FormatType.custom,
+                                                          currency: '数量 ',
+                                                          format: '#,##0',
+                                                          locale: 'ja_JP',
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle1,
+                                                      ),
+                                                    ),
+                                                    Text(
                                                       formatNumber(
-                                                        _quantity,
+                                                        _sum,
                                                         formatType:
                                                             FormatType.custom,
-                                                        currency: '数量 ',
+                                                        currency: '￥',
                                                         format: '#,##0',
                                                         locale: 'ja_JP',
                                                       ),
@@ -229,60 +258,50 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                                                                   context)
                                                               .subtitle1,
                                                     ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 16, 0),
+                                                    child: Text(
+                                                      dateTimeFormat('MMM d, y',
+                                                          _purchased),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
                                                   ),
                                                   Text(
-                                                    formatNumber(
-                                                      _sum,
-                                                      formatType:
-                                                          FormatType.custom,
-                                                      currency: '￥',
-                                                      format: '#,##0',
-                                                      locale: 'ja_JP',
-                                                    ),
+                                                    _paymentId,
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .subtitle1,
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tDark,
+                                                        ),
                                                   ),
                                                 ],
                                               ),
-                                            ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 16, 0),
-                                                  child: Text(
-                                                    dateTimeFormat(
-                                                        'MMM d, y', _purchased),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  _paymentId,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Open Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .tDark,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        shippingStatusIcon(_status),
-                                      ],
+                                            ],
+                                          ),
+                                          shippingStatusIcon(_status),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
