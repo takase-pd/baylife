@@ -6,3 +6,4 @@ export 'ecommerce.dart' show PlanData;
 export 'ecommerce.dart' show Purchase;
 export 'ecommerce.dart' show ShippingStatus;
 export 'ecommerce.dart' show getShippingStatus;
+export 'ecommerce.dart' show shippingStatusIcon;

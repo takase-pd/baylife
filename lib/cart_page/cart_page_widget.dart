@@ -33,6 +33,7 @@ class CartPageWidget extends StatefulWidget {
 
 class _CartPageWidgetState extends State<CartPageWidget> {
   String paymentId;
+  String paymentMethodId;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   List cart;
   int subtoral = 0;
@@ -56,7 +57,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
       _cartJson.forEach((plan) {
         subtoral += plan['unit_amount'] * plan['quantity'];
         cart.add(new PlanData(
-          plan: plan['plan'],
+          path: plan['path'],
           unitAmount: plan['unit_amount'],
           quantity: plan['quantity'],
           name: plan['name'],
@@ -119,13 +120,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: cart.length,
                                 itemBuilder: (context, listViewIndex) {
-                                  final _plan = cart[listViewIndex].plan;
-                                  final _unitAmount =
-                                      cart[listViewIndex].unitAmount;
-                                  final _quantity =
-                                      cart[listViewIndex].quantity;
-                                  final _name = cart[listViewIndex].name;
-                                  final _sum = _unitAmount * _quantity;
+                                  final _plan = cart[listViewIndex];
                                   return Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 0, 4),
@@ -170,7 +165,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 'SlidableActionWidgetBackendCall');
                                             await DeletePlanCall.call(
                                               uid: currentUserUid,
-                                              plan: _plan,
+                                              plan: _plan.path,
                                               accessToken: currentJwtToken,
                                               appCheckToken: _appCheckToken,
                                             );
@@ -184,7 +179,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                           StreamBuilder<PlansRecord>(
                                             stream: PlansRecord.getDocument(
                                                 FirebaseFirestore.instance
-                                                    .doc(_plan)),
+                                                    .doc(_plan.path)),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
                                               if (!snapshot.hasData) {
@@ -238,7 +233,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          _name,
+                                                          _plan.name,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .title3,
@@ -257,7 +252,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                           0),
                                                               child: Text(
                                                                 formatNumber(
-                                                                  _unitAmount,
+                                                                  _plan
+                                                                      .unitAmount,
                                                                   formatType:
                                                                       FormatType
                                                                           .custom,
@@ -274,7 +270,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                             ),
                                                             Text(
                                                               formatNumber(
-                                                                _quantity,
+                                                                _plan.quantity,
                                                                 formatType:
                                                                     FormatType
                                                                         .custom,
@@ -292,7 +288,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                     ),
                                                     Text(
                                                       formatNumber(
-                                                        _sum,
+                                                        _plan.sum,
                                                         formatType:
                                                             FormatType.custom,
                                                         currency: '￥',
@@ -556,34 +552,36 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                       onPressed: () async {
                                         logFirebaseEvent('ButtonON_TAP');
                                         logFirebaseEvent('ButtonStripePayment');
-                                        // final paymentResponse =
-                                        //     await processStripePayment(
-                                        //   amount: subtoral + shippingAmount,
-                                        //   currency: 'JPY',
-                                        //   customerEmail: currentUserEmail,
-                                        //   customerName: currentUserDisplayName,
-                                        //   description: 'ご注文の品',
-                                        //   allowGooglePay: true,
-                                        //   allowApplePay: false,
-                                        //   buttonColor:
-                                        //       FlutterFlowTheme.of(context)
-                                        //           .primaryColor,
-                                        //   shipping: shipping,
-                                        //   billing: billing,
-                                        // );
-                                        // if (paymentResponse.paymentId == null) {
-                                        //   if (paymentResponse.errorMessage !=
-                                        //       null) {
-                                        //     showSnackbar(
-                                        //       context,
-                                        //       'Error: ${paymentResponse.errorMessage}',
-                                        //     );
-                                        //   }
-                                        //   return;
-                                        // }
-                                        // paymentId = paymentResponse.paymentId;
+                                        final paymentResponse =
+                                            await processStripePayment(
+                                          amount: subtoral + shippingAmount,
+                                          currency: 'JPY',
+                                          customerEmail: currentUserEmail,
+                                          customerName: currentUserDisplayName,
+                                          description: 'ご注文の品',
+                                          allowGooglePay: true,
+                                          allowApplePay: false,
+                                          buttonColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryColor,
+                                          shipping: shipping,
+                                          billing: billing,
+                                        );
+                                        if (paymentResponse.paymentId == null) {
+                                          if (paymentResponse.errorMessage !=
+                                              null) {
+                                            showSnackbar(
+                                              context,
+                                              'Error: ${paymentResponse.errorMessage}',
+                                            );
+                                          }
+                                          return;
+                                        }
+                                        paymentId = paymentResponse.paymentId;
+                                        paymentMethodId =
+                                            paymentResponse.paymentMethodId;
 
-                                        // setState(() {});
+                                        setState(() {});
 
                                         await Navigator.push(
                                           context,
