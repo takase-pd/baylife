@@ -471,3 +471,71 @@ class GetPurchasesCall {
     );
   }
 }
+
+class PaymentCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String paymentId = '',
+    String paymentMethodId = '',
+    String date = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}",
+    "paymentId": "${paymentId}",
+    "paymentMethodId": "${paymentMethodId}",
+    "date": "${date}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Payment',
+      apiUrl:
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/ec-paymentV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+        'paymentId': paymentId,
+        'paymentMethodId': paymentMethodId,
+        'date': date,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
+
+class GetPaymentDetailsCall {
+  static Future<ApiCallResponse> call({
+    String paymentId = '',
+    String paymentMethodId = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "paymentId": "${paymentId}",
+    "paymentMethodId": "${paymentMethodId}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Payment Details',
+      apiUrl:
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/stripe-getPaymentDetailsV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'paymentId': paymentId,
+        'paymentMethodId': paymentMethodId,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
