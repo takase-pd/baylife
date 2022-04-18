@@ -461,25 +461,28 @@ class PaymentCall {
   }
 }
 
-class GetPaymentMethodCall {
+class GetPaymentDetailsCall {
   static Future<ApiCallResponse> call({
+    String paymentId = '',
     String paymentMethodId = '',
   }) {
     final body = '''
 {
   "data": {
+    "paymentId": "${paymentId}",
     "paymentMethodId": "${paymentMethodId}"
   }
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'Get Payment Method',
+      callName: 'Get Payment Details',
       apiUrl:
-          'https://asia-northeast1-baylifedev.cloudfunctions.net/stripe-retrievePaymentMethodsV0',
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/stripe-getPaymentDetailsV0',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
       },
       params: {
+        'paymentId': paymentId,
         'paymentMethodId': paymentMethodId,
       },
       body: body,
