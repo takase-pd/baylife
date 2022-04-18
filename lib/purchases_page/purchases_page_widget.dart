@@ -36,7 +36,7 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(24, 32, 24, 24),
+            padding: EdgeInsetsDirectional.fromSTEB(24, 56, 24, 24),
             child: Text(
               '購入済み',
               style: FlutterFlowTheme.of(context).title1,
