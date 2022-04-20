@@ -461,13 +461,11 @@ class PaymentCall {
 class GetPaymentDetailsCall {
   static Future<ApiCallResponse> call({
     String paymentId = '',
-    String paymentMethodId = '',
   }) {
     final body = '''
 {
   "data": {
-    "paymentId": "${paymentId}",
-    "paymentMethodId": "${paymentMethodId}"
+    "paymentId": "${paymentId}"
   }
 }''';
     return ApiManager.instance.makeApiCall(
@@ -480,7 +478,6 @@ class GetPaymentDetailsCall {
       },
       params: {
         'paymentId': paymentId,
-        'paymentMethodId': paymentMethodId,
       },
       body: body,
       bodyType: BodyType.JSON,
