@@ -578,8 +578,6 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                           return;
                                         }
                                         paymentId = paymentResponse.paymentId;
-                                        paymentMethodId =
-                                            paymentResponse.paymentMethodId;
 
                                         setState(() {});
 

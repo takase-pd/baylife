@@ -477,6 +477,8 @@ class PaymentCall {
     String uid = '',
     String paymentId = '',
     String date = '',
+    String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -502,6 +504,8 @@ class PaymentCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }
@@ -509,6 +513,8 @@ class PaymentCall {
 class GetPaymentDetailsCall {
   static Future<ApiCallResponse> call({
     String paymentId = '',
+    String accessToken = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -530,6 +536,8 @@ class GetPaymentDetailsCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
     );
   }
 }

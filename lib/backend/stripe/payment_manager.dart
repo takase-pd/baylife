@@ -32,11 +32,9 @@ Future initializeStripe() async {
 class StripePaymentResponse {
   const StripePaymentResponse({
     this.paymentId,
-    this.paymentMethodId,
     this.errorMessage,
   });
   final String paymentId;
-  final String paymentMethodId;
   final String errorMessage;
 }
 
@@ -110,13 +108,9 @@ Future<StripePaymentResponse> processStripePayment({
     // Show the payment sheet and confirm payment
     await Stripe.instance.presentPaymentSheet();
 
-    final paymentIntent =
-        await Stripe.instance.retrievePaymentIntent(response['paymentIntent']);
-
     // Return the id of the completed payment to add record in the app.
     return StripePaymentResponse(
       paymentId: response['paymentId'],
-      paymentMethodId: paymentIntent.paymentMethodId,
     );
   } catch (e) {
     if (e is StripeException && e.error.code == FailureCode.Canceled) {

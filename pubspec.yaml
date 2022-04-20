@@ -51,7 +51,7 @@ dependencies:
       path: facebook_auth
   flutter_slidable: 0.6.0
   flutter_spinkit: 4.1.2+1
-  flutter_stripe: 2.1.0
+  flutter_stripe: 2.4.0
   font_awesome_flutter: 8.11.0
   google_fonts: 2.2.0
   google_mobile_ads:

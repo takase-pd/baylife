@@ -1,6 +1,7 @@
 import '../../flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 class PlanData {
   final String path;
@@ -25,7 +26,23 @@ class Purchase {
   final PlanData plan;
   final DateTime purchased;
 
-  Purchase({this.paymentId, this.plan, this.purchased});
+  Purchase({
+    this.paymentId,
+    this.plan,
+    this.purchased,
+  });
+}
+
+class PaymentDetails {
+  final ShippingDetails shipping;
+  final BillingDetails billing;
+  // final Card card;
+
+  PaymentDetails({
+    this.shipping,
+    this.billing,
+    // this.card,
+  });
 }
 
 enum ShippingStatus {

@@ -241,19 +241,6 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                                                         .bodyText1,
                                                   ),
                                                 ),
-                                                Text(
-                                                  _purchase.paymentId,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Open Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .tDark,
-                                                      ),
-                                                ),
                                               ],
                                             ),
                                           ],

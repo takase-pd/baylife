@@ -83,7 +83,7 @@ jobs:
           file: BayLife.ipa
 
       - name: Firebase App Distribution for Preview
-        if: github.ref == 'refs/heads/review'
+        if: github.ref == 'refs/heads/ec'
         uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
         with:
           appId: ${{ secrets.FIREBASE_APP_ID_IOS }}
