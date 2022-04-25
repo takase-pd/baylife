@@ -41,28 +41,6 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
         elevation: 4,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          logFirebaseEvent('FloatingActionButton-ON_TAP');
-          logFirebaseEvent('FloatingActionButton-Navigate-To');
-          await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CartPageWidget(),
-            ),
-          );
-        },
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-        elevation: 8,
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-          child: Icon(
-            Icons.shopping_cart_sharp,
-            color: FlutterFlowTheme.of(context).background,
-            size: 24,
-          ),
-        ),
-      ),
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
