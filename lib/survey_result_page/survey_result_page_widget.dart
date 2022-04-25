@@ -72,7 +72,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
       final _reviewsJson =
           getJsonField(apiCallOutput.jsonBody, r'''$.result''');
       _reviewsJson.forEach((review) {
-        _reviews.add(new ReviewData(
+        _reviews.add(ReviewData(
             comment: review['comment'],
             tag: review['tag'],
             uid: review['uid'],

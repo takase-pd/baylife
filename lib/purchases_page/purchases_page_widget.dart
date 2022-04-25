@@ -37,8 +37,8 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
       final _purchasesJson =
           getJsonField(apiCallOutput.jsonBody, r'''$.result''');
       _purchasesJson.forEach((_purchase) {
-        purchases.add(new Purchase(
-          plan: new PlanData(
+        purchases.add(Purchase(
+          plan: PlanData(
             path: _purchase['path'],
             unitAmount: _purchase['unit_amount'],
             quantity: _purchase['quantity'],
@@ -46,7 +46,7 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
             status: getShippingStatus(_purchase['status']),
           ),
           paymentId: _purchase['paymentId'],
-          purchased: new Timestamp(_purchase['purchased']['_seconds'],
+          purchased: Timestamp(_purchase['purchased']['_seconds'],
                   _purchase['purchased']['_nanoseconds'])
               .toDate(),
         ));

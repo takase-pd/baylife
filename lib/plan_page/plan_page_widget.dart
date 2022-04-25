@@ -50,7 +50,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
       );
       final _planJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
       if (_planJson != null)
-        _planData = new PlanData(
+        _planData = PlanData(
             unitAmount: _planJson['unit_amount'],
             quantity: _planJson['quantity']);
     }
@@ -492,7 +492,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                                 barrierDismissible: false,
                                                 builder:
                                                     (BuildContext context) =>
-                                                        new AlertDialog(
+                                                        AlertDialog(
                                                   title: Text(
                                                     'カートを更新',
                                                     style:
