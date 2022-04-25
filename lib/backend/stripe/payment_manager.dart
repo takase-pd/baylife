@@ -108,6 +108,27 @@ Future<StripePaymentResponse> processStripePayment({
     // Show the payment sheet and confirm payment
     await Stripe.instance.presentPaymentSheet();
 
+    await makeCloudCall(
+      'updateBillingDetailsV0',
+      'asia-northeast1',
+      {
+        'paymentId': response['paymentId'],
+        'billing': {
+          'address': {
+            'city': billing.address.city,
+            'country': billing.address.country,
+            'line1': billing.address.line1,
+            'line2': billing.address.line2,
+            'postal_code': billing.address.postalCode,
+            'state': billing.address.state
+          },
+          'email': billing.email,
+          'name': billing.name,
+          'phone': billing.phone,
+        },
+      },
+    );
+
     // Return the id of the completed payment to add record in the app.
     return StripePaymentResponse(
       paymentId: response['paymentId'],
