@@ -94,6 +94,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         flex: 5,
@@ -145,6 +146,24 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                           borderRadius:
                                               BorderRadius.circular(4),
                                         ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .stripeBorder,
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .stripeSelected,
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
                                         filled: true,
                                         fillColor: FlutterFlowTheme.of(context)
                                             .stripeBox,
@@ -159,14 +178,11 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                             color: FlutterFlowTheme.of(context)
                                                 .textLight,
                                           ),
+                                      autovalidateMode: AutovalidateMode.always,
                                       validator: (val) {
-                                        if (val.isEmpty) {
-                                          return '郵便番号を入力してください。';
-                                        }
-                                        if (val.length < 7) {
-                                          return 'Requires at least 7 characters.';
-                                        }
-                                        return null;
+                                        return val.isEmpty || val.length != 7
+                                            ? '郵便番号を入力してください。'
+                                            : null;
                                       },
                                     ),
                                   ),
@@ -221,6 +237,22 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                         ),
                                         borderRadius: BorderRadius.circular(4),
                                       ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
                                       filled: true,
                                       fillColor: FlutterFlowTheme.of(context)
                                           .stripeBox,
@@ -235,14 +267,11 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .textLight,
                                         ),
+                                    autovalidateMode: AutovalidateMode.always,
                                     validator: (val) {
-                                      if (val.isEmpty) {
-                                        return '都道府県を入力してください。';
-                                      }
-                                      if (val.length < 2) {
-                                        return 'Requires at least 2 characters.';
-                                      }
-                                      return null;
+                                      return val.isEmpty || val.length < 3
+                                          ? '都道府県を入力してください。'
+                                          : null;
                                     },
                                   ),
                                 ),
@@ -305,6 +334,22 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                         ),
                                         borderRadius: BorderRadius.circular(4),
                                       ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
                                       filled: true,
                                       fillColor: FlutterFlowTheme.of(context)
                                           .stripeBox,
@@ -319,14 +364,11 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .textLight,
                                         ),
+                                    autovalidateMode: AutovalidateMode.always,
                                     validator: (val) {
-                                      if (val.isEmpty) {
-                                        return '市区町村を入力してください。';
-                                      }
-                                      if (val.length < 2) {
-                                        return 'Requires at least 2 characters.';
-                                      }
-                                      return null;
+                                      return val.isEmpty || val.length < 3
+                                          ? '市区町村を入力してください。'
+                                          : null;
                                     },
                                   ),
                                 ),
@@ -389,6 +431,22 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                         ),
                                         borderRadius: BorderRadius.circular(4),
                                       ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
                                       filled: true,
                                       fillColor: FlutterFlowTheme.of(context)
                                           .stripeBox,
@@ -404,12 +462,11 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                               .textLight,
                                         ),
                                     keyboardType: TextInputType.streetAddress,
+                                    autovalidateMode: AutovalidateMode.always,
                                     validator: (val) {
-                                      if (val.isEmpty) {
-                                        return '番地を入力してください。';
-                                      }
-
-                                      return null;
+                                      return val.isEmpty
+                                          ? '番地を入力してください。'
+                                          : null;
                                     },
                                   ),
                                 ),
@@ -497,12 +554,11 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .textLight,
                                         ),
+                                    autovalidateMode: AutovalidateMode.always,
                                     validator: (val) {
-                                      if (val.isEmpty) {
-                                        return 'マンション名、部屋番号を入力してください。';
-                                      }
-
-                                      return null;
+                                      return val.isEmpty
+                                          ? 'マンション名、部屋番号を入力してください。'
+                                          : null;
                                     },
                                   ),
                                 ),
@@ -598,14 +654,11 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .textLight,
                                         ),
+                                    autovalidateMode: AutovalidateMode.always,
                                     validator: (val) {
-                                      if (val.isEmpty) {
-                                        return '名前を入力してください。';
-                                      }
-                                      if (val.length < 1) {
-                                        return 'Requires at least 1 characters.';
-                                      }
-                                      return null;
+                                      return val.isEmpty || val.length < 2
+                                          ? 'お名前を入力してください。'
+                                          : null;
                                     },
                                   ),
                                 ),
@@ -702,12 +755,11 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                               .textLight,
                                         ),
                                     keyboardType: TextInputType.phone,
+                                    autovalidateMode: AutovalidateMode.always,
                                     validator: (val) {
-                                      if (val.isEmpty) {
-                                        return '電話番号を入力してください（ハイフンなし）。';
-                                      }
-
-                                      return null;
+                                      return val.isEmpty || val.length < 7
+                                          ? '電話番号を入力してください（ハイフンなし）。'
+                                          : null;
                                     },
                                   ),
                                 ),
@@ -723,8 +775,10 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 18, 0, 16),
                   child: FFButtonWidget(
                     onPressed: () {
-                      ShippingDetails _shipping = new ShippingDetails(
-                        address: new Address(
+                      if (!formKey.currentState.validate()) return;
+
+                      ShippingDetails _shipping = ShippingDetails(
+                        address: Address(
                           line2: line2Controller.text,
                           line1: line1Controller.text,
                           city: cityController.text,
@@ -758,9 +812,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                   child: FFButtonWidget(
-                    onPressed: () {
-                      _resetShipping();
-                    },
+                    onPressed: () => _resetShipping(),
                     text: 'リセットする',
                     options: FFButtonOptions(
                       width: double.infinity,

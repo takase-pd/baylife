@@ -56,7 +56,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
       final _cartJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
       _cartJson.forEach((plan) {
         subtoral += plan['unit_amount'] * plan['quantity'];
-        cart.add(new PlanData(
+        cart.add(PlanData(
           path: plan['path'],
           unitAmount: plan['unit_amount'],
           quantity: plan['quantity'],
@@ -70,6 +70,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
   bool _isEmpty() {
     if (cart == null) return true;
     if (cart.length == 0) return true;
+    if (shipping == null || billing == null) return true;
     return false;
   }
 
@@ -544,6 +545,34 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                     ),
                                   ),
                                 ),
+                                if (_isEmpty())
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 16),
+                                    child: FFButtonWidget(
+                                      onPressed: () {},
+                                      text: '配送先、請求先を入力して注文',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 64,
+                                        color:
+                                            FlutterFlowTheme.of(context).tDark,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .subtitle2
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .sLight,
+                                            ),
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1,
+                                        ),
+                                        borderRadius: 12,
+                                      ),
+                                    ),
+                                  ),
                                 if (!_isEmpty())
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(

@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:email_validator/email_validator.dart';
 
 class BillingDetailsWidget extends StatefulWidget {
   const BillingDetailsWidget({Key key, this.shipping}) : super(key: key);
@@ -99,7 +100,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                     value: switchListTileValue ??= false,
                     onChanged: (newValue) => setState(() => {
                           _setBillingDetails(newValue),
-                          switchListTileValue = newValue
+                          switchListTileValue = newValue,
                         }),
                     title: Text(
                       '請求先は配送先と同じ',
@@ -115,6 +116,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         flex: 5,
@@ -160,7 +162,25 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
+                                                .stripeSelected,
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
                                                 .stripeBorder,
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .stripeSelected,
                                             width: 2,
                                           ),
                                           borderRadius:
@@ -180,6 +200,12 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                             color: FlutterFlowTheme.of(context)
                                                 .textLight,
                                           ),
+                                      autovalidateMode: AutovalidateMode.always,
+                                      validator: (val) {
+                                        return val.isEmpty || val.length != 7
+                                            ? '郵便番号を入力してください。'
+                                            : null;
+                                      },
                                     ),
                                   ),
                                 ],
@@ -228,7 +254,23 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
                                               .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(4),
@@ -247,6 +289,12 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .textLight,
                                         ),
+                                    autovalidateMode: AutovalidateMode.always,
+                                    validator: (val) {
+                                      return val.isEmpty
+                                          ? '都道府県を入力してください。'
+                                          : null;
+                                    },
                                   ),
                                 ),
                               ],
@@ -303,7 +351,23 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
                                               .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(4),
@@ -322,6 +386,12 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .textLight,
                                         ),
+                                    autovalidateMode: AutovalidateMode.always,
+                                    validator: (val) {
+                                      return val.isEmpty || val.length < 3
+                                          ? '市区町村を入力してください。'
+                                          : null;
+                                    },
                                   ),
                                 ),
                               ],
@@ -378,7 +448,23 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
                                               .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(4),
@@ -398,6 +484,12 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                               .textLight,
                                         ),
                                     keyboardType: TextInputType.streetAddress,
+                                    autovalidateMode: AutovalidateMode.always,
+                                    validator: (val) {
+                                      return val.isEmpty
+                                          ? '番地を入力してください。'
+                                          : null;
+                                    },
                                   ),
                                 ),
                               ],
@@ -449,7 +541,23 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
                                               .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(4),
@@ -468,6 +576,12 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .textLight,
                                         ),
+                                    autovalidateMode: AutovalidateMode.always,
+                                    validator: (val) {
+                                      return val.isEmpty
+                                          ? 'マンション名、部屋番号を入力してください。'
+                                          : null;
+                                    },
                                   ),
                                 ),
                               ],
@@ -520,7 +634,23 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
                                               .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(4),
@@ -539,6 +669,12 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .textLight,
                                         ),
+                                    autovalidateMode: AutovalidateMode.always,
+                                    validator: (val) {
+                                      return val.isEmpty || val.length < 2
+                                          ? 'お名前を入力してください。'
+                                          : null;
+                                    },
                                   ),
                                 ),
                               ],
@@ -591,7 +727,23 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
                                               .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(4),
@@ -611,6 +763,12 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                               .textLight,
                                         ),
                                     keyboardType: TextInputType.phone,
+                                    autovalidateMode: AutovalidateMode.always,
+                                    validator: (val) {
+                                      return val.isEmpty
+                                          ? '電話番号を入力してください。'
+                                          : null;
+                                    },
                                   ),
                                 ),
                               ],
@@ -663,7 +821,23 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
                                               .stripeBorder,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .stripeSelected,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(4),
@@ -682,7 +856,16 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .textLight,
                                         ),
-                                    keyboardType: TextInputType.phone,
+                                    keyboardType: TextInputType.emailAddress,
+                                    autovalidateMode: AutovalidateMode.always,
+                                    validator: (val) {
+                                      if (val.isEmpty)
+                                        return 'メールアドレスを入力してください。';
+                                      if (!EmailValidator.validate(val))
+                                        return '正しいメールアドレスを入力してください。';
+
+                                      return null;
+                                    },
                                   ),
                                 ),
                               ],
@@ -697,8 +880,10 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 18, 0, 16),
                   child: FFButtonWidget(
                     onPressed: () {
-                      BillingDetails _billing = new BillingDetails(
-                        address: new Address(
+                      if (!formKey.currentState.validate()) return;
+
+                      BillingDetails _billing = BillingDetails(
+                        address: Address(
                           line2: line2Controller.text,
                           line1: line1Controller.text,
                           city: cityController.text,
