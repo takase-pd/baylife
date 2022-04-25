@@ -21,6 +21,7 @@ import 'schema/cat_shop_record.dart';
 import 'schema/customers_record.dart';
 import 'schema/serializers.dart';
 
+export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'schema/index.dart';
 export 'schema/serializers.dart';
@@ -60,11 +61,16 @@ Future<FFFirestorePage<ContentsRecord>> queryContentsRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(ContentsRecord.collection, ContentsRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      ContentsRecord.collection,
+      ContentsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query CategoriesRecords (as a Stream and as a Future).
 Stream<List<CategoriesRecord>> queryCategoriesRecord(
@@ -86,12 +92,16 @@ Future<FFFirestorePage<CategoriesRecord>> queryCategoriesRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
     queryCollectionPage(
-        CategoriesRecord.collection, CategoriesRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+      CategoriesRecord.collection,
+      CategoriesRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query TermsRecords (as a Stream and as a Future).
 Stream<List<TermsRecord>> queryTermsRecord(
@@ -112,11 +122,16 @@ Future<FFFirestorePage<TermsRecord>> queryTermsRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(TermsRecord.collection, TermsRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      TermsRecord.collection,
+      TermsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query TermsHistoriesRecords (as a Stream and as a Future).
 Stream<List<TermsHistoriesRecord>> queryTermsHistoriesRecord(
@@ -139,12 +154,16 @@ Future<FFFirestorePage<TermsHistoriesRecord>> queryTermsHistoriesRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
     queryCollectionPage(
-        TermsHistoriesRecord.collection, TermsHistoriesRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+      TermsHistoriesRecord.collection,
+      TermsHistoriesRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query CatDdRecords (as a Stream and as a Future).
 Stream<List<CatDdRecord>> queryCatDdRecord(
@@ -165,11 +184,16 @@ Future<FFFirestorePage<CatDdRecord>> queryCatDdRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(CatDdRecord.collection, CatDdRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      CatDdRecord.collection,
+      CatDdRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query InfoInappRecords (as a Stream and as a Future).
 Stream<List<InfoInappRecord>> queryInfoInappRecord(
@@ -190,11 +214,16 @@ Future<FFFirestorePage<InfoInappRecord>> queryInfoInappRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(InfoInappRecord.collection, InfoInappRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      InfoInappRecord.collection,
+      InfoInappRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord(
@@ -215,11 +244,16 @@ Future<FFFirestorePage<UsersRecord>> queryUsersRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(UsersRecord.collection, UsersRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      UsersRecord.collection,
+      UsersRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query LogonameRecords (as a Stream and as a Future).
 Stream<List<LogonameRecord>> queryLogonameRecord(
@@ -240,11 +274,16 @@ Future<FFFirestorePage<LogonameRecord>> queryLogonameRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(LogonameRecord.collection, LogonameRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      LogonameRecord.collection,
+      LogonameRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query SurveyRecords (as a Stream and as a Future).
 Stream<List<SurveyRecord>> querySurveyRecord(
@@ -265,11 +304,16 @@ Future<FFFirestorePage<SurveyRecord>> querySurveyRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(SurveyRecord.collection, SurveyRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      SurveyRecord.collection,
+      SurveyRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query AlertRecords (as a Stream and as a Future).
 Stream<List<AlertRecord>> queryAlertRecord(
@@ -290,11 +334,16 @@ Future<FFFirestorePage<AlertRecord>> queryAlertRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(AlertRecord.collection, AlertRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      AlertRecord.collection,
+      AlertRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query CompaniesRecords (as a Stream and as a Future).
 Stream<List<CompaniesRecord>> queryCompaniesRecord(
@@ -315,11 +364,16 @@ Future<FFFirestorePage<CompaniesRecord>> queryCompaniesRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(CompaniesRecord.collection, CompaniesRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      CompaniesRecord.collection,
+      CompaniesRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query ShopsRecords (as a Stream and as a Future).
 Stream<List<ShopsRecord>> queryShopsRecord(
@@ -340,11 +394,16 @@ Future<FFFirestorePage<ShopsRecord>> queryShopsRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(ShopsRecord.collection, ShopsRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      ShopsRecord.collection,
+      ShopsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query PlansRecords (as a Stream and as a Future).
 Stream<List<PlansRecord>> queryPlansRecord(
@@ -365,11 +424,16 @@ Future<FFFirestorePage<PlansRecord>> queryPlansRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(PlansRecord.collection, PlansRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      PlansRecord.collection,
+      PlansRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query CatShopRecords (as a Stream and as a Future).
 Stream<List<CatShopRecord>> queryCatShopRecord(
@@ -390,11 +454,16 @@ Future<FFFirestorePage<CatShopRecord>> queryCatShopRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(CatShopRecord.collection, CatShopRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      CatShopRecord.collection,
+      CatShopRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 /// Functions to query CustomersRecords (as a Stream and as a Future).
 Stream<List<CustomersRecord>> queryCustomersRecord(
@@ -415,11 +484,16 @@ Future<FFFirestorePage<CustomersRecord>> queryCustomersRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) =>
-    queryCollectionPage(CustomersRecord.collection, CustomersRecord.serializer,
-        queryBuilder: queryBuilder,
-        nextPageMarker: nextPageMarker,
-        pageSize: pageSize);
+    queryCollectionPage(
+      CustomersRecord.collection,
+      CustomersRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 Stream<List<T>> queryCollection<T>(
     CollectionReference collection, Serializer<T> serializer,
@@ -465,9 +539,10 @@ Future<List<T>> queryCollectionOnce<T>(
 
 class FFFirestorePage<T> {
   final List<T> data;
+  final Stream<List<T>> dataStream;
   final QueryDocumentSnapshot nextPageMarker;
 
-  FFFirestorePage(this.data, this.nextPageMarker);
+  FFFirestorePage(this.data, this.dataStream, this.nextPageMarker);
 }
 
 Future<FFFirestorePage<T>> queryCollectionPage<T>(
@@ -476,14 +551,22 @@ Future<FFFirestorePage<T>> queryCollectionPage<T>(
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
+  bool isStream,
 }) async {
   final builder = queryBuilder ?? (q) => q;
   var query = builder(collection).limit(pageSize);
   if (nextPageMarker != null) {
     query = query.startAfterDocument(nextPageMarker);
   }
-  final docSnapshots = await query.get();
-  final data = docSnapshots.docs
+  Stream<QuerySnapshot> docSnapshotStream;
+  QuerySnapshot docSnapshot;
+  if (isStream) {
+    docSnapshotStream = query.snapshots();
+    docSnapshot = await docSnapshotStream.first;
+  } else {
+    docSnapshot = await query.get();
+  }
+  final getDocs = (QuerySnapshot s) => s.docs
       .map(
         (d) => safeGet(
           () => serializers.deserializeWith(serializer, serializedData(d)),
@@ -492,9 +575,10 @@ Future<FFFirestorePage<T>> queryCollectionPage<T>(
       )
       .where((d) => d != null)
       .toList();
-  final nextPageToken =
-      docSnapshots.docs.isEmpty ? null : docSnapshots.docs.last;
-  return FFFirestorePage(data, nextPageToken);
+  final data = getDocs(docSnapshot);
+  final dataStream = docSnapshotStream?.map(getDocs);
+  final nextPageToken = docSnapshot.docs.isEmpty ? null : docSnapshot.docs.last;
+  return FFFirestorePage(data, dataStream, nextPageToken);
 }
 
 // Creates a Firestore record representing the logged in user if it doesn't yet exist
