@@ -1,7 +1,7 @@
 import '../../flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:flutter_stripe/flutter_stripe.dart' as stripe;
 
 class PlanData {
   final String path;
@@ -34,14 +34,14 @@ class Purchase {
 }
 
 class PaymentDetails {
-  final ShippingDetails shipping;
-  final BillingDetails billing;
-  // final Card card;
+  final stripe.ShippingDetails shipping;
+  final stripe.BillingDetails billing;
+  final stripe.Card card;
 
   PaymentDetails({
     this.shipping,
     this.billing,
-    // this.card,
+    this.card,
   });
 }
 
