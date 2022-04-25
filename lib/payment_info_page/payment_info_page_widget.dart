@@ -12,7 +12,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bay_life/custom_code/widgets/index.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:flutter_stripe/flutter_stripe.dart' as stripe;
 
 class PaymentInfoPageWidget extends StatefulWidget {
   const PaymentInfoPageWidget({
@@ -33,8 +33,9 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
   Future<PaymentDetails> payment;
 
   Future<PaymentDetails> _getPaymentDetails() async {
-    ShippingDetails _shipping;
-    BillingDetails _billing;
+    stripe.ShippingDetails _shipping;
+    stripe.BillingDetails _billing;
+    stripe.Card _card;
     if (!currentUser.loggedIn) return payment;
 
     final _appCheckToken = await AppCheckAgent.getToken(context);
@@ -47,8 +48,8 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
       final _paymentJson =
           getJsonField(apiCallOutput.jsonBody, r'''$.result''');
       if (_paymentJson != null) {
-        _shipping = ShippingDetails(
-          address: Address(
+        _shipping = stripe.ShippingDetails(
+          address: stripe.Address(
             country: _paymentJson['shipping']['address']['country'],
             state: _paymentJson['shipping']['address']['state'],
             city: _paymentJson['shipping']['address']['city'],
@@ -59,19 +60,28 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
           name: _paymentJson['shipping']['name'],
           phone: _paymentJson['shipping']['phone'],
         );
-        _billing = BillingDetails(
-          address: Address(
-            country: _paymentJson['paymentMethod']['billing_details']
+        _billing = stripe.BillingDetails(
+          address: stripe.Address(
+            country: _paymentJson['paymentMethod']['billing_details']['address']
                 ['country'],
-            state: _paymentJson['paymentMethod']['billing_details']['state'],
-            city: _paymentJson['paymentMethod']['billing_details']['city'],
-            line1: _paymentJson['paymentMethod']['billing_details']['line1'],
-            line2: _paymentJson['paymentMethod']['billing_details']['line2'],
+            state: _paymentJson['paymentMethod']['billing_details']['address']
+                ['state'],
+            city: _paymentJson['paymentMethod']['billing_details']['address']
+                ['city'],
+            line1: _paymentJson['paymentMethod']['billing_details']['address']
+                ['line1'],
+            line2: _paymentJson['paymentMethod']['billing_details']['address']
+                ['line2'],
             postalCode: _paymentJson['paymentMethod']['billing_details']
-                ['postal_code'],
+                ['address']['postal_code'],
           ),
           name: _paymentJson['paymentMethod']['billing_details']['name'],
           phone: _paymentJson['paymentMethod']['billing_details']['phone'],
+          email: _paymentJson['paymentMethod']['billing_details']['email'],
+        );
+        _card = stripe.Card(
+          brand: _paymentJson['paymentMethod']['card']['brand'],
+          last4: _paymentJson['paymentMethod']['card']['last4'],
         );
       }
     }
@@ -79,6 +89,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
     return PaymentDetails(
       shipping: _shipping,
       billing: _billing,
+      card: _card,
     );
   }
 
@@ -249,18 +260,48 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).background,
               ),
-              child: FutureBuilder(
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                child: FutureBuilder(
                   future: payment,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
                       final _payment = snapshot.data;
-                      final _billing = _payment.shipping;
+                      final _billing = _payment.billing;
+                      final _card = _payment.card;
                       return Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 8, 0),
+                                    child: Text(
+                                      "カード情報 " + _card.brand.toUpperCase(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 8, 0),
+                                    child: Text(
+                                      "末尾 " + _card.last4,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
@@ -290,45 +331,13 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                         0, 0, 8, 0),
                                     child: Text(
                                       _billing.address.state +
-                                          _billing.address.city,
+                                          _billing.address.city +
+                                          _billing.address.line1 +
+                                          _billing.address.line2,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 8, 0),
-                                    child: Text(
-                                      _billing.address.line1,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 8, 0),
-                                    child: Text(
-                                      _billing.address.line2,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                 ],
@@ -370,6 +379,26 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                 ],
                               ),
                             ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 8, 0),
+                                    child: Text(
+                                      _billing.email,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       );
@@ -385,7 +414,9 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                         ),
                       );
                     }
-                  }),
+                  },
+                ),
+              ),
             ),
           ),
           Padding(
@@ -405,142 +436,111 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                 child: FutureBuilder(
-                    future: payment,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done) {
-                        final _payment = snapshot.data;
-                        final _shipping = _payment.shipping;
-                        return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: Text(
-                                        _shipping.address.postalCode,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
+                  future: payment,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      final _payment = snapshot.data;
+                      final _shipping = _payment.shipping;
+                      return Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 8, 0),
+                                    child: Text(
+                                      _shipping.address.postalCode,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: Text(
-                                        _shipping.address.state +
-                                            _shipping.address.city,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: Text(
-                                        _shipping.address.line1,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: Text(
-                                        _shipping.address.line2,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: Text(
-                                        _shipping.name,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: Text(
-                                        _shipping.phone,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      } else {
-                        return Center(
-                          child: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: SpinKitPulse(
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              size: 50,
                             ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 8, 0),
+                                    child: Text(
+                                      _shipping.address.state +
+                                          _shipping.address.city +
+                                          _shipping.address.line1 +
+                                          _shipping.address.line2,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 8, 0),
+                                    child: Text(
+                                      _shipping.name,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 8, 0),
+                                    child: Text(
+                                      _shipping.phone,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: SpinKitPulse(
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            size: 50,
                           ),
-                        );
-                      }
-                    }),
+                        ),
+                      );
+                    }
+                  },
+                ),
               ),
             ),
           ),
