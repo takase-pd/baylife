@@ -88,6 +88,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         flex: 5,
