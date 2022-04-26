@@ -301,8 +301,8 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                 );
               },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
