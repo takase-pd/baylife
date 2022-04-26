@@ -182,8 +182,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -191,6 +190,35 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 Text(
                                   formatNumber(
                                     columnPlansRecord.unitAmount,
+                                    formatType: FormatType.custom,
+                                    currency: '￥',
+                                    format: '#,##0',
+                                    locale: 'ja_JP',
+                                  ),
+                                  style: FlutterFlowTheme.of(context).subtitle2,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 8, 0),
+                                  child: Text(
+                                    '送料',
+                                    style:
+                                        FlutterFlowTheme.of(context).subtitle2,
+                                  ),
+                                ),
+                                Text(
+                                  formatNumber(
+                                    columnPlansRecord.shippingFeeNormal,
                                     formatType: FormatType.custom,
                                     currency: '￥',
                                     format: '#,##0',

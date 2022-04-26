@@ -49,7 +49,6 @@ dependencies:
       url: https://github.com/asmengistu/flutter-facebook-auth
       ref: b65ffb049c9f1e2704adbeb1aa19c61693c946a5
       path: facebook_auth
-  flutter_slidable: 0.6.0
   flutter_spinkit: 4.1.2+1
   flutter_stripe: 2.1.0
   font_awesome_flutter: 8.11.0

@@ -1,5 +1,4 @@
 import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../backend/stripe/payment_manager.dart';
 import '../components/billing_details_widget.dart';
@@ -9,7 +8,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -98,41 +96,6 @@ class _CartPageWidgetState extends State<CartPageWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Slidable(
-                    actionPane: const SlidableScrollActionPane(),
-                    secondaryActions: [
-                      IconSlideAction(
-                        caption: '削除',
-                        color: FlutterFlowTheme.of(context).sLight,
-                        icon: Icons.delete_sweep_rounded,
-                        onTap: () async {
-                          logFirebaseEvent('SlidableActionWidget-ON_TAP');
-                          logFirebaseEvent('SlidableActionWidget-Backend-Call');
-                          await DeletePlanCall.call(
-                            uid: currentUserUid,
-                            plan: 'aaa',
-                          );
-                        },
-                      ),
-                    ],
-                    child: ListTile(
-                      title: Text(
-                        'Lorem ipsum dolor...',
-                        style: FlutterFlowTheme.of(context).title3,
-                      ),
-                      subtitle: Text(
-                        'Lorem ipsum dolor...',
-                        style: FlutterFlowTheme.of(context).subtitle2,
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFF303030),
-                        size: 20,
-                      ),
-                      tileColor: FlutterFlowTheme.of(context).tDark,
-                      dense: false,
-                    ),
-                  ),
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
