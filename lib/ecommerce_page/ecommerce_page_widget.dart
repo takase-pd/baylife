@@ -41,28 +41,6 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
         elevation: 4,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          logFirebaseEvent('FloatingActionButtonON_TAP');
-          logFirebaseEvent('FloatingActionButtonNavigateTo');
-          await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CartPageWidget(),
-            ),
-          );
-        },
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-        elevation: 8,
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-          child: Icon(
-            Icons.shopping_cart_sharp,
-            color: FlutterFlowTheme.of(context).background,
-            size: 24,
-          ),
-        ),
-      ),
       endDrawer: Drawer(
         elevation: 16,
         child: EndDrawerWidget(),
@@ -99,8 +77,8 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                             ),
                             child: InkWell(
                               onTap: () async {
-                                logFirebaseEvent('Row-ON_TAP');
-                                logFirebaseEvent('Row-Navigate-To');
+                                logFirebaseEvent('CardON_TAP');
+                                logFirebaseEvent('CardNavigateTo');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -143,8 +121,8 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                             ),
                             child: InkWell(
                               onTap: () async {
-                                logFirebaseEvent('Row-ON_TAP');
-                                logFirebaseEvent('Row-Navigate-To');
+                                logFirebaseEvent('CardON_TAP');
+                                logFirebaseEvent('CardNavigateTo');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -208,8 +186,8 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: InkWell(
                               onTap: () async {
-                                logFirebaseEvent('Card-ON_TAP');
-                                logFirebaseEvent('Card-Navigate-To');
+                                logFirebaseEvent('CardON_TAP');
+                                logFirebaseEvent('CardNavigateTo');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(

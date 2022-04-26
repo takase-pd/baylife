@@ -92,11 +92,53 @@ class _CartPageWidgetState extends State<CartPageWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(24, 56, 24, 24),
-                child: Text(
-                  '注文の確認',
-                  style: FlutterFlowTheme.of(context).title1,
+              Container(
+                width: double.infinity,
+                height: 120,
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(0, 0.4),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '注文の確認',
+                            style: FlutterFlowTheme.of(context).title1,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-0.95, 0.4),
+                      child: InkWell(
+                        onTap: () async {
+                          logFirebaseEvent('CardON_TAP');
+                          logFirebaseEvent('CardNavigateBack');
+                          Navigator.pop(context);
+                        },
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                            child: Icon(
+                              Icons.arrow_back_rounded,
+                              color:
+                                  FlutterFlowTheme.of(context).secondaryColor,
+                              size: 24,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Text(
