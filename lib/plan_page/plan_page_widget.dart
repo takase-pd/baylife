@@ -245,7 +245,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    columnPlansRecord.deliveryNormal,
+                                    columnPlansRecord.shippingNormal,
                                     style:
                                         FlutterFlowTheme.of(context).bodyText1,
                                   ),
@@ -283,7 +283,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      columnPlansRecord.deliveryQuick,
+                                      columnPlansRecord.shippingQuick,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1,
                                     ),

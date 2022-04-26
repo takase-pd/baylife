@@ -174,6 +174,7 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                     List<ShopsRecord> listViewShopsRecordList = snapshot.data;
                     return ListView.builder(
                       padding: EdgeInsets.zero,
+                      primary: false,
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: listViewShopsRecordList.length,

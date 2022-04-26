@@ -34,15 +34,19 @@ abstract class PlansRecord implements Built<PlansRecord, PlansRecordBuilder> {
   bool get activeQuick;
 
   @nullable
-  @BuiltValueField(wireName: 'delivery_normal')
-  String get deliveryNormal;
-
-  @nullable
-  @BuiltValueField(wireName: 'delivery_quick')
-  String get deliveryQuick;
-
-  @nullable
   String get banner;
+
+  @nullable
+  @BuiltValueField(wireName: 'shipping_normal')
+  String get shippingNormal;
+
+  @nullable
+  @BuiltValueField(wireName: 'shipping_quick')
+  String get shippingQuick;
+
+  @nullable
+  @BuiltValueField(wireName: 'shipping_fee_normal')
+  int get shippingFeeNormal;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -54,9 +58,10 @@ abstract class PlansRecord implements Built<PlansRecord, PlansRecordBuilder> {
     ..unitAmount = 0
     ..description = ''
     ..activeQuick = false
-    ..deliveryNormal = ''
-    ..deliveryQuick = ''
-    ..banner = '';
+    ..banner = ''
+    ..shippingNormal = ''
+    ..shippingQuick = ''
+    ..shippingFeeNormal = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('plans');
@@ -87,9 +92,10 @@ Map<String, dynamic> createPlansRecordData({
   DateTime pubDate,
   String description,
   bool activeQuick,
-  String deliveryNormal,
-  String deliveryQuick,
   String banner,
+  String shippingNormal,
+  String shippingQuick,
+  int shippingFeeNormal,
 }) =>
     serializers.toFirestore(
         PlansRecord.serializer,
@@ -101,6 +107,7 @@ Map<String, dynamic> createPlansRecordData({
           ..pubDate = pubDate
           ..description = description
           ..activeQuick = activeQuick
-          ..deliveryNormal = deliveryNormal
-          ..deliveryQuick = deliveryQuick
-          ..banner = banner));
+          ..banner = banner
+          ..shippingNormal = shippingNormal
+          ..shippingQuick = shippingQuick
+          ..shippingFeeNormal = shippingFeeNormal));

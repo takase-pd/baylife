@@ -9,23 +9,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
+import '../../index.dart';
 import '../../main.dart';
-import '../../login_page/login_page_widget.dart';
-import '../../content_page/content_page_widget.dart';
-import '../../category_page/category_page_widget.dart';
-import '../../post_page_with_login/post_page_with_login_widget.dart';
-import '../../confirm_page/confirm_page_widget.dart';
-import '../../terms_page/terms_page_widget.dart';
-import '../../survey_post_page/survey_post_page_widget.dart';
-import '../../survey_result_page/survey_result_page_widget.dart';
-import '../../my_page/my_page_widget.dart';
-import '../../my_page_edit/my_page_edit_widget.dart';
-import '../../my_page_dev/my_page_dev_widget.dart';
-import '../../shop_page/shop_page_widget.dart';
-import '../../plan_page/plan_page_widget.dart';
-import '../../cart_page/cart_page_widget.dart';
-import '../../purchases_page/purchases_page_widget.dart';
-import '../../payment_info_page/payment_info_page_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(

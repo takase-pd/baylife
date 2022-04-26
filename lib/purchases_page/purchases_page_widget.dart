@@ -30,20 +30,61 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(24, 56, 24, 24),
-            child: Text(
-              '購入済み',
-              style: FlutterFlowTheme.of(context).title1,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              height: 120,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: AlignmentDirectional(0, 0.4),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '購入済み',
+                          style: FlutterFlowTheme.of(context).title1,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(-0.95, 0.4),
+                    child: InkWell(
+                      onTap: () async {
+                        logFirebaseEvent('Card-ON_TAP');
+                        logFirebaseEvent('Card-Navigate-Back');
+                        Navigator.pop(context);
+                      },
+                      child: Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                        elevation: 3,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                          child: Icon(
+                            Icons.arrow_back_rounded,
+                            color: FlutterFlowTheme.of(context).secondaryColor,
+                            size: 24,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: FutureBuilder<ApiCallResponse>(
+            FutureBuilder<ApiCallResponse>(
               future: GetCartCall.call(),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
@@ -62,6 +103,8 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                 final listViewGetCartResponse = snapshot.data;
                 return ListView(
                   padding: EdgeInsets.zero,
+                  primary: false,
+                  shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
@@ -277,8 +320,8 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                 );
               },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
