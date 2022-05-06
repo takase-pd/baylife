@@ -1,5 +1,3 @@
-import 'package:bay_life/cart_page/cart_page_widget.dart';
-
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/end_drawer_widget.dart';
@@ -15,6 +13,8 @@ import '../my_page/my_page_widget.dart';
 import '../survey_post_page/survey_post_page_widget.dart';
 import '../survey_result_page/survey_result_page_widget.dart';
 import '../plan_page/plan_page_widget.dart';
+import '../cart_page/cart_page_widget.dart';
+import '../purchases_page/purchases_page_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -68,6 +68,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
             planRef: widget.pageRef, quantity: widget.planQuantity);
       case LoginPagePath.cart_page:
         return CartPageWidget();
+      case LoginPagePath.purchases_page:
+        return PurchasesPageWidget();
       default:
         return HomePageWidget();
     }

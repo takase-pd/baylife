@@ -5,4 +5,5 @@ enum LoginPagePath {
   survey_result_page,
   plan_page,
   cart_page,
+  purchases_page,
 }
