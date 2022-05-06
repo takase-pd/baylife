@@ -10,9 +10,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 
 class BillingDetailsWidget extends StatefulWidget {
-  const BillingDetailsWidget({Key key, this.shipping}) : super(key: key);
+  const BillingDetailsWidget({
+    Key key,
+    this.shipping,
+    this.billing,
+  }) : super(key: key);
 
   final ShippingDetails shipping;
+  final BillingDetails billing;
 
   @override
   _BillingDetailsWidgetState createState() => _BillingDetailsWidgetState();
@@ -31,29 +36,58 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
   final formKey = GlobalKey<FormState>();
 
   void _setBillingDetails(bool switchList) {
-    if (widget.shipping != null && switchList) {
-      cityController =
-          TextEditingController(text: widget.shipping.address.city);
-      postalCodeController =
-          TextEditingController(text: widget.shipping.address.postalCode);
-      stateController =
-          TextEditingController(text: widget.shipping.address.state);
-      line1Controller =
-          TextEditingController(text: widget.shipping.address.line1);
-      line2Controller =
-          TextEditingController(text: widget.shipping.address.line2);
-      nameController = TextEditingController(text: widget.shipping.name);
-      phoneController = TextEditingController(text: widget.shipping.phone);
-    } else {
-      cityController = TextEditingController(text: '千葉市美浜区');
-      postalCodeController = TextEditingController(text: '2610013');
-      stateController = TextEditingController(text: '千葉県');
-      line1Controller = TextEditingController(text: '打瀬');
-      line2Controller = TextEditingController();
-      nameController = TextEditingController();
-      phoneController = TextEditingController();
-      emailController = TextEditingController(text: currentUserEmail);
-    }
+    widget.billing != null && !switchList
+        ? _setController(
+            city: widget.billing.address.city,
+            postalCode: widget.billing.address.postalCode,
+            state: widget.billing.address.state,
+            line1: widget.billing.address.line1,
+            line2: widget.billing.address.line2,
+            name: widget.billing.name,
+            phone: widget.billing.phone,
+            email: currentUserEmail,
+          )
+        : widget.shipping != null && switchList
+            ? _setController(
+                city: widget.shipping.address.city,
+                postalCode: widget.shipping.address.postalCode,
+                state: widget.shipping.address.state,
+                line1: widget.shipping.address.line1,
+                line2: widget.shipping.address.line2,
+                name: widget.shipping.name,
+                phone: widget.shipping.phone,
+                email: currentUserEmail,
+              )
+            : _setController(
+                city: '千葉市',
+                postalCode: '2610013',
+                state: '千葉県',
+                line1: '美浜区打瀬',
+                line2: '',
+                name: '',
+                phone: '',
+                email: currentUserEmail,
+              );
+  }
+
+  void _setController({
+    String city,
+    String postalCode,
+    String state,
+    String line1,
+    String line2,
+    String name,
+    String phone,
+    String email,
+  }) {
+    cityController = TextEditingController(text: city);
+    postalCodeController = TextEditingController(text: postalCode);
+    stateController = TextEditingController(text: state);
+    line1Controller = TextEditingController(text: line1);
+    line2Controller = TextEditingController(text: line2);
+    nameController = TextEditingController(text: name);
+    phoneController = TextEditingController(text: phone);
+    emailController = TextEditingController(text: email);
   }
 
   @override
