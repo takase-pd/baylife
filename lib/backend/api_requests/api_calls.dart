@@ -251,8 +251,6 @@ class AddPlanCall {
     String uid = '',
     String plan = '',
     int quantity,
-    int unitAmount,
-    String name = '',
     String date = '',
     String accessToken = '',
     String appCheckToken = '',
@@ -263,11 +261,10 @@ class AddPlanCall {
     "uid": "${uid}",
     "plan": "${plan}",
     "quantity": ${quantity},
-    "unit_amount": ${unitAmount},
-    "name": "${name}",
     "date": "${date}"
   }
 }''';
+    print('add plan ${quantity}');
     return ApiManager.instance.makeApiCall(
       callName: 'Add Plan',
       apiUrl:
@@ -280,10 +277,7 @@ class AddPlanCall {
         'uid': uid,
         'plan': plan,
         'quantity': quantity,
-        'unit_amount': unitAmount,
-        'name': name,
         'date': date,
-        'name': name,
       },
       body: body,
       bodyType: BodyType.JSON,
@@ -319,50 +313,6 @@ class DeletePlanCall {
       params: {
         'uid': uid,
         'plan': plan,
-      },
-      body: body,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      accessToken: accessToken,
-      appCheckToken: appCheckToken,
-    );
-  }
-}
-
-class UpdatePlanCall {
-  static Future<ApiCallResponse> call({
-    String uid = '',
-    String plan = '',
-    int quantity,
-    int unitAmount,
-    String date = '',
-    String accessToken = '',
-    String appCheckToken = '',
-  }) {
-    final body = '''
-{
-  "data": {
-    "uid": "${uid}",
-    "plan": "${plan}",
-    "quantity": ${quantity},
-    "unit_amount": ${unitAmount},
-    "date": "${date}"
-  }
-}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'Update Plan',
-      apiUrl:
-          'https://asia-northeast1-baylifedev.cloudfunctions.net/ec-updatePlanV0',
-      callType: ApiCallType.POST,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      params: {
-        'uid': uid,
-        'plan': plan,
-        'quantity': quantity,
-        'unit_amount': unitAmount,
-        'date': date,
       },
       body: body,
       bodyType: BodyType.JSON,

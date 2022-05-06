@@ -21,37 +21,47 @@ class PurchasesPageWidget extends StatefulWidget {
 
 class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  List purchases;
+  List<Purchase> purchases;
 
   Future<List> _getPurchases() async {
     purchases = [];
     if (!currentUser.loggedIn) return purchases;
 
     final _appCheckToken = await AppCheckAgent.getToken(context);
-    if (_appCheckToken != null) {
-      final apiCallOutput = await GetPurchasesCall.call(
-        uid: currentUserUid,
-        accessToken: currentJwtToken,
-        appCheckToken: _appCheckToken,
+    if (_appCheckToken == null) return purchases;
+
+    final apiCallOutput = await GetPurchasesCall.call(
+      uid: currentUserUid,
+      accessToken: currentJwtToken,
+      appCheckToken: _appCheckToken,
+    );
+    final _apiJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+    final success = _apiJson['success'] ?? false;
+    if (!success) {
+      String errorMessage = _apiJson['error'] ?? '原因不明のエラーが発生';
+      showSnackbar(
+        context,
+        'Error: $errorMessage',
       );
-      final _purchasesJson =
-          getJsonField(apiCallOutput.jsonBody, r'''$.result''');
-      _purchasesJson.forEach((_purchase) {
-        purchases.add(Purchase(
-          plan: PlanData(
-            path: _purchase['path'],
-            unitAmount: _purchase['unit_amount'],
-            quantity: _purchase['quantity'],
-            name: _purchase['name'],
-            status: getShippingStatus(_purchase['status']),
-          ),
-          paymentId: _purchase['paymentId'],
-          purchased: Timestamp(_purchase['purchased']['_seconds'],
-                  _purchase['purchased']['_nanoseconds'])
-              .toDate(),
-        ));
-      });
+      return purchases;
     }
+
+    _apiJson['purchases'].forEach((_purchase) {
+      purchases.add(Purchase(
+        plan: PlanData(
+          path: _purchase['path'],
+          unitAmount: _purchase['unit_amount'],
+          quantity: _purchase['quantity'],
+          name: _purchase['name'],
+          status: getShippingStatus(_purchase['status']),
+        ),
+        paymentId: _purchase['paymentId'],
+        purchased: Timestamp(_purchase['purchased']['_seconds'],
+                _purchase['purchased']['_nanoseconds'])
+            .toDate(),
+      ));
+    });
+
     return purchases;
   }
 
@@ -140,7 +150,7 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
-                  physics: const NeverScrollableScrollPhysics(),
+                  physics: BouncingScrollPhysics(),
                   itemCount: purchases.length,
                   itemBuilder: (context, listViewIndex) {
                     final _purchase = purchases[listViewIndex];
@@ -253,7 +263,7 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                                                   ),
                                                   Text(
                                                     formatNumber(
-                                                      _plan.sum,
+                                                      _plan.subtotal,
                                                       formatType:
                                                           FormatType.custom,
                                                       currency: '￥',
@@ -301,8 +311,8 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                 );
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
@@ -19,8 +21,11 @@ import '../login_page/login_page_path.dart';
 import '../custom_code/widgets/index.dart';
 
 class PlanPageWidget extends StatefulWidget {
-  const PlanPageWidget({Key key, @required this.planRef, this.quantity})
-      : super(key: key);
+  const PlanPageWidget({
+    Key key,
+    @required this.planRef,
+    this.quantity,
+  }) : super(key: key);
 
   final DocumentReference planRef;
   final int quantity;
@@ -41,19 +46,30 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
     if (!currentUser.loggedIn) return _planData;
 
     final _appCheckToken = await AppCheckAgent.getToken(context);
-    if (_appCheckToken != null) {
-      final apiCallOutput = await GetPlanCall.call(
-        uid: currentUserUid,
-        plan: '/' + widget.planRef.path,
-        accessToken: currentJwtToken,
-        appCheckToken: _appCheckToken,
+    if (_appCheckToken == null) return _planData;
+
+    final apiCallOutput = await GetPlanCall.call(
+      uid: currentUserUid,
+      plan: '/' + widget.planRef.path,
+      accessToken: currentJwtToken,
+      appCheckToken: _appCheckToken,
+    );
+    final _apiJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+
+    final success = _apiJson['success'] ?? false;
+    if (!success) {
+      String errorMessage = _apiJson['error'] ?? '原因不明のエラーが発生';
+      showSnackbar(
+        context,
+        'Error: $errorMessage',
       );
-      final _planJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
-      if (_planJson != null)
-        _planData = PlanData(
-            unitAmount: _planJson['unit_amount'],
-            quantity: _planJson['quantity']);
+      return _planData;
     }
+
+    if (_apiJson['quantity'] > 0)
+      _planData = PlanData(
+        quantity: _apiJson['quantity'],
+      );
     return _planData;
   }
 
@@ -550,25 +566,46 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                                               .buttonStyle(
                                                                   context),
                                                         ),
-                                                        onPressed: () async => {
-                                                              logFirebaseEvent(
-                                                                  'ButtonBackendCall'),
+                                                        onPressed: () async {
+                                                          logFirebaseEvent(
+                                                              'ButtonBackendCall');
+                                                          final apiCallOutput =
                                                               await DeletePlanCall
                                                                   .call(
-                                                                uid:
-                                                                    currentUserUid,
-                                                                plan: '/' +
-                                                                    columnPlansRecord
-                                                                        .reference
-                                                                        .path,
-                                                                accessToken:
-                                                                    currentJwtToken,
-                                                                appCheckToken:
-                                                                    _appCheckToken,
-                                                              ),
-                                                              Navigator.pop(
-                                                                  context),
-                                                            })
+                                                            uid: currentUserUid,
+                                                            plan: '/' +
+                                                                columnPlansRecord
+                                                                    .reference
+                                                                    .path,
+                                                            accessToken:
+                                                                currentJwtToken,
+                                                            appCheckToken:
+                                                                _appCheckToken,
+                                                          );
+                                                          final _apiJson =
+                                                              getJsonField(
+                                                                  apiCallOutput
+                                                                      .jsonBody,
+                                                                  r'''$.result''');
+                                                          final success = _apiJson[
+                                                                  'success'] ??
+                                                              false;
+                                                          if (!success) {
+                                                            String
+                                                                errorMessage =
+                                                                _apiJson[
+                                                                        'error'] ??
+                                                                    '原因不明のエラーが発生';
+                                                            showSnackbar(
+                                                              context,
+                                                              'Error: $errorMessage',
+                                                            );
+                                                            return;
+                                                          }
+
+                                                          Navigator.pop(
+                                                              context);
+                                                        })
                                                   ],
                                                 ),
                                               );
@@ -576,45 +613,34 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                             if (countControllerValue > 0) {
                                               logFirebaseEvent(
                                                   'ButtonBackendCall');
-                                              _plan == null
-                                                  ? await AddPlanCall.call(
-                                                      uid: currentUserUid,
-                                                      plan: '/' +
-                                                          columnPlansRecord
-                                                              .reference.path,
-                                                      quantity:
-                                                          countControllerValue,
-                                                      unitAmount:
-                                                          columnPlansRecord
-                                                              .unitAmount,
-                                                      name: columnPlansRecord
-                                                          .name,
-                                                      date: dateTimeFormat(
-                                                          'yMMMd h:mm a',
-                                                          getCurrentTimestamp),
-                                                      accessToken:
-                                                          currentJwtToken,
-                                                      appCheckToken:
-                                                          _appCheckToken,
-                                                    )
-                                                  : await UpdatePlanCall.call(
-                                                      uid: currentUserUid,
-                                                      plan: '/' +
-                                                          columnPlansRecord
-                                                              .reference.path,
-                                                      quantity:
-                                                          countControllerValue,
-                                                      unitAmount:
-                                                          columnPlansRecord
-                                                              .unitAmount,
-                                                      date: dateTimeFormat(
-                                                          'yMMMd h:mm a',
-                                                          getCurrentTimestamp),
-                                                      accessToken:
-                                                          currentJwtToken,
-                                                      appCheckToken:
-                                                          _appCheckToken,
-                                                    );
+                                              final apiCallOutput =
+                                                  await AddPlanCall.call(
+                                                uid: currentUserUid,
+                                                plan: '/' +
+                                                    columnPlansRecord
+                                                        .reference.path,
+                                                quantity: countControllerValue,
+                                                date: dateTimeFormat(
+                                                    'yMMMd h:mm a',
+                                                    getCurrentTimestamp),
+                                                accessToken: currentJwtToken,
+                                                appCheckToken: _appCheckToken,
+                                              );
+                                              final _apiJson = getJsonField(
+                                                  apiCallOutput.jsonBody,
+                                                  r'''$.result''');
+                                              final success =
+                                                  _apiJson['success'] ?? false;
+                                              if (!success) {
+                                                String errorMessage =
+                                                    _apiJson['error'] ??
+                                                        '原因不明のエラーが発生';
+                                                showSnackbar(
+                                                  context,
+                                                  'エラー: $errorMessage',
+                                                );
+                                                return;
+                                              }
                                               logFirebaseEvent(
                                                   'ButtonShowSnackBar');
                                               ScaffoldMessenger.of(context)
@@ -702,7 +728,6 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                         ),
                                         FFButtonWidget(
                                           onPressed: () async {
-                                            print(countControllerValue);
                                             logFirebaseEvent('ButtonON_TAP');
                                             if (countControllerValue == 0) {
                                               setState(() {

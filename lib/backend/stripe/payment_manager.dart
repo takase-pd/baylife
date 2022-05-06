@@ -108,8 +108,8 @@ Future<StripePaymentResponse> processStripePayment({
     // Show the payment sheet and confirm payment
     await Stripe.instance.presentPaymentSheet();
 
-    await makeCloudCall(
-      'updateBillingDetailsV0',
+    final updateResponse = await makeCloudCall(
+      'stripe-updateBillingDetailsV0',
       'asia-northeast1',
       {
         'paymentId': response['paymentId'],
@@ -128,6 +128,11 @@ Future<StripePaymentResponse> processStripePayment({
         },
       },
     );
+    final updateSuccess = updateResponse['success'] ?? false;
+    if (!updateSuccess || !updateResponse.containsKey('paymentId')) {
+      return StripePaymentResponse(
+          errorMessage: response['error'] ?? 'Unkown error occured');
+    }
 
     // Return the id of the completed payment to add record in the app.
     return StripePaymentResponse(

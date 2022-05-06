@@ -35,35 +35,50 @@ class _CartPageWidgetState extends State<CartPageWidget> {
   String paymentId;
   String paymentMethodId;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  List cart;
-  int subtoral = 0;
-  int shippingAmount = 500;
+  List<PlanData> cart;
+  int subtotal = 0;
+  int shippingTotal = 0;
   ShippingDetails shipping;
   BillingDetails billing;
 
   Future<List> _getCart() async {
-    subtoral = 0;
+    subtotal = 0;
     cart = [];
     if (!currentUser.loggedIn) return cart;
 
     final _appCheckToken = await AppCheckAgent.getToken(context);
-    if (_appCheckToken != null) {
-      final apiCallOutput = await GetCartCall.call(
-        uid: currentUserUid,
-        accessToken: currentJwtToken,
-        appCheckToken: _appCheckToken,
+    if (_appCheckToken == null) return cart;
+
+    final apiCallOutput = await GetCartCall.call(
+      uid: currentUserUid,
+      accessToken: currentJwtToken,
+      appCheckToken: _appCheckToken,
+    );
+
+    final _apiJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+    final success = _apiJson['success'] ?? false;
+    if (!success) {
+      String errorMessage = _apiJson['error'] ?? '原因不明のエラーが発生';
+      showSnackbar(
+        context,
+        'Error: $errorMessage',
       );
-      final _cartJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
-      _cartJson.forEach((plan) {
-        subtoral += plan['unit_amount'] * plan['quantity'];
-        cart.add(PlanData(
-          path: plan['path'],
-          unitAmount: plan['unit_amount'],
-          quantity: plan['quantity'],
-          name: plan['name'],
-        ));
-      });
+      return cart;
     }
+
+    subtotal = _apiJson['subtotal'];
+    shippingTotal = _apiJson['shipping_fee'];
+    _apiJson['cart'].forEach((plan) {
+      cart.add(PlanData(
+        path: plan['path'],
+        unitAmount: plan['unit_amount'],
+        quantity: plan['quantity'],
+        name: plan['name'],
+        // shippingFeeNormal: plan['shipping_fee_normal'],
+        shippingEachFee: plan['shipping_each_fee'],
+      ));
+    });
+
     return cart;
   }
 
@@ -203,15 +218,31 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                   context);
                                               return;
                                             }
-
                                             logFirebaseEvent(
                                                 'SlidableActionWidgetBackendCall');
-                                            await DeletePlanCall.call(
+                                            final apiCallOutput =
+                                                await DeletePlanCall.call(
                                               uid: currentUserUid,
                                               plan: _plan.path,
                                               accessToken: currentJwtToken,
                                               appCheckToken: _appCheckToken,
                                             );
+                                            final _apiJson = getJsonField(
+                                                apiCallOutput.jsonBody,
+                                                r'''$.result''');
+                                            final success =
+                                                _apiJson['success'] ?? false;
+                                            if (!success) {
+                                              String errorMessage =
+                                                  _apiJson['error'] ??
+                                                      '原因不明のエラーが発生';
+                                              showSnackbar(
+                                                context,
+                                                'Error: $errorMessage',
+                                              );
+                                              return;
+                                            }
+
                                             setState(() {});
                                           },
                                         ),
@@ -331,7 +362,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                     ),
                                                     Text(
                                                       formatNumber(
-                                                        _plan.sum,
+                                                        _plan.subtotal,
                                                         formatType:
                                                             FormatType.custom,
                                                         currency: '￥',
@@ -403,7 +434,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                         ),
                                         Text(
                                           formatNumber(
-                                            subtoral,
+                                            subtotal,
                                             formatType: FormatType.custom,
                                             currency: '￥',
                                             format: '#,##0',
@@ -430,7 +461,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                         ),
                                         Text(
                                           formatNumber(
-                                            shippingAmount,
+                                            shippingTotal,
                                             formatType: FormatType.custom,
                                             currency: '￥',
                                             format: '#,##0',
@@ -457,7 +488,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                         ),
                                         Text(
                                           formatNumber(
-                                            subtoral + shippingAmount,
+                                            subtotal + shippingTotal,
                                             formatType: FormatType.custom,
                                             currency: '￥',
                                             format: '#,##0',
@@ -558,6 +589,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                   0.9,
                                               child: BillingDetailsWidget(
                                                 shipping: shipping,
+                                                billing: billing,
                                               ),
                                             ),
                                           );
@@ -625,7 +657,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                         logFirebaseEvent('ButtonStripePayment');
                                         final paymentResponse =
                                             await processStripePayment(
-                                          amount: subtoral + shippingAmount,
+                                          amount: subtotal + shippingTotal,
                                           currency: 'JPY',
                                           customerEmail: currentUserEmail,
                                           customerName: currentUserDisplayName,
@@ -649,6 +681,38 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                           return;
                                         }
                                         paymentId = paymentResponse.paymentId;
+
+                                        final _appCheckToken =
+                                            await AppCheckAgent.getToken(
+                                                context);
+                                        if (_appCheckToken == null) {
+                                          CustomDialog.networkAlert(context);
+                                          return;
+                                        }
+                                        final apiCallOutput =
+                                            await PaymentCall.call(
+                                          uid: currentUserUid,
+                                          paymentId: paymentId,
+                                          date: dateTimeFormat('yMMMd h:mm a',
+                                              getCurrentTimestamp),
+                                          accessToken: currentJwtToken,
+                                          appCheckToken: _appCheckToken,
+                                        );
+                                        final _apiJson = getJsonField(
+                                            apiCallOutput.jsonBody,
+                                            r'''$.result''');
+                                        final success =
+                                            _apiJson['success'] ?? false;
+                                        if (!success) {
+                                          String errorMessage =
+                                              _apiJson['error'] ??
+                                                  '原因不明のエラーが発生';
+                                          showSnackbar(
+                                            context,
+                                            'エラー: $errorMessage',
+                                          );
+                                          return;
+                                        }
 
                                         setState(() {});
 

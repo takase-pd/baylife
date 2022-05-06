@@ -39,51 +39,50 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
     if (!currentUser.loggedIn) return payment;
 
     final _appCheckToken = await AppCheckAgent.getToken(context);
-    if (_appCheckToken != null) {
-      final apiCallOutput = await GetPaymentDetailsCall.call(
-        paymentId: widget.purchase.paymentId,
-        accessToken: currentJwtToken,
-        appCheckToken: _appCheckToken,
+    if (_appCheckToken == null) return payment;
+
+    final apiCallOutput = await GetPaymentDetailsCall.call(
+      paymentId: widget.purchase.paymentId,
+      accessToken: currentJwtToken,
+      appCheckToken: _appCheckToken,
+    );
+
+    final _apiJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+    if (_apiJson['success']) {
+      _shipping = stripe.ShippingDetails(
+        address: stripe.Address(
+          country: _apiJson['shipping']['address']['country'],
+          state: _apiJson['shipping']['address']['state'],
+          city: _apiJson['shipping']['address']['city'],
+          line1: _apiJson['shipping']['address']['line1'],
+          line2: _apiJson['shipping']['address']['line2'],
+          postalCode: _apiJson['shipping']['address']['postal_code'],
+        ),
+        name: _apiJson['shipping']['name'],
+        phone: _apiJson['shipping']['phone'],
       );
-      final _paymentJson =
-          getJsonField(apiCallOutput.jsonBody, r'''$.result''');
-      if (_paymentJson != null) {
-        _shipping = stripe.ShippingDetails(
-          address: stripe.Address(
-            country: _paymentJson['shipping']['address']['country'],
-            state: _paymentJson['shipping']['address']['state'],
-            city: _paymentJson['shipping']['address']['city'],
-            line1: _paymentJson['shipping']['address']['line1'],
-            line2: _paymentJson['shipping']['address']['line2'],
-            postalCode: _paymentJson['shipping']['address']['postal_code'],
-          ),
-          name: _paymentJson['shipping']['name'],
-          phone: _paymentJson['shipping']['phone'],
-        );
-        _billing = stripe.BillingDetails(
-          address: stripe.Address(
-            country: _paymentJson['paymentMethod']['billing_details']['address']
-                ['country'],
-            state: _paymentJson['paymentMethod']['billing_details']['address']
-                ['state'],
-            city: _paymentJson['paymentMethod']['billing_details']['address']
-                ['city'],
-            line1: _paymentJson['paymentMethod']['billing_details']['address']
-                ['line1'],
-            line2: _paymentJson['paymentMethod']['billing_details']['address']
-                ['line2'],
-            postalCode: _paymentJson['paymentMethod']['billing_details']
-                ['address']['postal_code'],
-          ),
-          name: _paymentJson['paymentMethod']['billing_details']['name'],
-          phone: _paymentJson['paymentMethod']['billing_details']['phone'],
-          email: _paymentJson['paymentMethod']['billing_details']['email'],
-        );
-        _card = stripe.Card(
-          brand: _paymentJson['paymentMethod']['card']['brand'],
-          last4: _paymentJson['paymentMethod']['card']['last4'],
-        );
-      }
+      _billing = stripe.BillingDetails(
+        address: stripe.Address(
+          country: _apiJson['paymentMethod']['billing_details']['address']
+              ['country'],
+          state: _apiJson['paymentMethod']['billing_details']['address']
+              ['state'],
+          city: _apiJson['paymentMethod']['billing_details']['address']['city'],
+          line1: _apiJson['paymentMethod']['billing_details']['address']
+              ['line1'],
+          line2: _apiJson['paymentMethod']['billing_details']['address']
+              ['line2'],
+          postalCode: _apiJson['paymentMethod']['billing_details']['address']
+              ['postal_code'],
+        ),
+        name: _apiJson['paymentMethod']['billing_details']['name'],
+        phone: _apiJson['paymentMethod']['billing_details']['phone'],
+        email: _apiJson['paymentMethod']['billing_details']['email'],
+      );
+      _card = stripe.Card(
+        brand: _apiJson['paymentMethod']['card']['brand'],
+        last4: _apiJson['paymentMethod']['card']['last4'],
+      );
     }
 
     return PaymentDetails(
@@ -251,7 +250,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                         ),
                                         Text(
                                           formatNumber(
-                                            _plan.sum,
+                                            _plan.subtotal,
                                             formatType: FormatType.custom,
                                             currency: '￥',
                                             format: '#,##0',

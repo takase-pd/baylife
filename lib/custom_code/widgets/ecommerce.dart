@@ -8,6 +8,9 @@ class PlanData {
   final int unitAmount;
   final int quantity;
   final String name;
+  // final int subtotal;
+  final int shippingFeeNormal;
+  final bool shippingEachFee;
   final ShippingStatus status;
 
   PlanData({
@@ -15,10 +18,13 @@ class PlanData {
     this.unitAmount,
     this.quantity,
     this.name,
+    // this.subtotal,
+    this.shippingFeeNormal,
+    this.shippingEachFee,
     this.status,
   });
 
-  int get sum => unitAmount * quantity;
+  int get subtotal => unitAmount * quantity;
 }
 
 class Purchase {
