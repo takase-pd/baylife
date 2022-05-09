@@ -720,7 +720,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 customerEmail: currentUserEmail,
                                                 customerName:
                                                     currentUserDisplayName,
-                                                description: 'ご注文の品',
+                                                description: 'Bay Life ご注文の品',
                                                 allowGooglePay: true,
                                                 allowApplePay: false,
                                                 buttonColor:
@@ -743,6 +743,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                               }
                                               paymentId =
                                                   paymentResponse.paymentId;
+                                              final payAmount =
+                                                  paymentResponse.totalAmount;
 
                                               final _appCheckToken =
                                                   await AppCheckAgent.getToken(
@@ -756,6 +758,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                   await PaymentCall.call(
                                                 uid: currentUserUid,
                                                 paymentId: paymentId,
+                                                payAmount: payAmount,
                                                 date: dateTimeFormat(
                                                     'yMMMd h:mm a',
                                                     getCurrentTimestamp),
@@ -769,8 +772,9 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                   _apiJson['success'] ?? false;
                                               if (!success) {
                                                 String errorMessage =
-                                                    _apiJson['error'] ??
-                                                        '原因不明のエラーが発生';
+                                                    // TODO correct to catch error message
+                                                    // _apiJson['error'] ??
+                                                    '原因不明のエラーが発生';
                                                 showSnackbar(
                                                   context,
                                                   'エラー: $errorMessage',

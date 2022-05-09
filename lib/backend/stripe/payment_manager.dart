@@ -32,9 +32,11 @@ Future initializeStripe() async {
 class StripePaymentResponse {
   const StripePaymentResponse({
     this.paymentId,
+    this.totalAmount,
     this.errorMessage,
   });
   final String paymentId;
+  final int totalAmount;
   final String errorMessage;
 }
 
@@ -60,11 +62,12 @@ Future<StripePaymentResponse> processStripePayment({
     final callName = _isProd
         ? 'stripe-initStripePaymentV0'
         : 'stripe-initStripeTestPaymentV0';
+    final totalAmount = amount.round();
     final response = await makeCloudCall(
       callName,
       'asia-northeast1',
       {
-        'amount': amount.round(),
+        'amount': totalAmount,
         'currency': currency,
         'email': customerEmail,
         'name': customerName,
@@ -137,6 +140,7 @@ Future<StripePaymentResponse> processStripePayment({
     // Return the id of the completed payment to add record in the app.
     return StripePaymentResponse(
       paymentId: response['paymentId'],
+      totalAmount: totalAmount,
     );
   } catch (e) {
     if (e is StripeException && e.error.code == FailureCode.Canceled) {

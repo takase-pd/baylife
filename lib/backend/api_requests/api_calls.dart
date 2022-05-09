@@ -426,6 +426,7 @@ class PaymentCall {
   static Future<ApiCallResponse> call({
     String uid = '',
     String paymentId = '',
+    int payAmount = 0,
     String date = '',
     String accessToken = '',
     String appCheckToken = '',
@@ -435,6 +436,7 @@ class PaymentCall {
   "data": {
     "uid": "${uid}",
     "paymentId": "${paymentId}",
+    "payAmount": ${payAmount},
     "date": "${date}"
   }
 }''';
@@ -449,6 +451,7 @@ class PaymentCall {
       params: {
         'uid': uid,
         'paymentId': paymentId,
+        'payAmount': payAmount,
         'date': date,
       },
       body: body,
