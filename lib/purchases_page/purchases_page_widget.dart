@@ -64,6 +64,8 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
       ));
     });
 
+    purchases.sort(((a, b) => b.purchased.compareTo(a.purchased)));
+
     return purchases;
   }
 
