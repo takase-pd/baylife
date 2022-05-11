@@ -30,10 +30,10 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
   final formKey = GlobalKey<FormState>();
 
   void _resetShipping() {
-    cityController = TextEditingController(text: '千葉市美浜区');
+    cityController = TextEditingController(text: '千葉市');
     postalCodeController = TextEditingController(text: '2610013');
     stateController = TextEditingController(text: '千葉県');
-    line1Controller = TextEditingController(text: '打瀬');
+    line1Controller = TextEditingController(text: '美浜区打瀬');
     line2Controller = TextEditingController();
     nameController = TextEditingController();
     phoneController = TextEditingController();
@@ -44,13 +44,13 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
   void initState() {
     super.initState();
     cityController =
-        TextEditingController(text: widget.shipping?.address?.city ?? '千葉市美浜区');
+        TextEditingController(text: widget.shipping?.address?.city ?? '千葉市');
     postalCodeController = TextEditingController(
         text: widget.shipping?.address?.postalCode ?? '2610013');
     stateController =
         TextEditingController(text: widget.shipping?.address?.state ?? '千葉県');
     line1Controller =
-        TextEditingController(text: widget.shipping?.address?.line1 ?? '打瀬');
+        TextEditingController(text: widget.shipping?.address?.line1 ?? '美浜区打瀬');
     line2Controller =
         TextEditingController(text: widget.shipping?.address?.line2);
     nameController = TextEditingController(text: widget.shipping?.name);
@@ -317,7 +317,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                     controller: cityController,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      hintText: '千葉市美浜区',
+                                      hintText: '千葉市',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
@@ -414,7 +414,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                     controller: line1Controller,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      hintText: '打瀬',
+                                      hintText: '美浜区打瀬',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)

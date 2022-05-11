@@ -373,7 +373,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                     controller: cityController,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      hintText: '千葉市美浜区',
+                                      hintText: '千葉市',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
@@ -470,7 +470,7 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
                                     controller: line1Controller,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      hintText: '打瀬',
+                                      hintText: '美浜区打瀬',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
