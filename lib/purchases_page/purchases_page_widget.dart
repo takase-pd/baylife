@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:bay_life/index.dart';
 
 import '../auth/firebase_user_provider.dart';
 import '../custom_code/widgets/index.dart';
@@ -110,8 +111,13 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                         child: InkWell(
                           onTap: () async {
                             logFirebaseEvent('CardON_TAP');
-                            logFirebaseEvent('CardNavigateBack');
-                            Navigator.pop(context);
+                            logFirebaseEvent('CardNavigateTo');
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EcommercePageWidget(),
+                              ),
+                            );
                           },
                           child: Card(
                             clipBehavior: Clip.antiAliasWithSaveLayer,
