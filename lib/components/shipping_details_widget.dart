@@ -20,6 +20,7 @@ class ShippingDetailsWidget extends StatefulWidget {
 }
 
 class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
+  final formKey = GlobalKey<FormState>();
   TextEditingController cityController;
   TextEditingController postalCodeController;
   TextEditingController stateController;
@@ -27,7 +28,6 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
   TextEditingController line2Controller;
   TextEditingController nameController;
   TextEditingController phoneController;
-  final formKey = GlobalKey<FormState>();
 
   void _resetShipping() {
     cityController = TextEditingController(text: '千葉市');
@@ -180,7 +180,9 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                           ),
                                       autovalidateMode: AutovalidateMode.always,
                                       validator: (val) {
-                                        return val.isEmpty || val.length != 7
+                                        return val == null ||
+                                                val.isEmpty ||
+                                                val.length != 7
                                             ? '郵便番号を入力してください。'
                                             : null;
                                       },
@@ -269,7 +271,9 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                         ),
                                     autovalidateMode: AutovalidateMode.always,
                                     validator: (val) {
-                                      return val.isEmpty || val.length < 3
+                                      return val == null ||
+                                              val.isEmpty ||
+                                              val.length < 3
                                           ? '都道府県を入力してください。'
                                           : null;
                                     },
@@ -366,7 +370,9 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                         ),
                                     autovalidateMode: AutovalidateMode.always,
                                     validator: (val) {
-                                      return val.isEmpty || val.length < 3
+                                      return val == null ||
+                                              val.isEmpty ||
+                                              val.length < 3
                                           ? '市区町村を入力してください。'
                                           : null;
                                     },
@@ -464,7 +470,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                     keyboardType: TextInputType.streetAddress,
                                     autovalidateMode: AutovalidateMode.always,
                                     validator: (val) {
-                                      return val.isEmpty
+                                      return val == null || val.isEmpty
                                           ? '番地を入力してください。'
                                           : null;
                                     },
@@ -556,7 +562,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                         ),
                                     autovalidateMode: AutovalidateMode.always,
                                     validator: (val) {
-                                      return val.isEmpty
+                                      return val == null || val.isEmpty
                                           ? 'マンション名、部屋番号を入力してください。'
                                           : null;
                                     },
@@ -656,7 +662,9 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                         ),
                                     autovalidateMode: AutovalidateMode.always,
                                     validator: (val) {
-                                      return val.isEmpty || val.length < 2
+                                      return val == null ||
+                                              val.isEmpty ||
+                                              val.length < 2
                                           ? 'お名前を入力してください。'
                                           : null;
                                     },
@@ -757,7 +765,9 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                     keyboardType: TextInputType.phone,
                                     autovalidateMode: AutovalidateMode.always,
                                     validator: (val) {
-                                      return val.isEmpty || val.length < 7
+                                      return val == null ||
+                                              val.isEmpty ||
+                                              val.length < 7
                                           ? '電話番号を入力してください（ハイフンなし）。'
                                           : null;
                                     },

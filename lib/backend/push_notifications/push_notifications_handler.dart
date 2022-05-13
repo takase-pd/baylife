@@ -112,7 +112,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'TermsPage': (data) async => TermsPageWidget(
         termsUrl: getParameter(data, 'termsUrl'),
       ),
-  'SurveyPage': (data) async => NavBarPage(initialPage: 'SurveyPageWidget'),
+  'SurveyPage': (data) async => NavBarPage(initialPage: 'SurveyPage'),
   'SurveyPostPage': (data) async => SurveyPostPageWidget(
         surveyRef: getParameter(data, 'surveyRef'),
       ),
@@ -128,8 +128,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'MyPageDev': (data) async => MyPageDevWidget(
         surveyRef: getParameter(data, 'surveyRef'),
       ),
-  'EcommercePage': (data) async =>
-      NavBarPage(initialPage: 'EcommercePageWidget'),
+  'EcommercePage': (data) async => NavBarPage(initialPage: 'EcommercePage'),
   'ShopPage': (data) async => ShopPageWidget(
         shopRef: getParameter(data, 'shopRef'),
       ),

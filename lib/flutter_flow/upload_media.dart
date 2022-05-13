@@ -184,7 +184,7 @@ Future<SelectedMedia> selectFile({
     type: FileType.custom,
     allowedExtensions: allowedExtensions,
   );
-  if (pickedFiles.files.isEmpty) {
+  if (pickedFiles == null || pickedFiles.files.isEmpty) {
     return null;
   }
 

@@ -26,12 +26,12 @@ class PostPageWithLoginWidget extends StatefulWidget {
 
 class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
   DateTime datePicked1;
+  String uploadedFileUrl = '';
   String categoryValue;
   TextEditingController titleController;
   TextEditingController categoryAddController;
   TextEditingController overviewController;
   TextEditingController detailController;
-  String uploadedFileUrl = '';
   DateTime datePicked2;
   TextEditingController addressController;
   TextEditingController homepageController;
@@ -272,7 +272,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                         validator: (val) {
-                                          if (val.isEmpty) {
+                                          if (val == null || val.isEmpty) {
                                             return 'タイトルを入力してください。';
                                           }
 
@@ -504,7 +504,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         maxLines: 3,
                                         keyboardType: TextInputType.multiline,
                                         validator: (val) {
-                                          if (val.isEmpty) {
+                                          if (val == null || val.isEmpty) {
                                             return '概要を入力してください。';
                                           }
 
@@ -579,7 +579,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         maxLines: 30,
                                         keyboardType: TextInputType.multiline,
                                         validator: (val) {
-                                          if (val.isEmpty) {
+                                          if (val == null || val.isEmpty) {
                                             return '投稿詳細を入力してください。';
                                           }
 
@@ -688,15 +688,19 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                   'Uploading file...',
                                                   showLoading: true,
                                                 );
-                                                final downloadUrls = await Future
-                                                    .wait(selectedMedia.map(
-                                                        (m) async =>
-                                                            await uploadData(
-                                                                m.storagePath,
-                                                                m.bytes)));
+                                                final downloadUrls = (await Future
+                                                        .wait(selectedMedia.map(
+                                                            (m) async =>
+                                                                await uploadData(
+                                                                    m.storagePath,
+                                                                    m.bytes))))
+                                                    .where((u) => u != null)
+                                                    .toList();
                                                 ScaffoldMessenger.of(context)
                                                     .hideCurrentSnackBar();
-                                                if (downloadUrls != null) {
+                                                if (downloadUrls != null &&
+                                                    downloadUrls.length ==
+                                                        selectedMedia.length) {
                                                   setState(() =>
                                                       uploadedFileUrl =
                                                           downloadUrls.first);
@@ -1043,7 +1047,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         keyboardType:
                                             TextInputType.streetAddress,
                                         validator: (val) {
-                                          if (val.isEmpty) {
+                                          if (val == null || val.isEmpty) {
                                             return '開催場所を入力してください。';
                                           }
 
@@ -1183,7 +1187,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                         validator: (val) {
-                                          if (val.isEmpty) {
+                                          if (val == null || val.isEmpty) {
                                             return '主催者の名前を入力してください。';
                                           }
 
@@ -1256,7 +1260,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                         validator: (val) {
-                                          if (val.isEmpty) {
+                                          if (val == null || val.isEmpty) {
                                             return '問い合わせ先を入力してください。';
                                           }
 

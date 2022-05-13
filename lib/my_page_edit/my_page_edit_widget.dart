@@ -234,7 +234,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                   textAlign: TextAlign.end,
                                   maxLength: 20,
                                   validator: (val) {
-                                    if (val.isEmpty) {
+                                    if (val == null || val.isEmpty) {
                                       return 'ユーザー名を入力';
                                     }
 

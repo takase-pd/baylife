@@ -43,6 +43,7 @@ class LoginPageWidget extends StatefulWidget {
 }
 
 class _LoginPageWidgetState extends State<LoginPageWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController confirmPasswordController;
   bool confirmPasswordVisibility;
   TextEditingController createEmailController;
@@ -51,7 +52,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   TextEditingController emailController;
   TextEditingController passwordController;
   bool passwordVisibility;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   Widget pageRoute() {
     switch (widget.pagePath) {
