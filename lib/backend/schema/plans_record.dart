@@ -23,10 +23,6 @@ abstract class PlansRecord implements Built<PlansRecord, PlansRecordBuilder> {
   int get unitAmount;
 
   @nullable
-  @BuiltValueField(wireName: 'pub_date')
-  DateTime get pubDate;
-
-  @nullable
   String get description;
 
   @nullable
@@ -47,6 +43,9 @@ abstract class PlansRecord implements Built<PlansRecord, PlansRecordBuilder> {
   @nullable
   @BuiltValueField(wireName: 'shipping_fee_normal')
   int get shippingFeeNormal;
+
+  @nullable
+  DateTime get published;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -89,13 +88,13 @@ Map<String, dynamic> createPlansRecordData({
   String name,
   DocumentReference shop,
   int unitAmount,
-  DateTime pubDate,
   String description,
   bool activeQuick,
   String banner,
   String shippingNormal,
   String shippingQuick,
   int shippingFeeNormal,
+  DateTime published,
 }) =>
     serializers.toFirestore(
         PlansRecord.serializer,
@@ -104,10 +103,10 @@ Map<String, dynamic> createPlansRecordData({
           ..name = name
           ..shop = shop
           ..unitAmount = unitAmount
-          ..pubDate = pubDate
           ..description = description
           ..activeQuick = activeQuick
           ..banner = banner
           ..shippingNormal = shippingNormal
           ..shippingQuick = shippingQuick
-          ..shippingFeeNormal = shippingFeeNormal));
+          ..shippingFeeNormal = shippingFeeNormal
+          ..published = published));

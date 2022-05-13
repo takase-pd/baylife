@@ -19,8 +19,8 @@ class CartPageWidget extends StatefulWidget {
 }
 
 class _CartPageWidgetState extends State<CartPageWidget> {
-  String paymentId;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  String paymentId;
 
   @override
   void initState() {

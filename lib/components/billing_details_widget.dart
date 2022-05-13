@@ -13,10 +13,10 @@ class BillingDetailsWidget extends StatefulWidget {
 }
 
 class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
-  TextEditingController cityController;
+  bool switchListTileValue;
   TextEditingController postalCodeController;
   TextEditingController stateController;
-  bool switchListTileValue;
+  TextEditingController cityController;
   TextEditingController line1Controller;
   TextEditingController line2Controller;
   TextEditingController nameController;

@@ -27,9 +27,9 @@ class PlanPageWidget extends StatefulWidget {
 }
 
 class _PlanPageWidgetState extends State<PlanPageWidget> {
-  String paymentId;
-  int countControllerValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  int countControllerValue;
+  String paymentId;
 
   @override
   void initState() {

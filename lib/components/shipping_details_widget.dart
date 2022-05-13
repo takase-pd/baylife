@@ -13,6 +13,7 @@ class ShippingDetailsWidget extends StatefulWidget {
 }
 
 class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
+  final formKey = GlobalKey<FormState>();
   TextEditingController cityController;
   TextEditingController postalCodeController;
   TextEditingController stateController;
@@ -20,7 +21,6 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
   TextEditingController line2Controller;
   TextEditingController nameController;
   TextEditingController phoneController;
-  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -137,7 +137,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                                 .textLight,
                                           ),
                                       validator: (val) {
-                                        if (val.isEmpty) {
+                                        if (val == null || val.isEmpty) {
                                           return '郵便番号を入力してください。';
                                         }
                                         if (val.length < 7) {
@@ -213,7 +213,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                               .textLight,
                                         ),
                                     validator: (val) {
-                                      if (val.isEmpty) {
+                                      if (val == null || val.isEmpty) {
                                         return '都道府県を入力してください。';
                                       }
                                       if (val.length < 2) {
@@ -297,7 +297,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                               .textLight,
                                         ),
                                     validator: (val) {
-                                      if (val.isEmpty) {
+                                      if (val == null || val.isEmpty) {
                                         return '市区町村を入力してください。';
                                       }
                                       if (val.length < 2) {
@@ -382,7 +382,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                         ),
                                     keyboardType: TextInputType.streetAddress,
                                     validator: (val) {
-                                      if (val.isEmpty) {
+                                      if (val == null || val.isEmpty) {
                                         return '番地を入力してください。';
                                       }
 
@@ -459,7 +459,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                               .textLight,
                                         ),
                                     validator: (val) {
-                                      if (val.isEmpty) {
+                                      if (val == null || val.isEmpty) {
                                         return 'マンション名、部屋番号を入力してください。';
                                       }
 
@@ -537,7 +537,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                               .textLight,
                                         ),
                                     validator: (val) {
-                                      if (val.isEmpty) {
+                                      if (val == null || val.isEmpty) {
                                         return '名前を入力してください。';
                                       }
                                       if (val.length < 1) {
@@ -618,7 +618,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                         ),
                                     keyboardType: TextInputType.phone,
                                     validator: (val) {
-                                      if (val.isEmpty) {
+                                      if (val == null || val.isEmpty) {
                                         return '電話番号を入力してください（ハイフンなし）。';
                                       }
 
