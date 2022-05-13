@@ -48,6 +48,10 @@ abstract class PlansRecord implements Built<PlansRecord, PlansRecordBuilder> {
   DateTime get published;
 
   @nullable
+  @BuiltValueField(wireName: 'quantity_max')
+  int get quantityMax;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -60,7 +64,8 @@ abstract class PlansRecord implements Built<PlansRecord, PlansRecordBuilder> {
     ..banner = ''
     ..shippingNormal = ''
     ..shippingQuick = ''
-    ..shippingFeeNormal = 0;
+    ..shippingFeeNormal = 0
+    ..quantityMax = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('plans');
@@ -95,6 +100,7 @@ Map<String, dynamic> createPlansRecordData({
   String shippingQuick,
   int shippingFeeNormal,
   DateTime published,
+  int quantityMax,
 }) =>
     serializers.toFirestore(
         PlansRecord.serializer,
@@ -109,4 +115,5 @@ Map<String, dynamic> createPlansRecordData({
           ..shippingNormal = shippingNormal
           ..shippingQuick = shippingQuick
           ..shippingFeeNormal = shippingFeeNormal
-          ..published = published));
+          ..published = published
+          ..quantityMax = quantityMax));
