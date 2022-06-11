@@ -1,6 +1,7 @@
 // Export pages
 export 'home_page/home_page_widget.dart' show HomePageWidget;
 export 'login_page/login_page_widget.dart' show LoginPageWidget;
+export 'login_page/login_page_path.dart' show LoginPagePath;
 export 'content_page/content_page_widget.dart' show ContentPageWidget;
 export 'category_page/category_page_widget.dart' show CategoryPageWidget;
 export 'post_page_with_login/post_page_with_login_widget.dart'
@@ -22,3 +23,4 @@ export 'cart_page/cart_page_widget.dart' show CartPageWidget;
 export 'purchases_page/purchases_page_widget.dart' show PurchasesPageWidget;
 export 'payment_info_page/payment_info_page_widget.dart'
     show PaymentInfoPageWidget;
+export 'purchases_page/purchases_page_widget.dart' show PurchasesPageWidget;

@@ -1,18 +1,14 @@
-import '../auth/auth_util.dart';
 import '../auth/firebase_user_provider.dart';
-import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../custom_code/widgets/index.dart';
-import '../login_page/login_page_widget.dart';
-import '../login_page/login_page_path.dart';
+import '../index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bay_life/custom_code/widgets/index.dart';
-import 'package:flutter_stripe/flutter_stripe.dart' as stripe;
 
 class PaymentInfoPageWidget extends StatefulWidget {
   const PaymentInfoPageWidget({
@@ -85,7 +81,12 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                             onTap: () async {
                               logFirebaseEvent('CardON_TAP');
                               logFirebaseEvent('CardNavigateBack');
-                              Navigator.pop(context);
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PurchasesPageWidget(),
+                                ),
+                              );
                             },
                             child: Card(
                               clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -257,7 +258,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        child: FutureBuilder(
+                        child: FutureBuilder<PaymentDetails>(
                           future: payment,
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
@@ -283,8 +284,135 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 8, 0),
                                             child: Text(
-                                              "カード情報 " +
-                                                  _card.brand.toUpperCase(),
+                                              "お支払い金額",
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 4),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 8, 0),
+                                            child: Text(
+                                              "合計： " +
+                                                  formatNumber(
+                                                    _purchase.totalAmount,
+                                                    formatType:
+                                                        FormatType.custom,
+                                                    currency: '￥',
+                                                    format: '#,##0',
+                                                    locale: 'ja_JP',
+                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 0, 0, 0),
+                                            child: Text(
+                                              "（",
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 0),
+                                            child: Text(
+                                              "商品： " +
+                                                  formatNumber(
+                                                    _purchase.shippingFee,
+                                                    formatType:
+                                                        FormatType.custom,
+                                                    currency: '￥',
+                                                    format: '#,##0',
+                                                    locale: 'ja_JP',
+                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 0, 0, 0),
+                                            child: Text(
+                                              "配送： " +
+                                                  formatNumber(
+                                                    _purchase.shippingFee,
+                                                    formatType:
+                                                        FormatType.custom,
+                                                    currency: '￥',
+                                                    format: '#,##0',
+                                                    locale: 'ja_JP',
+                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 0),
+                                            child: Text(
+                                              "）",
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 4),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 8, 0),
+                                            child: Text(
+                                              "カード情報",
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 4),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 8, 0),
+                                            child: Text(
+                                              _card.brand.toUpperCase(),
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1,
@@ -299,6 +427,26 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 4),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 8, 0),
+                                            child: Text(
+                                              "お支払い者さま",
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle1,
                                             ),
                                           ),
                                         ],

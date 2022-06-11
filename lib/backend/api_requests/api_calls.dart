@@ -264,7 +264,6 @@ class AddPlanCall {
     "date": "${date}"
   }
 }''';
-    print('add plan ${quantity}');
     return ApiManager.instance.makeApiCall(
       callName: 'Add Plan',
       apiUrl:

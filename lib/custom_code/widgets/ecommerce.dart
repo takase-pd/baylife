@@ -35,12 +35,18 @@ class Purchase {
   final String paymentId;
   final PlanData plan;
   final DateTime purchased;
+  final int subtotal;
+  final int shippingFee;
 
   Purchase({
     this.paymentId,
     this.plan,
     this.purchased,
+    this.subtotal,
+    this.shippingFee,
   });
+
+  int get totalAmount => subtotal + shippingFee;
 
   static Future<List<Purchase>> create(
     BuildContext context,
@@ -81,6 +87,8 @@ class Purchase {
           _purchase['purchased']['_seconds'],
           _purchase['purchased']['_nanoseconds'],
         ).toDate(),
+        subtotal: _purchase['subtotal'],
+        shippingFee: _purchase['shipping_fee'],
       ));
     });
 
