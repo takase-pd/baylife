@@ -67,7 +67,7 @@ jobs:
 
       - name: Firebase App Distribution for Dev
         if: github.ref == 'refs/heads/develop'
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.3
         with:
           appId: ${{ secrets.FIREBASE_APP_ID_IOS_DEV }}
           token: ${{ secrets.FIREBASE_TOKEN }}
@@ -76,7 +76,7 @@ jobs:
 
       - name: Firebase App Distribution for Preview
         if: github.ref == 'refs/heads/preview'
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.3
         with:
           appId: ${{ secrets.FIREBASE_APP_ID_IOS }}
           token: ${{ secrets.FIREBASE_TOKEN }}
@@ -85,7 +85,7 @@ jobs:
 
       - name: Firebase App Distribution for Preview
         if: github.ref == 'refs/heads/ec'
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.3
         with:
           appId: ${{ secrets.FIREBASE_APP_ID_IOS }}
           token: ${{ secrets.FIREBASE_TOKEN }}
