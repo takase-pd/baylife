@@ -17,6 +17,7 @@ class PlanData {
   final int shippingFeeNormal;
   final bool shippingEachFee;
   final ShippingStatus status;
+  final int trackingIndex;
 
   PlanData({
     this.path,
@@ -26,6 +27,7 @@ class PlanData {
     this.shippingFeeNormal,
     this.shippingEachFee,
     this.status,
+    this.trackingIndex,
   });
 
   int get subtotal => unitAmount * quantity;
@@ -37,6 +39,7 @@ class Purchase {
   final DateTime purchased;
   final int subtotal;
   final int shippingFee;
+  final DateTime updated;
 
   Purchase({
     this.paymentId,
@@ -44,6 +47,7 @@ class Purchase {
     this.purchased,
     this.subtotal,
     this.shippingFee,
+    this.updated,
   });
 
   int get totalAmount => subtotal + shippingFee;
@@ -80,7 +84,8 @@ class Purchase {
           unitAmount: _purchase['unit_amount'],
           quantity: _purchase['quantity'],
           name: _purchase['name'],
-          status: getShippingStatus(_purchase['status']),
+          status: ShippingStatusExt.create(_purchase['status']),
+          trackingIndex: _purchase['trackingIndex'] ?? 0,
         ),
         paymentId: _purchase['paymentId'],
         purchased: Timestamp(
@@ -141,6 +146,8 @@ class PaymentDetails {
         ),
         name: _apiJson['shipping']['name'],
         phone: _apiJson['shipping']['phone'],
+        carrier: _apiJson['shipping']['carrier'] ?? '',
+        trackingNumber: _apiJson['shipping']['tracking_number'] ?? '',
       );
       _billing = stripe.BillingDetails(
         address: stripe.Address(
@@ -181,47 +188,75 @@ enum ShippingStatus {
   confirming,
 }
 
-ShippingStatus getShippingStatus(String status) {
-  switch (status) {
-    case 'contacted':
-      return ShippingStatus.contacted;
-      break;
-    case 'shipping':
-      return ShippingStatus.shipping;
-      break;
-    case 'shipped':
-      return ShippingStatus.shipped;
-      break;
-    default:
-      return ShippingStatus.confirming;
-      break;
+extension ShippingStatusExt on ShippingStatus {
+  static final _label = {
+    ShippingStatus.contacted: '注文',
+    ShippingStatus.confirming: '確認中',
+    ShippingStatus.shipping: '発送済',
+    ShippingStatus.shipped: '到着',
+  };
+
+  static final _icon = {
+    ShippingStatus.contacted: Icons.send_rounded,
+    ShippingStatus.confirming: Icons.search_rounded,
+    ShippingStatus.shipping: FontAwesomeIcons.truckFast,
+    ShippingStatus.shipped: FontAwesomeIcons.box,
+  };
+
+  static final _size = {
+    ShippingStatus.contacted: 32.0,
+    ShippingStatus.confirming: 32.0,
+    ShippingStatus.shipping: 24.0,
+    ShippingStatus.shipped: 24.0,
+  };
+
+  static List<String> get labelList =>
+      _label.entries.map((e) => _label[e.key]).toList();
+
+  static ShippingStatus create(String status) {
+    switch (status) {
+      case '確認中':
+        return ShippingStatus.confirming;
+        break;
+      case '発送済':
+        return ShippingStatus.shipping;
+        break;
+      case '到着':
+        return ShippingStatus.shipped;
+        break;
+      default:
+        return ShippingStatus.contacted;
+        break;
+    }
   }
+
+  String get label => _label[this];
+
+  IconData get icon => _icon[this];
+
+  double get size => _size[this];
 }
 
-FaIcon shippingStatusIcon(BuildContext context, ShippingStatus _status) {
-  IconData _icon;
-  double _size;
-  switch (_status) {
-    case ShippingStatus.contacted:
-      _icon = Icons.send_rounded;
-      _size = 32;
-      break;
-    case ShippingStatus.shipping:
-      _icon = FontAwesomeIcons.shippingFast;
-      _size = 24;
-      break;
-    case ShippingStatus.shipped:
-      _icon = FontAwesomeIcons.box;
-      _size = 24;
-      break;
-    default:
-      _icon = Icons.search_rounded;
-      _size = 32;
-      break;
+enum ShippingCarrier {
+  yamato,
+  sagawa,
+  japanpost,
+}
+
+extension ShippingCarrierExt on ShippingCarrier {
+  static final _label = {
+    ShippingCarrier.yamato: 'クロネコヤマト',
+    ShippingCarrier.sagawa: '佐川急便',
+    ShippingCarrier.japanpost: '日本郵便',
+  };
+
+  static List<String> get labelList =>
+      _label.entries.map((e) => _label[e.key]).toList();
+}
+
+extension PlansRecordExt on PlansRecord {
+  Future<String> getShopName() async {
+    final shop = await ShopsRecord.getDocumentOnce(this.shop);
+    return shop.shopName;
   }
-  return FaIcon(
-    _icon,
-    color: FlutterFlowTheme.of(context).secondaryColor,
-    size: _size,
-  );
 }

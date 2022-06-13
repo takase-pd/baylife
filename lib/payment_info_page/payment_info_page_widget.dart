@@ -232,7 +232,12 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                         ),
                                       ],
                                     ),
-                                    shippingStatusIcon(context, _plan.status),
+                                    FaIcon(
+                                      _plan.status.icon,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryColor,
+                                      size: _plan.status.size,
+                                    ),
                                   ],
                                 ),
                               ),
@@ -302,9 +307,9 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 8, 0),
+                                                    0, 0, 0, 0),
                                             child: Text(
-                                              "合計： " +
+                                              "合計：" +
                                                   formatNumber(
                                                     _purchase.totalAmount,
                                                     formatType:
@@ -321,7 +326,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    8, 0, 0, 0),
+                                                    0, 0, 0, 0),
                                             child: Text(
                                               "（",
                                               style:
@@ -334,7 +339,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 0, 0),
                                             child: Text(
-                                              "商品： " +
+                                              "商品：" +
                                                   formatNumber(
                                                     _purchase.shippingFee,
                                                     formatType:
@@ -353,7 +358,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     8, 0, 0, 0),
                                             child: Text(
-                                              "配送： " +
+                                              "配送：" +
                                                   formatNumber(
                                                     _purchase.shippingFee,
                                                     formatType:
@@ -392,7 +397,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 8, 0),
                                             child: Text(
-                                              "カード情報",
+                                              "お支払い方法",
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle1,
@@ -443,7 +448,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 8, 0),
                                             child: Text(
-                                              "お支払い者さま",
+                                              "お支払い者様",
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle1,
@@ -583,7 +588,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: Text(
-                      'お届け先住所',
+                      'お届け情報',
                       style: FlutterFlowTheme.of(context).title2,
                     ),
                   ),
@@ -596,13 +601,16 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        child: FutureBuilder(
+                        child: FutureBuilder<PaymentDetails>(
                           future: payment,
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.done) {
                               final _payment = snapshot.data;
                               final _shipping = _payment.shipping;
+                              final _trackingNumber = _payment
+                                  .shipping.trackingNumber
+                                  .split(',')[_plan.trackingIndex];
                               return Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
@@ -610,6 +618,104 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 4),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 8, 0),
+                                            child: Text(
+                                              "配送",
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 4),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 8, 0),
+                                            child: Text(
+                                              '状況：' + _plan.status.label,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 4),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 0),
+                                            child: Text(
+                                              _shipping.carrier == null ||
+                                                      _shipping
+                                                              .carrier.length ==
+                                                          0
+                                                  ? '配送業者未設定'
+                                                  : _shipping.carrier,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16, 0, 0, 0),
+                                            child: Text(
+                                              _trackingNumber.length > 0
+                                                  ? '追跡番号：' + _trackingNumber
+                                                  : '追跡番号なし',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 4),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 8, 0),
+                                            child: Text(
+                                              "お届け先",
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 4),
@@ -908,8 +1014,13 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                       ),
                                                     ],
                                                   ),
-                                                  shippingStatusIcon(
-                                                      context, _plan.status),
+                                                  FaIcon(
+                                                    _plan.status.icon,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryColor,
+                                                    size: _plan.status.size,
+                                                  ),
                                                 ],
                                               ),
                                             ),

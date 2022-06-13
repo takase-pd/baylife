@@ -277,8 +277,13 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                                                   ),
                                                 ],
                                               ),
-                                              shippingStatusIcon(
-                                                  context, _plan.status),
+                                              FaIcon(
+                                                _plan.status.icon,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryColor,
+                                                size: _plan.status.size,
+                                              ),
                                             ],
                                           ),
                                         ),
