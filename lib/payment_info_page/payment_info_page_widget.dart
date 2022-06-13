@@ -341,7 +341,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                             child: Text(
                                               "商品：" +
                                                   formatNumber(
-                                                    _purchase.shippingFee,
+                                                    _purchase.totalAmount,
                                                     formatType:
                                                         FormatType.custom,
                                                     currency: '￥',
