@@ -534,7 +534,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                           ),
                                         ),
                                         Text(
-                                          '＊お支払い方法は、Stripeによる決済をご利用ください。',
+                                          '＊お支払いは、Stripeにより安心してご利用いただけます。',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1,
                                         ),
