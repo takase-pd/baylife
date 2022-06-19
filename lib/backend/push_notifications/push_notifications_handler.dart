@@ -139,6 +139,9 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'CartPage': (data) async => CartPageWidget(),
   'PurchasesPage': (data) async => PurchasesPageWidget(),
   'PaymentInfoPage': (data) async => PaymentInfoPageWidget(),
+  'TransactionsLawPage': (data) async => TransactionsLawPageWidget(
+        shopRef: getParameter(data, 'shopRef'),
+      ),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

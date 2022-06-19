@@ -393,7 +393,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         '特定商取引法に基づく表示',
