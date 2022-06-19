@@ -87,8 +87,9 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                           child: InkWell(
                             onTap: () async {
-                              logFirebaseEvent('Card-ON_TAP');
-                              logFirebaseEvent('Card-Navigate-To');
+                              logFirebaseEvent(
+                                  'SURVEY_PAGE_PAGE_Card_jrqgv0cx_ON_TAP');
+                              logFirebaseEvent('Card_Navigate-To');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -174,9 +175,10 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                         if (listViewSurveyRecord.open ?? true)
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              logFirebaseEvent('Button-ON_TAP');
                                               logFirebaseEvent(
-                                                  'Button-Navigate-To');
+                                                  'SURVEY_PAGE_PAGE_ログインして回答_BTN_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Button_Navigate-To');
                                               await Navigator.push(
                                                 context,
                                                 MaterialPageRoute(

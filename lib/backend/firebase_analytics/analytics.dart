@@ -11,7 +11,8 @@ void logFirebaseEvent(String eventName, {Map<String, dynamic> parameters}) {
   assert(eventName.length <= kMaxEventNameLength);
 
   parameters ??= {};
-  parameters.putIfAbsent('user', () => currentUserUid ?? 'unset');
+  parameters.putIfAbsent(
+      'user', () => currentUserUid.isEmpty ? currentUserUid : 'unset');
   parameters.removeWhere((k, v) => k == null || v == null);
 
   // FB Analytics allows num values but others need to be converted to strings

@@ -13,7 +13,6 @@ class ShippingDetailsWidget extends StatefulWidget {
 }
 
 class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
-  final formKey = GlobalKey<FormState>();
   TextEditingController cityController;
   TextEditingController postalCodeController;
   TextEditingController stateController;
@@ -21,6 +20,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
   TextEditingController line2Controller;
   TextEditingController nameController;
   TextEditingController phoneController;
+  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -143,6 +143,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                         if (val.length < 7) {
                                           return 'Requires at least 7 characters.';
                                         }
+
                                         return null;
                                       },
                                     ),
@@ -219,6 +220,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                       if (val.length < 2) {
                                         return 'Requires at least 2 characters.';
                                       }
+
                                       return null;
                                     },
                                   ),
@@ -303,6 +305,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                       if (val.length < 2) {
                                         return 'Requires at least 2 characters.';
                                       }
+
                                       return null;
                                     },
                                   ),
@@ -543,6 +546,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                       if (val.length < 1) {
                                         return 'Requires at least 1 characters.';
                                       }
+
                                       return null;
                                     },
                                   ),

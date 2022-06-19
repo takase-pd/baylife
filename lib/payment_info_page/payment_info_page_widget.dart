@@ -2,6 +2,7 @@ import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../purchases_page/purchases_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -57,9 +58,14 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                     alignment: AlignmentDirectional(-0.95, 0.4),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('Card-ON_TAP');
-                        logFirebaseEvent('Card-Navigate-Back');
-                        Navigator.pop(context);
+                        logFirebaseEvent('PAYMENT_INFO_Card_lcxnkop6_ON_TAP');
+                        logFirebaseEvent('Card_Navigate-To');
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PurchasesPageWidget(),
+                          ),
+                        );
                       },
                       child: Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -545,6 +551,8 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
                                                   children: [
                                                     Padding(
                                                       padding:

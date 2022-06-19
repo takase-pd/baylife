@@ -37,8 +37,9 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('ListTile-ON_TAP');
-                        logFirebaseEvent('ListTile-Navigate-To');
+                        logFirebaseEvent(
+                            'END_DRAWER_COMP_ListTile_hyxd1vcp_ON_TAP');
+                        logFirebaseEvent('ListTile_Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -71,8 +72,9 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('ListTile-ON_TAP');
-                        logFirebaseEvent('ListTile-Navigate-To');
+                        logFirebaseEvent(
+                            'END_DRAWER_COMP_ListTile_c79bmzob_ON_TAP');
+                        logFirebaseEvent('ListTile_Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -108,8 +110,9 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('ListTile-ON_TAP');
-                        logFirebaseEvent('ListTile-Launch-U-R-L');
+                        logFirebaseEvent(
+                            'END_DRAWER_COMP_ListTile_b8m04f2i_ON_TAP');
+                        logFirebaseEvent('ListTile_Launch-U-R-L');
                         await launchURL(
                             'https://www.particledrawing.com/privacy');
                       },
@@ -138,8 +141,9 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('ListTile-ON_TAP');
-                        logFirebaseEvent('ListTile-Alert-Dialog');
+                        logFirebaseEvent(
+                            'END_DRAWER_COMP_ListTile_r9bl6iug_ON_TAP');
+                        logFirebaseEvent('ListTile_Alert-Dialog');
                         var confirmDialogResponse = await showDialog<bool>(
                               context: context,
                               builder: (alertDialogContext) {
@@ -164,10 +168,10 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                             ) ??
                             false;
                         if (confirmDialogResponse) {
-                          logFirebaseEvent('ListTile-Backend-Call');
+                          logFirebaseEvent('ListTile_Backend-Call');
                           await currentUserReference.delete();
                         }
-                        logFirebaseEvent('ListTile-Navigate-To');
+                        logFirebaseEvent('ListTile_Navigate-To');
                         await Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
@@ -205,10 +209,10 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
               child: InkWell(
                 onTap: () async {
-                  logFirebaseEvent('ListTile-ON_TAP');
-                  logFirebaseEvent('ListTile-Auth');
+                  logFirebaseEvent('END_DRAWER_COMP_ListTile_5rwzbsll_ON_TAP');
+                  logFirebaseEvent('ListTile_Auth');
                   await signOut();
-                  logFirebaseEvent('ListTile-Navigate-To');
+                  logFirebaseEvent('ListTile_Navigate-To');
                   await Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(

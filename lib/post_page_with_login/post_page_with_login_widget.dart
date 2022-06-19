@@ -72,8 +72,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-To');
+            logFirebaseEvent('POST_WITH_LOGIN_Icon_fkeajruh_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -667,9 +667,9 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
-                                                  'FileButton-ON_TAP');
+                                                  'POST_WITH_LOGIN_FileButton_ON_TAP');
                                               logFirebaseEvent(
-                                                  'FileButton-Upload-Photo-Video');
+                                                  'FileButton_Upload-Photo-Video');
                                               final selectedMedia =
                                                   await selectMedia(
                                                 maxWidth: 300.00,
@@ -820,9 +820,9 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
-                                                  'StartDayButton-ON_TAP');
+                                                  'POST_WITH_LOGIN_StartDayButton_ON_TAP');
                                               logFirebaseEvent(
-                                                  'StartDayButton-Date-Time-Picker');
+                                                  'StartDayButton_Date-Time-Picker');
                                               await DatePicker.showDatePicker(
                                                 context,
                                                 showTitleActions: true,
@@ -833,6 +833,15 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 currentTime:
                                                     getCurrentTimestamp,
                                                 minTime: DateTime(0, 0, 0),
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
                                               );
                                             },
                                             text: '日付',
@@ -937,9 +946,9 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
-                                                  'FinalDayButton-ON_TAP');
+                                                  'POST_WITH_LOGIN_FinalDayButton_ON_TAP');
                                               logFirebaseEvent(
-                                                  'FinalDayButton-Date-Time-Picker');
+                                                  'FinalDayButton_Date-Time-Picker');
                                               await DatePicker.showDatePicker(
                                                 context,
                                                 showTitleActions: true,
@@ -950,6 +959,15 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 currentTime:
                                                     getCurrentTimestamp,
                                                 minTime: DateTime(0, 0, 0),
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
                                               );
                                             },
                                             text: '日付',
@@ -1600,8 +1618,9 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                         children: [
                           InkWell(
                             onTap: () async {
-                              logFirebaseEvent('Text-ON_TAP');
-                              logFirebaseEvent('Text-Navigate-To');
+                              logFirebaseEvent(
+                                  'POST_WITH_LOGIN_Text_x583tubz_ON_TAP');
+                              logFirebaseEvent('Text_Navigate-To');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -1667,9 +1686,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          logFirebaseEvent('Button-ON_TAP');
                                           logFirebaseEvent(
-                                              'Button-Navigate-To');
+                                              'POST_PAGE_WITH_LOGIN_PAGE_確認_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_Navigate-To');
                                           await Navigator.push(
                                             context,
                                             MaterialPageRoute(

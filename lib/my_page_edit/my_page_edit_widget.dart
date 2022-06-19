@@ -47,8 +47,8 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-Back');
+            logFirebaseEvent('MY_PAGE_EDIT_PAGE_Icon_z5tz43ok_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-Back');
             Navigator.pop(context);
           },
           child: Icon(
@@ -232,9 +232,9 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                             ),
                             AuthUserStreamWidget(
                               child: FlutterFlowDropDown(
-                                initialOption: sexValue ??=
-                                    currentUserDocument?.sex,
-                                options: ['男性', '女性', 'その他', '未回答'].toList(),
+                                initialOption: sexValue ??= valueOrDefault(
+                                    currentUserDocument?.sex, ''),
+                                options: ['男性', '女性', 'その他', '未回答'],
                                 onChanged: (val) =>
                                     setState(() => sexValue = val),
                                 width: 128,
@@ -279,10 +279,9 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                             ),
                             AuthUserStreamWidget(
                               child: FlutterFlowDropDown(
-                                initialOption: areaValue ??=
-                                    currentUserDocument?.area,
-                                options:
-                                    ['ベイタウン', 'ベイパーク', 'それ以外', '未回答'].toList(),
+                                initialOption: areaValue ??= valueOrDefault(
+                                    currentUserDocument?.area, ''),
+                                options: ['ベイタウン', 'ベイパーク', 'それ以外', '未回答'],
                                 onChanged: (val) =>
                                     setState(() => areaValue = val),
                                 width: 128,
@@ -341,8 +340,9 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                     : null;
                             return FFButtonWidget(
                               onPressed: () async {
-                                logFirebaseEvent('Button-ON_TAP');
-                                logFirebaseEvent('Button-Backend-Call');
+                                logFirebaseEvent(
+                                    'MY_PAGE_EDIT_PAGE_保存_BTN_ON_TAP');
+                                logFirebaseEvent('Button_Backend-Call');
 
                                 final usersUpdateData = createUsersRecordData(
                                   sex: sexValue,
@@ -351,7 +351,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                 );
                                 await currentUserReference
                                     .update(usersUpdateData);
-                                logFirebaseEvent('Button-Navigate-To');
+                                logFirebaseEvent('Button_Navigate-To');
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(

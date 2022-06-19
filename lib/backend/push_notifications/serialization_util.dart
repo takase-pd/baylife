@@ -142,7 +142,7 @@ T getParameter<T>(Map<String, dynamic> data, String paramName) {
 Future<T> getDocumentParameter<T>(
     Map<String, dynamic> data, String paramName, Serializer<T> serializer) {
   if (!data.containsKey(paramName)) {
-    return null;
+    return Future.value(null);
   }
   return FirebaseFirestore.instance
       .doc(data[paramName])

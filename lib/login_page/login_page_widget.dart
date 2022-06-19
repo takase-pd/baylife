@@ -21,7 +21,6 @@ class LoginPageWidget extends StatefulWidget {
 }
 
 class _LoginPageWidgetState extends State<LoginPageWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController confirmPasswordController;
   bool confirmPasswordVisibility;
   TextEditingController createEmailController;
@@ -30,6 +29,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   TextEditingController emailController;
   TextEditingController passwordController;
   bool passwordVisibility;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -55,8 +55,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-Back');
+            logFirebaseEvent('LOGIN_PAGE_PAGE_Icon_y8evf44p_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-Back');
             Navigator.pop(context);
           },
           child: Icon(
@@ -215,6 +215,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             () => passwordVisibility =
                                                 !passwordVisibility,
                                           ),
+                                          focusNode:
+                                              FocusNode(skipTraversal: true),
                                           child: Icon(
                                             passwordVisibility
                                                 ? Icons.visibility_outlined
@@ -239,8 +241,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  logFirebaseEvent('Button-ON_TAP');
-                                  logFirebaseEvent('Button-Auth');
+                                  logFirebaseEvent(
+                                      'LOGIN_SIGN_IN_WITH_EMAIL_BTN_ON_TAP');
+                                  logFirebaseEvent('Button_Auth');
 
                                   final user = await signInWithEmail(
                                     context,
@@ -251,7 +254,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     return;
                                   }
 
-                                  logFirebaseEvent('Button-Navigate-To');
+                                  logFirebaseEvent('Button_Navigate-To');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -301,14 +304,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        logFirebaseEvent('Button-ON_TAP');
-                                        logFirebaseEvent('Button-Auth');
+                                        logFirebaseEvent(
+                                            'LOGIN_SIGN_IN_WITH_GOOGLE_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_Auth');
                                         final user =
                                             await signInWithGoogle(context);
                                         if (user == null) {
                                           return;
                                         }
-                                        logFirebaseEvent('Button-Navigate-To');
+                                        logFirebaseEvent('Button_Navigate-To');
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -368,13 +372,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    logFirebaseEvent('Button-ON_TAP');
-                                    logFirebaseEvent('Button-Auth');
+                                    logFirebaseEvent(
+                                        'LOGIN_SIGN_IN_WITH_APPLE_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_Auth');
                                     final user = await signInWithApple(context);
                                     if (user == null) {
                                       return;
                                     }
-                                    logFirebaseEvent('Button-Navigate-To');
+                                    logFirebaseEvent('Button_Navigate-To');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -420,8 +425,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        logFirebaseEvent('Button-ON_TAP');
-                                        logFirebaseEvent('Button-Auth');
+                                        logFirebaseEvent(
+                                            'LOGIN_LOGIN_WITH_FACEBOOK_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_Auth');
                                         final user =
                                             await signInWithFacebook(context);
                                         if (user == null) {
@@ -491,8 +497,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
-                                    logFirebaseEvent('Text-ON_TAP');
-                                    logFirebaseEvent('Text-Navigate-To');
+                                    logFirebaseEvent(
+                                        'LOGIN_PAGE_PAGE_Text_mmrd2076_ON_TAP');
+                                    logFirebaseEvent('Text_Navigate-To');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -520,8 +527,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
-                                    logFirebaseEvent('Text-ON_TAP');
-                                    logFirebaseEvent('Text-Launch-U-R-L');
+                                    logFirebaseEvent(
+                                        'LOGIN_PAGE_PAGE_Text_3i62b0sx_ON_TAP');
+                                    logFirebaseEvent('Text_Launch-U-R-L');
                                     await launchURL(
                                         'https://www.particledrawing.com/privacy');
                                   },
@@ -659,6 +667,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             () => createPasswordVisibility =
                                                 !createPasswordVisibility,
                                           ),
+                                          focusNode:
+                                              FocusNode(skipTraversal: true),
                                           child: Icon(
                                             createPasswordVisibility
                                                 ? Icons.visibility_outlined
@@ -730,6 +740,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             () => confirmPasswordVisibility =
                                                 !confirmPasswordVisibility,
                                           ),
+                                          focusNode:
+                                              FocusNode(skipTraversal: true),
                                           child: Icon(
                                             confirmPasswordVisibility
                                                 ? Icons.visibility_outlined
@@ -754,10 +766,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  logFirebaseEvent('Button-ON_TAP');
-                                  logFirebaseEvent('Button-Auth');
-                                  if (createPasswordController.text !=
-                                      confirmPasswordController.text) {
+                                  logFirebaseEvent(
+                                      'LOGIN_SIGN_UP_WITH_EMAIL_BTN_ON_TAP');
+                                  logFirebaseEvent('Button_Auth');
+                                  if (createPasswordController?.text !=
+                                      confirmPasswordController?.text) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -784,7 +797,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       .doc(user.uid)
                                       .update(usersCreateData);
 
-                                  logFirebaseEvent('Button-Navigate-To');
+                                  logFirebaseEvent('Button_Navigate-To');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -834,14 +847,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        logFirebaseEvent('Button-ON_TAP');
-                                        logFirebaseEvent('Button-Auth');
+                                        logFirebaseEvent(
+                                            'LOGIN_SIGN_UP_WITH_GOOGLE_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_Auth');
                                         final user =
                                             await signInWithGoogle(context);
                                         if (user == null) {
                                           return;
                                         }
-                                        logFirebaseEvent('Button-Navigate-To');
+                                        logFirebaseEvent('Button_Navigate-To');
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -901,13 +915,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    logFirebaseEvent('Button-ON_TAP');
-                                    logFirebaseEvent('Button-Auth');
+                                    logFirebaseEvent(
+                                        'LOGIN_SIGN_UP_WITH_APPLE_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_Auth');
                                     final user = await signInWithApple(context);
                                     if (user == null) {
                                       return;
                                     }
-                                    logFirebaseEvent('Button-Navigate-To');
+                                    logFirebaseEvent('Button_Navigate-To');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -953,8 +968,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        logFirebaseEvent('Button-ON_TAP');
-                                        logFirebaseEvent('Button-Auth');
+                                        logFirebaseEvent(
+                                            'LOGIN_SIGN_UP_WITH_FACEBOOK_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_Auth');
                                         final user =
                                             await signInWithFacebook(context);
                                         if (user == null) {
@@ -1034,8 +1050,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
-                                    logFirebaseEvent('Text-ON_TAP');
-                                    logFirebaseEvent('Text-Navigate-To');
+                                    logFirebaseEvent(
+                                        'LOGIN_PAGE_PAGE_Text_v883rqe2_ON_TAP');
+                                    logFirebaseEvent('Text_Navigate-To');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -1063,8 +1080,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
-                                    logFirebaseEvent('Text-ON_TAP');
-                                    logFirebaseEvent('Text-Launch-U-R-L');
+                                    logFirebaseEvent(
+                                        'LOGIN_PAGE_PAGE_Text_gb6glkvq_ON_TAP');
+                                    logFirebaseEvent('Text_Launch-U-R-L');
                                     await launchURL(
                                         'https://www.particledrawing.com/privacy');
                                   },

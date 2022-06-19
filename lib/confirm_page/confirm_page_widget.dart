@@ -79,8 +79,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-Back');
+            logFirebaseEvent('CONFIRM_PAGE_PAGE_Icon_hd8nkgu3_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-Back');
             Navigator.pop(context);
           },
           child: Icon(
@@ -890,8 +890,9 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                       children: [
                         InkWell(
                           onTap: () async {
-                            logFirebaseEvent('Text-ON_TAP');
-                            logFirebaseEvent('Text-Navigate-To');
+                            logFirebaseEvent(
+                                'CONFIRM_PAGE_PAGE_Text_3743yv9y_ON_TAP');
+                            logFirebaseEvent('Text_Navigate-To');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -960,9 +961,10 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          logFirebaseEvent('Button-ON_TAP');
                                           logFirebaseEvent(
-                                              'Button-Navigate-Back');
+                                              'CONFIRM_PAGE_PAGE_戻る_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_Navigate-Back');
                                           Navigator.pop(context);
                                         },
                                         text: '戻る',
@@ -1049,9 +1051,10 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                               AlignmentDirectional(0.95, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              logFirebaseEvent('Button-ON_TAP');
                                               logFirebaseEvent(
-                                                  'Button-Backend-Call');
+                                                  'CONFIRM_PAGE_PAGE_送信_BTN_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Button_Backend-Call');
                                               await RegistContentsCall.call(
                                                 catName: widget.catName,
                                                 catNameAdd: widget.catNameAdd,
@@ -1081,7 +1084,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                 uid: currentUserUid,
                                               );
                                               logFirebaseEvent(
-                                                  'Button-Alert-Dialog');
+                                                  'Button_Alert-Dialog');
                                               await showDialog(
                                                 context: context,
                                                 builder: (alertDialogContext) {
@@ -1101,7 +1104,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                 },
                                               );
                                               logFirebaseEvent(
-                                                  'Button-Navigate-To');
+                                                  'Button_Navigate-To');
                                               await Navigator
                                                   .pushAndRemoveUntil(
                                                 context,

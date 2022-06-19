@@ -51,8 +51,8 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-To');
+            logFirebaseEvent('SURVEY_RESULT_Icon_6i2xkf2d_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -375,9 +375,9 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                       ),
                                                       onPressed: () async {
                                                         logFirebaseEvent(
-                                                            'IconButton-ON_TAP');
+                                                            'SURVEY_RESULT_solidBell_ICN_ON_TAP');
                                                         logFirebaseEvent(
-                                                            'IconButton-Show-Snack-Bar');
+                                                            'IconButton_Show-Snack-Bar');
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
@@ -681,9 +681,9 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                   InkWell(
                                                     onTap: () async {
                                                       logFirebaseEvent(
-                                                          'Text-ON_TAP');
+                                                          'SURVEY_RESULT_Text_vxdlpouf_ON_TAP');
                                                       logFirebaseEvent(
-                                                          'Text-Navigate-To');
+                                                          'Text_Navigate-To');
                                                       await Navigator.push(
                                                         context,
                                                         MaterialPageRoute(

@@ -149,16 +149,17 @@ class ApiManager {
     return postBody;
   }
 
-  Future<ApiCallResponse> makeApiCall(
-      {String callName,
-      String apiUrl,
-      ApiCallType callType,
-      Map<String, dynamic> headers = const {},
-      Map<String, dynamic> params = const {},
-      String body,
-      BodyType bodyType,
-      bool returnBody,
-      bool cache = false}) async {
+  Future<ApiCallResponse> makeApiCall({
+    String callName,
+    String apiUrl,
+    ApiCallType callType,
+    Map<String, dynamic> headers = const {},
+    Map<String, dynamic> params = const {},
+    String body,
+    BodyType bodyType,
+    bool returnBody,
+    bool cache = false,
+  }) async {
     final callRecord =
         ApiCallRecord(callName, apiUrl, headers, params, body, bodyType);
     // Modify for your specific needs if this differs from your API.

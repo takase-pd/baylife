@@ -19,8 +19,8 @@ class CartPageWidget extends StatefulWidget {
 }
 
 class _CartPageWidgetState extends State<CartPageWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   String paymentId;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -61,8 +61,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                     alignment: AlignmentDirectional(-0.95, 0.4),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('Card-ON_TAP');
-                        logFirebaseEvent('Card-Navigate-Back');
+                        logFirebaseEvent('CART_PAGE_PAGE_Card_jcpc2xs3_ON_TAP');
+                        logFirebaseEvent('Card_Navigate-Back');
                         Navigator.pop(context);
                       },
                       child: Card(
@@ -326,8 +326,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        logFirebaseEvent('Button-ON_TAP');
-                        logFirebaseEvent('Button-Bottom-Sheet');
+                        logFirebaseEvent('CART_PAGE_PAGE_配送先_BTN_ON_TAP');
+                        logFirebaseEvent('Button_Bottom-Sheet');
                         await showModalBottomSheet(
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
@@ -366,8 +366,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        logFirebaseEvent('Button-ON_TAP');
-                        logFirebaseEvent('Button-Bottom-Sheet');
+                        logFirebaseEvent('CART_PAGE_PAGE_請求先_BTN_ON_TAP');
+                        logFirebaseEvent('Button_Bottom-Sheet');
                         await showModalBottomSheet(
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
@@ -406,8 +406,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        logFirebaseEvent('Button-ON_TAP');
-                        logFirebaseEvent('Button-Stripe-Payment');
+                        logFirebaseEvent('CART_PAGE_PAGE_注文する_BTN_ON_TAP');
+                        logFirebaseEvent('Button_Stripe-Payment');
                         final paymentResponse = await processStripePayment(
                           amount: 1000,
                           currency: 'JPY',
@@ -452,8 +452,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () async {
-                      logFirebaseEvent('Button-ON_TAP');
-                      logFirebaseEvent('Button-Navigate-To');
+                      logFirebaseEvent('CART_PAGE_PAGE_商品を追加する_BTN_ON_TAP');
+                      logFirebaseEvent('Button_Navigate-To');
                       await Navigator.push(
                         context,
                         MaterialPageRoute(

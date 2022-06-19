@@ -51,8 +51,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-To');
+            logFirebaseEvent('SURVEY_POST_Icon_i66z08o1_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -114,8 +114,9 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                           children: [
                             InkWell(
                               onTap: () async {
-                                logFirebaseEvent('Text-ON_TAP');
-                                logFirebaseEvent('Text-Navigate-To');
+                                logFirebaseEvent(
+                                    'SURVEY_POST_Text_e4ydvwkz_ON_TAP');
+                                logFirebaseEvent('Text_Navigate-To');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -143,8 +144,9 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                               child: InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('Icon-ON_TAP');
-                                  logFirebaseEvent('Icon-Navigate-To');
+                                  logFirebaseEvent(
+                                      'SURVEY_POST_Icon_on0mhviq_ON_TAP');
+                                  logFirebaseEvent('Icon_Navigate-To');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -377,8 +379,9 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                   children: [
                                     FFButtonWidget(
                                       onPressed: () async {
-                                        logFirebaseEvent('Button-ON_TAP');
-                                        logFirebaseEvent('Button-Backend-Call');
+                                        logFirebaseEvent(
+                                            'SURVEY_POST_PAGE_PAGE_送信_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_Backend-Call');
                                         await AddSurveyAnswerCall.call(
                                           uid: currentUserUid,
                                           sid: columnSurveyRecord.sid,
@@ -387,7 +390,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                           date: dateTimeFormat(
                                               'yMMMd', getCurrentTimestamp),
                                         );
-                                        logFirebaseEvent('Button-Alert-Dialog');
+                                        logFirebaseEvent('Button_Alert-Dialog');
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
@@ -405,7 +408,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                             );
                                           },
                                         );
-                                        logFirebaseEvent('Button-Navigate-To');
+                                        logFirebaseEvent('Button_Navigate-To');
                                         await Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(

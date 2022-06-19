@@ -58,8 +58,9 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                     alignment: AlignmentDirectional(-0.95, 0.4),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('Card-ON_TAP');
-                        logFirebaseEvent('Card-Navigate-Back');
+                        logFirebaseEvent(
+                            'PURCHASES_PAGE_PAGE_Card_bhnkjzxs_ON_TAP');
+                        logFirebaseEvent('Card_Navigate-Back');
                         Navigator.pop(context);
                       },
                       child: Card(
@@ -111,8 +112,9 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
                       child: InkWell(
                         onTap: () async {
-                          logFirebaseEvent('Container-ON_TAP');
-                          logFirebaseEvent('Container-Navigate-To');
+                          logFirebaseEvent(
+                              'PURCHASES_Container_vc695k7u_ON_TAP');
+                          logFirebaseEvent('Container_Navigate-To');
                           await Navigator.push(
                             context,
                             MaterialPageRoute(

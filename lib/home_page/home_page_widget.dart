@@ -45,8 +45,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          logFirebaseEvent('FloatingActionButton-ON_TAP');
-          logFirebaseEvent('FloatingActionButton-Navigate-To');
+          logFirebaseEvent('HOME_FloatingActionButton_boemacp8_ON_TA');
+          logFirebaseEvent('FloatingActionButton_Navigate-To');
           await Navigator.push(
             context,
             MaterialPageRoute(
@@ -108,8 +108,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                         child: InkWell(
                           onTap: () async {
-                            logFirebaseEvent('Card-ON_TAP');
-                            logFirebaseEvent('Card-Navigate-To');
+                            logFirebaseEvent(
+                                'HOME_PAGE_PAGE_Card_pzugdccw_ON_TAP');
+                            logFirebaseEvent('Card_Navigate-To');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -214,9 +215,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   child: InkWell(
                                                     onTap: () async {
                                                       logFirebaseEvent(
-                                                          'Container-ON_TAP');
+                                                          'HOME_PAGE_PAGE_Container_tnjkyfqd_ON_TAP');
                                                       logFirebaseEvent(
-                                                          'Container-Navigate-To');
+                                                          'Container_Navigate-To');
                                                       await Navigator.push(
                                                         context,
                                                         MaterialPageRoute(

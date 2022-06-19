@@ -27,9 +27,9 @@ class PlanPageWidget extends StatefulWidget {
 }
 
 class _PlanPageWidgetState extends State<PlanPageWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  int countControllerValue;
   String paymentId;
+  int countControllerValue;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -88,8 +88,9 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               alignment: AlignmentDirectional(-0.95, -0.55),
                               child: InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('Card-ON_TAP');
-                                  logFirebaseEvent('Card-Navigate-Back');
+                                  logFirebaseEvent(
+                                      'PLAN_PAGE_PAGE_Card_nj7kako9_ON_TAP');
+                                  logFirebaseEvent('Card_Navigate-Back');
                                   Navigator.pop(context);
                                 },
                                 child: Card(
@@ -117,8 +118,9 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               alignment: AlignmentDirectional(0.95, -0.55),
                               child: InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('Card-ON_TAP');
-                                  logFirebaseEvent('Card-Navigate-To');
+                                  logFirebaseEvent(
+                                      'PLAN_PAGE_PAGE_Card_w2htuil8_ON_TAP');
+                                  logFirebaseEvent('Card_Navigate-To');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -399,15 +401,16 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    logFirebaseEvent('Button-ON_TAP');
-                                    logFirebaseEvent('Button-Navigate-To');
+                                    logFirebaseEvent(
+                                        'PLAN_PAGE_PAGE_カートに追加_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_Navigate-To');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => LoginPageWidget(),
                                       ),
                                     );
-                                    logFirebaseEvent('Button-Backend-Call');
+                                    logFirebaseEvent('Button_Backend-Call');
                                     await AddPlanCall.call(
                                       uid: currentUserUid,
                                       quantity: countControllerValue,
@@ -450,15 +453,16 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    logFirebaseEvent('Button-ON_TAP');
-                                    logFirebaseEvent('Button-Navigate-To');
+                                    logFirebaseEvent(
+                                        'PLAN_PAGE_PAGE_すぐに注文_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_Navigate-To');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => LoginPageWidget(),
                                       ),
                                     );
-                                    logFirebaseEvent('Button-Show-Snack-Bar');
+                                    logFirebaseEvent('Button_Show-Snack-Bar');
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(

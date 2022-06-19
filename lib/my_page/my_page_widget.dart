@@ -43,8 +43,8 @@ class _MyPageWidgetState extends State<MyPageWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-To');
+            logFirebaseEvent('MY_PAGE_PAGE_Icon_04c46r7o_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -67,10 +67,10 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
                 child: InkWell(
                   onTap: () async {
-                    logFirebaseEvent('Text-ON_TAP');
-                    logFirebaseEvent('Text-Auth');
+                    logFirebaseEvent('MY_PAGE_PAGE_Text_okyjyohg_ON_TAP');
+                    logFirebaseEvent('Text_Auth');
                     await signOut();
-                    logFirebaseEvent('Text-Navigate-To');
+                    logFirebaseEvent('Text_Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -233,7 +233,8 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                     AuthUserStreamWidget(
                                       child: Text(
                                         valueOrDefault<String>(
-                                          currentUserDocument?.sex,
+                                          valueOrDefault(
+                                              currentUserDocument?.sex, ''),
                                           '未回答',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -297,7 +298,8 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                     AuthUserStreamWidget(
                                       child: Text(
                                         valueOrDefault<String>(
-                                          currentUserDocument?.area,
+                                          valueOrDefault(
+                                              currentUserDocument?.area, ''),
                                           '未回答',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -324,8 +326,8 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                       child: InkWell(
                         onTap: () async {
-                          logFirebaseEvent('Text-ON_TAP');
-                          logFirebaseEvent('Text-Navigate-To');
+                          logFirebaseEvent('MY_PAGE_PAGE_Text_8jhwgbc9_ON_TAP');
+                          logFirebaseEvent('Text_Navigate-To');
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -376,8 +378,8 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                   : null;
                           return FFButtonWidget(
                             onPressed: () async {
-                              logFirebaseEvent('Button-ON_TAP');
-                              logFirebaseEvent('Button-Navigate-To');
+                              logFirebaseEvent('MY_PAGE_PAGE_ログイン_BTN_ON_TAP');
+                              logFirebaseEvent('Button_Navigate-To');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(

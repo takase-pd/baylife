@@ -80,8 +80,9 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                               alignment: AlignmentDirectional(-0.95, -0.55),
                               child: InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('Card-ON_TAP');
-                                  logFirebaseEvent('Card-Navigate-Back');
+                                  logFirebaseEvent(
+                                      'SHOP_PAGE_PAGE_Card_0r00mcej_ON_TAP');
+                                  logFirebaseEvent('Card_Navigate-Back');
                                   Navigator.pop(context);
                                 },
                                 child: Card(
@@ -109,8 +110,9 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                               alignment: AlignmentDirectional(0.95, -0.55),
                               child: InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('Card-ON_TAP');
-                                  logFirebaseEvent('Card-Navigate-To');
+                                  logFirebaseEvent(
+                                      'SHOP_PAGE_PAGE_Card_d239ipdz_ON_TAP');
+                                  logFirebaseEvent('Card_Navigate-To');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -268,8 +270,9 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                     visible: wrapPlansRecord.active ?? true,
                                     child: InkWell(
                                       onTap: () async {
-                                        logFirebaseEvent('Column-ON_TAP');
-                                        logFirebaseEvent('Column-Navigate-To');
+                                        logFirebaseEvent(
+                                            'SHOP_PAGE_PAGE_Column_jdzhq0yg_ON_TAP');
+                                        logFirebaseEvent('Column_Navigate-To');
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -384,6 +387,19 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                         }),
                       );
                     },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '特定商取引法に基づく表示',
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                    ],
                   ),
                 ),
               ],

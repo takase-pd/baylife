@@ -77,8 +77,9 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                             ),
                             child: InkWell(
                               onTap: () async {
-                                logFirebaseEvent('Row-ON_TAP');
-                                logFirebaseEvent('Row-Navigate-To');
+                                logFirebaseEvent(
+                                    'ECOMMERCE_PAGE_PAGE_Row_j3w0s5jf_ON_TAP');
+                                logFirebaseEvent('Row_Navigate-To');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -121,8 +122,9 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                             ),
                             child: InkWell(
                               onTap: () async {
-                                logFirebaseEvent('Row-ON_TAP');
-                                logFirebaseEvent('Row-Navigate-To');
+                                logFirebaseEvent(
+                                    'ECOMMERCE_PAGE_PAGE_Row_8tje70hv_ON_TAP');
+                                logFirebaseEvent('Row_Navigate-To');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -187,8 +189,9 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: InkWell(
                               onTap: () async {
-                                logFirebaseEvent('Card-ON_TAP');
-                                logFirebaseEvent('Card-Navigate-To');
+                                logFirebaseEvent(
+                                    'ECOMMERCE_PAGE_PAGE_Card_hdqmvbf8_ON_TAP');
+                                logFirebaseEvent('Card_Navigate-To');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
