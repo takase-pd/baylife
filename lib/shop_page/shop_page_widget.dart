@@ -3,6 +3,7 @@ import '../cart_page/cart_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../plan_page/plan_page_widget.dart';
+import '../transactions_law_page/transactions_law_page_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -395,9 +396,24 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        '特定商取引法に基づく表示',
-                        style: FlutterFlowTheme.of(context).bodyText1,
+                      InkWell(
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'SHOP_PAGE_PAGE_Text_3g4yt3pe_ON_TAP');
+                          logFirebaseEvent('Text_Navigate-To');
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TransactionsLawPageWidget(
+                                shopRef: widget.shopRef,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          '特定商取引法に基づく表示',
+                          style: FlutterFlowTheme.of(context).bodyText1,
+                        ),
                       ),
                     ],
                   ),
