@@ -23,4 +23,5 @@ export 'cart_page/cart_page_widget.dart' show CartPageWidget;
 export 'purchases_page/purchases_page_widget.dart' show PurchasesPageWidget;
 export 'payment_info_page/payment_info_page_widget.dart'
     show PaymentInfoPageWidget;
-export 'purchases_page/purchases_page_widget.dart' show PurchasesPageWidget;
+export 'transactions_law_page/transactions_law_page_widget.dart'
+    show TransactionsLawPageWidget;
