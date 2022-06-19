@@ -35,8 +35,8 @@ class PlanPageWidget extends StatefulWidget {
 }
 
 class _PlanPageWidgetState extends State<PlanPageWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   int countControllerValue;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   String paymentId;
   Future<PlanData> planData;
   String countAlert = '';
@@ -136,8 +136,9 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               alignment: AlignmentDirectional(-0.95, -0.55),
                               child: InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('CardON_TAP');
-                                  logFirebaseEvent('CardNavigateBack');
+                                  logFirebaseEvent(
+                                      'PLAN_PAGE_PAGE_Card_nj7kako9_ON_TAP');
+                                  logFirebaseEvent('Card_Navigate-Back');
                                   Navigator.pop(context);
                                 },
                                 child: Card(
@@ -165,8 +166,9 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               alignment: AlignmentDirectional(0.95, -0.55),
                               child: InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('CardON_TAP');
-                                  logFirebaseEvent('CardNavigateTo');
+                                  logFirebaseEvent(
+                                      'PLAN_PAGE_PAGE_Card_w2htuil8_ON_TAP');
+                                  logFirebaseEvent('Card_Navigate-To');
                                   currentUser.loggedIn
                                       ? await Navigator.push(
                                           context,

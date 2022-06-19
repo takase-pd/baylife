@@ -138,9 +138,11 @@ Future<List<SelectedMedia>> selectMedia({
     if (pickedMedia == null || pickedMedia.isEmpty) {
       return null;
     }
-    return Future.wait(pickedMedia.map((media) async {
+    return Future.wait(pickedMedia.asMap().entries.map((e) async {
+      final index = e.key;
+      final media = e.value;
       final mediaBytes = await media.readAsBytes();
-      final path = storagePath(currentUserUid, media.name, false);
+      final path = storagePath(currentUserUid, media.name, false, index);
       return SelectedMedia(path, mediaBytes);
     }));
   }
@@ -183,6 +185,7 @@ Future<SelectedMedia> selectFile({
   final pickedFiles = await FilePicker.platform.pickFiles(
     type: FileType.custom,
     allowedExtensions: allowedExtensions,
+    withData: true,
   );
   if (pickedFiles == null || pickedFiles.files.isEmpty) {
     return null;
@@ -196,12 +199,18 @@ Future<SelectedMedia> selectFile({
   return SelectedMedia(path, file.bytes);
 }
 
-String storagePath(String uid, String filePath, bool isVideo) {
+String storagePath(String uid, String filePath, bool isVideo, [int index]) {
   final timestamp = DateTime.now().microsecondsSinceEpoch;
   // Workaround fixed by https://github.com/flutter/plugins/pull/3685
   // (not yet in stable).
   final ext = isVideo ? 'mp4' : filePath.split('.').last;
-  return 'users/$uid/uploads/$timestamp.$ext';
+  final indexStr = index != null ? '_$index' : '';
+  return 'users/$uid/uploads/$timestamp$indexStr.$ext';
+}
+
+String signatureStoragePath(String uid) {
+  final timestamp = DateTime.now().microsecondsSinceEpoch;
+  return 'users/$uid/uploads/signature_$timestamp.png';
 }
 
 void showUploadMessage(BuildContext context, String message,

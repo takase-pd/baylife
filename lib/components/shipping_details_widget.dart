@@ -20,7 +20,6 @@ class ShippingDetailsWidget extends StatefulWidget {
 }
 
 class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
-  final formKey = GlobalKey<FormState>();
   TextEditingController cityController;
   TextEditingController postalCodeController;
   TextEditingController stateController;
@@ -28,6 +27,7 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
   TextEditingController line2Controller;
   TextEditingController nameController;
   TextEditingController phoneController;
+  final formKey = GlobalKey<FormState>();
 
   void _resetShipping() {
     cityController = TextEditingController(text: '千葉市');

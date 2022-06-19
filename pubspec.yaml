@@ -90,6 +90,8 @@ dependencies:
   firebase_remote_config: ^2.0.0
   get_it: ^7.2.0
   email_validator: ^2.0.1
+dependency_overrides:
+  stripe_android: 2.4.0
 
 dev_dependencies:
   build_runner: 2.1.7

@@ -38,8 +38,8 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('IconON_TAP');
-            logFirebaseEvent('IconNavigateBack');
+            logFirebaseEvent('TERMS_PAGE_PAGE_Icon_xg3945h0_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-Back');
             Navigator.pop(context);
           },
           child: Icon(
@@ -65,8 +65,8 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
             child: InkWell(
               onTap: () async {
-                logFirebaseEvent('TextON_TAP');
-                logFirebaseEvent('TextLaunchURL');
+                logFirebaseEvent('TERMS_PAGE_PAGE_Text_ffcrr5ht_ON_TAP');
+                logFirebaseEvent('Text_Launch-U-R-L');
                 await launchURL(widget.termsUrl);
               },
               child: Text(
