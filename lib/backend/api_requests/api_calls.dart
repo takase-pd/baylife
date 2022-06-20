@@ -493,3 +493,31 @@ class GetPaymentDetailsCall {
     );
   }
 }
+
+class TransactionsLawCall {
+  static Future<ApiCallResponse> call({
+    String path = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "path": "${path}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Transactions Law',
+      apiUrl:
+          'https://asia-northeast1-baylifedev.cloudfunctions.net/ec-transactionsLawV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'path': path,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
