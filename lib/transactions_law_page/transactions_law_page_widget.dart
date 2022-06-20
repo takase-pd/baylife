@@ -232,7 +232,8 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(),
@@ -259,7 +260,8 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(),
@@ -286,7 +288,8 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(),
@@ -313,7 +316,8 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(),
@@ -340,7 +344,8 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(),
@@ -367,7 +372,8 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(),
@@ -394,7 +400,8 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(),
@@ -421,7 +428,8 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(),
@@ -448,7 +456,8 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(),
@@ -475,7 +484,8 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(),
@@ -502,7 +512,8 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(),
@@ -529,7 +540,8 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(),
