@@ -181,6 +181,34 @@ class PaymentDetails {
   }
 }
 
+class TransactionsLaw {
+  final String director;
+
+  TransactionsLaw({
+    this.director,
+  });
+
+  static Future<TransactionsLaw> create(
+    DocumentReference shopRef,
+    BuildContext context,
+  ) async {
+    TransactionsLaw law;
+
+    final _appCheckToken = await AppCheckAgent.getToken(context);
+    if (_appCheckToken == null) return law;
+
+    // final apiCallOutput = await GetPaymentDetailsCall.call(
+    //   paymentId: paymentId,
+    //   accessToken: currentJwtToken,
+    //   appCheckToken: _appCheckToken,
+    // );
+    // final _apiJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+
+    law = TransactionsLaw(director: 'test');
+    return law;
+  }
+}
+
 enum ShippingStatus {
   ordered,
   shipping,

@@ -7,3 +7,4 @@ export 'ecommerce.dart' show Purchase;
 export 'ecommerce.dart' show PaymentDetails;
 export 'ecommerce.dart' show ShippingStatus;
 export 'ecommerce.dart' show ShippingStatusExt;
+export 'ecommerce.dart' show TransactionsLaw;
