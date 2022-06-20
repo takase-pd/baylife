@@ -19,7 +19,6 @@ import 'schema/shops_record.dart';
 import 'schema/plans_record.dart';
 import 'schema/cat_shop_record.dart';
 import 'schema/customers_record.dart';
-import 'schema/transactions_law_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -42,7 +41,6 @@ export 'schema/shops_record.dart';
 export 'schema/plans_record.dart';
 export 'schema/cat_shop_record.dart';
 export 'schema/customers_record.dart';
-export 'schema/transactions_law_record.dart';
 
 /// Functions to query ContentsRecords (as a Stream and as a Future).
 Stream<List<ContentsRecord>> queryContentsRecord({
@@ -668,51 +666,6 @@ Future<FFFirestorePage<CustomersRecord>> queryCustomersRecordPage({
     queryCollectionPage(
       CustomersRecord.collection,
       CustomersRecord.serializer,
-      queryBuilder: queryBuilder,
-      nextPageMarker: nextPageMarker,
-      pageSize: pageSize,
-      isStream: isStream,
-    );
-
-/// Functions to query TransactionsLawRecords (as a Stream and as a Future).
-Stream<List<TransactionsLawRecord>> queryTransactionsLawRecord({
-  DocumentReference parent,
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      TransactionsLawRecord.collection(parent),
-      TransactionsLawRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<TransactionsLawRecord>> queryTransactionsLawRecordOnce({
-  DocumentReference parent,
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      TransactionsLawRecord.collection(parent),
-      TransactionsLawRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<TransactionsLawRecord>> queryTransactionsLawRecordPage({
-  DocumentReference parent,
-  Query Function(Query) queryBuilder,
-  DocumentSnapshot nextPageMarker,
-  int pageSize,
-  bool isStream,
-}) =>
-    queryCollectionPage(
-      TransactionsLawRecord.collection(parent),
-      TransactionsLawRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
