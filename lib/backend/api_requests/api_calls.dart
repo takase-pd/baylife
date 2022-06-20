@@ -497,6 +497,7 @@ class GetPaymentDetailsCall {
 class TransactionsLawCall {
   static Future<ApiCallResponse> call({
     String path = '',
+    String appCheckToken = '',
   }) {
     final body = '''
 {
@@ -518,6 +519,8 @@ class TransactionsLawCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      accessToken: '',
+      appCheckToken: appCheckToken,
     );
   }
 }

@@ -182,14 +182,40 @@ class PaymentDetails {
 }
 
 class TransactionsLaw {
+  final String address;
+  final String company;
+  final String delvTime;
   final String director;
+  final String email;
+  final String otherFees;
+  final String paymentMethod;
+  final String postalCode;
+  final String rec; // return, exchange, cancellation
+  final String returnCharge;
+  final String returnPeriod;
+  final String tel;
+  final String unitAmount;
+  final String web;
 
   TransactionsLaw({
+    this.address,
+    this.company,
+    this.delvTime,
     this.director,
+    this.email,
+    this.otherFees,
+    this.paymentMethod,
+    this.postalCode,
+    this.rec,
+    this.returnCharge,
+    this.returnPeriod,
+    this.tel,
+    this.unitAmount,
+    this.web,
   });
 
   static Future<TransactionsLaw> create(
-    DocumentReference shopRef,
+    String path,
     BuildContext context,
   ) async {
     TransactionsLaw law;
@@ -197,14 +223,31 @@ class TransactionsLaw {
     final _appCheckToken = await AppCheckAgent.getToken(context);
     if (_appCheckToken == null) return law;
 
-    // final apiCallOutput = await GetPaymentDetailsCall.call(
-    //   paymentId: paymentId,
-    //   accessToken: currentJwtToken,
-    //   appCheckToken: _appCheckToken,
-    // );
-    // final _apiJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+    final apiCallOutput = await TransactionsLawCall.call(
+      path: path,
+      appCheckToken: _appCheckToken,
+    );
+    final _apiJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+    if (!_apiJson['success']) return law;
+    print(_apiJson['law']);
 
-    law = TransactionsLaw(director: 'test');
+    law = TransactionsLaw(
+      address: _apiJson['law']['address'],
+      company: _apiJson['law']['company'],
+      delvTime: _apiJson['law']['delvTime'],
+      director: _apiJson['law']['director'],
+      email: _apiJson['law']['email'],
+      otherFees: _apiJson['law']['otherFees'],
+      paymentMethod: _apiJson['law']['paymentMethod'],
+      postalCode: _apiJson['law']['postalCode'],
+      rec: _apiJson['law']['rec'],
+      returnCharge: _apiJson['law']['returnCharge'],
+      returnPeriod: _apiJson['law']['returnPeriod'],
+      tel: _apiJson['law']['tel'],
+      unitAmount: _apiJson['law']['unitAmount'],
+      web: _apiJson['law']['web'],
+    );
+
     return law;
   }
 }

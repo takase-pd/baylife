@@ -29,7 +29,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
     super.initState();
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'TransactionsLawPage'});
-    law = TransactionsLaw.create(widget.shopRef, context);
+    law = TransactionsLaw.create(widget.shopRef.path, context);
   }
 
   @override
@@ -236,7 +236,6 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                             );
                           }
                           final _law = snapshot.data;
-                          print(_law.director);
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -275,7 +274,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        '販売業者',
+                                        _law.company,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
@@ -304,7 +303,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        '代表責任者',
+                                        _law.director,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
@@ -333,7 +332,12 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        '所在地',
+                                        _law.postalCode,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1,
+                                      ),
+                                      Text(
+                                        _law.address,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
@@ -362,7 +366,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        '電話番号',
+                                        _law.tel,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
@@ -391,7 +395,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        'メールアドレス',
+                                        _law.email,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
@@ -420,7 +424,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        '商品紹介ページをご参照ください。',
+                                        _law.unitAmount,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
@@ -449,7 +453,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        '必要料金',
+                                        _law.otherFees,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
@@ -478,7 +482,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        '引き渡し時期',
+                                        _law.delvTime,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
@@ -507,7 +511,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        'Bay Lifeアプリの決済方法による。',
+                                        _law.paymentMethod,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
@@ -536,7 +540,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        'キャンセル',
+                                        _law.rec,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
@@ -565,7 +569,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        '返品期限',
+                                        _law.returnPeriod,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
@@ -594,7 +598,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        '返品送料',
+                                        _law.returnCharge,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
