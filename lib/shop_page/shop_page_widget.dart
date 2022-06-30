@@ -254,6 +254,8 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                       List<PlansRecord> wrapPlansRecordList = snapshot.data
                           .where((element) => element.active == true)
                           .toList();
+                      wrapPlansRecordList
+                          .sort(((a, b) => b.published.compareTo(a.published)));
                       return Wrap(
                         spacing: 8,
                         runSpacing: 8,
