@@ -273,7 +273,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                             width: wrapPlansRecordList.length == 1
                                 ? MediaQuery.of(context).size.width * 0.88
                                 : MediaQuery.of(context).size.width * 0.44,
-                            height: MediaQuery.of(context).size.height * 0.24,
+                            height: 208,
                             decoration: BoxDecoration(),
                             child: Visibility(
                               visible: wrapPlansRecord.active ?? true,
