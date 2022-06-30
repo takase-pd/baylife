@@ -366,7 +366,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                         ),
                                       ),
                                       Text(
-                                        _law.tel,
+                                        _law.phone,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),

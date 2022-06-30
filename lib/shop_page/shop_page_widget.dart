@@ -339,11 +339,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(0, 0, 0, 8),
                                                   child: Text(
-                                                    wrapPlansRecord.description
-                                                        .maybeHandleOverflow(
-                                                      maxChars: 56,
-                                                      replacement: '…',
-                                                    ),
+                                                    wrapPlansRecord.description,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyText1
@@ -408,7 +404,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 16),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,

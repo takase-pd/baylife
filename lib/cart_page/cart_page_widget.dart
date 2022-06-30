@@ -323,7 +323,12 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                     .start,
                                                             children: [
                                                               Text(
-                                                                _plan.name,
+                                                                _plan.name
+                                                                    .maybeHandleOverflow(
+                                                                  maxChars: 12,
+                                                                  replacement:
+                                                                      '…',
+                                                                ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .title3,
