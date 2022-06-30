@@ -68,7 +68,9 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => EcommercePageWidget(),
+                                builder: (context) => NavBarPage(
+                                  initialPage: 'EcommercePage',
+                                ),
                               ),
                             );
                           },

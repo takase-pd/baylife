@@ -1,5 +1,6 @@
 // Export pages
 export 'home_page/home_page_widget.dart' show HomePageWidget;
+export 'main.dart' show NavBarPage;
 export 'login_page/login_page_widget.dart' show LoginPageWidget;
 export 'login_page/login_page_path.dart' show LoginPagePath;
 export 'content_page/content_page_widget.dart' show ContentPageWidget;
