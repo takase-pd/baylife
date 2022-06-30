@@ -169,7 +169,10 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 8, 0),
                                           child: Text(
-                                            _plan.name,
+                                            _plan.name.maybeHandleOverflow(
+                                              maxChars: 12,
+                                              replacement: '…',
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .title3,
                                           ),
@@ -341,7 +344,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                             child: Text(
                                               "商品：" +
                                                   formatNumber(
-                                                    _purchase.totalAmount,
+                                                    _purchase.subtotal,
                                                     formatType:
                                                         FormatType.custom,
                                                     currency: '￥',

@@ -201,7 +201,11 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                                                             .fromSTEB(
                                                                 0, 0, 8, 0),
                                                     child: Text(
-                                                      _plan.name,
+                                                      _plan.name
+                                                          .maybeHandleOverflow(
+                                                        maxChars: 12,
+                                                        replacement: '…',
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
