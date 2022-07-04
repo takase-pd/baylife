@@ -9,25 +9,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
+import '../../index.dart';
 import '../../main.dart';
-import '../../login_page/login_page_widget.dart';
-import '../../content_page/content_page_widget.dart';
-import '../../category_page/category_page_widget.dart';
-import '../../post_page_with_login/post_page_with_login_widget.dart';
-import '../../confirm_page/confirm_page_widget.dart';
-import '../../terms_page/terms_page_widget.dart';
-import '../../survey_post_page/survey_post_page_widget.dart';
-import '../../survey_result_page/survey_result_page_widget.dart';
-import '../../my_page/my_page_widget.dart';
-import '../../my_page_dev/my_page_dev_widget.dart';
-import '../../my_page_edit/my_page_edit_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
-  const PushNotificationsHandler(
-      {Key key, this.handlePushNotification, this.child})
-      : super(key: key);
+  const PushNotificationsHandler({Key key, this.child}) : super(key: key);
 
-  final Function(BuildContext) handlePushNotification;
   final Widget child;
 
   @override
@@ -39,6 +26,10 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   bool _loading = false;
 
   Future handleOpenedPushNotification() async {
+    if (isWeb) {
+      return;
+    }
+
     final notification = await FirebaseMessaging.instance.getInitialMessage();
     if (notification != null) {
       await _handlePushNotification(notification);
@@ -122,7 +113,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'TermsPage': (data) async => TermsPageWidget(
         termsUrl: getParameter(data, 'termsUrl'),
       ),
-  'SurveyPage': (data) async => NavBarPage(initialPage: 'SurveyPageWidget'),
+  'SurveyPage': (data) async => NavBarPage(initialPage: 'SurveyPage'),
   'SurveyPostPage': (data) async => SurveyPostPageWidget(
         surveyRef: getParameter(data, 'surveyRef'),
       ),
@@ -132,11 +123,24 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'MyPage': (data) async => MyPageWidget(
         surveyRef: getParameter(data, 'surveyRef'),
       ),
+  'MyPageEdit': (data) async => MyPageEditWidget(
+        surveyRef: getParameter(data, 'surveyRef'),
+      ),
   'MyPageDev': (data) async => MyPageDevWidget(
         surveyRef: getParameter(data, 'surveyRef'),
       ),
-  'MyPageEdit': (data) async => MyPageEditWidget(
-        surveyRef: getParameter(data, 'surveyRef'),
+  'EcommercePage': (data) async => NavBarPage(initialPage: 'EcommercePage'),
+  'ShopPage': (data) async => ShopPageWidget(
+        shopRef: getParameter(data, 'shopRef'),
+      ),
+  'PlanPage': (data) async => PlanPageWidget(
+        planRef: getParameter(data, 'planRef'),
+      ),
+  'CartPage': (data) async => CartPageWidget(),
+  'PurchasesPage': (data) async => PurchasesPageWidget(),
+  'PaymentInfoPage': (data) async => PaymentInfoPageWidget(),
+  'TransactionsLawPage': (data) async => TransactionsLawPageWidget(
+        shopRef: getParameter(data, 'shopRef'),
       ),
 };
 

@@ -40,6 +40,7 @@ final fcmTokenUserStream = authenticatedUserStream
     .map(
       (userTokenInfo) => makeCloudCall(
         'addFcmToken',
+        'us-central1',
         {
           'userDocPath': userTokenInfo.userPath,
           'fcmToken': userTokenInfo.fcmToken,

@@ -50,7 +50,7 @@ class _FlutterFlowAdBannerState extends State<FlutterFlowAdBanner> {
       loadingText +=
           'If this takes a long time, you may have to check whether the ad is '
           'being covered from a parent widget. For example, a larger width than '
-          'the device screen size or a large border radius encompasing the ad banner '
+          'the device screen size or a large border radius encompassing the ad banner '
           'may stop ads from loading.\n\n'
           'If a full-width banner is desired for your app, leave the width and '
           'height of the AdBanner widget empty. AdBanner will automatically'

@@ -29,7 +29,7 @@ class CustomDialog {
     showDialog(
       context: context,
       barrierDismissible: barrierDismissible,
-      builder: (BuildContext context) => new AlertDialog(
+      builder: (BuildContext context) => AlertDialog(
         title: Text(
           title,
           style: titleStyle(context),

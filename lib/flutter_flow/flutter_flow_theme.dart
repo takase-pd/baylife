@@ -24,6 +24,10 @@ abstract class FlutterFlowTheme {
   Color textDark;
   Color textLight;
   Color background;
+  Color stripeBack;
+  Color stripeBox;
+  Color stripeBorder;
+  Color stripeSelected;
 
   TextStyle get title1 => GoogleFonts.getFont(
         'Open Sans',
@@ -88,6 +92,10 @@ class LightModeTheme extends FlutterFlowTheme {
   Color textDark = Color(0xFF000000);
   Color textLight = Color(0xFFFFFFFF);
   Color background = Color(0xFFFFFFFF);
+  Color stripeBack = Color(0xFF1A1F36);
+  Color stripeBox = Color(0xFF30313D);
+  Color stripeBorder = Color(0xFF424353);
+  Color stripeSelected = Color(0xFF85D996);
 }
 
 extension TextStyleHelper on TextStyle {
@@ -98,6 +106,7 @@ extension TextStyleHelper on TextStyle {
     FontWeight fontWeight,
     FontStyle fontStyle,
     bool useGoogleFonts = true,
+    TextDecoration decoration,
     double lineHeight,
   }) =>
       useGoogleFonts
@@ -107,6 +116,7 @@ extension TextStyleHelper on TextStyle {
               fontSize: fontSize ?? this.fontSize,
               fontWeight: fontWeight ?? this.fontWeight,
               fontStyle: fontStyle ?? this.fontStyle,
+              decoration: decoration,
               height: lineHeight,
             )
           : copyWith(
@@ -115,6 +125,7 @@ extension TextStyleHelper on TextStyle {
               fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
+              decoration: decoration,
               height: lineHeight,
             );
 }

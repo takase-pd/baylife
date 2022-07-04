@@ -79,7 +79,7 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
     );
     final childWidget = DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(widget.borderRadius ?? 28),
+        borderRadius: BorderRadius.circular(widget.borderRadius),
         border: Border.all(
           color: widget.borderColor,
           width: widget.borderWidth,
@@ -95,7 +95,10 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
     );
     if (widget.height != null || widget.width != null) {
       return Container(
-          width: widget.width, height: widget.height, child: childWidget);
+        width: widget.width,
+        height: widget.height,
+        child: childWidget,
+      );
     }
     return childWidget;
   }

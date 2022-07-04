@@ -17,7 +17,7 @@ class VersionCheck {
         minimumFetchInterval: Duration.zero,
       ));
       await remoteConfig.fetchAndActivate();
-      int newVersion = remoteConfig.getInt(CONFIG_VERSION);
+      final newVersion = remoteConfig.getInt(CONFIG_VERSION);
       if (newVersion > currentVersion) {
         return true;
       }

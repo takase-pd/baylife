@@ -241,3 +241,282 @@ class AddReviewCall {
     );
   }
 }
+
+class AddPlanCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String plan = '',
+    int quantity,
+    String date = '',
+    String accessToken = '',
+    String appCheckToken = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}",
+    "plan": "${plan}",
+    "quantity": ${quantity},
+    "date": "${date}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Add Plan',
+      apiUrl:
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/ec-addPlanV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+        'plan': plan,
+        'quantity': quantity,
+        'date': date,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
+    );
+  }
+}
+
+class DeletePlanCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String plan = '',
+    String accessToken = '',
+    String appCheckToken = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}",
+    "plan": "${plan}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Delete Plan',
+      apiUrl:
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/ec-deletePlanV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+        'plan': plan,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
+    );
+  }
+}
+
+class GetCartCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String accessToken = '',
+    String appCheckToken = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Cart',
+      apiUrl:
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/ec-getCartV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
+    );
+  }
+}
+
+class GetPlanCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String plan = '',
+    String accessToken = '',
+    String appCheckToken = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}",
+    "plan": "${plan}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Plan',
+      apiUrl:
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/ec-getPlanV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+        'plan': plan,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
+    );
+  }
+}
+
+class GetPurchasesCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String accessToken = '',
+    String appCheckToken = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Purchases',
+      apiUrl:
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/ec-getPurchasesV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
+    );
+  }
+}
+
+class PaymentCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String paymentId = '',
+    int payAmount = 0,
+    String date = '',
+    String accessToken = '',
+    String appCheckToken = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "uid": "${uid}",
+    "paymentId": "${paymentId}",
+    "payAmount": ${payAmount},
+    "date": "${date}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Payment',
+      apiUrl:
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/ec-paymentV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'uid': uid,
+        'paymentId': paymentId,
+        'payAmount': payAmount,
+        'date': date,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
+    );
+  }
+}
+
+class GetPaymentDetailsCall {
+  static Future<ApiCallResponse> call({
+    String paymentId = '',
+    String accessToken = '',
+    String appCheckToken = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "paymentId": "${paymentId}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Payment Details',
+      apiUrl:
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/stripe-getPaymentDetailsV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'paymentId': paymentId,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      accessToken: accessToken,
+      appCheckToken: appCheckToken,
+    );
+  }
+}
+
+class TransactionsLawCall {
+  static Future<ApiCallResponse> call({
+    String path = '',
+    String appCheckToken = '',
+  }) {
+    final body = '''
+{
+  "data": {
+    "path": "${path}"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Transactions Law',
+      apiUrl:
+          'https://asia-northeast1-baylife-ff782.cloudfunctions.net/ec-transactionsLawV0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        'path': path,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      accessToken: '',
+      appCheckToken: appCheckToken,
+    );
+  }
+}

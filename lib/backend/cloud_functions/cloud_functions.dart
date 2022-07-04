@@ -1,9 +1,9 @@
 import 'package:cloud_functions/cloud_functions.dart';
 
 Future<Map<String, dynamic>> makeCloudCall(
-    String callName, Map<String, dynamic> input) async {
+    String callName, String region, Map<String, dynamic> input) async {
   try {
-    final response = await FirebaseFunctions.instance
+    final response = await FirebaseFunctions.instanceFor(region: region)
         .httpsCallable(callName, options: HttpsCallableOptions())
         .call(input);
     return response.data is Map

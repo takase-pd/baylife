@@ -27,7 +27,7 @@ class _SurveyResultState extends State<SurveyResult> {
   @override
   Widget build(BuildContext context) {
     List<charts.Series<SurveyResultData, String>> seriesList = _createData();
-    return new charts.BarChart(
+    return charts.BarChart(
       seriesList,
       animate: widget.animate,
       vertical: false,
@@ -36,20 +36,18 @@ class _SurveyResultState extends State<SurveyResult> {
       //       barRendererDecorator: new charts.BarLabelDecorator(
       //          insideLabelStyleSpec: new charts.TextStyleSpec(...),
       //          outsideLabelStyleSpec: new charts.TextStyleSpec(...)),
-      barRendererDecorator: new charts.BarLabelDecorator<String>(),
+      barRendererDecorator: charts.BarLabelDecorator<String>(),
       // Hide domain axis.
-      domainAxis:
-          new charts.OrdinalAxisSpec(renderSpec: new charts.NoneRenderSpec()),
+      domainAxis: charts.OrdinalAxisSpec(renderSpec: charts.NoneRenderSpec()),
     );
   }
 
   List<charts.Series<SurveyResultData, String>> _createData() {
-    final List<SurveyResultData> data = widget.resultData
-        .map((e) => new SurveyResultData(e.key, e.value))
-        .toList();
+    final List<SurveyResultData> data =
+        widget.resultData.map((e) => SurveyResultData(e.key, e.value)).toList();
 
     return [
-      new charts.Series<SurveyResultData, String>(
+      charts.Series<SurveyResultData, String>(
           id: 'Survey Reslut',
           domainFn: (SurveyResultData resultData, _) => resultData.choice,
           measureFn: (SurveyResultData resultData, _) => resultData.result,
