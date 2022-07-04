@@ -78,8 +78,7 @@ String _currentJwtToken = '';
 String get currentUserEmail =>
     currentUserDocument?.email ?? currentUser?.user?.email ?? '';
 
-String get currentUserUid =>
-    currentUserDocument?.uid ?? currentUser?.user?.uid ?? '';
+String get currentUserUid => currentUser?.user?.uid ?? '';
 
 String get currentUserDisplayName =>
     currentUserDocument?.displayName ?? currentUser?.user?.displayName ?? '';

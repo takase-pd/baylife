@@ -241,7 +241,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                       return Wrap(
                         spacing: 8,
                         runSpacing: 8,
-                        alignment: WrapAlignment.center,
+                        alignment: WrapAlignment.start,
                         crossAxisAlignment: WrapCrossAlignment.start,
                         direction: Axis.horizontal,
                         runAlignment: WrapAlignment.start,
@@ -253,7 +253,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                               wrapPlansRecordList[wrapIndex];
                           return Container(
                             width: MediaQuery.of(context).size.width * 0.44,
-                            height: MediaQuery.of(context).size.height * 0.24,
+                            height: 180,
                             decoration: BoxDecoration(),
                             child: Visibility(
                               visible: wrapPlansRecord.active ?? true,
@@ -305,6 +305,9 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                                     16, 16, 16, 16),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
@@ -312,7 +315,12 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(0, 0, 0, 8),
                                                   child: Text(
-                                                    wrapPlansRecord.name,
+                                                    wrapPlansRecord.name
+                                                        .maybeHandleOverflow(
+                                                      maxChars: 24,
+                                                      replacement: '…',
+                                                    ),
+                                                    maxLines: 2,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .subtitle2,
@@ -391,10 +399,10 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 16),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
                         onTap: () async {
