@@ -333,6 +333,23 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                         context)
                                                                     .title3,
                                                               ),
+                                                              Text(
+                                                                formatNumber(
+                                                                  _plan
+                                                                      .subtotal,
+                                                                  formatType:
+                                                                      FormatType
+                                                                          .custom,
+                                                                  currency: '￥',
+                                                                  format:
+                                                                      '#,##0',
+                                                                  locale:
+                                                                      'ja_JP',
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .title3,
+                                                              ),
                                                               Row(
                                                                 mainAxisSize:
                                                                     MainAxisSize
@@ -352,7 +369,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                         formatType:
                                                                             FormatType.custom,
                                                                         currency:
-                                                                            '￥',
+                                                                            '単価￥',
                                                                         format:
                                                                             '#,##0',
                                                                         locale:
@@ -384,20 +401,6 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                 ],
                                                               ),
                                                             ],
-                                                          ),
-                                                          Text(
-                                                            formatNumber(
-                                                              _plan.subtotal,
-                                                              formatType:
-                                                                  FormatType
-                                                                      .custom,
-                                                              currency: '￥',
-                                                              format: '#,##0',
-                                                              locale: 'ja_JP',
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .subtitle1,
                                                           ),
                                                         ],
                                                       ),
