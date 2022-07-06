@@ -182,11 +182,8 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: Text(
-                              columnShopsRecord.description.maybeHandleOverflow(
-                                maxChars: 56,
-                                replacement: '…',
-                              ),
-                              style: FlutterFlowTheme.of(context).title3,
+                              columnShopsRecord.description,
+                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ),
                           Padding(
