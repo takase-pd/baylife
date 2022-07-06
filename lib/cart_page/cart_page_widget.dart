@@ -287,8 +287,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                         snapshot.data;
                                                     return Image.network(
                                                       imagePlansRecord.banner,
-                                                      width: 64,
-                                                      height: 64,
+                                                      width: 80,
+                                                      height: 104,
                                                       fit: BoxFit.cover,
                                                     );
                                                   },
@@ -296,6 +296,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 Expanded(
                                                   child: Container(
                                                     width: double.infinity,
+                                                    height: 104,
                                                     decoration: BoxDecoration(
                                                       color:
                                                           FlutterFlowTheme.of(
