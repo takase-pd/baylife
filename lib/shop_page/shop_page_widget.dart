@@ -186,7 +186,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                 maxChars: 56,
                                 replacement: '…',
                               ),
-                              style: FlutterFlowTheme.of(context).subtitle1,
+                              style: FlutterFlowTheme.of(context).title3,
                             ),
                           ),
                           Padding(
@@ -217,8 +217,8 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                     final textCatShopRecord = snapshot.data;
                                     return Text(
                                       textCatShopRecord.catName,
-                                      style: FlutterFlowTheme.of(context)
-                                          .subtitle2,
+                                      style:
+                                          FlutterFlowTheme.of(context).title2,
                                     );
                                   },
                                 ),
@@ -273,7 +273,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                             width: wrapPlansRecordList.length == 1
                                 ? MediaQuery.of(context).size.width * 0.88
                                 : MediaQuery.of(context).size.width * 0.44,
-                            height: 208,
+                            height: 240,
                             decoration: BoxDecoration(),
                             child: Visibility(
                               visible: wrapPlansRecord.active ?? true,
@@ -313,16 +313,13 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                           Image.network(
                                             wrapPlansRecord.banner,
                                             width: double.infinity,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.08,
+                                            height: 104,
                                             fit: BoxFit.cover,
                                           ),
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    16, 16, 16, 16),
+                                                    16, 8, 16, 8),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
@@ -330,31 +327,21 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 0, 8),
+                                                      .fromSTEB(0, 0, 0, 4),
                                                   child: Text(
                                                     wrapPlansRecord.name
                                                         .maybeHandleOverflow(
-                                                      maxChars: 24,
+                                                      maxChars: 16,
                                                       replacement: '…',
                                                     ),
                                                     maxLines: 2,
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .subtitle2,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 0, 8),
-                                                  child: Text(
-                                                    wrapPlansRecord.description,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
+                                                        .subtitle1
                                                         .override(
                                                           fontFamily:
                                                               'Open Sans',
-                                                          fontSize: 12,
+                                                          fontSize: 16,
                                                         ),
                                                   ),
                                                 ),
@@ -368,7 +355,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 0, 8, 0),
+                                                                  0, 0, 0, 8),
                                                       child: Text(
                                                         formatNumber(
                                                           wrapPlansRecord
@@ -378,18 +365,44 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                                           currency: '￥',
                                                           format: '#,##0',
                                                           locale: 'ja_JP',
-                                                        ).maybeHandleOverflow(
-                                                          maxChars: 56,
-                                                          replacement: '…',
                                                         ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText1
+                                                                .subtitle1
                                                                 .override(
                                                                   fontFamily:
                                                                       'Open Sans',
-                                                                  fontSize: 12,
+                                                                  fontSize: 16,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 0, 0),
+                                                      child: Text(
+                                                        dateTimeFormat(
+                                                            'yMMMd',
+                                                            wrapPlansRecord
+                                                                .published),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  fontSize: 10,
                                                                 ),
                                                       ),
                                                     ),
