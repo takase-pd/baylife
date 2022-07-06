@@ -4,7 +4,7 @@
 
 # Flutter compile
 # fvm flutter pub get
-fvm flutter clean
+# fvm flutter clean
 # fvm flutter pub cache repair
 # rm -rf pubspec.lock ios/Pods ios/Podfile.lock
 fvm flutter pub upgrade
