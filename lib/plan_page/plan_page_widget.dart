@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
@@ -688,6 +686,19 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                                   customerAge.text == null ||
                                                   int.parse(customerAge.text) <
                                                       20) return;
+                                            }
+                                            if (int.parse(customerAge.text) >
+                                                0) {
+                                              if (currentUserDocument.age ==
+                                                      null ||
+                                                  int.parse(customerAge.text) !=
+                                                      currentUserDocument.age)
+                                                await currentUserReference
+                                                    .update(
+                                                        createUsersRecordData(
+                                                  age: int.parse(
+                                                      customerAge.text),
+                                                ));
                                             }
 
                                             if (!currentUser.loggedIn) {
