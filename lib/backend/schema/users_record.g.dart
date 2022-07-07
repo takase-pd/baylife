@@ -75,6 +75,12 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.age;
+    if (value != null) {
+      result
+        ..add('age')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -129,6 +135,10 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.area = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'age':
+          result.age = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -160,6 +170,8 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String area;
   @override
+  final int age;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder) updates]) =>
@@ -174,6 +186,7 @@ class _$UsersRecord extends UsersRecord {
       this.phoneNumber,
       this.sex,
       this.area,
+      this.age,
       this.reference})
       : super._();
 
@@ -196,6 +209,7 @@ class _$UsersRecord extends UsersRecord {
         phoneNumber == other.phoneNumber &&
         sex == other.sex &&
         area == other.area &&
+        age == other.age &&
         reference == other.reference;
   }
 
@@ -208,14 +222,16 @@ class _$UsersRecord extends UsersRecord {
                     $jc(
                         $jc(
                             $jc(
-                                $jc($jc(0, email.hashCode),
-                                    displayName.hashCode),
-                                photoUrl.hashCode),
-                            uid.hashCode),
-                        createdTime.hashCode),
-                    phoneNumber.hashCode),
-                sex.hashCode),
-            area.hashCode),
+                                $jc(
+                                    $jc($jc(0, email.hashCode),
+                                        displayName.hashCode),
+                                    photoUrl.hashCode),
+                                uid.hashCode),
+                            createdTime.hashCode),
+                        phoneNumber.hashCode),
+                    sex.hashCode),
+                area.hashCode),
+            age.hashCode),
         reference.hashCode));
   }
 
@@ -230,6 +246,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('phoneNumber', phoneNumber)
           ..add('sex', sex)
           ..add('area', area)
+          ..add('age', age)
           ..add('reference', reference))
         .toString();
   }
@@ -270,6 +287,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String get area => _$this._area;
   set area(String area) => _$this._area = area;
 
+  int _age;
+  int get age => _$this._age;
+  set age(int age) => _$this._age = age;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -290,6 +311,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _phoneNumber = $v.phoneNumber;
       _sex = $v.sex;
       _area = $v.area;
+      _age = $v.age;
       _reference = $v.reference;
       _$v = null;
     }
@@ -319,6 +341,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             phoneNumber: phoneNumber,
             sex: sex,
             area: area,
+            age: age,
             reference: reference);
     replace(_$result);
     return _$result;
