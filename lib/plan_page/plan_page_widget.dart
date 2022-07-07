@@ -176,11 +176,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: Text(
-                              columnPlansRecord.description.maybeHandleOverflow(
-                                maxChars: 56,
-                                replacement: '…',
-                              ),
-                              style: FlutterFlowTheme.of(context).subtitle1,
+                              columnPlansRecord.description,
+                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ),
                           Padding(
@@ -197,7 +194,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                     format: '#,##0',
                                     locale: 'ja_JP',
                                   ),
-                                  style: FlutterFlowTheme.of(context).subtitle2,
+                                  style: FlutterFlowTheme.of(context).title2,
                                 ),
                               ],
                             ),
@@ -214,8 +211,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                       0, 0, 8, 0),
                                   child: Text(
                                     '送料',
-                                    style:
-                                        FlutterFlowTheme.of(context).subtitle2,
+                                    style: FlutterFlowTheme.of(context).title3,
                                   ),
                                 ),
                                 Text(
@@ -226,7 +222,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                     format: '#,##0',
                                     locale: 'ja_JP',
                                   ),
-                                  style: FlutterFlowTheme.of(context).subtitle2,
+                                  style: FlutterFlowTheme.of(context).title3,
                                 ),
                               ],
                             ),
@@ -436,7 +432,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                       color: Colors.transparent,
                                       width: 1,
                                     ),
-                                    borderRadius: 12,
+                                    borderRadius: BorderRadius.circular(12),
                                   ),
                                 ),
                               ],
@@ -538,7 +534,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                       color: Colors.transparent,
                                       width: 1,
                                     ),
-                                    borderRadius: 12,
+                                    borderRadius: BorderRadius.circular(12),
                                   ),
                                 ),
                               ],

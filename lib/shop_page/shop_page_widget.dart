@@ -323,7 +323,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                                     maxLines: 2,
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .subtitle2,
+                                                        .subtitle1,
                                                   ),
                                                 ),
                                                 Padding(

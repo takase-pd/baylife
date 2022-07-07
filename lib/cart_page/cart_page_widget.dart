@@ -98,6 +98,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                 children: [
                   Container(
                     width: double.infinity,
+                    height: 104,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).background,
                     ),
@@ -137,8 +138,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                     : null;
                             return Image.network(
                               imagePlansRecord.banner,
-                              width: 64,
-                              height: 64,
+                              width: 80,
+                              height: 104,
                               fit: BoxFit.cover,
                             );
                           },
@@ -159,6 +160,15 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                       style:
                                           FlutterFlowTheme.of(context).title3,
                                     ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 4, 0),
+                                      child: Text(
+                                        '￥',
+                                        style:
+                                            FlutterFlowTheme.of(context).title3,
+                                      ),
+                                    ),
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -167,52 +177,17 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 16, 0),
                                           child: Text(
-                                            '点数',
+                                            '単価￥',
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle2,
                                           ),
                                         ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 2, 0),
-                                              child: Text(
-                                                '￥',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .subtitle2,
-                                              ),
-                                            ),
-                                            Text(
-                                              '単価',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .subtitle2,
-                                            ),
-                                          ],
+                                        Text(
+                                          '数量',
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle2,
                                         ),
                                       ],
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 4, 0),
-                                      child: Text(
-                                        '￥',
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle1,
-                                      ),
-                                    ),
-                                    Text(
-                                      '金額',
-                                      style: FlutterFlowTheme.of(context)
-                                          .subtitle1,
                                     ),
                                   ],
                                 ),
@@ -358,7 +333,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 12,
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                   ),
@@ -398,7 +373,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 12,
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                   ),
@@ -446,7 +421,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 12,
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                   ),
@@ -476,7 +451,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                         color: Colors.transparent,
                         width: 1,
                       ),
-                      borderRadius: 12,
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                 ],
