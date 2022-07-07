@@ -236,7 +236,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: Text(
                               columnPlansRecord.description,
-                              style: FlutterFlowTheme.of(context).subtitle2,
+                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ),
                           Padding(
@@ -689,26 +689,27 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                           },
                                           text: cartButton,
                                           options: FFButtonOptions(
-                                            width: 130,
-                                            height: 40,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Open Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .textLight,
-                                                    ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
-                                            ),
-                                            borderRadius: 12,
-                                          ),
+                                              width: 130,
+                                              height: 40,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .textLight,
+                                                      ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12)),
                                         ),
                                       ],
                                     ),
@@ -876,7 +877,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                               color: Colors.transparent,
                                               width: 1,
                                             ),
-                                            borderRadius: 12,
+                                            borderRadius:
+                                                BorderRadius.circular(12),
                                           ),
                                         ),
                                       ],

@@ -993,7 +993,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                             color: Colors.transparent,
                                             width: 2,
                                           ),
-                                          borderRadius: 8,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                         ),
                                       ),
                                     ),
@@ -1157,7 +1158,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                 color: Colors.transparent,
                                                 width: 2,
                                               ),
-                                              borderRadius: 8,
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
                                             ),
                                           ),
                                         ),

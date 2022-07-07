@@ -319,6 +319,9 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                                     16, 8, 16, 8),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [

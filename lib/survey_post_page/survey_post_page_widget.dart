@@ -484,7 +484,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                                   color: Colors.transparent,
                                                   width: 1,
                                                 ),
-                                                borderRadius: 16,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
                                               ),
                                             );
                                           } else {

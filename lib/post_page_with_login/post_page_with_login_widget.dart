@@ -739,7 +739,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ],
@@ -865,7 +866,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ],
@@ -991,7 +993,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ],
@@ -1753,7 +1756,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                             color: Colors.transparent,
                                             width: 2,
                                           ),
-                                          borderRadius: 8,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                         ),
                                       ),
                                     ),

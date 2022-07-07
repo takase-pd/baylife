@@ -614,7 +614,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                               color: Colors.transparent,
                                               width: 1,
                                             ),
-                                            borderRadius: 12,
+                                            borderRadius:
+                                                BorderRadius.circular(12),
                                           ),
                                         ),
                                       ),
@@ -675,7 +676,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                               color: Colors.transparent,
                                               width: 1,
                                             ),
-                                            borderRadius: 12,
+                                            borderRadius:
+                                                BorderRadius.circular(12),
                                           ),
                                         ),
                                       ),
@@ -707,7 +709,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ),
@@ -819,7 +822,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ),
@@ -854,7 +858,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             color: Colors.transparent,
                                             width: 1,
                                           ),
-                                          borderRadius: 12,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                         ),
                                       ),
                                     ],
