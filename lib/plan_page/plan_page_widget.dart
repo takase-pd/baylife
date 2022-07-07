@@ -40,7 +40,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
   String paymentId;
   Future<PlanData> planData;
   String countAlert = '';
-  TextEditingController customerAage;
+  TextEditingController customerAge;
 
   Future<PlanData> _getPlan() async {
     PlanData _planData;
@@ -84,6 +84,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
               ? countControllerValue = plan.quantity
               : countControllerValue = widget.quantity ?? 0
         });
+    customerAge = TextEditingController(text: '0');
   }
 
   @override
@@ -538,7 +539,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                                                     'この商品は年齢確認が必要な商品です。20才未満の方はこの商品を購入することはできません。'),
                                                                 TextFormField(
                                                                   controller:
-                                                                      customerAage ??=
+                                                                      customerAge ??=
                                                                           TextEditingController(),
                                                                   obscureText:
                                                                       false,
@@ -684,8 +685,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                                       false;
 
                                               if (!confirmDialogResponse ||
-                                                  customerAage.text == null ||
-                                                  int.parse(customerAage.text) <
+                                                  customerAge.text == null ||
+                                                  int.parse(customerAge.text) <
                                                       20) return;
                                             }
 
@@ -807,6 +808,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                                     columnPlansRecord
                                                         .reference.path,
                                                 quantity: countControllerValue,
+                                                customerAge:
+                                                    int.parse(customerAge.text),
                                                 date: dateTimeFormat(
                                                     'yMMMd h:mm a',
                                                     getCurrentTimestamp),

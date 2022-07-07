@@ -115,7 +115,6 @@ class AddSurveyAnswerCall {
       callName: 'Add Survey Answer',
       apiUrl:
           'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-addSurveyAnswerV1',
-      // 'http://localhost:5001/baylifedev/asia-northeast1/survey-addSurveyAnswerV1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -152,7 +151,6 @@ class AnswersCall {
       callName: 'Answers',
       apiUrl:
           'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-answersV1',
-      // 'http://localhost:5001/baylifedev/asia-northeast1/survey-answersV1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -184,7 +182,6 @@ class ReviewsCall {
       callName: 'Reviews',
       apiUrl:
           'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-reviewsV1',
-      // 'http://localhost:5001/baylifedev/asia-northeast1/survey-reviewsV0',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -225,7 +222,6 @@ class AddReviewCall {
       callName: 'Add Review',
       apiUrl:
           'https://asia-northeast1-baylifedev.cloudfunctions.net/survey-addReviewV1',
-      // 'http://localhost:5001/baylifedev/asia-northeast1/survey-addReviewV1',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
