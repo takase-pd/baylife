@@ -440,10 +440,6 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                       await AddPlanCall.call(
                                         uid: currentUserUid,
                                         quantity: countControllerValue,
-                                        unitAmount:
-                                            columnPlansRecord.unitAmount,
-                                        date: dateTimeFormat(
-                                            'yMMMd', getCurrentTimestamp),
                                       );
                                     }
                                   },

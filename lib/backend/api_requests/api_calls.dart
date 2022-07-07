@@ -228,8 +228,7 @@ class AddPlanCall {
     String uid = '',
     String plan = '',
     int quantity,
-    int unitAmount,
-    String date = '',
+    String added = '',
     bool verifyAge,
     int customerAge,
   }) {
@@ -239,10 +238,9 @@ class AddPlanCall {
     "uid": "${uid}",
     "plan": "${plan}",
     "quantity": ${quantity},
-    "unit_amount": ${unitAmount},
-    "verify_age": "${verifyAge}",
-    "customer_age": ${customerAge},
-    "date": "${date}"
+    "verifyAge": ${verifyAge},
+    "customerAge": ${customerAge},
+    "added": "${added}"
   }
 }''';
     return ApiManager.instance.makeApiCall(
@@ -257,8 +255,7 @@ class AddPlanCall {
         'uid': uid,
         'plan': plan,
         'quantity': quantity,
-        'unit_amount': unitAmount,
-        'date': date,
+        'added': added,
         'verify_age': verifyAge,
         'customer_age': customerAge,
       },
