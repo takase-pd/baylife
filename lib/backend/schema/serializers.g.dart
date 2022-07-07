@@ -21,7 +21,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SurveyRecord.serializer)
       ..add(TermsHistoriesRecord.serializer)
       ..add(TermsRecord.serializer)
-      ..add(TransactionsLawRecord.serializer)
       ..add(UsersRecord.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),

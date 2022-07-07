@@ -254,6 +254,7 @@ class AddPlanCall {
     String date = '',
     String accessToken = '',
     String appCheckToken = '',
+    int customerAge,
   }) {
     final body = '''
 {
@@ -261,6 +262,7 @@ class AddPlanCall {
     "uid": "${uid}",
     "plan": "${plan}",
     "quantity": ${quantity},
+    "customer_age": ${customerAge},
     "date": "${date}"
   }
 }''';
@@ -276,6 +278,7 @@ class AddPlanCall {
         'uid': uid,
         'plan': plan,
         'quantity': quantity,
+        'customer_age': customerAge,
         'date': date,
       },
       body: body,
