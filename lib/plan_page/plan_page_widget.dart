@@ -808,9 +808,11 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                                     columnPlansRecord
                                                         .reference.path,
                                                 quantity: countControllerValue,
+                                                verifyAge:
+                                                    columnPlansRecord.verifyAge,
                                                 customerAge:
                                                     int.parse(customerAge.text),
-                                                date: dateTimeFormat(
+                                                added: dateTimeFormat(
                                                     'yMMMd h:mm a',
                                                     getCurrentTimestamp),
                                                 accessToken: currentJwtToken,
