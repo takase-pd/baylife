@@ -101,6 +101,13 @@ class _$PlansRecordSerializer implements StructuredSerializer<PlansRecord> {
         ..add('quantity_max')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.verifyAge;
+    if (value != null) {
+      result
+        ..add('verify_age')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -173,6 +180,10 @@ class _$PlansRecordSerializer implements StructuredSerializer<PlansRecord> {
           result.quantityMax = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
+        case 'verify_age':
+          result.verifyAge = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -212,6 +223,8 @@ class _$PlansRecord extends PlansRecord {
   @override
   final int quantityMax;
   @override
+  final bool verifyAge;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$PlansRecord([void Function(PlansRecordBuilder) updates]) =>
@@ -230,6 +243,7 @@ class _$PlansRecord extends PlansRecord {
       this.shippingFeeNormal,
       this.published,
       this.quantityMax,
+      this.verifyAge,
       this.reference})
       : super._();
 
@@ -256,6 +270,7 @@ class _$PlansRecord extends PlansRecord {
         shippingFeeNormal == other.shippingFeeNormal &&
         published == other.published &&
         quantityMax == other.quantityMax &&
+        verifyAge == other.verifyAge &&
         reference == other.reference;
   }
 
@@ -272,18 +287,20 @@ class _$PlansRecord extends PlansRecord {
                                     $jc(
                                         $jc(
                                             $jc(
-                                                $jc($jc(0, active.hashCode),
-                                                    name.hashCode),
-                                                shop.hashCode),
-                                            unitAmount.hashCode),
-                                        description.hashCode),
-                                    activeQuick.hashCode),
-                                banner.hashCode),
-                            shippingNormal.hashCode),
-                        shippingQuick.hashCode),
-                    shippingFeeNormal.hashCode),
-                published.hashCode),
-            quantityMax.hashCode),
+                                                $jc(
+                                                    $jc($jc(0, active.hashCode),
+                                                        name.hashCode),
+                                                    shop.hashCode),
+                                                unitAmount.hashCode),
+                                            description.hashCode),
+                                        activeQuick.hashCode),
+                                    banner.hashCode),
+                                shippingNormal.hashCode),
+                            shippingQuick.hashCode),
+                        shippingFeeNormal.hashCode),
+                    published.hashCode),
+                quantityMax.hashCode),
+            verifyAge.hashCode),
         reference.hashCode));
   }
 
@@ -302,6 +319,7 @@ class _$PlansRecord extends PlansRecord {
           ..add('shippingFeeNormal', shippingFeeNormal)
           ..add('published', published)
           ..add('quantityMax', quantityMax)
+          ..add('verifyAge', verifyAge)
           ..add('reference', reference))
         .toString();
   }
@@ -361,6 +379,10 @@ class PlansRecordBuilder implements Builder<PlansRecord, PlansRecordBuilder> {
   int get quantityMax => _$this._quantityMax;
   set quantityMax(int quantityMax) => _$this._quantityMax = quantityMax;
 
+  bool _verifyAge;
+  bool get verifyAge => _$this._verifyAge;
+  set verifyAge(bool verifyAge) => _$this._verifyAge = verifyAge;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -385,6 +407,7 @@ class PlansRecordBuilder implements Builder<PlansRecord, PlansRecordBuilder> {
       _shippingFeeNormal = $v.shippingFeeNormal;
       _published = $v.published;
       _quantityMax = $v.quantityMax;
+      _verifyAge = $v.verifyAge;
       _reference = $v.reference;
       _$v = null;
     }
@@ -418,6 +441,7 @@ class PlansRecordBuilder implements Builder<PlansRecord, PlansRecordBuilder> {
             shippingFeeNormal: shippingFeeNormal,
             published: published,
             quantityMax: quantityMax,
+            verifyAge: verifyAge,
             reference: reference);
     replace(_$result);
     return _$result;
