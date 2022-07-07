@@ -253,7 +253,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                               wrapPlansRecordList[wrapIndex];
                           return Container(
                             width: MediaQuery.of(context).size.width * 0.44,
-                            height: 180,
+                            height: 240,
                             decoration: BoxDecoration(),
                             child: Visibility(
                               visible: wrapPlansRecord.active ?? true,
@@ -317,7 +317,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                                   child: Text(
                                                     wrapPlansRecord.name
                                                         .maybeHandleOverflow(
-                                                      maxChars: 24,
+                                                      maxChars: 16,
                                                       replacement: '…',
                                                     ),
                                                     maxLines: 2,

@@ -406,14 +406,46 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                         builder: (context) => LoginPageWidget(),
                                       ),
                                     );
-                                    logFirebaseEvent('Button_Backend-Call');
-                                    await AddPlanCall.call(
-                                      uid: currentUserUid,
-                                      quantity: countControllerValue,
-                                      unitAmount: columnPlansRecord.unitAmount,
-                                      date: dateTimeFormat(
-                                          'yMMMd', getCurrentTimestamp),
-                                    );
+                                    logFirebaseEvent('Button_Alert-Dialog');
+                                    var confirmDialogResponse =
+                                        await showDialog<bool>(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text('年齢確認'),
+                                                  content: Text(
+                                                      'この商品は年齢確認が必要な商品です。お客様の年齢をご入力ください。'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: Text('戻る'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: Text('送信'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ) ??
+                                            false;
+                                    if (confirmDialogResponse) {
+                                      logFirebaseEvent('Button_Backend-Call');
+                                      await AddPlanCall.call(
+                                        uid: currentUserUid,
+                                        quantity: countControllerValue,
+                                        unitAmount:
+                                            columnPlansRecord.unitAmount,
+                                        date: dateTimeFormat(
+                                            'yMMMd', getCurrentTimestamp),
+                                      );
+                                    }
                                   },
                                   text: 'カートに追加',
                                   options: FFButtonOptions(
