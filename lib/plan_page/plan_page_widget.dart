@@ -40,6 +40,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
   String paymentId;
   Future<PlanData> planData;
   String countAlert = '';
+  TextEditingController customerAage;
 
   Future<PlanData> _getPlan() async {
     PlanData _planData;
@@ -381,7 +382,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                      child: FutureBuilder(
+                      child: FutureBuilder<PlanData>(
                           future: planData,
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
@@ -498,6 +499,194 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                                 countAlert = '個数を選択してください。';
                                               });
                                               return;
+                                            }
+
+                                            logFirebaseEvent(
+                                                'Button_Alert-Dialog');
+                                            if (columnPlansRecord.verifyAge) {
+                                              var confirmDialogResponse =
+                                                  await showDialog<bool>(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                              '年齢確認',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .subtitle1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                            ),
+                                                            content: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                    'この商品は年齢確認が必要な商品です。20才未満の方はこの商品を購入することはできません。'),
+                                                                TextFormField(
+                                                                  controller:
+                                                                      customerAage ??=
+                                                                          TextEditingController(),
+                                                                  obscureText:
+                                                                      false,
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                    labelText:
+                                                                        '年齢',
+                                                                    isDense:
+                                                                        true,
+                                                                    enabledBorder:
+                                                                        UnderlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Color(
+                                                                            0x00000000),
+                                                                        width:
+                                                                            1,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              4),
+                                                                    ),
+                                                                    focusedBorder:
+                                                                        UnderlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryColor,
+                                                                        width:
+                                                                            2,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              4),
+                                                                    ),
+                                                                    errorStyle:
+                                                                        TextStyle(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryColor,
+                                                                    ),
+                                                                    errorBorder:
+                                                                        UnderlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryColor,
+                                                                        width:
+                                                                            2,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              4),
+                                                                    ),
+                                                                    focusedErrorBorder:
+                                                                        UnderlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryColor,
+                                                                        width:
+                                                                            2,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              4),
+                                                                    ),
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText2
+                                                                      .override(
+                                                                        fontSize:
+                                                                            20,
+                                                                        fontFamily:
+                                                                            'Open Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .textDark,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .right,
+                                                                  keyboardType:
+                                                                      TextInputType
+                                                                          .number,
+                                                                  autovalidateMode:
+                                                                      AutovalidateMode
+                                                                          .always,
+                                                                  validator:
+                                                                      (val) {
+                                                                    if (val ==
+                                                                            null ||
+                                                                        val.isEmpty)
+                                                                      return 'お客様の年齢を入力してください。';
+                                                                    return null;
+                                                                  },
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        false),
+                                                                child: Text(
+                                                                  '戻る',
+                                                                  style: FlutterFlowTheme.of(context).bodyText2.override(
+                                                                      fontFamily:
+                                                                          'Open Sans',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .textDark),
+                                                                ),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        true),
+                                                                child: Text(
+                                                                  '確認',
+                                                                  style: FlutterFlowTheme.of(context).bodyText2.override(
+                                                                      fontFamily:
+                                                                          'Open Sans',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .textDark),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      ) ??
+                                                      false;
+
+                                              if (!confirmDialogResponse ||
+                                                  customerAage.text == null ||
+                                                  int.parse(customerAage.text) <
+                                                      20) return;
                                             }
 
                                             if (!currentUser.loggedIn) {
