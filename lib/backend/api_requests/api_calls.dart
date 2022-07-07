@@ -230,7 +230,7 @@ class AddPlanCall {
     int quantity,
     int unitAmount,
     String date = '',
-    String name = '',
+    bool verifyAge,
     int customerAge,
   }) {
     final body = '''
@@ -240,7 +240,7 @@ class AddPlanCall {
     "plan": "${plan}",
     "quantity": ${quantity},
     "unit_amount": ${unitAmount},
-    "name": "${name}",
+    "verify_age": "${verifyAge}",
     "customer_age": ${customerAge},
     "date": "${date}"
   }
@@ -259,7 +259,7 @@ class AddPlanCall {
         'quantity': quantity,
         'unit_amount': unitAmount,
         'date': date,
-        'name': name,
+        'verify_age': verifyAge,
         'customer_age': customerAge,
       },
       body: body,
