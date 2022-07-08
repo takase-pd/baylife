@@ -80,13 +80,23 @@ class _CartPageWidgetState extends State<CartPageWidget> {
         // shippingFeeNormal: plan['shipping_fee_normal'],
         shippingEachFee: plan['shippingEachFee'],
       ));
-      if (plan['verifyAge'] ?? false) ageVerification = true;
     });
+
+    final verifyAge = cart
+        .where(
+          (element) => element.verifyAge == true,
+        )
+        .length;
+    ageVerification = verifyAge > 0 ? true : false;
 
     return cart;
   }
 
-  bool _isEmpty() {
+  bool verifyAge() {
+    return ageVerification ? currentUserDocument.age >= 20 : true;
+  }
+
+  bool isEmpty() {
     if (cart == null) return true;
     if (cart.length == 0) return true;
     if (shipping == null || billing == null) return true;
@@ -264,9 +274,9 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                StreamBuilder<PlansRecord>(
-                                                  stream:
-                                                      PlansRecord.getDocument(
+                                                FutureBuilder<PlansRecord>(
+                                                  future: PlansRecord
+                                                      .getDocumentOnce(
                                                           FirebaseFirestore
                                                               .instance
                                                               .doc(_plan.path)),
@@ -622,131 +632,139 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 16),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            logFirebaseEvent('ButtonON_TAP');
-                                            logFirebaseEvent(
-                                                'ButtonBottomSheet');
-                                            var _shipping =
-                                                await showModalBottomSheet<
-                                                    ShippingDetails>(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              context: context,
-                                              builder: (context) {
-                                                return Padding(
-                                                  padding:
-                                                      MediaQuery.of(context)
-                                                          .viewInsets,
-                                                  child: Container(
-                                                    height:
+                                      if (verifyAge())
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 16),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              logFirebaseEvent('ButtonON_TAP');
+                                              logFirebaseEvent(
+                                                  'ButtonBottomSheet');
+                                              var _shipping =
+                                                  await showModalBottomSheet<
+                                                      ShippingDetails>(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                context: context,
+                                                builder: (context) {
+                                                  return Padding(
+                                                    padding:
                                                         MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.9,
-                                                    child:
-                                                        ShippingDetailsWidget(
-                                                            shipping: shipping),
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                            setState(() {
-                                              shipping = _shipping;
-                                            });
-                                          },
-                                          text: '配送先',
-                                          options: FFButtonOptions(
-                                            width: double.infinity,
-                                            height: 48,
-                                            color: FlutterFlowTheme.of(context)
-                                                .pDark,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Open Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .textLight,
+                                                            .viewInsets,
+                                                    child: Container(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.9,
+                                                      child:
+                                                          ShippingDetailsWidget(
+                                                              shipping:
+                                                                  shipping),
                                                     ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
+                                                  );
+                                                },
+                                              );
+                                              setState(() {
+                                                shipping = _shipping;
+                                              });
+                                            },
+                                            text: '配送先',
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 48,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .pDark,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .textLight,
+                                                      ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(12),
                                           ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 16),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            logFirebaseEvent('ButtonON_TAP');
-                                            logFirebaseEvent(
-                                                'ButtonBottomSheet');
-                                            var _billing =
-                                                await showModalBottomSheet(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              context: context,
-                                              builder: (context) {
-                                                return Padding(
-                                                  padding:
-                                                      MediaQuery.of(context)
-                                                          .viewInsets,
-                                                  child: Container(
-                                                    height:
+                                      if (verifyAge())
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 16),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              logFirebaseEvent('ButtonON_TAP');
+                                              logFirebaseEvent(
+                                                  'ButtonBottomSheet');
+                                              var _billing =
+                                                  await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                context: context,
+                                                builder: (context) {
+                                                  return Padding(
+                                                    padding:
                                                         MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.9,
-                                                    child: BillingDetailsWidget(
-                                                      shipping: shipping,
-                                                      billing: billing,
+                                                            .viewInsets,
+                                                    child: Container(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.9,
+                                                      child:
+                                                          BillingDetailsWidget(
+                                                        shipping: shipping,
+                                                        billing: billing,
+                                                      ),
                                                     ),
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                            setState(() {
-                                              billing = _billing;
-                                            });
-                                          },
-                                          text: '請求先',
-                                          options: FFButtonOptions(
-                                            width: double.infinity,
-                                            height: 48,
-                                            color: FlutterFlowTheme.of(context)
-                                                .pDark,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Open Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .textLight,
-                                                    ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
+                                                  );
+                                                },
+                                              );
+                                              setState(() {
+                                                billing = _billing;
+                                              });
+                                            },
+                                            text: '請求先',
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 48,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .pDark,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .textLight,
+                                                      ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(12),
                                           ),
                                         ),
-                                      ),
-                                      if (_isEmpty())
+                                      if (isEmpty() && verifyAge())
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -779,7 +797,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (!_isEmpty())
+                                      if (!isEmpty() && verifyAge())
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
