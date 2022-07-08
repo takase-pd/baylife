@@ -50,6 +50,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).textLight),
@@ -71,75 +72,76 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
         elevation: 0,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AuthUserStreamWidget(
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: Image.network(
-                          valueOrDefault<String>(
-                            currentUserPhoto,
-                            'https://firebasestorage.googleapis.com/v0/b/baylifedev.appspot.com/o/assets%2Fuser-circle.png?alt=media&token=f4feafa1-f433-486d-a24a-be2ec1a6b5a4',
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      AuthUserStreamWidget(
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.network(
+                            valueOrDefault<String>(
+                              currentUserPhoto,
+                              'https://firebasestorage.googleapis.com/v0/b/baylifedev.appspot.com/o/assets%2Fuser-circle.png?alt=media&token=f4feafa1-f433-486d-a24a-be2ec1a6b5a4',
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AuthUserStreamWidget(
-                            child: Text(
-                              currentUserDisplayName,
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AuthUserStreamWidget(
+                              child: Text(
+                                currentUserDisplayName,
+                                style: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .textLight,
+                                    ),
+                              ),
+                            ),
+                            Text(
+                              currentUserEmail,
                               style: FlutterFlowTheme.of(context)
-                                  .subtitle2
+                                  .bodyText1
                                   .override(
                                     fontFamily: 'Open Sans',
                                     color:
                                         FlutterFlowTheme.of(context).textLight,
                                   ),
                             ),
-                          ),
-                          Text(
-                            currentUserEmail,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color: FlutterFlowTheme.of(context).textLight,
-                                ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: Card(
+            Card(
               clipBehavior: Clip.antiAliasWithSaveLayer,
               color: FlutterFlowTheme.of(context).tertiaryColor,
               elevation: 4,
@@ -155,7 +157,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                 key: formKey,
                 autovalidateMode: AutovalidateMode.always,
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -321,22 +323,26 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                               ),
-                              child: AuthUserStreamWidget(
-                                child: TextFormField(
-                                  controller: textController2,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    enabledBorder: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                                child: AuthUserStreamWidget(
+                                  child: TextFormField(
+                                    controller: textController2,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      enabledBorder: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontSize: 18,
+                                        ),
+                                    textAlign: TextAlign.end,
+                                    keyboardType: TextInputType.number,
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        fontSize: 18,
-                                      ),
-                                  textAlign: TextAlign.end,
-                                  keyboardType: TextInputType.number,
                                 ),
                               ),
                             ),
@@ -392,85 +398,54 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
-                        child: StreamBuilder<List<SurveyRecord>>(
-                          stream: querySurveyRecord(
-                            singleRecord: true,
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: SpinKitPulse(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 50,
-                                  ),
-                                ),
-                              );
-                            }
-                            List<SurveyRecord> buttonSurveyRecordList =
-                                snapshot.data;
-                            // Return an empty Container when the document does not exist.
-                            if (snapshot.data.isEmpty) {
-                              return Container();
-                            }
-                            final buttonSurveyRecord =
-                                buttonSurveyRecordList.isNotEmpty
-                                    ? buttonSurveyRecordList.first
-                                    : null;
-                            return FFButtonWidget(
-                              onPressed: () async {
-                                logFirebaseEvent(
-                                    'MY_PAGE_EDIT_PAGE_保存_BTN_ON_TAP');
-                                logFirebaseEvent('Button_Backend-Call');
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent('MY_PAGE_EDIT_PAGE_保存_BTN_ON_TAP');
+                            logFirebaseEvent('Button_Backend-Call');
 
-                                final usersUpdateData = createUsersRecordData(
-                                  sex: sexValue,
-                                  area: areaValue,
-                                  displayName: textController1.text,
-                                );
-                                await currentUserReference
-                                    .update(usersUpdateData);
-                                var _analyticsParam = {
-                                  'sex': sexValue,
-                                  'area': areaValue,
-                                };
-                                Analytics.analyticsLogEvent(
-                                    AnalyticsEventType.update_userdata,
-                                    _analyticsParam);
-                                logFirebaseEvent('Button_Navigate-To');
-                                await Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MyPageWidget(),
-                                  ),
-                                  (r) => false,
-                                );
-                              },
-                              text: '保存',
-                              options: FFButtonOptions(
-                                width: 240,
-                                height: 48,
-                                color: FlutterFlowTheme.of(context).pDark,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .textLight,
-                                    ),
-                                elevation: 4,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(12),
+                            final usersUpdateData = createUsersRecordData(
+                              sex: sexValue,
+                              area: areaValue,
+                              displayName: textController1.text,
+                              age: textController2.text == '未回答'
+                                  ? 0
+                                  : int.parse(textController2.text),
+                            );
+                            await currentUserReference.update(usersUpdateData);
+                            var _analyticsParam = {
+                              'sex': sexValue,
+                              'area': areaValue,
+                            };
+                            Analytics.analyticsLogEvent(
+                                AnalyticsEventType.update_userdata,
+                                _analyticsParam);
+                            logFirebaseEvent('Button_Navigate-To');
+                            await Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyPageWidget(),
                               ),
+                              (r) => false,
                             );
                           },
+                          text: '保存',
+                          options: FFButtonOptions(
+                            width: 240,
+                            height: 48,
+                            color: FlutterFlowTheme.of(context).pDark,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .subtitle2
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.of(context).textLight,
+                                ),
+                            elevation: 4,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
                       ),
                     ],
@@ -478,8 +453,8 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

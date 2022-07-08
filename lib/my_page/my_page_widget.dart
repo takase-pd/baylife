@@ -106,89 +106,89 @@ class _MyPageWidgetState extends State<MyPageWidget> {
         elevation: 0,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AuthUserStreamWidget(
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: Image.network(
-                          valueOrDefault<String>(
-                            currentUserPhoto,
-                            'https://firebasestorage.googleapis.com/v0/b/baylifedev.appspot.com/o/assets%2Fuser-circle.png?alt=media&token=f4feafa1-f433-486d-a24a-be2ec1a6b5a4',
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      AuthUserStreamWidget(
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.network(
+                            valueOrDefault<String>(
+                              currentUserPhoto,
+                              'https://firebasestorage.googleapis.com/v0/b/baylifedev.appspot.com/o/assets%2Fuser-circle.png?alt=media&token=f4feafa1-f433-486d-a24a-be2ec1a6b5a4',
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (!currentUser.loggedIn)
-                            Text(
-                              'ログインしていません',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color:
-                                        FlutterFlowTheme.of(context).textLight,
-                                  ),
-                            ),
-                          if (currentUser.loggedIn)
-                            AuthUserStreamWidget(
-                              child: Text(
-                                currentUserDisplayName,
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (!currentUser.loggedIn)
+                              Text(
+                                'ログインしていません',
                                 style: FlutterFlowTheme.of(context)
-                                    .subtitle2
+                                    .bodyText1
                                     .override(
                                       fontFamily: 'Open Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .textLight,
                                     ),
                               ),
-                            ),
-                          if (currentUser.loggedIn)
-                            Text(
-                              currentUserEmail,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color:
-                                        FlutterFlowTheme.of(context).textLight,
-                                  ),
-                            ),
-                        ],
+                            if (currentUser.loggedIn)
+                              AuthUserStreamWidget(
+                                child: Text(
+                                  currentUserDisplayName,
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .textLight,
+                                      ),
+                                ),
+                              ),
+                            if (currentUser.loggedIn)
+                              Text(
+                                currentUserEmail,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .textLight,
+                                    ),
+                              ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: Card(
+            Card(
               clipBehavior: Clip.antiAliasWithSaveLayer,
               color: FlutterFlowTheme.of(context).tertiaryColor,
               elevation: 4,
@@ -417,7 +417,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                     ),
                     if (currentUser.loggedIn)
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
                         child: InkWell(
                           onTap: () async {
                             logFirebaseEvent(
@@ -445,78 +445,45 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                     if (!currentUser.loggedIn)
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
-                        child: StreamBuilder<List<SurveyRecord>>(
-                          stream: querySurveyRecord(
-                            singleRecord: true,
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: SpinKitPulse(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 50,
-                                  ),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent('ButtonON_TAP');
+                            logFirebaseEvent('ButtonNavigateTo');
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginPageWidget(
+                                  pagePath: LoginPagePath.my_page,
                                 ),
-                              );
-                            }
-                            List<SurveyRecord> buttonSurveyRecordList =
-                                snapshot.data;
-                            // Return an empty Container when the document does not exist.
-                            if (snapshot.data.isEmpty) {
-                              return Container();
-                            }
-                            final buttonSurveyRecord =
-                                buttonSurveyRecordList.isNotEmpty
-                                    ? buttonSurveyRecordList.first
-                                    : null;
-                            return FFButtonWidget(
-                              onPressed: () async {
-                                logFirebaseEvent('ButtonON_TAP');
-                                logFirebaseEvent('ButtonNavigateTo');
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginPageWidget(
-                                      pagePath: LoginPagePath.my_page,
-                                    ),
-                                  ),
-                                );
-                              },
-                              text: 'ログイン',
-                              options: FFButtonOptions(
-                                width: 240,
-                                height: 48,
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .textLight,
-                                    ),
-                                elevation: 4,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(12),
                               ),
                             );
                           },
+                          text: 'ログイン',
+                          options: FFButtonOptions(
+                            width: 240,
+                            height: 48,
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .subtitle2
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.of(context).textLight,
+                                ),
+                            elevation: 4,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
                       ),
                   ],
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
