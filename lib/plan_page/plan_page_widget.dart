@@ -227,19 +227,18 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
+                          if (columnPlansRecord.verifyAge ?? true)
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                  ),
                                 ),
-                              ),
-                              child: Visibility(
-                                visible: columnPlansRecord.verifyAge ?? true,
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       4, 4, 4, 4),
@@ -288,7 +287,6 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 ),
                               ),
                             ),
-                          ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: Row(
