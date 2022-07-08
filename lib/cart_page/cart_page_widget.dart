@@ -40,6 +40,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
   int shippingTotal = 0;
   ShippingDetails shipping;
   BillingDetails billing;
+  bool ageVerification = false;
 
   Future<List> _getCart() async {
     subtotal = 0;
@@ -67,16 +68,19 @@ class _CartPageWidgetState extends State<CartPageWidget> {
     }
 
     subtotal = _apiJson['subtotal'];
-    shippingTotal = _apiJson['shipping_fee'];
+    shippingTotal = _apiJson['shippingFee'];
     _apiJson['cart'].forEach((plan) {
       cart.add(PlanData(
         path: plan['path'],
-        unitAmount: plan['unit_amount'],
+        unitAmount: plan['unitAmount'],
         quantity: plan['quantity'],
+        customerAge: plan['customerAge'] ?? 0,
+        verifyAge: plan['verifyAge'] ?? false,
         name: plan['name'],
         // shippingFeeNormal: plan['shipping_fee_normal'],
-        shippingEachFee: plan['shipping_each_fee'],
+        shippingEachFee: plan['shippingEachFee'],
       ));
+      if (plan['verifyAge'] ?? false) ageVerification = true;
     });
 
     return cart;

@@ -13,6 +13,8 @@ class PlanData {
   final String path;
   final int unitAmount;
   final int quantity;
+  final int customerAge;
+  final bool verifyAge;
   final String name;
   final int shippingFeeNormal;
   final bool shippingEachFee;
@@ -23,6 +25,8 @@ class PlanData {
     this.path,
     this.unitAmount,
     this.quantity,
+    this.customerAge,
+    this.verifyAge,
     this.name,
     this.shippingFeeNormal,
     this.shippingEachFee,
