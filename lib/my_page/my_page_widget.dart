@@ -311,6 +311,72 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
+                                      '年齢',
+                                      style: FlutterFlowTheme.of(context)
+                                          .subtitle1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryColor,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                    AuthUserStreamWidget(
+                                      child: Text(
+                                        valueOrDefault<String>(
+                                          valueOrDefault(
+                                                  currentUserDocument?.age, 0)
+                                              .toString(),
+                                          '未回答',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryColor,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: FlutterFlowTheme.of(context).background,
+                            elevation: 4,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Container(
+                              width: 288,
+                              height: 72,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16, 16, 16, 16),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
                                       'エリア',
                                       style: FlutterFlowTheme.of(context)
                                           .subtitle1

@@ -29,7 +29,8 @@ class MyPageEditWidget extends StatefulWidget {
 class _MyPageEditWidgetState extends State<MyPageEditWidget> {
   String areaValue;
   String sexValue;
-  TextEditingController textController;
+  TextEditingController textController1;
+  TextEditingController textController2;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -37,7 +38,12 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
   void initState() {
     super.initState();
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'MyPageEdit'});
-    textController = TextEditingController(text: currentUserDisplayName);
+    textController1 = TextEditingController(text: currentUserDisplayName);
+    textController2 = TextEditingController(
+        text: valueOrDefault<String>(
+      valueOrDefault(currentUserDocument?.age, 0).toString(),
+      '未回答',
+    ));
   }
 
   @override
@@ -190,7 +196,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                             Expanded(
                               child: AuthUserStreamWidget(
                                 child: TextFormField(
-                                  controller: textController,
+                                  controller: textController1,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     enabledBorder: UnderlineInputBorder(
@@ -300,6 +306,50 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
+                              '年齢',
+                              style: FlutterFlowTheme.of(context)
+                                  .subtitle1
+                                  .override(
+                                    fontFamily: 'Open Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                            Container(
+                              width: 128,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                              ),
+                              child: AuthUserStreamWidget(
+                                child: TextFormField(
+                                  controller: textController2,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    enabledBorder: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 18,
+                                      ),
+                                  textAlign: TextAlign.end,
+                                  keyboardType: TextInputType.number,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
                               'エリア',
                               style: FlutterFlowTheme.of(context)
                                   .subtitle1
@@ -380,7 +430,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                 final usersUpdateData = createUsersRecordData(
                                   sex: sexValue,
                                   area: areaValue,
-                                  displayName: textController.text,
+                                  displayName: textController1.text,
                                 );
                                 await currentUserReference
                                     .update(usersUpdateData);
