@@ -251,7 +251,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               ],
                             ),
                           ),
-                          if (columnPlansRecord.verifyAge ?? true)
+                          if (columnPlansRecord.verifyAge ?? false)
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
