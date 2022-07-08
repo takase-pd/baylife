@@ -251,6 +251,49 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               ],
                             ),
                           ),
+                          if (columnPlansRecord.verifyAge ?? true)
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 8),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '年齢確認商品',
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle2
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          'この商品は年齢確認商品です。20才以上の年齢であることを確認できない場合には販売いたしません。年齢確認をさせていただいておりますので、ご了承ください。',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: Row(
