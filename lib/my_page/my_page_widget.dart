@@ -444,7 +444,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                       ),
                     if (!currentUser.loggedIn)
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
                         child: FFButtonWidget(
                           onPressed: () async {
                             logFirebaseEvent('ButtonON_TAP');
