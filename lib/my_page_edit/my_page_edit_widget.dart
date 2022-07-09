@@ -1,18 +1,15 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../my_page/my_page_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../backend/firebase_analytics/analytics.dart';
-import '../backend/firebase_analytics/analytics_event_type.dart';
 
 class MyPageEditWidget extends StatefulWidget {
   const MyPageEditWidget({
@@ -40,17 +37,13 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'MyPageEdit'});
     textController1 = TextEditingController(text: currentUserDisplayName);
     textController2 = TextEditingController(
-        text: valueOrDefault<String>(
-      valueOrDefault(currentUserDocument?.age, 0).toString(),
-      '未回答',
-    ));
+        text: valueOrDefault(currentUserDocument?.age, 0).toString());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).textLight),
@@ -274,7 +267,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                             AuthUserStreamWidget(
                               child: FlutterFlowDropDown(
                                 initialOption: sexValue ??= valueOrDefault(
-                                    currentUserDocument?.sex, ''),
+                                    currentUserDocument?.sex, '未回答'),
                                 options: ['男性', '女性', 'その他', '未回答'],
                                 onChanged: (val) =>
                                     setState(() => sexValue = val),
@@ -319,7 +312,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                   ),
                             ),
                             Container(
-                              width: 128,
+                              width: 96,
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                               ),
@@ -331,8 +324,41 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                     controller: textController2,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      enabledBorder: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
+                                      helperText: '未回答の場合は0',
+                                      helperMaxLines: 2,
+                                      errorMaxLines: 2,
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryColor,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(1),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryColor,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(1),
+                                      ),
+                                      errorBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor)),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryColor),
+                                      ),
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              8, 0, 8, 0),
+                                      errorStyle: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
@@ -342,6 +368,16 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                                         ),
                                     textAlign: TextAlign.end,
                                     keyboardType: TextInputType.number,
+                                    validator: (val) {
+                                      if (val == null || val.isEmpty) {
+                                        return '年齢を入力';
+                                      }
+                                      if (int.tryParse(val) == null ||
+                                          int.parse(val) >= 100)
+                                        return '100未満の数字';
+
+                                      return null;
+                                    },
                                   ),
                                 ),
                               ),
@@ -369,7 +405,7 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                             AuthUserStreamWidget(
                               child: FlutterFlowDropDown(
                                 initialOption: areaValue ??= valueOrDefault(
-                                    currentUserDocument?.area, ''),
+                                    currentUserDocument?.area, '未回答'),
                                 options: ['ベイタウン', 'ベイパーク', 'それ以外', '未回答'],
                                 onChanged: (val) =>
                                     setState(() => areaValue = val),
@@ -401,19 +437,25 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                         child: FFButtonWidget(
                           onPressed: () async {
                             logFirebaseEvent('MY_PAGE_EDIT_PAGE_保存_BTN_ON_TAP');
+                            if (!formKey.currentState.validate()) {
+                              return;
+                            }
+
                             logFirebaseEvent('Button_Backend-Call');
 
                             final usersUpdateData = createUsersRecordData(
                               sex: sexValue,
                               area: areaValue,
                               displayName: textController1.text,
-                              age: textController2.text == '未回答'
+                              age: textController2.text == null ||
+                                      textController2.text.isEmpty
                                   ? 0
                                   : int.parse(textController2.text),
                             );
                             await currentUserReference.update(usersUpdateData);
                             var _analyticsParam = {
                               'sex': sexValue,
+                              'age': textController2.text,
                               'area': areaValue,
                             };
                             Analytics.analyticsLogEvent(

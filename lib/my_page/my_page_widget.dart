@@ -1,23 +1,15 @@
-import 'package:bay_life/auth/firebase_user_provider.dart';
-
 import '../auth/auth_util.dart';
-import '../backend/backend.dart';
+import '../auth/firebase_user_provider.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
+import '../login_page/login_page_path.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login_page/login_page_widget.dart';
 import '../main.dart';
 import '../my_page_edit/my_page_edit_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../backend/firebase_analytics/analytics.dart';
-import '../backend/firebase_analytics/analytics_event_type.dart';
-
-import '../login_page/login_page_path.dart';
 
 class MyPageWidget extends StatefulWidget {
   const MyPageWidget({
@@ -323,12 +315,11 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                                     ),
                                     AuthUserStreamWidget(
                                       child: Text(
-                                        valueOrDefault<String>(
-                                          valueOrDefault(
-                                                  currentUserDocument?.age, 0)
-                                              .toString(),
-                                          '未回答',
-                                        ),
+                                        currentUserDocument?.age == null ||
+                                                currentUserDocument?.age == 0
+                                            ? '未回答'
+                                            : currentUserDocument.age
+                                                .toString(),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
