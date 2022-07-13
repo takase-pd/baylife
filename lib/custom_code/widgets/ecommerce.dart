@@ -13,6 +13,8 @@ class PlanData {
   final String path;
   final int unitAmount;
   final int quantity;
+  final int customerAge;
+  final bool verifyAge;
   final String name;
   final int shippingFeeNormal;
   final bool shippingEachFee;
@@ -23,6 +25,8 @@ class PlanData {
     this.path,
     this.unitAmount,
     this.quantity,
+    this.customerAge,
+    this.verifyAge,
     this.name,
     this.shippingFeeNormal,
     this.shippingEachFee,
@@ -31,6 +35,41 @@ class PlanData {
   });
 
   int get subtotal => unitAmount * quantity;
+
+  static Future<PlanData> create(
+    String path,
+    BuildContext context,
+  ) async {
+    PlanData _planData;
+    if (!currentUser.loggedIn) return _planData;
+
+    final _appCheckToken = await AppCheckAgent.getToken(context);
+    if (_appCheckToken == null) return _planData;
+
+    final apiCallOutput = await GetPlanCall.call(
+      uid: currentUserUid,
+      plan: '/$path',
+      accessToken: currentJwtToken,
+      appCheckToken: _appCheckToken,
+    );
+    final _apiJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+
+    final success = _apiJson['success'] ?? false;
+    if (!success) {
+      String errorMessage = _apiJson['error'] ?? '原因不明のエラーが発生';
+      showSnackbar(
+        context,
+        'Error: $errorMessage',
+      );
+      return _planData;
+    }
+
+    if (_apiJson['quantity'] > 0)
+      _planData = PlanData(
+        quantity: _apiJson['quantity'],
+      );
+    return _planData;
+  }
 }
 
 class Purchase {

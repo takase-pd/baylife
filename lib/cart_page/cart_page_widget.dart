@@ -1,26 +1,24 @@
-import 'package:bay_life/ecommerce_page/ecommerce_page_widget.dart';
-
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/stripe/payment_manager.dart';
 import '../backend/backend.dart';
 import '../components/billing_details_widget.dart';
 import '../components/shipping_details_widget.dart';
+import '../custom_code/widgets/index.dart';
+import '../ecommerce_page/ecommerce_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../login_page/login_page_path.dart';
 import '../login_page/login_page_widget.dart';
-import '../shop_page/shop_page_widget.dart';
 import '../purchases_page/purchases_page_widget.dart';
-import '../main.dart';
+import '../terms_page/terms_page_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../auth/firebase_user_provider.dart';
-import '../login_page/login_page_path.dart';
-import '../custom_code/widgets/index.dart';
 import 'package:flutter_stripe/flutter_stripe.dart'
     show ShippingDetails, BillingDetails;
 
@@ -40,6 +38,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
   int shippingTotal = 0;
   ShippingDetails shipping;
   BillingDetails billing;
+  bool ageVerification = false;
 
   Future<List> _getCart() async {
     subtotal = 0;
@@ -67,22 +66,35 @@ class _CartPageWidgetState extends State<CartPageWidget> {
     }
 
     subtotal = _apiJson['subtotal'];
-    shippingTotal = _apiJson['shipping_fee'];
+    shippingTotal = _apiJson['shippingFee'];
     _apiJson['cart'].forEach((plan) {
       cart.add(PlanData(
         path: plan['path'],
-        unitAmount: plan['unit_amount'],
+        unitAmount: plan['unitAmount'],
         quantity: plan['quantity'],
+        customerAge: plan['customerAge'] ?? 0,
+        verifyAge: plan['verifyAge'] ?? false,
         name: plan['name'],
         // shippingFeeNormal: plan['shipping_fee_normal'],
-        shippingEachFee: plan['shipping_each_fee'],
+        shippingEachFee: plan['shippingEachFee'],
       ));
     });
+
+    final verifyAge = cart
+        .where(
+          (element) => element.verifyAge == true,
+        )
+        .length;
+    ageVerification = verifyAge > 0 ? true : false;
 
     return cart;
   }
 
-  bool _isEmpty() {
+  bool verifyAge() {
+    return ageVerification ? currentUserDocument.age >= 20 : true;
+  }
+
+  bool isEmpty() {
     if (cart == null) return true;
     if (cart.length == 0) return true;
     if (shipping == null || billing == null) return true;
@@ -260,9 +272,9 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                StreamBuilder<PlansRecord>(
-                                                  stream:
-                                                      PlansRecord.getDocument(
+                                                FutureBuilder<PlansRecord>(
+                                                  future: PlansRecord
+                                                      .getDocumentOnce(
                                                           FirebaseFirestore
                                                               .instance
                                                               .doc(_plan.path)),
@@ -414,6 +426,67 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                         );
                                       }),
                                 ),
+                                if (ageVerification)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 0, 16, 16),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            4, 4, 4, 4),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 8),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    '年齢確認商品',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    'カート内に年齢確認商品が含まれています。20才以上の年齢であることを確認できない場合には販売いたしませんので、ご了承ください。',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(),
@@ -542,10 +615,51 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             ],
                                           ),
                                         ),
-                                        Text(
-                                          '＊お支払いは、Stripeにより安心してご利用いただけます。',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1,
+                                        RichText(
+                                          text: TextSpan(children: [
+                                            TextSpan(
+                                              text: '＊お支払いは、',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        fontSize: 12,
+                                                      ),
+                                            ),
+                                            TextSpan(
+                                              text: 'Stripe',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        fontSize: 12,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline,
+                                                      ),
+                                              recognizer: TapGestureRecognizer()
+                                                ..onTap = () async {
+                                                  await launchURL(
+                                                      'https://stripe.com/jp');
+                                                },
+                                            ),
+                                            TextSpan(
+                                              text: 'により安心してご利用いただけます。',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        fontSize: 12,
+                                                      ),
+                                            ),
+                                          ]),
                                         ),
                                       ],
                                     ),
@@ -557,129 +671,139 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 16),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            logFirebaseEvent('ButtonON_TAP');
-                                            logFirebaseEvent(
-                                                'ButtonBottomSheet');
-                                            var _shipping =
-                                                await showModalBottomSheet<
-                                                    ShippingDetails>(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              context: context,
-                                              builder: (context) {
-                                                return Padding(
-                                                  padding:
-                                                      MediaQuery.of(context)
-                                                          .viewInsets,
-                                                  child: Container(
-                                                    height:
+                                      if (verifyAge())
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 16),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              logFirebaseEvent('ButtonON_TAP');
+                                              logFirebaseEvent(
+                                                  'ButtonBottomSheet');
+                                              var _shipping =
+                                                  await showModalBottomSheet<
+                                                      ShippingDetails>(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                context: context,
+                                                builder: (context) {
+                                                  return Padding(
+                                                    padding:
                                                         MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.9,
-                                                    child:
-                                                        ShippingDetailsWidget(
-                                                            shipping: shipping),
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                            setState(() {
-                                              shipping = _shipping;
-                                            });
-                                          },
-                                          text: '配送先',
-                                          options: FFButtonOptions(
-                                            width: double.infinity,
-                                            height: 48,
-                                            color: FlutterFlowTheme.of(context)
-                                                .pDark,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Open Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .textLight,
+                                                            .viewInsets,
+                                                    child: Container(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.9,
+                                                      child:
+                                                          ShippingDetailsWidget(
+                                                              shipping:
+                                                                  shipping),
                                                     ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
+                                                  );
+                                                },
+                                              );
+                                              setState(() {
+                                                shipping = _shipping;
+                                              });
+                                            },
+                                            text: '配送先',
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 48,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .pDark,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .textLight,
+                                                      ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
-                                            borderRadius: 12,
                                           ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 16),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            logFirebaseEvent('ButtonON_TAP');
-                                            logFirebaseEvent(
-                                                'ButtonBottomSheet');
-                                            var _billing =
-                                                await showModalBottomSheet(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              context: context,
-                                              builder: (context) {
-                                                return Padding(
-                                                  padding:
-                                                      MediaQuery.of(context)
-                                                          .viewInsets,
-                                                  child: Container(
-                                                    height:
+                                      if (verifyAge())
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 16),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              logFirebaseEvent('ButtonON_TAP');
+                                              logFirebaseEvent(
+                                                  'ButtonBottomSheet');
+                                              var _billing =
+                                                  await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                context: context,
+                                                builder: (context) {
+                                                  return Padding(
+                                                    padding:
                                                         MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.9,
-                                                    child: BillingDetailsWidget(
-                                                      shipping: shipping,
-                                                      billing: billing,
+                                                            .viewInsets,
+                                                    child: Container(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.9,
+                                                      child:
+                                                          BillingDetailsWidget(
+                                                        shipping: shipping,
+                                                        billing: billing,
+                                                      ),
                                                     ),
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                            setState(() {
-                                              billing = _billing;
-                                            });
-                                          },
-                                          text: '請求先',
-                                          options: FFButtonOptions(
-                                            width: double.infinity,
-                                            height: 48,
-                                            color: FlutterFlowTheme.of(context)
-                                                .pDark,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Open Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .textLight,
-                                                    ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
+                                                  );
+                                                },
+                                              );
+                                              setState(() {
+                                                billing = _billing;
+                                              });
+                                            },
+                                            text: '請求先',
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 48,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .pDark,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .textLight,
+                                                      ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
-                                            borderRadius: 12,
                                           ),
                                         ),
-                                      ),
-                                      if (_isEmpty())
+                                      if (isEmpty() && verifyAge())
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -707,11 +831,111 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ),
-                                      if (!_isEmpty())
+                                      if (!isEmpty() && verifyAge()) ...[
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 16),
+                                          child: Container(
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: RichText(
+                                                    text: TextSpan(
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                fontSize: 12,
+                                                              ),
+                                                      children: [
+                                                        TextSpan(
+                                                          text:
+                                                              '「注文する」ボタンを押してご注文いただくことで、お客様は当アプリの',
+                                                        ),
+                                                        TextSpan(
+                                                          text:
+                                                              'ショッピングサービス利用規約',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                fontSize: 12,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .underline,
+                                                              ),
+                                                          recognizer:
+                                                              TapGestureRecognizer()
+                                                                ..onTap =
+                                                                    () async {
+                                                                  await Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                      builder:
+                                                                          (context) =>
+                                                                              TermsPageWidget(
+                                                                        termsUrl:
+                                                                            'https://baylife.particledrawing.com/terms_ec.html',
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                        ),
+                                                        TextSpan(
+                                                          text: '、',
+                                                        ),
+                                                        TextSpan(
+                                                          text: 'プライバシーポリシー',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                fontSize: 12,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .underline,
+                                                              ),
+                                                          recognizer:
+                                                              TapGestureRecognizer()
+                                                                ..onTap =
+                                                                    () async {
+                                                                  await launchURL(
+                                                                      'https://www.particledrawing.com/privacy');
+                                                                },
+                                                        ),
+                                                        TextSpan(
+                                                          text:
+                                                              'に同意の上、商品をご注文されたことになります。',
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -819,10 +1043,12 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ),
+                                      ],
                                       FFButtonWidget(
                                         onPressed: () async {
                                           logFirebaseEvent('ButtonON_TAP');
@@ -854,7 +1080,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             color: Colors.transparent,
                                             width: 1,
                                           ),
-                                          borderRadius: 12,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                         ),
                                       ),
                                     ],

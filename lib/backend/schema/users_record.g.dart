@@ -61,6 +61,26 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.sex;
+    if (value != null) {
+      result
+        ..add('sex')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.area;
+    if (value != null) {
+      result
+        ..add('area')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.age;
+    if (value != null) {
+      result
+        ..add('age')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -107,6 +127,18 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.phoneNumber = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'sex':
+          result.sex = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'area':
+          result.area = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'age':
+          result.age = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -134,6 +166,12 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String phoneNumber;
   @override
+  final String sex;
+  @override
+  final String area;
+  @override
+  final int age;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder) updates]) =>
@@ -146,6 +184,9 @@ class _$UsersRecord extends UsersRecord {
       this.uid,
       this.createdTime,
       this.phoneNumber,
+      this.sex,
+      this.area,
+      this.age,
       this.reference})
       : super._();
 
@@ -166,6 +207,9 @@ class _$UsersRecord extends UsersRecord {
         uid == other.uid &&
         createdTime == other.createdTime &&
         phoneNumber == other.phoneNumber &&
+        sex == other.sex &&
+        area == other.area &&
+        age == other.age &&
         reference == other.reference;
   }
 
@@ -175,11 +219,19 @@ class _$UsersRecord extends UsersRecord {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, email.hashCode), displayName.hashCode),
-                        photoUrl.hashCode),
-                    uid.hashCode),
-                createdTime.hashCode),
-            phoneNumber.hashCode),
+                    $jc(
+                        $jc(
+                            $jc(
+                                $jc(
+                                    $jc($jc(0, email.hashCode),
+                                        displayName.hashCode),
+                                    photoUrl.hashCode),
+                                uid.hashCode),
+                            createdTime.hashCode),
+                        phoneNumber.hashCode),
+                    sex.hashCode),
+                area.hashCode),
+            age.hashCode),
         reference.hashCode));
   }
 
@@ -192,6 +244,9 @@ class _$UsersRecord extends UsersRecord {
           ..add('uid', uid)
           ..add('createdTime', createdTime)
           ..add('phoneNumber', phoneNumber)
+          ..add('sex', sex)
+          ..add('area', area)
+          ..add('age', age)
           ..add('reference', reference))
         .toString();
   }
@@ -224,6 +279,18 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String get phoneNumber => _$this._phoneNumber;
   set phoneNumber(String phoneNumber) => _$this._phoneNumber = phoneNumber;
 
+  String _sex;
+  String get sex => _$this._sex;
+  set sex(String sex) => _$this._sex = sex;
+
+  String _area;
+  String get area => _$this._area;
+  set area(String area) => _$this._area = area;
+
+  int _age;
+  int get age => _$this._age;
+  set age(int age) => _$this._age = age;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -242,6 +309,9 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _uid = $v.uid;
       _createdTime = $v.createdTime;
       _phoneNumber = $v.phoneNumber;
+      _sex = $v.sex;
+      _area = $v.area;
+      _age = $v.age;
       _reference = $v.reference;
       _$v = null;
     }
@@ -269,6 +339,9 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             uid: uid,
             createdTime: createdTime,
             phoneNumber: phoneNumber,
+            sex: sex,
+            area: area,
+            age: age,
             reference: reference);
     replace(_$result);
     return _$result;

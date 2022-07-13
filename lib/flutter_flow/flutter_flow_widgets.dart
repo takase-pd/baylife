@@ -32,7 +32,7 @@ class FFButtonOptions {
   final double iconSize;
   final Color iconColor;
   final EdgeInsetsGeometry iconPadding;
-  final double borderRadius;
+  final BorderRadius borderRadius;
   final BorderSide borderSide;
 }
 
@@ -102,7 +102,7 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
       shape: MaterialStateProperty.all<OutlinedBorder>(
         RoundedRectangleBorder(
           borderRadius:
-              BorderRadius.circular(widget.options.borderRadius ?? 8.0),
+              widget.options.borderRadius ?? BorderRadius.circular(8.0),
           side: widget.options.borderSide ?? BorderSide.none,
         ),
       ),

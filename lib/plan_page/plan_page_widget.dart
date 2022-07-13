@@ -1,24 +1,18 @@
-import 'dart:io';
-
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../backend/stripe/payment_manager.dart';
-import '../cart_page/cart_page_widget.dart';
+import '../custom_code/widgets/index.dart';
 import '../flutter_flow/flutter_flow_count_controller.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../login_page/login_page_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../auth/firebase_user_provider.dart';
-import '../login_page/login_page_path.dart';
-import '../custom_code/widgets/index.dart';
+import 'package:bay_life/index.dart';
 
 class PlanPageWidget extends StatefulWidget {
   const PlanPageWidget({
@@ -35,41 +29,16 @@ class PlanPageWidget extends StatefulWidget {
 }
 
 class _PlanPageWidgetState extends State<PlanPageWidget> {
-  int countControllerValue;
+  int countControllerValue = 0;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   String paymentId;
   Future<PlanData> planData;
   String countAlert = '';
+  TextEditingController customerAgeController;
 
   Future<PlanData> _getPlan() async {
-    PlanData _planData;
-    if (!currentUser.loggedIn) return _planData;
-
-    final _appCheckToken = await AppCheckAgent.getToken(context);
-    if (_appCheckToken == null) return _planData;
-
-    final apiCallOutput = await GetPlanCall.call(
-      uid: currentUserUid,
-      plan: '/' + widget.planRef.path,
-      accessToken: currentJwtToken,
-      appCheckToken: _appCheckToken,
-    );
-    final _apiJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
-
-    final success = _apiJson['success'] ?? false;
-    if (!success) {
-      String errorMessage = _apiJson['error'] ?? '原因不明のエラーが発生';
-      showSnackbar(
-        context,
-        'Error: $errorMessage',
-      );
-      return _planData;
-    }
-
-    if (_apiJson['quantity'] > 0)
-      _planData = PlanData(
-        quantity: _apiJson['quantity'],
-      );
+    final _planData = await PlanData.create(widget.planRef.path, context);
+    countControllerValue = _planData.quantity ?? widget.quantity ?? 0;
     return _planData;
   }
 
@@ -77,12 +46,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
   void initState() {
     super.initState();
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'PlanPage'});
+    customerAgeController = TextEditingController();
     planData = _getPlan();
-    planData.then((plan) => {
-          plan != null
-              ? countControllerValue = plan.quantity
-              : countControllerValue = widget.quantity ?? 0
-        });
   }
 
   @override
@@ -236,7 +201,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: Text(
                               columnPlansRecord.description,
-                              style: FlutterFlowTheme.of(context).subtitle2,
+                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ),
                           Padding(
@@ -286,6 +251,66 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                               ],
                             ),
                           ),
+                          if (columnPlansRecord.verifyAge ?? false)
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      4, 4, 4, 4),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 8),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              '年齢確認商品',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              'この商品は年齢確認商品です。20才以上の年齢であることを確認できない場合には販売いたしません。年齢確認をさせていただいておりますので、ご了承ください。',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: Row(
@@ -381,7 +406,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                      child: FutureBuilder(
+                      child: FutureBuilder<PlanData>(
                           future: planData,
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
@@ -529,159 +554,23 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
 
                                             if (countControllerValue == 0 &&
                                                 _plan != null) {
-                                              await showDialog(
-                                                context: context,
-                                                barrierDismissible: false,
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        AlertDialog(
-                                                  title: Text(
-                                                    'カートを更新',
-                                                    style:
-                                                        CustomDialog.titleStyle(
-                                                            context),
-                                                  ),
-                                                  content: Text(
-                                                    'カートから商品を削除します。お間違いないでしょうか？',
-                                                    style: CustomDialog
-                                                        .messageStyle(context),
-                                                  ),
-                                                  actions: [
-                                                    TextButton(
-                                                        child: Text(
-                                                          '戻る',
-                                                          style: CustomDialog
-                                                              .buttonStyle(
-                                                                  context),
-                                                        ),
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                context)),
-                                                    TextButton(
-                                                        child: Text(
-                                                          '削除',
-                                                          style: CustomDialog
-                                                              .buttonStyle(
-                                                                  context),
-                                                        ),
-                                                        onPressed: () async {
-                                                          logFirebaseEvent(
-                                                              'ButtonBackendCall');
-                                                          final apiCallOutput =
-                                                              await DeletePlanCall
-                                                                  .call(
-                                                            uid: currentUserUid,
-                                                            plan: '/' +
-                                                                columnPlansRecord
-                                                                    .reference
-                                                                    .path,
-                                                            accessToken:
-                                                                currentJwtToken,
-                                                            appCheckToken:
-                                                                _appCheckToken,
-                                                          );
-                                                          final _apiJson =
-                                                              getJsonField(
-                                                                  apiCallOutput
-                                                                      .jsonBody,
-                                                                  r'''$.result''');
-                                                          final success = _apiJson[
-                                                                  'success'] ??
-                                                              false;
-                                                          if (!success) {
-                                                            String
-                                                                errorMessage =
-                                                                _apiJson[
-                                                                        'error'] ??
-                                                                    '原因不明のエラーが発生';
-                                                            showSnackbar(
-                                                              context,
-                                                              'Error: $errorMessage',
-                                                            );
-                                                            return;
-                                                          }
-
-                                                          Navigator.pop(
-                                                              context);
-                                                        })
-                                                  ],
-                                                ),
-                                              );
+                                              final deletePlanResponce =
+                                                  await deletePlan(
+                                                      columnPlansRecord
+                                                          .reference.path,
+                                                      _appCheckToken);
+                                              if (!deletePlanResponce) return;
                                             }
+
                                             if (countControllerValue > 0) {
-                                              logFirebaseEvent(
-                                                  'ButtonBackendCall');
-                                              final apiCallOutput =
-                                                  await AddPlanCall.call(
-                                                uid: currentUserUid,
-                                                plan: '/' +
-                                                    columnPlansRecord
-                                                        .reference.path,
-                                                quantity: countControllerValue,
-                                                date: dateTimeFormat(
-                                                    'yMMMd h:mm a',
-                                                    getCurrentTimestamp),
-                                                accessToken: currentJwtToken,
-                                                appCheckToken: _appCheckToken,
-                                              );
-                                              final _apiJson = getJsonField(
-                                                  apiCallOutput.jsonBody,
-                                                  r'''$.result''');
-                                              final success =
-                                                  _apiJson['success'] ?? false;
-                                              if (!success) {
-                                                String errorMessage =
-                                                    _apiJson['error'] ??
-                                                        '原因不明のエラーが発生';
-                                                showSnackbar(
-                                                  context,
-                                                  'エラー: $errorMessage',
-                                                );
-                                                return;
-                                              }
-                                              logFirebaseEvent(
-                                                  'ButtonShowSnackBar');
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'カートを確認',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .subtitle2
-                                                        .override(
-                                                            fontFamily:
-                                                                'Open Sans',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .textLight),
-                                                  ),
-                                                  duration: Duration(
-                                                      milliseconds: 4800),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryColor,
-                                                  action: SnackBarAction(
-                                                    label: 'カート',
-                                                    textColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryColor,
-                                                    onPressed: () async {
-                                                      logFirebaseEvent(
-                                                          'CardNavigateTo');
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              CartPageWidget(),
-                                                        ),
-                                                      );
-                                                    },
-                                                  ),
-                                                ),
-                                              );
+                                              final addPlanResponce =
+                                                  await addPlan(
+                                                      columnPlansRecord
+                                                          .reference.path,
+                                                      columnPlansRecord
+                                                          .verifyAge,
+                                                      _appCheckToken);
+                                              if (!addPlanResponce) return;
                                             }
                                             setState(() {
                                               planData = _getPlan();
@@ -689,26 +578,27 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                           },
                                           text: cartButton,
                                           options: FFButtonOptions(
-                                            width: 130,
-                                            height: 40,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Open Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .textLight,
-                                                    ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
-                                            ),
-                                            borderRadius: 12,
-                                          ),
+                                              width: 130,
+                                              height: 40,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .textLight,
+                                                      ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12)),
                                         ),
                                       ],
                                     ),
@@ -876,7 +766,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                               color: Colors.transparent,
                                               width: 1,
                                             ),
-                                            borderRadius: 12,
+                                            borderRadius:
+                                                BorderRadius.circular(12),
                                           ),
                                         ),
                                       ],
@@ -906,5 +797,273 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
         },
       ),
     );
+  }
+
+  Future<bool> _verifyAge() async {
+    if (currentUserDocument.age >= 20) {
+      customerAgeController =
+          TextEditingController(text: currentUserDocument.age.toString());
+      return true;
+    }
+
+    logFirebaseEvent('Button_Alert-Dialog');
+    var confirmDialogResponse = await showDialog<bool>(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: Text(
+                '年齢確認',
+                style: FlutterFlowTheme.of(context).subtitle1.override(
+                      fontFamily: 'Open Sans',
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('この商品は年齢確認が必要な商品です。20才未満の方はこの商品を購入することはできません。'),
+                  TextFormField(
+                    controller: customerAgeController,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: '年齢',
+                      isDense: true,
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      errorStyle: TextStyle(
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                      ),
+                      errorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      focusedErrorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyText2.override(
+                          fontSize: 20,
+                          fontFamily: 'Open Sans',
+                          color: FlutterFlowTheme.of(context).textDark,
+                          fontWeight: FontWeight.w500,
+                        ),
+                    textAlign: TextAlign.right,
+                    keyboardType: TextInputType.number,
+                    autovalidateMode: AutovalidateMode.always,
+                    validator: (val) {
+                      if (val == null || val.isEmpty) return 'お客様の年齢を入力してください。';
+                      return null;
+                    },
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                  child: Text(
+                    '戻る',
+                    style: FlutterFlowTheme.of(context).bodyText2.override(
+                        fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w600,
+                        color: FlutterFlowTheme.of(context).textDark),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext, true),
+                  child: Text(
+                    '確認',
+                    style: FlutterFlowTheme.of(context).bodyText2.override(
+                        fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w600,
+                        color: FlutterFlowTheme.of(context).textDark),
+                  ),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
+
+    final customerAge = int.parse(customerAgeController.text) ?? 0;
+    if (customerAge > 0 && customerAge != currentUserDocument.age)
+      await currentUserReference.update(createUsersRecordData(
+        age: int.parse(customerAgeController.text),
+      ));
+
+    return confirmDialogResponse && customerAge >= 20;
+  }
+
+  Future<bool> addPlan(
+      String path, bool verifyAge, String appCheckToken) async {
+    final verifyAgeResponce = verifyAge ? await _verifyAge() : false;
+    if (!verifyAgeResponce) {
+      logFirebaseEvent('ButtonShowSnackBar');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            '年齢制限商品をカートに追加できません。',
+            style: FlutterFlowTheme.of(context).subtitle2.override(
+                fontFamily: 'Open Sans',
+                color: FlutterFlowTheme.of(context).textLight),
+          ),
+          duration: Duration(milliseconds: 4800),
+          backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
+        ),
+      );
+      return false;
+    }
+
+    logFirebaseEvent('ButtonBackendCall');
+    final apiCallOutput = await AddPlanCall.call(
+      uid: currentUserUid,
+      plan: '/$path',
+      quantity: countControllerValue,
+      verifyAge: verifyAge,
+      customerAge: int.parse(customerAgeController.text),
+      added: dateTimeFormat('yMMMd h:mm a', getCurrentTimestamp),
+      accessToken: currentJwtToken,
+      appCheckToken: appCheckToken,
+    );
+    final _apiJson = getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+    final success = _apiJson['success'] ?? false;
+    if (!success) {
+      String errorMessage = _apiJson['error'] ?? '原因不明のエラーが発生';
+      showSnackbar(
+        context,
+        'エラー: $errorMessage',
+      );
+      return false;
+    }
+
+    if (verifyAgeResponce) {
+      logFirebaseEvent('ButtonShowSnackBar');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            '年齢確認商品をカートに追加しました。',
+            style: FlutterFlowTheme.of(context).subtitle2.override(
+                fontFamily: 'Open Sans',
+                color: FlutterFlowTheme.of(context).textLight),
+          ),
+          duration: Duration(milliseconds: 1600),
+          backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
+          action: SnackBarAction(
+            label: '年齢確認',
+            textColor: FlutterFlowTheme.of(context).primaryColor,
+            onPressed: () async {
+              logFirebaseEvent('CardNavigateTo');
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyPageWidget(),
+                ),
+              );
+            },
+          ),
+        ),
+      );
+    }
+
+    logFirebaseEvent('ButtonShowSnackBar');
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'カートを確認',
+          style: FlutterFlowTheme.of(context).subtitle2.override(
+              fontFamily: 'Open Sans',
+              color: FlutterFlowTheme.of(context).textLight),
+        ),
+        duration: Duration(milliseconds: 4800),
+        backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
+        action: SnackBarAction(
+          label: 'カート',
+          textColor: FlutterFlowTheme.of(context).primaryColor,
+          onPressed: () async {
+            logFirebaseEvent('CardNavigateTo');
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CartPageWidget(),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+    return true;
+  }
+
+  Future<bool> deletePlan(String path, String appCheckToken) async {
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(
+          'カートを更新',
+          style: CustomDialog.titleStyle(context),
+        ),
+        content: Text(
+          'カートから商品を削除します。お間違いないでしょうか？',
+          style: CustomDialog.messageStyle(context),
+        ),
+        actions: [
+          TextButton(
+              child: Text(
+                '戻る',
+                style: CustomDialog.buttonStyle(context),
+              ),
+              onPressed: () => Navigator.pop(context)),
+          TextButton(
+              child: Text(
+                '削除',
+                style: CustomDialog.buttonStyle(context),
+              ),
+              onPressed: () async {
+                logFirebaseEvent('ButtonBackendCall');
+                final apiCallOutput = await DeletePlanCall.call(
+                  uid: currentUserUid,
+                  plan: '/$path',
+                  accessToken: currentJwtToken,
+                  appCheckToken: appCheckToken,
+                );
+                final _apiJson =
+                    getJsonField(apiCallOutput.jsonBody, r'''$.result''');
+                final success = _apiJson['success'] ?? false;
+                if (!success) {
+                  String errorMessage = _apiJson['error'] ?? '原因不明のエラーが発生';
+                  showSnackbar(
+                    context,
+                    'Error: $errorMessage',
+                  );
+                  return false;
+                }
+
+                Navigator.pop(context);
+              })
+        ],
+      ),
+    );
+    return true;
   }
 }
