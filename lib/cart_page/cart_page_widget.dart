@@ -1,26 +1,24 @@
-import 'package:bay_life/ecommerce_page/ecommerce_page_widget.dart';
-
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/stripe/payment_manager.dart';
 import '../backend/backend.dart';
 import '../components/billing_details_widget.dart';
 import '../components/shipping_details_widget.dart';
+import '../custom_code/widgets/index.dart';
+import '../ecommerce_page/ecommerce_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../login_page/login_page_path.dart';
 import '../login_page/login_page_widget.dart';
-import '../shop_page/shop_page_widget.dart';
 import '../purchases_page/purchases_page_widget.dart';
-import '../main.dart';
+import '../terms_page/terms_page_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../auth/firebase_user_provider.dart';
-import '../login_page/login_page_path.dart';
-import '../custom_code/widgets/index.dart';
 import 'package:flutter_stripe/flutter_stripe.dart'
     show ShippingDetails, BillingDetails;
 
@@ -617,10 +615,51 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             ],
                                           ),
                                         ),
-                                        Text(
-                                          '＊お支払いは、Stripeにより安心してご利用いただけます。',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1,
+                                        RichText(
+                                          text: TextSpan(children: [
+                                            TextSpan(
+                                              text: '＊お支払いは、',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        fontSize: 12,
+                                                      ),
+                                            ),
+                                            TextSpan(
+                                              text: 'Stripe',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        fontSize: 12,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline,
+                                                      ),
+                                              recognizer: TapGestureRecognizer()
+                                                ..onTap = () async {
+                                                  await launchURL(
+                                                      'https://stripe.com/jp');
+                                                },
+                                            ),
+                                            TextSpan(
+                                              text: 'により安心してご利用いただけます。',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        fontSize: 12,
+                                                      ),
+                                            ),
+                                          ]),
                                         ),
                                       ],
                                     ),
@@ -797,7 +836,106 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (!isEmpty() && verifyAge())
+                                      if (!isEmpty() && verifyAge()) ...[
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 16),
+                                          child: Container(
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: RichText(
+                                                    text: TextSpan(
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                fontSize: 12,
+                                                              ),
+                                                      children: [
+                                                        TextSpan(
+                                                          text:
+                                                              '「注文する」ボタンを押してご注文いただくことで、お客様は当アプリの',
+                                                        ),
+                                                        TextSpan(
+                                                          text:
+                                                              'ショッピングサービス利用規約',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                fontSize: 12,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .underline,
+                                                              ),
+                                                          recognizer:
+                                                              TapGestureRecognizer()
+                                                                ..onTap =
+                                                                    () async {
+                                                                  await Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                      builder:
+                                                                          (context) =>
+                                                                              TermsPageWidget(
+                                                                        termsUrl:
+                                                                            'https://baylife.particledrawing.com/terms_ec.html',
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                        ),
+                                                        TextSpan(
+                                                          text: '、',
+                                                        ),
+                                                        TextSpan(
+                                                          text: 'プライバシーポリシー',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                fontSize: 12,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .underline,
+                                                              ),
+                                                          recognizer:
+                                                              TapGestureRecognizer()
+                                                                ..onTap =
+                                                                    () async {
+                                                                  await launchURL(
+                                                                      'https://www.particledrawing.com/privacy');
+                                                                },
+                                                        ),
+                                                        TextSpan(
+                                                          text:
+                                                              'に同意の上、商品をご注文されたことになります。',
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -910,6 +1048,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             ),
                                           ),
                                         ),
+                                      ],
                                       FFButtonWidget(
                                         onPressed: () async {
                                           logFirebaseEvent('ButtonON_TAP');
