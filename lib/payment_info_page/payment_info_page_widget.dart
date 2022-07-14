@@ -361,7 +361,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     8, 0, 0, 0),
                                             child: Text(
-                                              "配送：" +
+                                              "送料：" +
                                                   formatNumber(
                                                     _purchase.shippingFee,
                                                     formatType:

@@ -600,7 +600,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                '配送',
+                                                '送料',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,
