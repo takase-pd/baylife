@@ -295,6 +295,7 @@ enum ShippingStatus {
   shipping,
   shipped,
   confirmed,
+  canceled,
 }
 
 extension ShippingStatusExt on ShippingStatus {
@@ -303,6 +304,7 @@ extension ShippingStatusExt on ShippingStatus {
     ShippingStatus.confirmed: '確認済',
     ShippingStatus.shipping: '発送済',
     ShippingStatus.shipped: '到着',
+    ShippingStatus.canceled: '取消',
   };
 
   static final _icon = {
@@ -310,6 +312,7 @@ extension ShippingStatusExt on ShippingStatus {
     ShippingStatus.confirmed: Icons.check_circle_rounded,
     ShippingStatus.shipping: FontAwesomeIcons.truckFast,
     ShippingStatus.shipped: FontAwesomeIcons.box,
+    ShippingStatus.canceled: Icons.cancel_rounded,
   };
 
   static final _size = {
@@ -317,6 +320,7 @@ extension ShippingStatusExt on ShippingStatus {
     ShippingStatus.confirmed: 32.0,
     ShippingStatus.shipping: 24.0,
     ShippingStatus.shipped: 24.0,
+    ShippingStatus.canceled: 32.0,
   };
 
   static List<String> get labelList =>
@@ -332,6 +336,9 @@ extension ShippingStatusExt on ShippingStatus {
         break;
       case '到着':
         return ShippingStatus.shipped;
+        break;
+      case '取消':
+        return ShippingStatus.canceled;
         break;
       default:
         return ShippingStatus.ordered;
