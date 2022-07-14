@@ -3,7 +3,6 @@ import '../../auth/firebase_user_provider.dart';
 import '../../backend/api_requests/api_calls.dart';
 import '../../backend/backend.dart';
 import '../../custom_code/widgets/index.dart';
-import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -70,6 +69,8 @@ class PlanData {
       );
     return _planData;
   }
+
+  String get id => path.split('/').last;
 }
 
 class Purchase {
