@@ -932,7 +932,11 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                                 .fromSTEB(
                                                                     0, 0, 8, 0),
                                                         child: Text(
-                                                          _plan.name,
+                                                          _plan.name
+                                                              .maybeHandleOverflow(
+                                                            maxChars: 12,
+                                                            replacement: '…',
+                                                          ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .title3,
