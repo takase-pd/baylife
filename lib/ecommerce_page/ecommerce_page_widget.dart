@@ -233,7 +233,7 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                                               listViewShopsRecord.shopName,
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .subtitle1
+                                                      .title1
                                                       .override(
                                                         fontFamily: 'Open Sans',
                                                         fontWeight:
@@ -267,7 +267,7 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                                  MainAxisAlignment.end,
                                               children: [
                                                 StreamBuilder<CatShopRecord>(
                                                   stream:
@@ -297,14 +297,14 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyText2
+                                                              .subtitle1
                                                               .override(
                                                                 fontFamily:
                                                                     'Open Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .sLight,
-                                                                fontSize: 12,
+                                                                fontSize: 16,
                                                               ),
                                                     );
                                                   },
