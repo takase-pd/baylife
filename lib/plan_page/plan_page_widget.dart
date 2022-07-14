@@ -916,8 +916,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
 
   Future<bool> addPlan(
       String path, bool verifyAge, String appCheckToken) async {
-    final verifyAgeResponce = verifyAge ? await _verifyAge() : false;
-    if (!verifyAgeResponce) {
+    final verifyAgeResponce = verifyAge ? await _verifyAge() : true;
+    if (verifyAge && !verifyAgeResponce) {
       logFirebaseEvent('ButtonShowSnackBar');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -940,7 +940,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
       plan: '/$path',
       quantity: countControllerValue,
       verifyAge: verifyAge,
-      customerAge: int.parse(customerAgeController.text),
+      customerAge: verifyAge ? int.parse(customerAgeController.text) : 0,
       added: dateTimeFormat('yMMMd h:mm a', getCurrentTimestamp),
       accessToken: currentJwtToken,
       appCheckToken: appCheckToken,
@@ -956,7 +956,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
       return false;
     }
 
-    if (verifyAgeResponce) {
+    if (verifyAge && verifyAgeResponce) {
       logFirebaseEvent('ButtonShowSnackBar');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
