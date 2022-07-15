@@ -295,7 +295,7 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                               LoginPageWidget(
                                                             pagePath: LoginPagePath
                                                                 .survey_post_page,
-                                                            surveyRef:
+                                                            pageRef:
                                                                 listViewSurveyRecord
                                                                     .reference,
                                                           ),
@@ -322,7 +322,9 @@ class _SurveyPageWidgetState extends State<SurveyPageWidget> {
                                                       color: Colors.transparent,
                                                       width: 1,
                                                     ),
-                                                    borderRadius: 16,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            16),
                                                   ),
                                                 ),
                                             ],

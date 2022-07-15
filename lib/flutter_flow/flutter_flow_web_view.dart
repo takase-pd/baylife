@@ -5,13 +5,13 @@ import 'package:webviewx/webviewx.dart';
 
 class FlutterFlowWebView extends StatefulWidget {
   const FlutterFlowWebView({
+    Key key,
     @required this.url,
     this.width,
     this.height,
     this.bypass = false,
     this.horizontalScroll = false,
     this.verticalScroll = false,
-    Key key,
   }) : super(key: key);
 
   final bool bypass;
@@ -29,14 +29,14 @@ class _FlutterFlowWebViewState extends State<FlutterFlowWebView> {
   @override
   Widget build(BuildContext context) => WebViewX(
         key: webviewKey,
-        width: widget.width,
-        height: widget.height,
+        width: widget.width ?? MediaQuery.of(context).size.width,
+        height: widget.height ?? MediaQuery.of(context).size.height,
         ignoreAllGestures: false,
         initialContent: widget.url,
         initialMediaPlaybackPolicy:
-            AutoMediaPlaybackPolicy.require_user_action_for_all_media_types,
+            AutoMediaPlaybackPolicy.requireUserActionForAllMediaTypes,
         initialSourceType:
-            widget.bypass ? SourceType.URL_BYPASS : SourceType.URL,
+            widget.bypass ? SourceType.urlBypass : SourceType.url,
         javascriptMode: JavascriptMode.unrestricted,
         webSpecificParams: const WebSpecificParams(
           webAllowFullscreenContent: true,
@@ -54,7 +54,7 @@ class _FlutterFlowWebViewState extends State<FlutterFlowWebView> {
                 () => HorizontalDragGestureRecognizer(),
               ),
           },
-          navigationDelegate: (_) => NavigationDecision.navigate,
+          androidEnableHybridComposition: true,
         ),
       );
 

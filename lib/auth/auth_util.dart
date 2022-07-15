@@ -78,8 +78,7 @@ String _currentJwtToken = '';
 String get currentUserEmail =>
     currentUserDocument?.email ?? currentUser?.user?.email ?? '';
 
-String get currentUserUid =>
-    currentUserDocument?.uid ?? currentUser?.user?.uid ?? '';
+String get currentUserUid => currentUser?.user?.uid ?? '';
 
 String get currentUserDisplayName =>
     currentUserDocument?.displayName ?? currentUser?.user?.displayName ?? '';
@@ -181,10 +180,13 @@ final authenticatedUserStream = FirebaseAuth.instance
       }();
       return user?.uid ?? '';
     })
-    .switchMap((uid) => queryUsersRecord(
-        queryBuilder: (user) => user.where('uid', isEqualTo: uid),
-        singleRecord: true))
-    .map((users) => currentUserDocument = users.isNotEmpty ? users.first : null)
+    .switchMap(
+      (uid) => uid.isEmpty
+          ? Stream.value(null)
+          : UsersRecord.getDocument(UsersRecord.collection.doc(uid))
+              .handleError((_) {}),
+    )
+    .map((user) => currentUserDocument = user)
     .asBroadcastStream();
 
 class AuthUserStreamWidget extends StatelessWidget {

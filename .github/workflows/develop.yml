@@ -4,15 +4,16 @@ on:
     branches:
       - develop
       - preview
+      - ec
 
 jobs:
   build_iOS:
     name: Build for iOS
-    runs-on: macos-11
+    runs-on: macos-12
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '12.5.1'
+          xcode-version: '13.3.1'
 
       - name: Show Xcode version
         run: xcodebuild -version
@@ -23,7 +24,7 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v1
         with:
-          flutter-version:  '2.10.2'
+          flutter-version:  '2.10.5'
 
       - name: Download Flutter packages
         run: flutter pub upgrade
@@ -66,7 +67,7 @@ jobs:
 
       - name: Firebase App Distribution for Dev
         if: github.ref == 'refs/heads/develop'
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.3
         with:
           appId: ${{ secrets.FIREBASE_APP_ID_IOS_DEV }}
           token: ${{ secrets.FIREBASE_TOKEN }}
@@ -75,7 +76,7 @@ jobs:
 
       - name: Firebase App Distribution for Preview
         if: github.ref == 'refs/heads/preview'
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.3
         with:
           appId: ${{ secrets.FIREBASE_APP_ID_IOS }}
           token: ${{ secrets.FIREBASE_TOKEN }}

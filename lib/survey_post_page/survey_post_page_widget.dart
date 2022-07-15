@@ -136,8 +136,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('IconON_TAP');
-            logFirebaseEvent('IconNavigateTo');
+            logFirebaseEvent('SURVEY_POST_Icon_i66z08o1_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -227,8 +227,9 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                             child: InkWell(
                               onTap: () async {
-                                logFirebaseEvent('TextON_TAP');
-                                logFirebaseEvent('TextNavigateTo');
+                                logFirebaseEvent(
+                                    'SURVEY_POST_Text_e4ydvwkz_ON_TAP');
+                                logFirebaseEvent('Text_Navigate-To');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -483,7 +484,8 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                                                   color: Colors.transparent,
                                                   width: 1,
                                                 ),
-                                                borderRadius: 16,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
                                               ),
                                             );
                                           } else {

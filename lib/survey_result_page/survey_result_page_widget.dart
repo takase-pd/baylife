@@ -72,7 +72,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
       final _reviewsJson =
           getJsonField(apiCallOutput.jsonBody, r'''$.result''');
       _reviewsJson.forEach((review) {
-        _reviews.add(new ReviewData(
+        _reviews.add(ReviewData(
             comment: review['comment'],
             tag: review['tag'],
             uid: review['uid'],
@@ -110,8 +110,8 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('IconON_TAP');
-            logFirebaseEvent('IconNavigateTo');
+            logFirebaseEvent('SURVEY_RESULT_Icon_6i2xkf2d_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -614,7 +614,7 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                       LoginPageWidget(
                                                     pagePath: LoginPagePath
                                                         .survey_result_page,
-                                                    surveyRef: widget.surveyRef,
+                                                    pageRef: widget.surveyRef,
                                                   ),
                                                 ),
                                               );
@@ -641,7 +641,8 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 16,
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
                                             ),
                                           ),
                                         ],
@@ -907,7 +908,8 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                     color: Colors.transparent,
                                                     width: 1,
                                                   ),
-                                                  borderRadius: 16,
+                                                  borderRadius:
+                                                      BorderRadius.circular(16),
                                                 ),
                                               ),
                                             ),
@@ -922,9 +924,9 @@ class _SurveyResultPageWidgetState extends State<SurveyResultPageWidget> {
                                                   InkWell(
                                                     onTap: () async {
                                                       logFirebaseEvent(
-                                                          'TextON_TAP');
+                                                          'SURVEY_RESULT_Text_vxdlpouf_ON_TAP');
                                                       logFirebaseEvent(
-                                                          'TextNavigateTo');
+                                                          'Text_Navigate-To');
                                                       await Navigator.push(
                                                         context,
                                                         MaterialPageRoute(

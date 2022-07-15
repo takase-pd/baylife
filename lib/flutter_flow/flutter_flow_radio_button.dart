@@ -31,18 +31,18 @@ class FlutterFlowRadioButton extends StatefulWidget {
   const FlutterFlowRadioButton({
     @required this.options,
     @required this.onChanged,
-    this.initialValue,
+    this.initialValue = '',
     this.optionHeight,
     this.textStyle,
     this.selectedTextStyle,
     this.textPadding = EdgeInsets.zero,
-    this.buttonPosition,
-    this.direction,
+    this.buttonPosition = RadioButtonPosition.left,
+    this.direction = Axis.vertical,
     this.radioButtonColor,
     this.inactiveRadioButtonColor,
-    this.toggleable,
-    this.horizontalAlignment,
-    this.verticalAlignment,
+    this.toggleable = false,
+    this.horizontalAlignment = WrapAlignment.start,
+    this.verticalAlignment = WrapCrossAlignment.start,
   });
 
   final List<String> options;
@@ -92,7 +92,7 @@ class _FlutterFlowRadioButtonState extends State<FlutterFlowRadioButton> {
         activeColor: widget.radioButtonColor,
         toggleable: widget.toggleable,
         textStyle: widget.textStyle,
-        selectedTextStyle: widget.selectedTextStyle,
+        selectedTextStyle: widget.selectedTextStyle ?? widget.textStyle,
         textPadding: widget.textPadding,
         optionHeight: widget.optionHeight,
         horizontalAlignment: widget.horizontalAlignment,
@@ -113,7 +113,7 @@ enum RadioButtonPosition {
 class RadioButtonBuilder<T> {
   RadioButtonBuilder(
     this.description, {
-    this.buttonPosition,
+    this.buttonPosition = RadioButtonPosition.left,
   });
 
   final String description;
@@ -147,7 +147,7 @@ class RadioButton<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedStyle = selectedTextStyle ?? textStyle;
+    final selectedStyle = selectedTextStyle;
     final isSelected = value == groupValue;
     final radioButtonText = Padding(
       padding: textPadding,
@@ -157,11 +157,7 @@ class RadioButton<T> extends StatelessWidget {
       ),
     );
     return InkWell(
-      onTap: () {
-        if (onChanged != null) {
-          onChanged(value);
-        }
-      },
+      onTap: () => onChanged(value),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

@@ -35,6 +35,20 @@ class _$InfoInappRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.surveyAgree;
+    if (value != null) {
+      result
+        ..add('survey_agree')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.faHint;
+    if (value != null) {
+      result
+        ..add('fa_hint')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -66,6 +80,14 @@ class _$InfoInappRecordSerializer
           result.postRule = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'survey_agree':
+          result.surveyAgree = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'fa_hint':
+          result.faHint = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -85,12 +107,21 @@ class _$InfoInappRecord extends InfoInappRecord {
   @override
   final String postRule;
   @override
+  final String surveyAgree;
+  @override
+  final String faHint;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$InfoInappRecord([void Function(InfoInappRecordBuilder) updates]) =>
       (new InfoInappRecordBuilder()..update(updates)).build();
 
-  _$InfoInappRecord._({this.postInfo, this.postRule, this.reference})
+  _$InfoInappRecord._(
+      {this.postInfo,
+      this.postRule,
+      this.surveyAgree,
+      this.faHint,
+      this.reference})
       : super._();
 
   @override
@@ -107,13 +138,19 @@ class _$InfoInappRecord extends InfoInappRecord {
     return other is InfoInappRecord &&
         postInfo == other.postInfo &&
         postRule == other.postRule &&
+        surveyAgree == other.surveyAgree &&
+        faHint == other.faHint &&
         reference == other.reference;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc(0, postInfo.hashCode), postRule.hashCode), reference.hashCode));
+        $jc(
+            $jc($jc($jc(0, postInfo.hashCode), postRule.hashCode),
+                surveyAgree.hashCode),
+            faHint.hashCode),
+        reference.hashCode));
   }
 
   @override
@@ -121,6 +158,8 @@ class _$InfoInappRecord extends InfoInappRecord {
     return (newBuiltValueToStringHelper('InfoInappRecord')
           ..add('postInfo', postInfo)
           ..add('postRule', postRule)
+          ..add('surveyAgree', surveyAgree)
+          ..add('faHint', faHint)
           ..add('reference', reference))
         .toString();
   }
@@ -138,6 +177,14 @@ class InfoInappRecordBuilder
   String get postRule => _$this._postRule;
   set postRule(String postRule) => _$this._postRule = postRule;
 
+  String _surveyAgree;
+  String get surveyAgree => _$this._surveyAgree;
+  set surveyAgree(String surveyAgree) => _$this._surveyAgree = surveyAgree;
+
+  String _faHint;
+  String get faHint => _$this._faHint;
+  set faHint(String faHint) => _$this._faHint = faHint;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -152,6 +199,8 @@ class InfoInappRecordBuilder
     if ($v != null) {
       _postInfo = $v.postInfo;
       _postRule = $v.postRule;
+      _surveyAgree = $v.surveyAgree;
+      _faHint = $v.faHint;
       _reference = $v.reference;
       _$v = null;
     }
@@ -173,7 +222,11 @@ class InfoInappRecordBuilder
   _$InfoInappRecord build() {
     final _$result = _$v ??
         new _$InfoInappRecord._(
-            postInfo: postInfo, postRule: postRule, reference: reference);
+            postInfo: postInfo,
+            postRule: postRule,
+            surveyAgree: surveyAgree,
+            faHint: faHint,
+            reference: reference);
     replace(_$result);
     return _$result;
   }

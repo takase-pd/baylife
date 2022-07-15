@@ -1,3 +1,4 @@
+$FirebaseAnalyticsWithoutAdIdSupport = true
 # Uncomment this line to define a global platform for your project
 platform :ios, '13.0'
 
@@ -32,7 +33,6 @@ target 'Runner' do
   pod 'GoogleUtilities'
   use_frameworks!
   use_modular_headers!
-
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
 

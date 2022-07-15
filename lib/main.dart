@@ -6,16 +6,20 @@ import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 import '../backend/backend.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
-import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:bay_life/login_page/login_page_widget.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'survey_page/survey_page_widget.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'ecommerce_page/ecommerce_page_widget.dart';
+import 'index.dart';
+
+import 'backend/stripe/payment_manager.dart';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
@@ -39,13 +43,15 @@ void main() async {
   await FirebaseAppCheck.instance.activate(
     webRecaptchaSiteKey: '6LeoJqgeAAAAALN1AqR5kS1JGm7j_b763i1EVuis',
   );
+
+  await initializeStripe();
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 
   static _MyAppState of(BuildContext context) =>
       context.findAncestorStateOfType<_MyAppState>();
@@ -54,20 +60,17 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale;
   ThemeMode _themeMode = ThemeMode.system;
+
   Stream<BayLifeFirebaseUser> userStream;
   BayLifeFirebaseUser initialUser;
   bool displaySplashImage = true;
+
   final authUserSub = authenticatedUserStream.listen((_) {});
   final fcmTokenSub = fcmTokenUserStream.listen((_) {});
 
   static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   static FirebaseAnalyticsObserver observer =
       FirebaseAnalyticsObserver(analytics: analytics);
-
-  void setLocale(Locale value) => setState(() => _locale = value);
-  void setThemeMode(ThemeMode mode) => setState(() {
-        _themeMode = mode;
-      });
 
   Future<void> initPlugin() async {
     final status = await AppTrackingTransparency.trackingAuthorizationStatus;
@@ -84,7 +87,9 @@ class _MyAppState extends State<MyApp> {
     userStream = bayLifeFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
-        Duration(seconds: 1), () => setState(() => displaySplashImage = false));
+      Duration(seconds: 1),
+      () => setState(() => displaySplashImage = false),
+    );
   }
 
   @override
@@ -93,6 +98,11 @@ class _MyAppState extends State<MyApp> {
     fcmTokenSub.cancel();
     super.dispose();
   }
+
+  void setLocale(Locale value) => setState(() => _locale = value);
+  void setThemeMode(ThemeMode mode) => setState(() {
+        _themeMode = mode;
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -204,6 +214,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'SurveyPage': SurveyPageWidget(),
+      'EcommercePage': EcommercePageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -248,6 +259,14 @@ class _NavBarPageState extends State<NavBarPage> {
                     ),
                   ),
             label: 'アンケート',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.store_sharp,
+              size: 24,
+            ),
+            label: 'ショップ',
             tooltip: '',
           )
         ],

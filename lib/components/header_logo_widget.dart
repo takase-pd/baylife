@@ -44,8 +44,8 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
             : null;
         return InkWell(
           onTap: () async {
-            logFirebaseEvent('ColumnON_TAP');
-            logFirebaseEvent('ColumnNavigateTo');
+            logFirebaseEvent('HEADER_LOGO_COMP_Column_6zxut118_ON_TAP');
+            logFirebaseEvent('Column_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -60,16 +60,13 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
-                    child: Text(
-                      columnLogonameRecord.second,
-                      style: FlutterFlowTheme.of(context).title2.override(
-                            fontFamily: 'Open Sans',
-                            color: FlutterFlowTheme.of(context).textLight,
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
+                  Text(
+                    columnLogonameRecord.second,
+                    style: FlutterFlowTheme.of(context).title2.override(
+                          fontFamily: 'Open Sans',
+                          color: FlutterFlowTheme.of(context).textLight,
+                          fontWeight: FontWeight.w600,
+                        ),
                   ),
                 ],
               ),

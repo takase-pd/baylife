@@ -83,8 +83,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('IconON_TAP');
-            logFirebaseEvent('IconNavigateBack');
+            logFirebaseEvent('CONFIRM_PAGE_PAGE_Icon_hd8nkgu3_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-Back');
             Navigator.pop(context);
           },
           child: Icon(
@@ -894,8 +894,9 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                       children: [
                         InkWell(
                           onTap: () async {
-                            logFirebaseEvent('TextON_TAP');
-                            logFirebaseEvent('TextNavigateTo');
+                            logFirebaseEvent(
+                                'CONFIRM_PAGE_PAGE_Text_3743yv9y_ON_TAP');
+                            logFirebaseEvent('Text_Navigate-To');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -964,9 +965,10 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          logFirebaseEvent('ButtonON_TAP');
                                           logFirebaseEvent(
-                                              'ButtonNavigateBack');
+                                              'CONFIRM_PAGE_PAGE_戻る_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_Navigate-Back');
                                           Navigator.pop(context);
                                         },
                                         text: '戻る',
@@ -991,7 +993,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                             color: Colors.transparent,
                                             width: 2,
                                           ),
-                                          borderRadius: 8,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                         ),
                                       ),
                                     ),
@@ -1053,13 +1056,14 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                               AlignmentDirectional(0.95, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              logFirebaseEvent('ButtonON_TAP');
+                                              logFirebaseEvent(
+                                                  'CONFIRM_PAGE_PAGE_送信_BTN_ON_TAP');
                                               final _appCheckToken =
                                                   await AppCheckAgent.getToken(
                                                       context);
                                               if (_appCheckToken != null) {
                                                 logFirebaseEvent(
-                                                    'ButtonBackendCall');
+                                                    'Button_Backend_Call');
                                                 await RegistContentsCall.call(
                                                   catName: widget.catName,
                                                   catNameAdd: widget.catNameAdd,
@@ -1098,7 +1102,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                         .post_article,
                                                     _analyticsParam);
                                                 logFirebaseEvent(
-                                                    'ButtonAlertDialog');
+                                                    'Button_Alert_Dialog');
                                                 await showDialog(
                                                   context: context,
                                                   builder:
@@ -1119,7 +1123,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                   },
                                                 );
                                                 logFirebaseEvent(
-                                                    'ButtonNavigateTo');
+                                                    'Button_Navigate_To');
                                                 await Navigator
                                                     .pushAndRemoveUntil(
                                                   context,
@@ -1154,7 +1158,8 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                                 color: Colors.transparent,
                                                 width: 2,
                                               ),
-                                              borderRadius: 8,
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
                                             ),
                                           ),
                                         ),

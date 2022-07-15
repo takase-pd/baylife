@@ -42,8 +42,8 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('IconON_TAP');
-            logFirebaseEvent('IconNavigateBack');
+            logFirebaseEvent('CONTENT_PAGE_PAGE_Icon_eplb50s4_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-Back');
             Navigator.pop(context);
           },
           child: Icon(
@@ -134,8 +134,9 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                             final containerCategoriesRecord = snapshot.data;
                             return InkWell(
                               onTap: () async {
-                                logFirebaseEvent('ContainerON_TAP');
-                                logFirebaseEvent('ContainerNavigateTo');
+                                logFirebaseEvent(
+                                    'CONTENT_Container_fl6ndgwe_ON_TAP');
+                                logFirebaseEvent('Container_Navigate-To');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -315,8 +316,9 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                             Expanded(
                               child: InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('HomepageON_TAP');
-                                  logFirebaseEvent('HomepageLaunchURL');
+                                  logFirebaseEvent(
+                                      'CONTENT_PAGE_PAGE_Homepage_ON_TAP');
+                                  logFirebaseEvent('Homepage_Launch-U-R-L');
                                   await launchURL(
                                       columnContentsRecord.homepage);
                                 },

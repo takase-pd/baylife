@@ -26,12 +26,12 @@ class PostPageWithLoginWidget extends StatefulWidget {
 
 class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
   DateTime datePicked1;
+  String uploadedFileUrl = '';
   String categoryValue;
   TextEditingController titleController;
   TextEditingController categoryAddController;
   TextEditingController overviewController;
   TextEditingController detailController;
-  String uploadedFileUrl = '';
   DateTime datePicked2;
   TextEditingController addressController;
   TextEditingController homepageController;
@@ -72,8 +72,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
         automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('IconON_TAP');
-            logFirebaseEvent('IconNavigateTo');
+            logFirebaseEvent('POST_WITH_LOGIN_Icon_fkeajruh_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -272,7 +272,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                         validator: (val) {
-                                          if (val.isEmpty) {
+                                          if (val == null || val.isEmpty) {
                                             return 'タイトルを入力してください。';
                                           }
 
@@ -504,7 +504,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         maxLines: 3,
                                         keyboardType: TextInputType.multiline,
                                         validator: (val) {
-                                          if (val.isEmpty) {
+                                          if (val == null || val.isEmpty) {
                                             return '概要を入力してください。';
                                           }
 
@@ -579,7 +579,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         maxLines: 30,
                                         keyboardType: TextInputType.multiline,
                                         validator: (val) {
-                                          if (val.isEmpty) {
+                                          if (val == null || val.isEmpty) {
                                             return '投稿詳細を入力してください。';
                                           }
 
@@ -667,36 +667,43 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
-                                                  'FileButtonON_TAP');
+                                                  'POST_WITH_LOGIN_FileButton_ON_TAP');
                                               logFirebaseEvent(
-                                                  'FileButtonUploadPhotoVideo');
+                                                  'FileButton_Upload-Photo-Video');
                                               final selectedMedia =
                                                   await selectMedia(
                                                 maxWidth: 300.00,
                                                 maxHeight: 300.00,
                                                 mediaSource:
                                                     MediaSource.photoGallery,
+                                                multiImage: false,
                                               );
                                               if (selectedMedia != null &&
-                                                  validateFileFormat(
-                                                      selectedMedia.storagePath,
-                                                      context)) {
+                                                  selectedMedia.every((m) =>
+                                                      validateFileFormat(
+                                                          m.storagePath,
+                                                          context))) {
                                                 showUploadMessage(
                                                   context,
                                                   'Uploading file...',
                                                   showLoading: true,
                                                 );
-                                                final downloadUrl =
-                                                    await uploadData(
-                                                        selectedMedia
-                                                            .storagePath,
-                                                        selectedMedia.bytes);
+                                                final downloadUrls = (await Future
+                                                        .wait(selectedMedia.map(
+                                                            (m) async =>
+                                                                await uploadData(
+                                                                    m.storagePath,
+                                                                    m.bytes))))
+                                                    .where((u) => u != null)
+                                                    .toList();
                                                 ScaffoldMessenger.of(context)
                                                     .hideCurrentSnackBar();
-                                                if (downloadUrl != null) {
+                                                if (downloadUrls != null &&
+                                                    downloadUrls.length ==
+                                                        selectedMedia.length) {
                                                   setState(() =>
                                                       uploadedFileUrl =
-                                                          downloadUrl);
+                                                          downloadUrls.first);
                                                   showUploadMessage(
                                                     context,
                                                     'Success!',
@@ -732,7 +739,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ],
@@ -813,9 +821,9 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
-                                                  'StartDayButtonON_TAP');
+                                                  'POST_WITH_LOGIN_StartDayButton_ON_TAP');
                                               logFirebaseEvent(
-                                                  'StartDayButtonDateTimePicker');
+                                                  'StartDayButton_Date-Time-Picker');
                                               await DatePicker.showDatePicker(
                                                 context,
                                                 showTitleActions: true,
@@ -826,6 +834,15 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 currentTime:
                                                     getCurrentTimestamp,
                                                 minTime: DateTime(0, 0, 0),
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
                                               );
                                             },
                                             text: '日付',
@@ -849,7 +866,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ],
@@ -930,9 +948,9 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                           FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
-                                                  'FinalDayButtonON_TAP');
+                                                  'POST_WITH_LOGIN_FinalDayButton_ON_TAP');
                                               logFirebaseEvent(
-                                                  'FinalDayButtonDateTimePicker');
+                                                  'FinalDayButton_Date-Time-Picker');
                                               await DatePicker.showDatePicker(
                                                 context,
                                                 showTitleActions: true,
@@ -943,6 +961,15 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 currentTime:
                                                     getCurrentTimestamp,
                                                 minTime: DateTime(0, 0, 0),
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
                                               );
                                             },
                                             text: '日付',
@@ -966,7 +993,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ],
@@ -1040,7 +1068,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         keyboardType:
                                             TextInputType.streetAddress,
                                         validator: (val) {
-                                          if (val.isEmpty) {
+                                          if (val == null || val.isEmpty) {
                                             return '開催場所を入力してください。';
                                           }
 
@@ -1180,7 +1208,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                         validator: (val) {
-                                          if (val.isEmpty) {
+                                          if (val == null || val.isEmpty) {
                                             return '主催者の名前を入力してください。';
                                           }
 
@@ -1253,7 +1281,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                         validator: (val) {
-                                          if (val.isEmpty) {
+                                          if (val == null || val.isEmpty) {
                                             return '問い合わせ先を入力してください。';
                                           }
 
@@ -1593,8 +1621,9 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                         children: [
                           InkWell(
                             onTap: () async {
-                              logFirebaseEvent('TextON_TAP');
-                              logFirebaseEvent('TextNavigateTo');
+                              logFirebaseEvent(
+                                  'POST_WITH_LOGIN_Text_x583tubz_ON_TAP');
+                              logFirebaseEvent('Text_Navigate-To');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -1660,8 +1689,10 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                       alignment: AlignmentDirectional(0.95, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          logFirebaseEvent('ButtonON_TAP');
-                                          logFirebaseEvent('ButtonNavigateTo');
+                                          logFirebaseEvent(
+                                              'POST_PAGE_WITH_LOGIN_PAGE_確認_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_Navigate-To');
                                           await Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -1725,7 +1756,8 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                             color: Colors.transparent,
                                             width: 2,
                                           ),
-                                          borderRadius: 8,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                         ),
                                       ),
                                     ),
