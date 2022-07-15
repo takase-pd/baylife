@@ -1,16 +1,17 @@
+import '../auth/firebase_user_provider.dart';
 import '../backend/backend.dart';
 import '../cart_page/cart_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../login_page/login_page_path.dart';
 import '../login_page/login_page_widget.dart';
 import '../plan_page/plan_page_widget.dart';
 import '../transactions_law_page/transactions_law_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../auth/firebase_user_provider.dart';
-import '../login_page/login_page_path.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ShopPageWidget extends StatefulWidget {
   const ShopPageWidget({
@@ -188,10 +189,115 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                                EdgeInsetsDirectional.fromSTEB(0, 16, 8, 24),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                if (columnShopsRecord.instagram == null ||
+                                    columnShopsRecord.instagram.isNotEmpty)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 16, 0),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        if (!await launch(
+                                            'instagram://user?username=${columnShopsRecord.instagram}'))
+                                          throw 'Instagramを開けません。';
+                                      },
+                                      child: FaIcon(
+                                        FontAwesomeIcons.instagram,
+                                        color:
+                                            FlutterFlowTheme.of(context).sLight,
+                                        size: 24,
+                                      ),
+                                    ),
+                                  ),
+                                if (columnShopsRecord.twitter == null ||
+                                    columnShopsRecord.twitter.isNotEmpty)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 16, 0),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        if (!await launch(
+                                            'twitter://user?screen_name=${columnShopsRecord.twitter}'))
+                                          throw 'Twitterを開けません。';
+                                      },
+                                      child: FaIcon(
+                                        FontAwesomeIcons.twitter,
+                                        color:
+                                            FlutterFlowTheme.of(context).sLight,
+                                        size: 24,
+                                      ),
+                                    ),
+                                  ),
+                                if (columnShopsRecord.web == null ||
+                                    columnShopsRecord.web.isNotEmpty)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 16, 0),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        if (!await launch(
+                                            columnShopsRecord.web))
+                                          throw 'ホームページを開けません。';
+                                      },
+                                      child: FaIcon(
+                                        Icons.home_rounded,
+                                        color:
+                                            FlutterFlowTheme.of(context).sLight,
+                                        size: 24,
+                                      ),
+                                    ),
+                                  ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 16, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      final title = Uri.encodeComponent(
+                                          '問い合わせ (Bay Life)');
+                                      final body = Uri.encodeComponent(
+                                          '${columnShopsRecord.shopName}  宛');
+                                      if (!await launch(
+                                          'mailto:${columnShopsRecord.email}?subject=$title&body=$body'))
+                                        throw 'メールを開けません。';
+                                    },
+                                    child: FaIcon(
+                                      Icons.mail_rounded,
+                                      color:
+                                          FlutterFlowTheme.of(context).sLight,
+                                      size: 24,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      await launch(
+                                          'tel:${columnShopsRecord.phone}');
+                                    },
+                                    child: Container(
+                                      child: FaIcon(
+                                        Icons.phone_rounded,
+                                        color:
+                                            FlutterFlowTheme.of(context).sLight,
+                                        size: 24,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 StreamBuilder<CatShopRecord>(
                                   stream: CatShopRecord.getDocument(
@@ -214,8 +320,8 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                     final textCatShopRecord = snapshot.data;
                                     return Text(
                                       textCatShopRecord.catName,
-                                      style:
-                                          FlutterFlowTheme.of(context).title2,
+                                      style: FlutterFlowTheme.of(context)
+                                          .subtitle1,
                                     );
                                   },
                                 ),

@@ -224,8 +224,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -247,6 +246,20 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                     locale: 'ja_JP',
                                   ),
                                   style: FlutterFlowTheme.of(context).title3,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  '料金はすべて税込',
+                                  style: FlutterFlowTheme.of(context).bodyText2,
                                 ),
                               ],
                             ),
@@ -916,8 +929,8 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
 
   Future<bool> addPlan(
       String path, bool verifyAge, String appCheckToken) async {
-    final verifyAgeResponce = verifyAge ? await _verifyAge() : false;
-    if (!verifyAgeResponce) {
+    final verifyAgeResponce = verifyAge ? await _verifyAge() : true;
+    if (verifyAge && !verifyAgeResponce) {
       logFirebaseEvent('ButtonShowSnackBar');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -940,7 +953,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
       plan: '/$path',
       quantity: countControllerValue,
       verifyAge: verifyAge,
-      customerAge: int.parse(customerAgeController.text),
+      customerAge: verifyAge ? int.parse(customerAgeController.text) : 0,
       added: dateTimeFormat('yMMMd h:mm a', getCurrentTimestamp),
       accessToken: currentJwtToken,
       appCheckToken: appCheckToken,
@@ -956,7 +969,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
       return false;
     }
 
-    if (verifyAgeResponce) {
+    if (verifyAge && verifyAgeResponce) {
       logFirebaseEvent('ButtonShowSnackBar');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

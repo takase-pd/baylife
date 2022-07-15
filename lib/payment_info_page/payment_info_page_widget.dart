@@ -361,7 +361,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     8, 0, 0, 0),
                                             child: Text(
-                                              "配送：" +
+                                              "送料：" +
                                                   formatNumber(
                                                     _purchase.shippingFee,
                                                     formatType:
@@ -609,11 +609,18 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.done) {
-                              final _payment = snapshot.data;
-                              final _shipping = _payment.shipping;
-                              final _trackingNumber = _payment
+                              final payment = snapshot.data;
+                              final shipping = payment.shipping;
+                              final trackingNumbers = payment
                                   .shipping.trackingNumber
-                                  .split(',')[_plan.trackingIndex];
+                                  .split(',')
+                                  .toList();
+                              final code = trackingNumbers.firstWhere(
+                                  (element) => element.contains(_plan.id),
+                                  orElse: () => '');
+                              final trackingNumber = code.isEmpty
+                                  ? ''
+                                  : code.split(':').toList().last;
                               return Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
@@ -672,12 +679,11 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 0, 0),
                                             child: Text(
-                                              _shipping.carrier == null ||
-                                                      _shipping
-                                                              .carrier.length ==
+                                              shipping.carrier == null ||
+                                                      shipping.carrier.length ==
                                                           0
                                                   ? '配送業者未設定'
-                                                  : _shipping.carrier,
+                                                  : shipping.carrier,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1,
@@ -688,8 +694,8 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     16, 0, 0, 0),
                                             child: Text(
-                                              _trackingNumber.length > 0
-                                                  ? '追跡番号：' + _trackingNumber
+                                              trackingNumber.isNotEmpty
+                                                  ? '追跡番号：' + trackingNumber
                                                   : '追跡番号なし',
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -730,7 +736,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 8, 0),
                                             child: Text(
-                                              _shipping.address.postalCode,
+                                              shipping.address.postalCode,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1,
@@ -750,10 +756,10 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 8, 0),
                                             child: Text(
-                                              _shipping.address.state +
-                                                  _shipping.address.city +
-                                                  _shipping.address.line1 +
-                                                  _shipping.address.line2,
+                                              shipping.address.state +
+                                                  shipping.address.city +
+                                                  shipping.address.line1 +
+                                                  shipping.address.line2,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1,
@@ -775,7 +781,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 8, 0),
                                             child: Text(
-                                              _shipping.name,
+                                              shipping.name,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1,
@@ -795,7 +801,7 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 8, 0),
                                             child: Text(
-                                              _shipping.phone ?? '',
+                                              shipping.phone ?? '',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1,
@@ -932,7 +938,11 @@ class _PaymentInfoPageWidgetState extends State<PaymentInfoPageWidget> {
                                                                 .fromSTEB(
                                                                     0, 0, 8, 0),
                                                         child: Text(
-                                                          _plan.name,
+                                                          _plan.name
+                                                              .maybeHandleOverflow(
+                                                            maxChars: 12,
+                                                            replacement: '…',
+                                                          ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .title3,

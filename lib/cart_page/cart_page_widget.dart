@@ -169,10 +169,6 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                         ],
                       ),
                     ),
-                    Text(
-                      'カート',
-                      style: FlutterFlowTheme.of(context).title2,
-                    ),
                     FutureBuilder(
                         future: _getCart(),
                         builder: (context, snapshot) {
@@ -184,205 +180,263 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      16, 16, 16, 16),
-                                  child: ListView.builder(
-                                      padding: EdgeInsets.zero,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      itemCount: cart.length,
-                                      itemBuilder: (context, listViewIndex) {
-                                        final _plan = cart[listViewIndex];
-                                        return Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 4),
-                                          child: Slidable(
-                                            actionPane:
-                                                const SlidableScrollActionPane(),
-                                            secondaryActions: [
-                                              IconSlideAction(
-                                                caption: '削除',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .sLight,
-                                                icon:
-                                                    Icons.delete_sweep_rounded,
-                                                onTap: () async {
-                                                  logFirebaseEvent(
-                                                      'SlidableActionWidgetON_TAP');
-
-                                                  if (!currentUser.loggedIn) {
-                                                    logFirebaseEvent(
-                                                        'ButtonNavigateTo');
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            LoginPageWidget(
-                                                          pagePath:
-                                                              LoginPagePath
-                                                                  .cart_page,
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-
-                                                  final _appCheckToken =
-                                                      await AppCheckAgent
-                                                          .getToken(context);
-                                                  if (_appCheckToken == null) {
-                                                    CustomDialog.networkAlert(
-                                                        context);
-                                                    return;
-                                                  }
-                                                  logFirebaseEvent(
-                                                      'SlidableActionWidgetBackendCall');
-                                                  final apiCallOutput =
-                                                      await DeletePlanCall.call(
-                                                    uid: currentUserUid,
-                                                    plan: _plan.path,
-                                                    accessToken:
-                                                        currentJwtToken,
-                                                    appCheckToken:
-                                                        _appCheckToken,
-                                                  );
-                                                  final _apiJson = getJsonField(
-                                                      apiCallOutput.jsonBody,
-                                                      r'''$.result''');
-                                                  final success =
-                                                      _apiJson['success'] ??
-                                                          false;
-                                                  if (!success) {
-                                                    String errorMessage =
-                                                        _apiJson['error'] ??
-                                                            '原因不明のエラーが発生';
-                                                    showSnackbar(
-                                                      context,
-                                                      'Error: $errorMessage',
-                                                    );
-                                                    return;
-                                                  }
-
-                                                  setState(() {});
-                                                },
+                                      16, 0, 16, 0),
+                                  child: Container(
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'カート',
+                                          style: FlutterFlowTheme.of(context)
+                                              .title2
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                fontWeight: FontWeight.w600,
                                               ),
-                                            ],
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                FutureBuilder<PlansRecord>(
-                                                  future: PlansRecord
-                                                      .getDocumentOnce(
-                                                          FirebaseFirestore
-                                                              .instance
-                                                              .doc(_plan.path)),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 50,
-                                                          height: 50,
-                                                          child: SpinKitPulse(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryColor,
-                                                            size: 50,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                if (cart.isEmpty)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 16, 16, 32),
+                                    child: Container(
+                                      child: Row(
+                                        children: [
+                                          Text('カートは空です。'),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                if (cart.isNotEmpty)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 16, 16, 24),
+                                    child: ListView.builder(
+                                        padding: EdgeInsets.zero,
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.vertical,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemCount: cart.length,
+                                        itemBuilder: (context, listViewIndex) {
+                                          final _plan = cart[listViewIndex];
+                                          return Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 4),
+                                            child: Slidable(
+                                              actionPane:
+                                                  const SlidableScrollActionPane(),
+                                              secondaryActions: [
+                                                IconSlideAction(
+                                                  caption: '削除',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .sLight,
+                                                  icon: Icons
+                                                      .delete_sweep_rounded,
+                                                  onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'SlidableActionWidgetON_TAP');
+
+                                                    if (!currentUser.loggedIn) {
+                                                      logFirebaseEvent(
+                                                          'ButtonNavigateTo');
+                                                      await Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              LoginPageWidget(
+                                                            pagePath:
+                                                                LoginPagePath
+                                                                    .cart_page,
                                                           ),
                                                         ),
                                                       );
                                                     }
-                                                    PlansRecord
-                                                        imagePlansRecord =
-                                                        snapshot.data;
-                                                    return Image.network(
-                                                      imagePlansRecord.banner,
-                                                      width: 80,
-                                                      height: 104,
-                                                      fit: BoxFit.cover,
+
+                                                    final _appCheckToken =
+                                                        await AppCheckAgent
+                                                            .getToken(context);
+                                                    if (_appCheckToken ==
+                                                        null) {
+                                                      CustomDialog.networkAlert(
+                                                          context);
+                                                      return;
+                                                    }
+                                                    logFirebaseEvent(
+                                                        'SlidableActionWidgetBackendCall');
+                                                    final apiCallOutput =
+                                                        await DeletePlanCall
+                                                            .call(
+                                                      uid: currentUserUid,
+                                                      plan: _plan.path,
+                                                      accessToken:
+                                                          currentJwtToken,
+                                                      appCheckToken:
+                                                          _appCheckToken,
                                                     );
+                                                    final _apiJson =
+                                                        getJsonField(
+                                                            apiCallOutput
+                                                                .jsonBody,
+                                                            r'''$.result''');
+                                                    final success =
+                                                        _apiJson['success'] ??
+                                                            false;
+                                                    if (!success) {
+                                                      String errorMessage =
+                                                          _apiJson['error'] ??
+                                                              '原因不明のエラーが発生';
+                                                      showSnackbar(
+                                                        context,
+                                                        'Error: $errorMessage',
+                                                      );
+                                                      return;
+                                                    }
+
+                                                    setState(() {});
                                                   },
                                                 ),
-                                                Expanded(
-                                                  child: Container(
-                                                    width: double.infinity,
-                                                    height: 104,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .background,
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8, 8, 8, 8),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                _plan.name
-                                                                    .maybeHandleOverflow(
-                                                                  maxChars: 12,
-                                                                  replacement:
-                                                                      '…',
+                                              ],
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  FutureBuilder<PlansRecord>(
+                                                    future: PlansRecord
+                                                        .getDocumentOnce(
+                                                            FirebaseFirestore
+                                                                .instance
+                                                                .doc(_plan
+                                                                    .path)),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50,
+                                                            height: 50,
+                                                            child: SpinKitPulse(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryColor,
+                                                              size: 50,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      PlansRecord
+                                                          imagePlansRecord =
+                                                          snapshot.data;
+                                                      return Image.network(
+                                                        imagePlansRecord.banner,
+                                                        width: 80,
+                                                        height: 104,
+                                                        fit: BoxFit.cover,
+                                                      );
+                                                    },
+                                                  ),
+                                                  Expanded(
+                                                    child: Container(
+                                                      width: double.infinity,
+                                                      height: 104,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .background,
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8, 8, 8, 8),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  _plan.name
+                                                                      .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        12,
+                                                                    replacement:
+                                                                        '…',
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .title3,
                                                                 ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .title3,
-                                                              ),
-                                                              Text(
-                                                                formatNumber(
-                                                                  _plan
-                                                                      .subtotal,
-                                                                  formatType:
-                                                                      FormatType
-                                                                          .custom,
-                                                                  currency: '￥',
-                                                                  format:
-                                                                      '#,##0',
-                                                                  locale:
-                                                                      'ja_JP',
+                                                                Text(
+                                                                  formatNumber(
+                                                                    _plan
+                                                                        .subtotal,
+                                                                    formatType:
+                                                                        FormatType
+                                                                            .custom,
+                                                                    currency:
+                                                                        '￥',
+                                                                    format:
+                                                                        '#,##0',
+                                                                    locale:
+                                                                        'ja_JP',
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .title3,
                                                                 ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .title3,
-                                                              ),
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            16,
-                                                                            0),
-                                                                    child: Text(
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0,
+                                                                              0,
+                                                                              16,
+                                                                              0),
+                                                                      child:
+                                                                          Text(
+                                                                        formatNumber(
+                                                                          _plan
+                                                                              .unitAmount,
+                                                                          formatType:
+                                                                              FormatType.custom,
+                                                                          currency:
+                                                                              '単価￥',
+                                                                          format:
+                                                                              '#,##0',
+                                                                          locale:
+                                                                              'ja_JP',
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .subtitle1,
+                                                                      ),
+                                                                    ),
+                                                                    Text(
                                                                       formatNumber(
                                                                         _plan
-                                                                            .unitAmount,
+                                                                            .quantity,
                                                                         formatType:
                                                                             FormatType.custom,
                                                                         currency:
-                                                                            '単価￥',
+                                                                            '数量 ',
                                                                         format:
                                                                             '#,##0',
                                                                         locale:
@@ -390,46 +444,27 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .subtitle2,
+                                                                          .subtitle1,
                                                                     ),
-                                                                  ),
-                                                                  Text(
-                                                                    formatNumber(
-                                                                      _plan
-                                                                          .quantity,
-                                                                      formatType:
-                                                                          FormatType
-                                                                              .custom,
-                                                                      currency:
-                                                                          '数量 ',
-                                                                      format:
-                                                                          '#,##0',
-                                                                      locale:
-                                                                          'ja_JP',
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .subtitle2,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        );
-                                      }),
-                                ),
+                                          );
+                                        }),
+                                  ),
                                 if (ageVerification)
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 0, 16, 16),
+                                        16, 0, 16, 24),
                                     child: Container(
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
@@ -456,7 +491,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                     '年齢確認商品',
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .subtitle2
+                                                        .subtitle1
                                                         .override(
                                                           fontFamily:
                                                               'Open Sans',
@@ -501,29 +536,29 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                              MainAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 0, 0, 8),
-                                              child: Text(
-                                                'お支払い',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .title2,
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    'お支払い',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .title2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ],
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 8),
-                                          child: Text(
-                                            '合計金額',
-                                            style: FlutterFlowTheme.of(context)
-                                                .title3,
-                                          ),
                                         ),
                                         Padding(
                                           padding:
@@ -535,7 +570,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                '商品金額',
+                                                '商品',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,
@@ -558,14 +593,14 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 8),
+                                                  0, 0, 0, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                '配送金額',
+                                                '送料',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,
@@ -585,6 +620,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             ],
                                           ),
                                         ),
+                                        Divider(),
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -611,6 +647,29 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 8),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                '＊料金はすべて税込',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          fontSize: 12,
+                                                        ),
                                               ),
                                             ],
                                           ),

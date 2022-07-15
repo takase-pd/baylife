@@ -3,7 +3,6 @@ import '../../auth/firebase_user_provider.dart';
 import '../../backend/api_requests/api_calls.dart';
 import '../../backend/backend.dart';
 import '../../custom_code/widgets/index.dart';
-import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -70,6 +69,8 @@ class PlanData {
       );
     return _planData;
   }
+
+  String get id => path.split('/').last;
 }
 
 class Purchase {
@@ -294,29 +295,33 @@ enum ShippingStatus {
   ordered,
   shipping,
   shipped,
-  confirming,
+  confirmed,
+  canceled,
 }
 
 extension ShippingStatusExt on ShippingStatus {
   static final _label = {
     ShippingStatus.ordered: '注文',
-    ShippingStatus.confirming: '確認中',
+    ShippingStatus.confirmed: '確認済',
     ShippingStatus.shipping: '発送済',
     ShippingStatus.shipped: '到着',
+    ShippingStatus.canceled: '取消',
   };
 
   static final _icon = {
     ShippingStatus.ordered: Icons.send_rounded,
-    ShippingStatus.confirming: Icons.search_rounded,
+    ShippingStatus.confirmed: Icons.check_circle_rounded,
     ShippingStatus.shipping: FontAwesomeIcons.truckFast,
     ShippingStatus.shipped: FontAwesomeIcons.box,
+    ShippingStatus.canceled: Icons.cancel_rounded,
   };
 
   static final _size = {
     ShippingStatus.ordered: 32.0,
-    ShippingStatus.confirming: 32.0,
+    ShippingStatus.confirmed: 32.0,
     ShippingStatus.shipping: 24.0,
     ShippingStatus.shipped: 24.0,
+    ShippingStatus.canceled: 32.0,
   };
 
   static List<String> get labelList =>
@@ -324,14 +329,17 @@ extension ShippingStatusExt on ShippingStatus {
 
   static ShippingStatus create(String status) {
     switch (status) {
-      case '確認中':
-        return ShippingStatus.confirming;
+      case '確認済':
+        return ShippingStatus.confirmed;
         break;
       case '発送済':
         return ShippingStatus.shipping;
         break;
       case '到着':
         return ShippingStatus.shipped;
+        break;
+      case '取消':
+        return ShippingStatus.canceled;
         break;
       default:
         return ShippingStatus.ordered;
