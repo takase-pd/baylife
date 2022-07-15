@@ -651,6 +651,29 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             ],
                                           ),
                                         ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 8),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                '＊料金はすべて税込',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          fontSize: 12,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                         RichText(
                                           text: TextSpan(children: [
                                             TextSpan(

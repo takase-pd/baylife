@@ -224,8 +224,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -247,6 +246,20 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                     locale: 'ja_JP',
                                   ),
                                   style: FlutterFlowTheme.of(context).title3,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  '料金はすべて税込',
+                                  style: FlutterFlowTheme.of(context).bodyText2,
                                 ),
                               ],
                             ),
