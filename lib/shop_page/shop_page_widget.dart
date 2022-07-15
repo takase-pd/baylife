@@ -256,8 +256,13 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                       0, 0, 16, 0),
                                   child: InkWell(
                                     onTap: () async {
-                                      await launch(
-                                          'mailto:${columnShopsRecord.email}');
+                                      final title = Uri.encodeComponent(
+                                          '問い合わせ (Bay Life)');
+                                      final body = Uri.encodeComponent(
+                                          '${columnShopsRecord.shopName}  宛');
+                                      if (!await launch(
+                                          'mailto:${columnShopsRecord.email}?subject=$title&body=$body'))
+                                        throw 'メールを開けません。';
                                     },
                                     child: FaIcon(
                                       Icons.mail_rounded,
