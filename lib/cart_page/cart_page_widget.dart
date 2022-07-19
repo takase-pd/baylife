@@ -379,7 +379,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .title3,
+                                                                      .subtitle1,
                                                                 ),
                                                                 Text(
                                                                   formatNumber(
@@ -397,7 +397,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .title3,
+                                                                      .subtitle1,
                                                                 ),
                                                                 Row(
                                                                   mainAxisSize:
@@ -426,7 +426,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                               'ja_JP',
                                                                         ),
                                                                         style: FlutterFlowTheme.of(context)
-                                                                            .subtitle1,
+                                                                            .subtitle2,
                                                                       ),
                                                                     ),
                                                                     Text(
@@ -444,7 +444,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .subtitle1,
+                                                                          .subtitle2,
                                                                     ),
                                                                   ],
                                                                 ),
