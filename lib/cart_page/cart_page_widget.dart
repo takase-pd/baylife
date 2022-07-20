@@ -12,15 +12,15 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login_page/login_page_path.dart';
 import '../login_page/login_page_widget.dart';
-import '../purchases_page/purchases_page_widget.dart';
+import '../../purchases_page/purchases_page_widget.dart';
 import '../terms_page/terms_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_stripe/flutter_stripe.dart'
     show ShippingDetails, BillingDetails;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CartPageWidget extends StatefulWidget {
   const CartPageWidget({Key key}) : super(key: key);
@@ -1074,13 +1074,77 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 return;
                                               }
 
-                                              setState(() {});
-
-                                              await Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PurchasesPageWidget(),
+                                              showDialog(
+                                                context: context,
+                                                barrierDismissible: true,
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        AlertDialog(
+                                                  title: Text(
+                                                    currentUserDisplayName
+                                                            .isNotEmpty
+                                                        ? '$currentUserDisplayName さま、ご注文ありがとうございます。'
+                                                        : 'ご注文ありがとうございます。',
+                                                    style:
+                                                        CustomDialog.titleStyle(
+                                                            context),
+                                                  ),
+                                                  content: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(0, 0,
+                                                                    0, 16),
+                                                        child: Text(
+                                                          'メールでご注文内容をお送りしております。ショップが商品を確認し、発送いたします。商品が届くまでしばらくお待ちください。\n今後ともよろしくお願いします。',
+                                                          style: CustomDialog
+                                                              .messageStyle(
+                                                                  context),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(0, 24,
+                                                                    0, 0),
+                                                        child: FaIcon(
+                                                          FontAwesomeIcons.gift,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryColor,
+                                                          size: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.24,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  actions: [
+                                                    TextButton(
+                                                      child: Text(
+                                                        'OK',
+                                                        style: CustomDialog
+                                                            .buttonStyle(
+                                                                context),
+                                                      ),
+                                                      onPressed: () =>
+                                                          Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              PurchasesPageWidget(),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               );
                                             },
