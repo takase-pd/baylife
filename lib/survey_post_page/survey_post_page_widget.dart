@@ -137,7 +137,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
         leading: InkWell(
           onTap: () async {
             logFirebaseEvent('SURVEY_POST_Icon_i66z08o1_ON_TAP');
-            logFirebaseEvent('Icon_Navigate-To');
+            logFirebaseEvent('Icon_NavigateTo');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -229,7 +229,7 @@ class _SurveyPostPageWidgetState extends State<SurveyPostPageWidget> {
                               onTap: () async {
                                 logFirebaseEvent(
                                     'SURVEY_POST_Text_e4ydvwkz_ON_TAP');
-                                logFirebaseEvent('Text_Navigate-To');
+                                logFirebaseEvent('Text_NavigateTo');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(

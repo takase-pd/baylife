@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
 import '../backend/stripe/payment_manager.dart';
 import '../custom_code/widgets/index.dart';
 import '../flutter_flow/flutter_flow_count_controller.dart';
@@ -11,7 +12,6 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:bay_life/index.dart';
 
 class PlanPageWidget extends StatefulWidget {
@@ -103,7 +103,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'PLAN_PAGE_PAGE_Card_nj7kako9_ON_TAP');
-                                  logFirebaseEvent('Card_Navigate-Back');
+                                  logFirebaseEvent('Card_NavigateBack');
                                   Navigator.pop(context);
                                 },
                                 child: Card(
@@ -133,7 +133,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'PLAN_PAGE_PAGE_Card_w2htuil8_ON_TAP');
-                                  logFirebaseEvent('Card_Navigate-To');
+                                  logFirebaseEvent('Card_NavigateTo');
                                   currentUser.loggedIn
                                       ? await Navigator.push(
                                           context,
@@ -567,6 +567,14 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
 
                                             if (countControllerValue == 0 &&
                                                 _plan != null) {
+                                              logFirebaseEvent(
+                                                'DeletePlan',
+                                                parameters: {
+                                                  AnalyticsPrams
+                                                          .plan_name.label:
+                                                      columnPlansRecord.name,
+                                                },
+                                              );
                                               final deletePlanResponce =
                                                   await deletePlan(
                                                       columnPlansRecord
@@ -576,6 +584,14 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                             }
 
                                             if (countControllerValue > 0) {
+                                              logFirebaseEvent(
+                                                'AddPlan',
+                                                parameters: {
+                                                  AnalyticsPrams
+                                                          .plan_name.label:
+                                                      columnPlansRecord.name,
+                                                },
+                                              );
                                               final addPlanResponce =
                                                   await addPlan(
                                                       columnPlansRecord
@@ -819,7 +835,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
       return true;
     }
 
-    logFirebaseEvent('Button_Alert-Dialog');
+    logFirebaseEvent('Button_AlertDialog');
     var confirmDialogResponse = await showDialog<bool>(
           context: context,
           builder: (alertDialogContext) {
@@ -929,6 +945,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
 
   Future<bool> addPlan(
       String path, bool verifyAge, String appCheckToken) async {
+    logFirebaseEvent('VerifyAge');
     final verifyAgeResponce = verifyAge ? await _verifyAge() : true;
     if (verifyAge && !verifyAgeResponce) {
       logFirebaseEvent('ButtonShowSnackBar');

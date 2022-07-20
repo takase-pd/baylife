@@ -45,7 +45,7 @@ class _HeaderLogoWidgetState extends State<HeaderLogoWidget> {
         return InkWell(
           onTap: () async {
             logFirebaseEvent('HEADER_LOGO_COMP_Column_6zxut118_ON_TAP');
-            logFirebaseEvent('Column_Navigate-To');
+            logFirebaseEvent('Column_NavigateTo');
             await Navigator.push(
               context,
               MaterialPageRoute(

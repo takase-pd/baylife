@@ -93,6 +93,8 @@ class _BillingDetailsWidgetState extends State<BillingDetailsWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('bottom_sheet_view',
+        parameters: {'sheet_name': 'BillingDetails'});
     _setBillingDetails(switchListTileValue ??= false);
   }
 

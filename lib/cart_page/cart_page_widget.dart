@@ -3,6 +3,7 @@ import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/stripe/payment_manager.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
 import '../components/billing_details_widget.dart';
 import '../components/shipping_details_widget.dart';
 import '../custom_code/widgets/index.dart';
@@ -12,15 +13,15 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login_page/login_page_path.dart';
 import '../login_page/login_page_widget.dart';
-import '../purchases_page/purchases_page_widget.dart';
+import '../../purchases_page/purchases_page_widget.dart';
 import '../terms_page/terms_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_stripe/flutter_stripe.dart'
     show ShippingDetails, BillingDetails;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CartPageWidget extends StatefulWidget {
   const CartPageWidget({Key key}) : super(key: key);
@@ -141,7 +142,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                             alignment: AlignmentDirectional(-0.95, 0.4),
                             child: InkWell(
                               onTap: () async {
-                                logFirebaseEvent('CardON_TAP');
+                                logFirebaseEvent(
+                                    'CART_PAGE_PAGE_Card_jcpc2xs3_ON_TAP');
                                 logFirebaseEvent('CardNavigateBack');
                                 Navigator.pop(context);
                               },
@@ -379,7 +381,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .title3,
+                                                                      .subtitle1,
                                                                 ),
                                                                 Text(
                                                                   formatNumber(
@@ -397,7 +399,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .title3,
+                                                                      .subtitle1,
                                                                 ),
                                                                 Row(
                                                                   mainAxisSize:
@@ -426,7 +428,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                               'ja_JP',
                                                                         ),
                                                                         style: FlutterFlowTheme.of(context)
-                                                                            .subtitle1,
+                                                                            .subtitle2,
                                                                       ),
                                                                     ),
                                                                     Text(
@@ -444,7 +446,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .subtitle1,
+                                                                          .subtitle2,
                                                                     ),
                                                                   ],
                                                                 ),
@@ -739,7 +741,13 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             onPressed: () async {
                                               logFirebaseEvent('ButtonON_TAP');
                                               logFirebaseEvent(
-                                                  'ButtonBottomSheet');
+                                                'ButtonBottomSheet',
+                                                parameters: {
+                                                  AnalyticsPrams
+                                                      .bottom_sheet_name
+                                                      .label: 'ShippingDetails',
+                                                },
+                                              );
                                               var _shipping =
                                                   await showModalBottomSheet<
                                                       ShippingDetails>(
@@ -805,7 +813,13 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             onPressed: () async {
                                               logFirebaseEvent('ButtonON_TAP');
                                               logFirebaseEvent(
-                                                  'ButtonBottomSheet');
+                                                'ButtonBottomSheet',
+                                                parameters: {
+                                                  AnalyticsPrams
+                                                      .bottom_sheet_name
+                                                      .label: 'BillingDetails',
+                                                },
+                                              );
                                               var _billing =
                                                   await showModalBottomSheet(
                                                 isScrollControlled: true,
@@ -1074,13 +1088,79 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 return;
                                               }
 
-                                              setState(() {});
-
-                                              await Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PurchasesPageWidget(),
+                                              logFirebaseEvent(
+                                                  'ThanksAlertDialog');
+                                              showDialog(
+                                                context: context,
+                                                barrierDismissible: true,
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        AlertDialog(
+                                                  title: Text(
+                                                    currentUserDisplayName
+                                                            .isNotEmpty
+                                                        ? '$currentUserDisplayName さま、ご注文ありがとうございます。'
+                                                        : 'ご注文ありがとうございます。',
+                                                    style:
+                                                        CustomDialog.titleStyle(
+                                                            context),
+                                                  ),
+                                                  content: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(0, 0,
+                                                                    0, 16),
+                                                        child: Text(
+                                                          'メールでご注文内容をお送りしております。ショップが商品を確認し、発送いたします。商品が届くまでしばらくお待ちください。\n今後ともよろしくお願いします。',
+                                                          style: CustomDialog
+                                                              .messageStyle(
+                                                                  context),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(0, 24,
+                                                                    0, 0),
+                                                        child: FaIcon(
+                                                          FontAwesomeIcons.gift,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryColor,
+                                                          size: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.24,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  actions: [
+                                                    TextButton(
+                                                      child: Text(
+                                                        'OK',
+                                                        style: CustomDialog
+                                                            .buttonStyle(
+                                                                context),
+                                                      ),
+                                                      onPressed: () =>
+                                                          Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              PurchasesPageWidget(),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               );
                                             },
@@ -1110,7 +1190,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                       ],
                                       FFButtonWidget(
                                         onPressed: () async {
-                                          logFirebaseEvent('ButtonON_TAP');
+                                          logFirebaseEvent(
+                                              'CART_PAGE_PAGE_AddPlan_ButtonON_TAP');
                                           logFirebaseEvent('ButtonNavigateTo');
                                           await Navigator.push(
                                             context,

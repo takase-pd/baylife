@@ -1,12 +1,8 @@
 import 'dart:async';
 import 'dart:math';
-
-import 'package:firebase_analytics/observer.dart';
+import '../../auth/auth_util.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'analytics_event_type.dart';
-
-import 'package:firebase_analytics/firebase_analytics.dart';
-import '../../auth/auth_util.dart';
 
 class Analytics {
   static String _isEventType;

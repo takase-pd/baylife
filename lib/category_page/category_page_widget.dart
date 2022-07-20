@@ -48,7 +48,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
         leading: InkWell(
           onTap: () async {
             logFirebaseEvent('CATEGORY_PAGE_PAGE_Icon_xfzu8cvb_ON_TAP');
-            logFirebaseEvent('Icon_Navigate-Back');
+            logFirebaseEvent('Icon_NavigateBack');
             Navigator.pop(context);
           },
           child: Icon(
@@ -66,7 +66,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           logFirebaseEvent('CATEGORY_FloatingActionButton_vpbl2xjc_O');
-          logFirebaseEvent('FloatingActionButton_Navigate-To');
+          logFirebaseEvent('FloatingActionButton_NavigateTo');
           await Navigator.push(
             context,
             MaterialPageRoute(
@@ -137,7 +137,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                           onTap: () async {
                             logFirebaseEvent(
                                 'CATEGORY_PAGE_PAGE_Card_21biz0hq_ON_TAP');
-                            logFirebaseEvent('Card_Navigate-To');
+                            logFirebaseEvent('Card_NavigateTo');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -244,7 +244,7 @@ class _CategoryPageWidgetState extends State<CategoryPageWidget> {
                                                       logFirebaseEvent(
                                                           'CATEGORY_Container_r0i3e7d0_ON_TAP');
                                                       logFirebaseEvent(
-                                                          'Container_Navigate-To');
+                                                          'Container_NavigateTo');
                                                       await Navigator.push(
                                                         context,
                                                         MaterialPageRoute(

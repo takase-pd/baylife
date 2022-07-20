@@ -1,9 +1,8 @@
 import 'dart:io';
-
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/material.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../backend/firebase_analytics/analytics.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/material.dart';
 
 class CustomDialog {
   static TextStyle titleStyle(BuildContext context) =>

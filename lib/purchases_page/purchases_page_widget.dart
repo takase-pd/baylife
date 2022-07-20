@@ -211,7 +211,7 @@ class _PurchasesPageWidgetState extends State<PurchasesPageWidget> {
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .title3,
+                                                              .subtitle1,
                                                     ),
                                                   ),
                                                   Padding(
