@@ -50,7 +50,7 @@ class _CatRowWidgetState extends State<CatRowWidget> {
                   child: InkWell(
                     onTap: () async {
                       logFirebaseEvent('CAT_ROW_COMP_Text_tc7dxmfy_ON_TAP');
-                      logFirebaseEvent('Text_Navigate-To');
+                      logFirebaseEvent('Text_NavigateTo');
                       await Navigator.push(
                         context,
                         MaterialPageRoute(

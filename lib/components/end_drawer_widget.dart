@@ -42,7 +42,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       onTap: () async {
                         logFirebaseEvent(
                             'END_DRAWER_COMP_ListTile_hyxd1vcp_ON_TAP');
-                        logFirebaseEvent('ListTile_Navigate-To');
+                        logFirebaseEvent('ListTile_NavigateTo');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -78,7 +78,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       onTap: () async {
                         logFirebaseEvent(
                             'END_DRAWER_COMP_ListTile_c79bmzob_ON_TAP');
-                        logFirebaseEvent('ListTile_Navigate-To');
+                        logFirebaseEvent('ListTile_NavigateTo');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -116,7 +116,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       onTap: () async {
                         logFirebaseEvent(
                             'END_DRAWER_COMP_ListTile_b8m04f2i_ON_TAP');
-                        logFirebaseEvent('ListTile_Launch-U-R-L');
+                        logFirebaseEvent('ListTile_LaunchURL');
                         await launchURL(
                             'https://www.particledrawing.com/privacy');
                       },
@@ -147,7 +147,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                       onTap: () async {
                         logFirebaseEvent(
                             'END_DRAWER_COMP_ListTile_r9bl6iug_ON_TAP');
-                        logFirebaseEvent('ListTile_Alert-Dialog');
+                        logFirebaseEvent('ListTile_AlertDialog');
                         var confirmDialogResponse = await showDialog<bool>(
                               context: context,
                               builder: (alertDialogContext) {
@@ -172,10 +172,10 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                             ) ??
                             false;
                         if (confirmDialogResponse) {
-                          logFirebaseEvent('ListTile_Backend-Call');
+                          logFirebaseEvent('ListTile_BackendCall');
                           await currentUserReference.delete();
                         }
-                        logFirebaseEvent('ListTile_Navigate-To');
+                        logFirebaseEvent('ListTile_NavigateTo');
                         await Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
@@ -219,7 +219,7 @@ class _EndDrawerWidgetState extends State<EndDrawerWidget> {
                   var _analyticsParam = {'uid': currentUserUid};
                   Analytics.analyticsLogEvent(
                       AnalyticsEventType.logout_user, _analyticsParam);
-                  logFirebaseEvent('ListTile_Navigate-To');
+                  logFirebaseEvent('ListTile_NavigateTo');
                   await Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(

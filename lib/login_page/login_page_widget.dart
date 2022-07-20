@@ -100,7 +100,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
         leading: InkWell(
           onTap: () async {
             logFirebaseEvent('LOGIN_PAGE_PAGE_Icon_y8evf44p_ON_TAP');
-            logFirebaseEvent('Icon_Navigate-Back');
+            logFirebaseEvent('Icon_NavigateBack');
             Navigator.pop(context);
           },
           child: Icon(
@@ -304,7 +304,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       AnalyticsEventType.login_user,
                                       _analyticsParam);
 
-                                  logFirebaseEvent('Button_Navigate-To');
+                                  logFirebaseEvent('Button_NavigateTo');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -368,7 +368,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             AnalyticsEventType.login_user,
                                             _analyticsParam);
 
-                                        logFirebaseEvent('Button_Navigate-To');
+                                        logFirebaseEvent('Button_NavigateTo');
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -440,7 +440,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     Analytics.analyticsLogEvent(
                                         AnalyticsEventType.login_user,
                                         _analyticsParam);
-                                    logFirebaseEvent('Button_Navigate-To');
+                                    logFirebaseEvent('Button_NavigateTo');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -566,7 +566,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   onTap: () async {
                                     logFirebaseEvent(
                                         'LOGIN_PAGE_PAGE_Text_mmrd2076_ON_TAP');
-                                    logFirebaseEvent('Text_Navigate-To');
+                                    logFirebaseEvent('Text_NavigateTo');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -596,7 +596,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   onTap: () async {
                                     logFirebaseEvent(
                                         'LOGIN_PAGE_PAGE_Text_3i62b0sx_ON_TAP');
-                                    logFirebaseEvent('Text_Launch-U-R-L');
+                                    logFirebaseEvent('Text_LaunchURL');
                                     await launchURL(
                                         'https://www.particledrawing.com/privacy');
                                   },
@@ -870,7 +870,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       AnalyticsEventType.create_account,
                                       _analyticsParam);
 
-                                  logFirebaseEvent('Button_Navigate-To');
+                                  logFirebaseEvent('Button_NavigateTo');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -933,7 +933,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         Analytics.analyticsLogEvent(
                                             AnalyticsEventType.create_account,
                                             _analyticsParam);
-                                        logFirebaseEvent('Button_Navigate-To');
+                                        logFirebaseEvent('Button_NavigateTo');
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -1005,7 +1005,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     Analytics.analyticsLogEvent(
                                         AnalyticsEventType.create_account,
                                         _analyticsParam);
-                                    logFirebaseEvent('Button_Navigate-To');
+                                    logFirebaseEvent('Button_NavigateTo');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -1141,7 +1141,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   onTap: () async {
                                     logFirebaseEvent(
                                         'LOGIN_PAGE_PAGE_Text_v883rqe2_ON_TAP');
-                                    logFirebaseEvent('Text_Navigate-To');
+                                    logFirebaseEvent('Text_NavigateTo');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -1171,7 +1171,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   onTap: () async {
                                     logFirebaseEvent(
                                         'LOGIN_PAGE_PAGE_Text_gb6glkvq_ON_TAP');
-                                    logFirebaseEvent('Text_Launch-U-R-L');
+                                    logFirebaseEvent('Text_LaunchURL');
                                     await launchURL(
                                         'https://www.particledrawing.com/privacy');
                                   },

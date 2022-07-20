@@ -1,5 +1,6 @@
 import '../auth/firebase_user_provider.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
 import '../cart_page/cart_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -10,7 +11,6 @@ import '../transactions_law_page/transactions_law_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ShopPageWidget extends StatefulWidget {
@@ -87,7 +87,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'SHOP_PAGE_PAGE_Card_0r00mcej_ON_TAP');
-                                  logFirebaseEvent('Card_Navigate-Back');
+                                  logFirebaseEvent('Card_NavigateBack');
                                   Navigator.pop(context);
                                 },
                                 child: Card(
@@ -117,7 +117,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'SHOP_PAGE_PAGE_Card_d239ipdz_ON_TAP');
-                                  logFirebaseEvent('Card_Navigate-To');
+                                  logFirebaseEvent('Card_NavigateTo');
                                   currentUser.loggedIn
                                       ? await Navigator.push(
                                           context,
@@ -201,6 +201,13 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                         0, 0, 16, 0),
                                     child: InkWell(
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                          'OPEN_SHOP_LINK_Instagram',
+                                          parameters: {
+                                            AnalyticsPrams.shop_link.label:
+                                                columnShopsRecord.shopName,
+                                          },
+                                        );
                                         if (!await launch(
                                             'instagram://user?username=${columnShopsRecord.instagram}'))
                                           throw 'Instagramを開けません。';
@@ -220,6 +227,13 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                         0, 0, 16, 0),
                                     child: InkWell(
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                          'OPEN_SHOP_LINK_Twitter',
+                                          parameters: {
+                                            AnalyticsPrams.shop_link.label:
+                                                columnShopsRecord.shopName,
+                                          },
+                                        );
                                         if (!await launch(
                                             'twitter://user?screen_name=${columnShopsRecord.twitter}'))
                                           throw 'Twitterを開けません。';
@@ -239,6 +253,13 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                         0, 0, 16, 0),
                                     child: InkWell(
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                          'OPEN_SHOP_LINK_Homepage',
+                                          parameters: {
+                                            AnalyticsPrams.shop_link.label:
+                                                columnShopsRecord.shopName,
+                                          },
+                                        );
                                         if (!await launch(
                                             columnShopsRecord.web))
                                           throw 'ホームページを開けません。';
@@ -256,6 +277,13 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                       0, 0, 16, 0),
                                   child: InkWell(
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                        'SEND_SHOP_Mail',
+                                        parameters: {
+                                          AnalyticsPrams.shop_link.label:
+                                              columnShopsRecord.shopName,
+                                        },
+                                      );
                                       final title = Uri.encodeComponent(
                                           '問い合わせ (Bay Life)');
                                       final body = Uri.encodeComponent(
@@ -277,6 +305,13 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                       0, 0, 0, 0),
                                   child: InkWell(
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                        'CALL_SHOP',
+                                        parameters: {
+                                          AnalyticsPrams.shop_link.label:
+                                              columnShopsRecord.shopName,
+                                        },
+                                      );
                                       await launch(
                                           'tel:${columnShopsRecord.phone}');
                                     },
@@ -395,8 +430,13 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'SHOP_PAGE_PAGE_Column_jdzhq0yg_ON_TAP');
-                                        logFirebaseEvent('Column_Navigate-To');
+                                          'SHOP_PAGE_PAGE_Column_jdzhq0yg_ON_TAP',
+                                          parameters: {
+                                            AnalyticsPrams.plan_name.label:
+                                                wrapPlansRecord.name,
+                                          },
+                                        );
+                                        logFirebaseEvent('Column_NavigateTo');
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -539,8 +579,13 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                       InkWell(
                         onTap: () async {
                           logFirebaseEvent(
-                              'SHOP_PAGE_PAGE_Text_3g4yt3pe_ON_TAP');
-                          logFirebaseEvent('Text_Navigate-To');
+                            'SHOP_PAGE_PAGE_Text_3g4yt3pe_ON_TAP',
+                            parameters: {
+                              AnalyticsPrams.shop_name.label:
+                                  columnShopsRecord.shopName,
+                            },
+                          );
+                          logFirebaseEvent('Text_NavigateTo');
                           await Navigator.push(
                             context,
                             MaterialPageRoute(

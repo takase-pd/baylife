@@ -1,3 +1,4 @@
+import '../auth/firebase_user_provider.dart';
 import '../backend/backend.dart';
 import '../category_page/category_page_widget.dart';
 import '../components/cat_row_widget.dart';
@@ -6,16 +7,12 @@ import '../components/header_logo_widget.dart';
 import '../content_page/content_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../login_page/login_page_path.dart';
 import '../login_page/login_page_widget.dart';
 import '../post_page_with_login/post_page_with_login_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../auth/firebase_user_provider.dart';
-import '../login_page/login_page_path.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({
@@ -52,7 +49,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           logFirebaseEvent('HOME_FloatingActionButton_boemacp8_ON_TA');
-          logFirebaseEvent('FloatingActionButton_Navigate-To');
+          logFirebaseEvent('FloatingActionButton_NavigateTo');
           await Navigator.push(
             context,
             MaterialPageRoute(
@@ -81,7 +78,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CatRowWidget(),
+          // CatRowWidget(),
           Expanded(
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
@@ -121,7 +118,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           onTap: () async {
                             logFirebaseEvent(
                                 'HOME_PAGE_PAGE_Card_pzugdccw_ON_TAP');
-                            logFirebaseEvent('Card_Navigate-To');
+                            logFirebaseEvent('Card_NavigateTo');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -227,25 +224,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       .fromSTEB(0, 0, 10, 0),
                                                   child: InkWell(
                                                     onTap: () async {
-                                                      logFirebaseEvent(
-                                                          'HOME_PAGE_PAGE_Container_tnjkyfqd_ON_TAP');
-                                                      logFirebaseEvent(
-                                                          'Container_Navigate-To');
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          settings:
-                                                              const RouteSettings(
-                                                                  name:
-                                                                      'CategoryPage'),
-                                                          builder: (context) =>
-                                                              CategoryPageWidget(
-                                                            catRef:
-                                                                rowCategoriesRecord
-                                                                    .reference,
-                                                          ),
-                                                        ),
-                                                      );
+                                                      // logFirebaseEvent(
+                                                      //     'HOME_PAGE_PAGE_Container_tnjkyfqd_ON_TAP');
+                                                      // logFirebaseEvent(
+                                                      //     'Container_NavigateTo');
+                                                      // await Navigator.push(
+                                                      //   context,
+                                                      //   MaterialPageRoute(
+                                                      //     settings:
+                                                      //         const RouteSettings(
+                                                      //             name:
+                                                      //                 'CategoryPage'),
+                                                      //     builder: (context) =>
+                                                      //         CategoryPageWidget(
+                                                      //       catRef:
+                                                      //           rowCategoriesRecord
+                                                      //               .reference,
+                                                      //     ),
+                                                      //   ),
+                                                      // );
                                                     },
                                                     child: Container(
                                                       width: 70,

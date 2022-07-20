@@ -85,7 +85,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'TRANSACTIONS_LAW_Card_0vla3ndm_ON_TAP');
-                                  logFirebaseEvent('Card_Navigate-Back');
+                                  logFirebaseEvent('Card_NavigateBack');
                                   Navigator.pop(context);
                                 },
                                 child: Card(
@@ -115,7 +115,7 @@ class _TransactionsLawPageWidgetState extends State<TransactionsLawPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'TRANSACTIONS_LAW_Card_hv2guadk_ON_TAP');
-                                  logFirebaseEvent('Card_Navigate-To');
+                                  logFirebaseEvent('Card_NavigateTo');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
