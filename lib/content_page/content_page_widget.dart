@@ -134,18 +134,18 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                             final containerCategoriesRecord = snapshot.data;
                             return InkWell(
                               onTap: () async {
-                                logFirebaseEvent(
-                                    'CONTENT_Container_fl6ndgwe_ON_TAP');
-                                logFirebaseEvent('Container_Navigate-To');
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => CategoryPageWidget(
-                                      catRef:
-                                          containerCategoriesRecord.reference,
-                                    ),
-                                  ),
-                                );
+                                // logFirebaseEvent(
+                                //     'CONTENT_Container_fl6ndgwe_ON_TAP');
+                                // logFirebaseEvent('Container_Navigate-To');
+                                // await Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) => CategoryPageWidget(
+                                //       catRef:
+                                //           containerCategoriesRecord.reference,
+                                //     ),
+                                //   ),
+                                // );
                               },
                               child: Container(
                                 width: 70,
