@@ -3,6 +3,7 @@ import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/stripe/payment_manager.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
 import '../components/billing_details_widget.dart';
 import '../components/shipping_details_widget.dart';
 import '../custom_code/widgets/index.dart';
@@ -740,7 +741,13 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             onPressed: () async {
                                               logFirebaseEvent('ButtonON_TAP');
                                               logFirebaseEvent(
-                                                  'ButtonBottomSheet');
+                                                'ButtonBottomSheet',
+                                                parameters: {
+                                                  AnalyticsPrams
+                                                      .bottom_sheet_name
+                                                      .label: 'ShippingDetails',
+                                                },
+                                              );
                                               var _shipping =
                                                   await showModalBottomSheet<
                                                       ShippingDetails>(
@@ -806,7 +813,13 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             onPressed: () async {
                                               logFirebaseEvent('ButtonON_TAP');
                                               logFirebaseEvent(
-                                                  'ButtonBottomSheet');
+                                                'ButtonBottomSheet',
+                                                parameters: {
+                                                  AnalyticsPrams
+                                                      .bottom_sheet_name
+                                                      .label: 'BillingDetails',
+                                                },
+                                              );
                                               var _billing =
                                                   await showModalBottomSheet(
                                                 isScrollControlled: true,
@@ -1075,6 +1088,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                 return;
                                               }
 
+                                              logFirebaseEvent(
+                                                  'ThanksAlertDialog');
                                               showDialog(
                                                 context: context,
                                                 barrierDismissible: true,
@@ -1175,7 +1190,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                       ],
                                       FFButtonWidget(
                                         onPressed: () async {
-                                          logFirebaseEvent('ButtonON_TAP');
+                                          logFirebaseEvent(
+                                              'CART_PAGE_PAGE_AddPlan_ButtonON_TAP');
                                           logFirebaseEvent('ButtonNavigateTo');
                                           await Navigator.push(
                                             context,

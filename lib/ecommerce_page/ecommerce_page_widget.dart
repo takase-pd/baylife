@@ -1,4 +1,5 @@
 import '../backend/backend.dart';
+import '../backend/firebase_analytics/analytics_event_type.dart';
 import '../cart_page/cart_page_widget.dart';
 import '../components/end_drawer_widget.dart';
 import '../components/header_logo_widget.dart';
@@ -225,7 +226,12 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                                       child: InkWell(
                                         onTap: () async {
                                           logFirebaseEvent(
-                                              'ECOMMERCE_PAGE_PAGE_Card_hdqmvbf8_ON_TAP');
+                                            'ECOMMERCE_PAGE_PAGE_Card_hdqmvbf8_ON_TAP',
+                                            parameters: {
+                                              AnalyticsPrams.shop_name.label:
+                                                  listViewShopsRecord.shopName,
+                                            },
+                                          );
                                           logFirebaseEvent('Card_NavigateTo');
                                           await Navigator.push(
                                             context,
