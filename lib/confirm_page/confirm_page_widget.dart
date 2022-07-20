@@ -84,7 +84,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
         leading: InkWell(
           onTap: () async {
             logFirebaseEvent('CONFIRM_PAGE_PAGE_Icon_hd8nkgu3_ON_TAP');
-            logFirebaseEvent('Icon_Navigate-Back');
+            logFirebaseEvent('Icon_NavigateBack');
             Navigator.pop(context);
           },
           child: Icon(
@@ -896,7 +896,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                           onTap: () async {
                             logFirebaseEvent(
                                 'CONFIRM_PAGE_PAGE_Text_3743yv9y_ON_TAP');
-                            logFirebaseEvent('Text_Navigate-To');
+                            logFirebaseEvent('Text_NavigateTo');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -966,9 +966,9 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           logFirebaseEvent(
-                                              'CONFIRM_PAGE_PAGE_戻る_BTN_ON_TAP');
+                                              'CONFIRM_PAGE_PAGE_BACK_BTN_ON_TAP');
                                           logFirebaseEvent(
-                                              'Button_Navigate-Back');
+                                              'Button_NavigateBack');
                                           Navigator.pop(context);
                                         },
                                         text: '戻る',
@@ -1057,7 +1057,7 @@ class _ConfirmPageWidgetState extends State<ConfirmPageWidget> {
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
-                                                  'CONFIRM_PAGE_PAGE_送信_BTN_ON_TAP');
+                                                  'CONFIRM_PAGE_PAGE_SEND_BTN_ON_TAP');
                                               final _appCheckToken =
                                                   await AppCheckAgent.getToken(
                                                       context);

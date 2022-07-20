@@ -43,7 +43,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
         leading: InkWell(
           onTap: () async {
             logFirebaseEvent('MY_PAGE_PAGE_Icon_04c46r7o_ON_TAP');
-            logFirebaseEvent('Icon_Navigate-To');
+            logFirebaseEvent('Icon_NavigateTo');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -73,7 +73,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                       var _analyticsParam = {'uid': currentUserUid};
                       Analytics.analyticsLogEvent(
                           AnalyticsEventType.logout_user, _analyticsParam);
-                      logFirebaseEvent('Text_Navigate-To');
+                      logFirebaseEvent('Text_NavigateTo');
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -413,7 +413,7 @@ class _MyPageWidgetState extends State<MyPageWidget> {
                           onTap: () async {
                             logFirebaseEvent(
                                 'MY_PAGE_PAGE_Text_8jhwgbc9_ON_TAP');
-                            logFirebaseEvent('Text_Navigate-To');
+                            logFirebaseEvent('Text_NavigateTo');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(

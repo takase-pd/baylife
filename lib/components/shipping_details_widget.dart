@@ -43,6 +43,8 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('bottom_sheet_view',
+        parameters: {'sheet_name': 'ShippingDetails'});
     cityController =
         TextEditingController(text: widget.shipping?.address?.city ?? '千葉市');
     postalCodeController = TextEditingController(

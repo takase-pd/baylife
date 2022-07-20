@@ -49,7 +49,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           logFirebaseEvent('HOME_FloatingActionButton_boemacp8_ON_TA');
-          logFirebaseEvent('FloatingActionButton_Navigate-To');
+          logFirebaseEvent('FloatingActionButton_NavigateTo');
           await Navigator.push(
             context,
             MaterialPageRoute(
@@ -118,7 +118,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           onTap: () async {
                             logFirebaseEvent(
                                 'HOME_PAGE_PAGE_Card_pzugdccw_ON_TAP');
-                            logFirebaseEvent('Card_Navigate-To');
+                            logFirebaseEvent('Card_NavigateTo');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -227,7 +227,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       // logFirebaseEvent(
                                                       //     'HOME_PAGE_PAGE_Container_tnjkyfqd_ON_TAP');
                                                       // logFirebaseEvent(
-                                                      //     'Container_Navigate-To');
+                                                      //     'Container_NavigateTo');
                                                       // await Navigator.push(
                                                       //   context,
                                                       //   MaterialPageRoute(

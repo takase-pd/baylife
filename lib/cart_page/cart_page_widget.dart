@@ -141,7 +141,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                             alignment: AlignmentDirectional(-0.95, 0.4),
                             child: InkWell(
                               onTap: () async {
-                                logFirebaseEvent('CardON_TAP');
+                                logFirebaseEvent(
+                                    'CART_PAGE_PAGE_Card_jcpc2xs3_ON_TAP');
                                 logFirebaseEvent('CardNavigateBack');
                                 Navigator.pop(context);
                               },

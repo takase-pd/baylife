@@ -1,33 +1,23 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
-import '../backend/backend.dart';
+import 'auth/firebase_user_provider.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
+import 'backend/stripe/payment_manager.dart';
+import 'custom_code/widgets/index.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'home_page/home_page_widget.dart';
-import 'survey_page/survey_page_widget.dart';
-import 'package:app_tracking_transparency/app_tracking_transparency.dart';
-import 'ecommerce_page/ecommerce_page_widget.dart';
 import 'index.dart';
-
-import 'backend/stripe/payment_manager.dart';
-
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
-import 'package:badges/badges.dart';
 import '../backend/api_requests/api_calls.dart';
+import '../backend/backend.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
-import './custom_code/widgets/index.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:badges/badges.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt locator = GetIt.instance;

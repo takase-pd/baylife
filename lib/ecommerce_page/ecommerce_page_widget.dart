@@ -100,7 +100,7 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                                         onTap: () async {
                                           logFirebaseEvent(
                                               'ECOMMERCE_PAGE_PAGE_Row_j3w0s5jf_ON_TAP');
-                                          logFirebaseEvent('Row_Navigate-To');
+                                          logFirebaseEvent('Row_NavigateTo');
                                           await Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -150,7 +150,7 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                                         onTap: () async {
                                           logFirebaseEvent(
                                               'ECOMMERCE_PAGE_PAGE_Row_8tje70hv_ON_TAP');
-                                          logFirebaseEvent('Row_Navigate-To');
+                                          logFirebaseEvent('Row_NavigateTo');
                                           await Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -226,7 +226,7 @@ class _EcommercePageWidgetState extends State<EcommercePageWidget> {
                                         onTap: () async {
                                           logFirebaseEvent(
                                               'ECOMMERCE_PAGE_PAGE_Card_hdqmvbf8_ON_TAP');
-                                          logFirebaseEvent('Card_Navigate-To');
+                                          logFirebaseEvent('Card_NavigateTo');
                                           await Navigator.push(
                                             context,
                                             MaterialPageRoute(

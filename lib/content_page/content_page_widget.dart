@@ -43,7 +43,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
         leading: InkWell(
           onTap: () async {
             logFirebaseEvent('CONTENT_PAGE_PAGE_Icon_eplb50s4_ON_TAP');
-            logFirebaseEvent('Icon_Navigate-Back');
+            logFirebaseEvent('Icon_NavigateBack');
             Navigator.pop(context);
           },
           child: Icon(
@@ -136,7 +136,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                               onTap: () async {
                                 // logFirebaseEvent(
                                 //     'CONTENT_Container_fl6ndgwe_ON_TAP');
-                                // logFirebaseEvent('Container_Navigate-To');
+                                // logFirebaseEvent('Container_NavigateTo');
                                 // await Navigator.push(
                                 //   context,
                                 //   MaterialPageRoute(
@@ -318,7 +318,7 @@ class _ContentPageWidgetState extends State<ContentPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'CONTENT_PAGE_PAGE_Homepage_ON_TAP');
-                                  logFirebaseEvent('Homepage_Launch-U-R-L');
+                                  logFirebaseEvent('Homepage_LaunchURL');
                                   await launchURL(
                                       columnContentsRecord.homepage);
                                 },

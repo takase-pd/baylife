@@ -87,7 +87,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'SHOP_PAGE_PAGE_Card_0r00mcej_ON_TAP');
-                                  logFirebaseEvent('Card_Navigate-Back');
+                                  logFirebaseEvent('Card_NavigateBack');
                                   Navigator.pop(context);
                                 },
                                 child: Card(
@@ -117,7 +117,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'SHOP_PAGE_PAGE_Card_d239ipdz_ON_TAP');
-                                  logFirebaseEvent('Card_Navigate-To');
+                                  logFirebaseEvent('Card_NavigateTo');
                                   currentUser.loggedIn
                                       ? await Navigator.push(
                                           context,
@@ -396,7 +396,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                                       onTap: () async {
                                         logFirebaseEvent(
                                             'SHOP_PAGE_PAGE_Column_jdzhq0yg_ON_TAP');
-                                        logFirebaseEvent('Column_Navigate-To');
+                                        logFirebaseEvent('Column_NavigateTo');
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -540,7 +540,7 @@ class _ShopPageWidgetState extends State<ShopPageWidget> {
                         onTap: () async {
                           logFirebaseEvent(
                               'SHOP_PAGE_PAGE_Text_3g4yt3pe_ON_TAP');
-                          logFirebaseEvent('Text_Navigate-To');
+                          logFirebaseEvent('Text_NavigateTo');
                           await Navigator.push(
                             context,
                             MaterialPageRoute(

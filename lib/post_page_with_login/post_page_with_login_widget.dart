@@ -73,7 +73,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
         leading: InkWell(
           onTap: () async {
             logFirebaseEvent('POST_WITH_LOGIN_Icon_fkeajruh_ON_TAP');
-            logFirebaseEvent('Icon_Navigate-To');
+            logFirebaseEvent('Icon_NavigateTo');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -669,7 +669,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               logFirebaseEvent(
                                                   'POST_WITH_LOGIN_FileButton_ON_TAP');
                                               logFirebaseEvent(
-                                                  'FileButton_Upload-Photo-Video');
+                                                  'FileButton_UploadPhotoVideo');
                                               final selectedMedia =
                                                   await selectMedia(
                                                 maxWidth: 300.00,
@@ -823,7 +823,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               logFirebaseEvent(
                                                   'POST_WITH_LOGIN_StartDayButton_ON_TAP');
                                               logFirebaseEvent(
-                                                  'StartDayButton_Date-Time-Picker');
+                                                  'StartDayButton_DateTimePicker');
                                               await DatePicker.showDatePicker(
                                                 context,
                                                 showTitleActions: true,
@@ -950,7 +950,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                               logFirebaseEvent(
                                                   'POST_WITH_LOGIN_FinalDayButton_ON_TAP');
                                               logFirebaseEvent(
-                                                  'FinalDayButton_Date-Time-Picker');
+                                                  'FinalDayButton_DateTimePicker');
                                               await DatePicker.showDatePicker(
                                                 context,
                                                 showTitleActions: true,
@@ -1623,7 +1623,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                             onTap: () async {
                               logFirebaseEvent(
                                   'POST_WITH_LOGIN_Text_x583tubz_ON_TAP');
-                              logFirebaseEvent('Text_Navigate-To');
+                              logFirebaseEvent('Text_NavigateTo');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -1691,8 +1691,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                         onPressed: () async {
                                           logFirebaseEvent(
                                               'POST_PAGE_WITH_LOGIN_PAGE_確認_BTN_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Button_Navigate-To');
+                                          logFirebaseEvent('Button_NavigateTo');
                                           await Navigator.push(
                                             context,
                                             MaterialPageRoute(

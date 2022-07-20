@@ -103,7 +103,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'PLAN_PAGE_PAGE_Card_nj7kako9_ON_TAP');
-                                  logFirebaseEvent('Card_Navigate-Back');
+                                  logFirebaseEvent('Card_NavigateBack');
                                   Navigator.pop(context);
                                 },
                                 child: Card(
@@ -133,7 +133,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'PLAN_PAGE_PAGE_Card_w2htuil8_ON_TAP');
-                                  logFirebaseEvent('Card_Navigate-To');
+                                  logFirebaseEvent('Card_NavigateTo');
                                   currentUser.loggedIn
                                       ? await Navigator.push(
                                           context,
@@ -819,7 +819,7 @@ class _PlanPageWidgetState extends State<PlanPageWidget> {
       return true;
     }
 
-    logFirebaseEvent('Button_Alert-Dialog');
+    logFirebaseEvent('Button_AlertDialog');
     var confirmDialogResponse = await showDialog<bool>(
           context: context,
           builder: (alertDialogContext) {

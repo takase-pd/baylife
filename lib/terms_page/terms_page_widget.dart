@@ -39,7 +39,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
         leading: InkWell(
           onTap: () async {
             logFirebaseEvent('TERMS_PAGE_PAGE_Icon_xg3945h0_ON_TAP');
-            logFirebaseEvent('Icon_Navigate-Back');
+            logFirebaseEvent('Icon_NavigateBack');
             Navigator.pop(context);
           },
           child: Icon(
@@ -66,7 +66,7 @@ class _TermsPageWidgetState extends State<TermsPageWidget> {
             child: InkWell(
               onTap: () async {
                 logFirebaseEvent('TERMS_PAGE_PAGE_Text_ffcrr5ht_ON_TAP');
-                logFirebaseEvent('Text_Launch-U-R-L');
+                logFirebaseEvent('Text_LaunchURL');
                 await launchURL(widget.termsUrl);
               },
               child: Text(
