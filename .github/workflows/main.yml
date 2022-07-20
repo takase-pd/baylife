@@ -50,7 +50,7 @@ jobs:
           path: ./build/ios/ipa/BayLife.ipa
 
       - name: Upload to AppStoreConnect
-        run: xcrun altool --upload-app -f "./build/ios/ipa/BayLife.ipa" -u "${{ secrets.APPLE_ID }}" -p "${{ secrets.APPLE_APP_PASS }}"
+        run: xcrun altool -t ios --upload-app -f "./build/ios/ipa/BayLife.ipa" -u "${{ secrets.APPLE_ID }}" -p "${{ secrets.APPLE_APP_PASS }}"
 
   build_Android:
     name: Build for Android
