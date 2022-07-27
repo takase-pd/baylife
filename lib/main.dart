@@ -20,6 +20,7 @@ void main() async {
   await Firebase.initializeApp();
 
   await initializeStripe();
+
   runApp(MyApp());
 }
 

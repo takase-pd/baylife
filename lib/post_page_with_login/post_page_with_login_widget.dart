@@ -841,7 +841,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                       FFLocalizations.of(
                                                               context)
                                                           .languageCode,
-                                                  orElse: null,
+                                                  orElse: () => LocaleType.en,
                                                 ),
                                               );
                                             },
@@ -968,7 +968,7 @@ class _PostPageWithLoginWidgetState extends State<PostPageWithLoginWidget> {
                                                       FFLocalizations.of(
                                                               context)
                                                           .languageCode,
-                                                  orElse: null,
+                                                  orElse: () => LocaleType.en,
                                                 ),
                                               );
                                             },

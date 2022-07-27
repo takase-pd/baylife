@@ -428,6 +428,30 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFFEEEEEE),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              '「注文する」ボタンを押してご注文いただくことで、お客様は当アプリの利用規約、プライバシーポリシーに同意の上、商品をご注文されたことになります。',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText2
+                                  .override(
+                                    fontFamily: 'Open Sans',
+                                    fontSize: 12,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                     child: FFButtonWidget(
                       onPressed: () async {
                         logFirebaseEvent('CART_PAGE_PAGE_注文する_BTN_ON_TAP');

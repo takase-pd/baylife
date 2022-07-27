@@ -364,79 +364,45 @@ class _MyPageEditWidgetState extends State<MyPageEditWidget> {
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
-                        child: StreamBuilder<List<SurveyRecord>>(
-                          stream: querySurveyRecord(
-                            singleRecord: true,
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: SpinKitPulse(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 50,
-                                  ),
-                                ),
-                              );
-                            }
-                            List<SurveyRecord> buttonSurveyRecordList =
-                                snapshot.data;
-                            // Return an empty Container when the document does not exist.
-                            if (snapshot.data.isEmpty) {
-                              return Container();
-                            }
-                            final buttonSurveyRecord =
-                                buttonSurveyRecordList.isNotEmpty
-                                    ? buttonSurveyRecordList.first
-                                    : null;
-                            return FFButtonWidget(
-                              onPressed: () async {
-                                logFirebaseEvent(
-                                    'MY_PAGE_EDIT_PAGE_保存_BTN_ON_TAP');
-                                logFirebaseEvent('Button_Backend-Call');
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent('MY_PAGE_EDIT_PAGE_保存_BTN_ON_TAP');
+                            logFirebaseEvent('Button_Backend-Call');
 
-                                final usersUpdateData = createUsersRecordData(
-                                  sex: sexValue,
-                                  area: areaValue,
-                                  displayName: textController1.text,
-                                  age: int.parse(textController2.text),
-                                );
-                                await currentUserReference
-                                    .update(usersUpdateData);
-                                logFirebaseEvent('Button_Navigate-To');
-                                await Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MyPageWidget(),
-                                  ),
-                                  (r) => false,
-                                );
-                              },
-                              text: '保存',
-                              options: FFButtonOptions(
-                                width: 240,
-                                height: 48,
-                                color: FlutterFlowTheme.of(context).pDark,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .textLight,
-                                    ),
-                                elevation: 4,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(12),
+                            final usersUpdateData = createUsersRecordData(
+                              sex: sexValue,
+                              area: areaValue,
+                              displayName: textController1.text,
+                              age: int.parse(textController2.text),
+                            );
+                            await currentUserReference.update(usersUpdateData);
+                            logFirebaseEvent('Button_Navigate-To');
+                            await Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyPageWidget(),
                               ),
+                              (r) => false,
                             );
                           },
+                          text: '保存',
+                          options: FFButtonOptions(
+                            width: 240,
+                            height: 48,
+                            color: FlutterFlowTheme.of(context).pDark,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .subtitle2
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.of(context).textLight,
+                                ),
+                            elevation: 4,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
                       ),
                     ],
